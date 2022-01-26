@@ -28,7 +28,7 @@ class ButtonBottomOne extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: Container(
         padding:
-            EdgeInsets.symmetric(horizontal: Insets.lg, vertical: Insets.med),
+            EdgeInsets.symmetric(horizontal: Insets.med, vertical: Insets.med),
         decoration: BoxDecoration(
             color: AppColor.whiteColor, boxShadow: Shadows.shadowsUp),
         child: Column(
