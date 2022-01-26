@@ -34,7 +34,7 @@ class ButtonPrimary extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         margin: margin ?? EdgeInsets.zero,
-        height: height ?? IconSizes.xxl - 4,
+        height: height ?? IconSizes.xxl - 6,
         width: size ?? double.infinity,
         child: ElevatedButton(
             onPressed: enable ? onPressed : null,
