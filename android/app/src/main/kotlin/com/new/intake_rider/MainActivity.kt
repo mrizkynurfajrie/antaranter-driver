@@ -1,4 +1,4 @@
-package com.new.intake_rider
+package com.intake_rider
 
 import io.flutter.embedding.android.FlutterActivity
 
