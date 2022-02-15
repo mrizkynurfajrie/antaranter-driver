@@ -1,3 +1,4 @@
 abstract class Routes {
-  static const INITIAL = '/page_splash_screen';
+  static const INITIAL = '/splash_page';
+  static const welcome = '/welcome_page';
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:intake_rider/const.dart';
+import 'package:get/get.dart';
+import 'package:intake_rider/features/welcome/page_welcome.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -18,7 +20,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   splashscreenStart() async {
     var duration = const Duration(seconds: 4);
-    return Timer(duration, () {});
+    return Timer(duration, () {
+      Get.toNamed('/welcome_page');
+    });
   }
 
   @override
