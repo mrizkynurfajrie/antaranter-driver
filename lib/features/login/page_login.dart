@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intakemobile/features/login/controller_login.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
-import 'package:intakemobile/shared/widgets/buttons/button_bottom_one.dart';
-import 'package:intakemobile/shared/widgets/inputs/input_phone.dart';
-import 'package:intakemobile/shared/widgets/pages/page_decoration_top.dart';
+import 'package:intake_rider/features/login/controller_login.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/widgets/buttons/button_bottom_one.dart';
+import 'package:intake_rider/shared/widgets/inputs/input_phone.dart';
+import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PageLogin extends GetView<ControllerLogin> {

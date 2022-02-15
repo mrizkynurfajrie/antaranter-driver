@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intakemobile/shared/constants/assets.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
-import 'package:intakemobile/shared/widgets/buttons/button_primary.dart';
+import 'package:intake_rider/shared/constants/assets.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
 
 class PageComingSoon extends StatelessWidget {
   const PageComingSoon({

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:intakemobile/features/login/api_login.dart';
-import 'package:intakemobile/features/login/controller_login.dart';
+import 'package:intake_rider/features/login/api_login.dart';
+import 'package:intake_rider/features/login/controller_login.dart';
 
 class BindingLogin implements Bindings {
   @override

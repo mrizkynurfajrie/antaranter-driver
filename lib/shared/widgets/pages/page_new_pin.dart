@@ -1,12 +1,12 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:intakemobile/shared/constants/assets.dart';
-import 'package:intakemobile/shared/constants/colors.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
-import 'package:intakemobile/shared/widgets/others/pin_numpad.dart';
-import 'package:intakemobile/shared/widgets/others/preview_pin.dart';
-import 'package:intakemobile/shared/widgets/pages/page_decoration_top.dart';
+import 'package:intake_rider/shared/constants/assets.dart';
+import 'package:intake_rider/shared/constants/colors.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/widgets/others/pin_numpad.dart';
+import 'package:intake_rider/shared/widgets/others/preview_pin.dart';
+import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 
 class PageNewChangePin extends StatefulWidget {
   const PageNewChangePin({

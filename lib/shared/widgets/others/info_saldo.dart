@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intakemobile/shared/constants/colors.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
-import 'package:intakemobile/shared/helpers/format_currency.dart';
+import 'package:intake_rider/shared/constants/colors.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/helpers/format_currency.dart';
 
 class InfoSaldo extends StatelessWidget {
   const InfoSaldo({

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intakemobile/shared/constants/assets.dart';
-import 'package:intakemobile/shared/constants/colors.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
+import 'package:intake_rider/shared/constants/assets.dart';
+import 'package:intake_rider/shared/constants/colors.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
 
 class CustomSnackbar {
   /// Custom Snackbar used for implementing new Design Actionpay

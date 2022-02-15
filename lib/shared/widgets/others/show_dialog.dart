@@ -3,12 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:intakemobile/shared/constants/assets.dart';
-import 'package:intakemobile/shared/constants/colors.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
-import 'package:intakemobile/shared/widgets/buttons/button_danger_outline.dart';
-import 'package:intakemobile/shared/widgets/buttons/button_primary.dart';
-import 'package:intakemobile/shared/widgets/cards/card_rounded.dart';
+import 'package:intake_rider/shared/constants/assets.dart';
+import 'package:intake_rider/shared/constants/colors.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/widgets/buttons/button_danger_outline.dart';
+import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
+import 'package:intake_rider/shared/widgets/cards/card_rounded.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 showPopUp(

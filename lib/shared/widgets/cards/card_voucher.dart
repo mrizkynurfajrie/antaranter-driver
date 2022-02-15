@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:intakemobile/shared/constants/assets.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
-import 'package:intakemobile/shared/helpers/format_currency.dart';
-import 'package:intakemobile/shared/widgets/cards/card_rounded.dart';
+import 'package:intake_rider/shared/constants/assets.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/helpers/format_currency.dart';
+import 'package:intake_rider/shared/widgets/cards/card_rounded.dart';
 
 class CardVoucher extends StatelessWidget {
   const CardVoucher({

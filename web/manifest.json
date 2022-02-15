@@ -1,6 +1,6 @@
 {
-    "name": "intakemobile",
-    "short_name": "intakemobile",
+    "name": "intake_rider",
+    "short_name": "intake_rider",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

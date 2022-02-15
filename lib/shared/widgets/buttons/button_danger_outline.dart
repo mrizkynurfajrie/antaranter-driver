@@ -1,8 +1,8 @@
 // ignore_for_file: unnecessary_new, unnecessary_this
 
 import 'package:flutter/material.dart';
-import 'package:intakemobile/shared/constants/colors.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
+import 'package:intake_rider/shared/constants/colors.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
 
 class ButtonDangerOutline extends StatelessWidget {
   final Function() _onPressed;

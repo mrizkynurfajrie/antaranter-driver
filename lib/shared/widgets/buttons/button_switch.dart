@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
 
 import 'package:flutter/cupertino.dart';
-import 'package:intakemobile/shared/constants/colors.dart';
+import 'package:intake_rider/shared/constants/colors.dart';
 
 class ButtonSwitch extends StatefulWidget {
   final bool value;

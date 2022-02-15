@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
-import 'package:intakemobile/shared/helpers/format_currency.dart';
-import 'package:intakemobile/shared/widgets/cards/card_rounded_border.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/helpers/format_currency.dart';
+import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
 
 class CardTotalPayment extends StatelessWidget {
   final String? title;

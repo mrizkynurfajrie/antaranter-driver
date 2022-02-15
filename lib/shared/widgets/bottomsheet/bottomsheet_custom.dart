@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
-import 'package:intakemobile/shared/widgets/cards/card_bottomsheet.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/widgets/cards/card_bottomsheet.dart';
 
 class BottomsheetCustom {
   BottomsheetCustom({

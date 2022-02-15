@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intakemobile/shared/constants/assets.dart';
-import 'package:intakemobile/shared/constants/colors.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
-import 'package:intakemobile/shared/widgets/buttons/button_rich_text.dart';
-import 'package:intakemobile/shared/widgets/others/menu_profile.dart';
-import 'package:intakemobile/shared/widgets/pages/page_decoration_top.dart';
+import 'package:intake_rider/shared/constants/assets.dart';
+import 'package:intake_rider/shared/constants/colors.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/widgets/buttons/button_rich_text.dart';
+import 'package:intake_rider/shared/widgets/others/menu_profile.dart';
+import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PageDoneAccount extends StatefulWidget {

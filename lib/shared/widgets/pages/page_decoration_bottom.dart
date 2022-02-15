@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_this
 
 import 'package:flutter/material.dart';
-import 'package:intakemobile/shared/widgets/pages/page_bgcolor.dart';
+import 'package:intake_rider/shared/widgets/pages/page_bgcolor.dart';
 
 class PageDecorationBottom extends StatelessWidget {
   final Widget _child;

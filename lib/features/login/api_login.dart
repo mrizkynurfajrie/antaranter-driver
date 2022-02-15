@@ -1,5 +1,5 @@
-import 'package:intakemobile/framework/api1.dart';
-import 'package:intakemobile/shared/helpers/get_device_info.dart';
+import 'package:intake_rider/framework/api1.dart';
+import 'package:intake_rider/shared/helpers/get_device_info.dart';
 
 class ApiLogin {
   //contoh

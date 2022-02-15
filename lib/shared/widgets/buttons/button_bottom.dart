@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
-import 'package:intakemobile/shared/widgets/buttons/button_primary.dart';
-import 'package:intakemobile/shared/widgets/others/loading_indicator.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
+import 'package:intake_rider/shared/widgets/others/loading_indicator.dart';
 
 class ButtonBottom extends StatelessWidget {
   final String label;

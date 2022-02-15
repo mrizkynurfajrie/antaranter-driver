@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:intakemobile/shared/constants/assets.dart';
+import 'package:intake_rider/shared/constants/assets.dart';
 
 class ImageCircular extends StatelessWidget {
   final String uri;

@@ -1,4 +1,4 @@
-# intakemobile
+# intake_rider
 
 A new Flutter project.
 

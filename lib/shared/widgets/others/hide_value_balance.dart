@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
 
 class HideValueBalance extends StatelessWidget {
   const HideValueBalance({Key? key}) : super(key: key);

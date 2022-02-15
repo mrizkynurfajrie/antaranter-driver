@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
 
 class CardTransactionType extends StatelessWidget {
   final String? title;

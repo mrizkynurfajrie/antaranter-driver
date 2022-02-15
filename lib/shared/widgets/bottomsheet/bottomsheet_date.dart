@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
-import 'package:intakemobile/shared/widgets/bottomsheet/bottomsheet_custom.dart';
-import 'package:intakemobile/shared/widgets/buttons/button_bottom.dart';
-import 'package:intakemobile/shared/widgets/inputs/input_date.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/widgets/bottomsheet/bottomsheet_custom.dart';
+import 'package:intake_rider/shared/widgets/buttons/button_bottom.dart';
+import 'package:intake_rider/shared/widgets/inputs/input_date.dart';
 
 class BottomsheetDate {
   BottomsheetDate({

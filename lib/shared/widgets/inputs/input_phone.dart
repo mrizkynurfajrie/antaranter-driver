@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intakemobile/shared/constants/phone_country_code.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
-import 'package:intakemobile/shared/widgets/inputs/input_search.dart';
+import 'package:intake_rider/shared/constants/phone_country_code.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/widgets/inputs/input_search.dart';
 
 class InputPhone extends StatefulWidget {
   final String hintText;

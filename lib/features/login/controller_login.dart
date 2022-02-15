@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intakemobile/features/login/api_login.dart';
-import 'package:intakemobile/shared/helpers/utils.dart';
-import 'package:intakemobile/shared/widgets/others/show_dialog.dart';
+import 'package:intake_rider/features/login/api_login.dart';
+import 'package:intake_rider/shared/helpers/utils.dart';
+import 'package:intake_rider/shared/widgets/others/show_dialog.dart';
 
 class ControllerLogin extends GetxController {
   final ApiLogin api;

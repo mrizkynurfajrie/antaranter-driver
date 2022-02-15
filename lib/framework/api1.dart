@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
-import 'package:intakemobile/framework/api2.dart';
+import 'package:intake_rider/framework/api2.dart';
 
 class Api1 {
   String baseUrl = '/intake';

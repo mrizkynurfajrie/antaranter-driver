@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intakemobile/shared/constants/assets.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
-import 'package:intakemobile/shared/widgets/others/app_version.dart';
+import 'package:intake_rider/shared/constants/assets.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/widgets/others/app_version.dart';
 
 class PageDecoration extends StatelessWidget {
   final bool isDisplayAppVersion;

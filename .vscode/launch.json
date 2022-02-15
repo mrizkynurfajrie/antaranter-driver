@@ -5,12 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "intakemobile",
+            "name": "intake_rider",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "intakemobile (profile mode)",
+            "name": "intake_rider (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"

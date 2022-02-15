@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
 
 class Receipt extends StatelessWidget {
   final String? receipt;

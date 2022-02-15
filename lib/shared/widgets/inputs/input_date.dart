@@ -1,7 +1,7 @@
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intl/intl.dart';
 
 class InputDate extends StatefulWidget {

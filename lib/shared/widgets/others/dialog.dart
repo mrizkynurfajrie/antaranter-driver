@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intakemobile/shared/constants/colors.dart';
-import 'package:intakemobile/shared/constants/styles.dart';
-import 'package:intakemobile/shared/widgets/buttons/button_primary.dart';
-import 'package:intakemobile/shared/widgets/buttons/button_primary_outline.dart';
+import 'package:intake_rider/shared/constants/colors.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
+import 'package:intake_rider/shared/widgets/buttons/button_primary_outline.dart';
 
 class CustomDialogBox extends StatefulWidget {
   final String title, descriptions, positiveText, negativeText;

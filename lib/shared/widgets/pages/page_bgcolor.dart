@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intakemobile/shared/constants/colors.dart';
+import 'package:intake_rider/shared/constants/colors.dart';
 
 class PageBgColor extends StatelessWidget {
   final Widget child;
