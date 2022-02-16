@@ -17,7 +17,7 @@ class AppColor {
       800: Color(0xFF572400),
     },
   );
-  static const int _orangePrimaryValue = 0xFFFF6900;
+  static const int _orangePrimaryValue = 0xFFFF6600;
 
   static const MaterialColor secondColor = MaterialColor(
     _secondColorValue,
@@ -33,7 +33,7 @@ class AppColor {
       800: Color(0xFF130203),
     },
   );
-  static const int _secondColorValue = 0xFFC6161D;
+  static const int _secondColorValue = 0xFF1d2636;
 
   //NEUTRAL
   static const MaterialColor bodyColor = MaterialColor(
@@ -44,14 +44,14 @@ class AppColor {
       200: Color(0xFFE1E1E1),
       300: Color(0xFFC7C7C7),
       400: Color(0xFFAEAEAE),
-      500: Color(0xFF949494),
+      500: Color(_bodyColorValue),
       600: Color(0xFF787878),
       700: Color(0xFF5c5c5c),
       800: Color(0xFF404040),
       900: Color(0xFF242424),
     },
   );
-  static const int _bodyColorValue = 0xFF242424;
+  static const int _bodyColorValue = 0xFFFFFFFF;
 
   //ACCENT
   static const Color errorColor = Color(0xFFD95952); //Danger - Use for errors

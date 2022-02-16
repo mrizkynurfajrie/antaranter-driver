@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:intake_rider/const.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/features/welcome/page_welcome.dart';
+import 'package:intake_rider/shared/constants/colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -71,7 +70,7 @@ class BackgroundSplash extends StatelessWidget {
         alignment: Alignment.center,
         children: <Widget>[
           Container(
-            color: secondaryColor,
+            color: AppColor.primaryColor,
           ),
           child!,
         ],
