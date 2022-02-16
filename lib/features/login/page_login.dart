@@ -64,7 +64,7 @@ class PageLogin extends GetView<ControllerLogin> {
                 ButtonText(
                   label: 'Daftar',
                   onPressed: () {
-                    Get.toNamed('/howtoregister_page');
+                    Get.toNamed('/terms_page');
                   },
                   color: AppColor.primary.shade900,
                 ),

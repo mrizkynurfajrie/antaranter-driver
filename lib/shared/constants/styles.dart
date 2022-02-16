@@ -195,14 +195,18 @@ class TextStyles {
       TextStyle(fontWeight: FontWeight.w400, fontFamily: 'DMSans');
 
   static TextStyle get textHeader => inter.copyWith(
-        fontSize: 24,
-        color: AppColor.primaryColor,
-        fontWeight: FontWeight.w500
+        fontSize: 22,
+        fontWeight: FontWeight.w500,
       );
 
   static TextStyle get textStd => inter.copyWith(
-        fontSize: 18,
-        fontWeight: FontWeight.w300,
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+      );
+
+  static TextStyle get textcheckbox => inter.copyWith(
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
       );
 
   static TextStyle get textStdBold => inter.copyWith(
