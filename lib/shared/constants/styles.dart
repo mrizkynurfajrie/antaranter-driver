@@ -194,6 +194,59 @@ class TextStyles {
   static const TextStyle inter =
       TextStyle(fontWeight: FontWeight.w400, fontFamily: 'DMSans');
 
+  static TextStyle get textHeader => inter.copyWith(
+        fontSize: 24,
+        color: AppColor.primaryColor,
+        fontWeight: FontWeight.w500
+      );
+
+  static TextStyle get textStd => inter.copyWith(
+        fontSize: 18,
+        fontWeight: FontWeight.w300,
+      );
+
+  static TextStyle get textStdBold => inter.copyWith(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      );
+
+  static TextStyle get textStatWhite => inter.copyWith(
+        fontSize: 12,
+        fontWeight: FontWeight.bold,
+        color: AppColor.whiteColor,
+      );
+
+  static TextStyle get textTitle => inter.copyWith(
+      fontSize: 15, color: AppColor.whiteColor, fontWeight: FontWeight.bold);
+
+  static TextStyle get textTable => inter.copyWith(
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+      );
+
+  static TextStyle get textTableOrange => inter.copyWith(
+        fontSize: 15,
+        color: AppColor.primaryColor,
+        fontWeight: FontWeight.w500,
+      );
+
+  static TextStyle get textTableOrangeBold => inter.copyWith(
+        fontSize: 17,
+        color: AppColor.primaryColor,
+        fontWeight: FontWeight.bold,
+      );
+
+  static TextStyle get textNom => inter.copyWith(
+        fontSize: 25,
+        fontWeight: FontWeight.bold,
+      );
+
+  static TextStyle get textPopUpOrange => inter.copyWith(
+        fontSize: 16,
+        color: AppColor.primaryColor,
+        fontWeight: FontWeight.w500,
+      );
+
   static TextStyle get h1 => inter.copyWith(
       fontWeight: FontWeight.w700,
       fontSize: FontSizes.s56,

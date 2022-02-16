@@ -14,6 +14,7 @@ class PageLogin extends GetView<ControllerLogin> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColor.bodyColor,
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 15),
@@ -58,11 +59,13 @@ class PageLogin extends GetView<ControllerLogin> {
               children: <Widget>[
                 const SizedBox(
                   height: 17,
-                  child: Text('Sudah punya akun? yuk'),
+                  child: Text('Belum punya akun? yuk'),
                 ),
                 ButtonText(
                   label: 'Daftar',
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed('/howtoregister_page');
+                  },
                   color: AppColor.primary.shade900,
                 ),
                 const SizedBox(

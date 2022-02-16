@@ -33,6 +33,7 @@ class CardRoundedBorder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         margin: margin ?? EdgeInsets.zero,
+        height: height ?? Get.height,
         width: width ?? Get.width,
         padding: padding ??
             EdgeInsets.symmetric(horizontal: Insets.med, vertical: Insets.med),
