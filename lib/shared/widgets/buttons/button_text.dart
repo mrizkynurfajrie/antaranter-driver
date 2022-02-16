@@ -8,7 +8,7 @@ class ButtonText extends StatelessWidget {
   final double? fontSize;
   final Color? color;
   final TextStyle? textStyle;
-  final Widget? icon;
+  // final Widget? icon;
 
   const ButtonText({
     Key? key,
@@ -17,19 +17,22 @@ class ButtonText extends StatelessWidget {
     this.fontSize,
     this.color,
     this.textStyle,
-    this.icon,
+    // this.icon,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextButton.icon(
-      icon: icon ?? const SizedBox(),
+    return TextButton(
+      // icon: icon ?? const SizedBox(),
       onPressed: onPressed,
       style: TextButton.styleFrom(
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         primary: color ?? AppColor.secondColor.shade500,
+        minimumSize: const Size(50, 30),
+        padding: EdgeInsets.zero,
+        alignment: Alignment.topCenter,
       ),
-      label: Text(
+      child: Text(
         label,
         style: textStyle ?? TextStyles.button,
       ),
