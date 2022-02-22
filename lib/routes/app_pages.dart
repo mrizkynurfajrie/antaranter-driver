@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:intake_rider/features/login/page_login.dart';
+import 'package:intake_rider/features/register/binding_register.dart';
 import 'package:intake_rider/features/register/page/page_register.dart';
 import 'package:intake_rider/features/register/page/page_terms.dart';
 import 'package:intake_rider/features/splash/page_splash.dart';
+import 'package:intake_rider/features/register/page/page_regsuccess.dart';
 import 'package:intake_rider/routes/app_routes.dart';
 
 class AppPages {
@@ -22,6 +24,11 @@ class AppPages {
     GetPage(
       name: Routes.register,
       page: () => const PageRegister(),
+      binding: BindingRegister(),
+    ),
+    GetPage(
+      name: Routes.regsuccess,
+      page: () => const PageRegsuccess(),
     ),
   ];
 }
