@@ -49,7 +49,9 @@ class PageLogin extends GetView<ControllerLogin> {
             ButtonPrimary(
               label: 'Masuk',
               color: AppColor.primaryColor,
-              onPressed: () {},
+              onPressed: () {
+                controller.login();
+              },
               size: 300,
             ),
             const SizedBox(height: 15),

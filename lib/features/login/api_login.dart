@@ -9,7 +9,7 @@ class ApiLogin {
     String deviceId = await DeviceInfo.deviceInfo();
 
     final loginBody = {
-      "username": phoneNumber,
+      "phone": phoneNumber,
       "password": password,
     };
 

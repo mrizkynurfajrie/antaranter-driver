@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/login/api_login.dart';
@@ -15,9 +14,6 @@ class ControllerLogin extends GetxController {
 
   var cPhoneNumber = TextEditingController();
   var cPassword = TextEditingController();
-  var isValidUsername = false.obs;
-  var isValidPassword = false.obs;
-  var isValidForm = false.obs;
 
   var loading = false.obs;
   var token = "".obs;
@@ -26,7 +22,6 @@ class ControllerLogin extends GetxController {
   @override
   onInit() {
     super.onInit();
-
     checkLogin();
   }
 
@@ -45,7 +40,7 @@ class ControllerLogin extends GetxController {
           phoneNumber: cPhoneNumber.text, password: cPassword.text);
       loading(false);
       if (loginResult != null) {
-        var detailUser = loginResult["data"]["user"];
+        var detailUser = loginResult["data"]["rider"];
         loginResponse result = loginResponse.fromJson(detailUser);
         var tokenUser = loginResult["data"]["token"];
         token.value = tokenUser;
