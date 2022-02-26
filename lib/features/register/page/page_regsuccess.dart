@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'dart:async';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class PageRegsuccess extends StatefulWidget {
   const PageRegsuccess({Key? key}) : super(key: key);
