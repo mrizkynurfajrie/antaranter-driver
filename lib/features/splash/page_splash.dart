@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   splashscreenStart() async {
     var duration = const Duration(seconds: 4);
     return Timer(duration, () {
-      Get.toNamed('/login_page');
+      Get.offNamed('/login_page');
     });
   }
 
