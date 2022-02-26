@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
-import 'package:intake_rider/framework/api2.dart';
+import 'api2.dart';
 
 class Api1 {
-  String baseUrl = '/intake';
+  String baseUrl = 'https://api.intakekurir.com/';
 
   Future<dynamic> apiJSONGet(
     String url,
@@ -15,7 +15,8 @@ class Api1 {
     log('headers = ' + headers.toString());
     log('url = $baseUrl' + url);
 
-    http.Response r = await http.get(Uri.parse('$url/'), headers: headers);
+    http.Response r =
+        await http.get(Uri.parse(baseUrl + url), headers: headers);
     log("status codenya " + r.statusCode.toString());
 
     log(r.body);
@@ -35,7 +36,8 @@ class Api1 {
     log('headers = ' + headers.toString());
     log('url = $baseUrl' + url);
 
-    http.Response r = await http.get(Uri.parse('$url/'), headers: headers);
+    http.Response r =
+        await http.get(Uri.parse(baseUrl + url), headers: headers);
     log("status codenya " + r.statusCode.toString());
 
     log(r.body);
@@ -51,14 +53,14 @@ class Api1 {
     log('headers = ' + headers.toString());
     log('url = $baseUrl' + url);
 
-    var r = await http.post(Uri.parse('$url/'),
+    var r = await http.post(Uri.parse(baseUrl + url),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(params),
         encoding: Encoding.getByName("utf-8"));
     var data = jsonDecode(r.body);
     log("status codenya " + r.statusCode.toString());
 
-    log(data);
+    // log(data.toString());
     return data;
   }
 
@@ -73,7 +75,7 @@ class Api1 {
     log('headers = ' + headers.toString());
     log('url = $baseUrl' + url);
 
-    var r = await http.post(Uri.parse('$url/'),
+    var r = await http.post(Uri.parse(baseUrl + url),
         headers: headers,
         body: jsonEncode(params),
         encoding: Encoding.getByName("utf-8"));

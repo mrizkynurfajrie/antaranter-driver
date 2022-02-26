@@ -1,9 +1,8 @@
-// ignore_for_file: constant_identifier_names, unnecessary_null_comparison
-
 import 'package:get_storage/get_storage.dart';
 
 const String CACHE_USERNAME = "username";
 const String CACHE_TOKEN = "token";
+const String CHECK_LOGIN = "loginState";
 
 class Api2 {
   final box = GetStorage();
@@ -24,5 +23,14 @@ class Api2 {
 
   Future<String?> getToken() async {
     return box.read(CACHE_TOKEN);
+  }
+
+  Future setIsLogin({bool? isLogin}) async {
+    isLogin ??= false;
+    await box.write(CHECK_LOGIN, isLogin);
+  }
+
+  Future<bool?> getLoginStatus() async {
+    return box.read(CHECK_LOGIN);
   }
 }

@@ -41,9 +41,11 @@ class PageRegister extends GetView<ControllerRegister> {
             ),
             SizedBox(height: size.height * 0.025),
             ButtonPrimary(
-              label: 'Masuk',
+              label: 'Daftar',
               color: AppColor.primaryColor,
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed('/regsuccess_page');
+              },
               size: 300,
             ),
           ],
