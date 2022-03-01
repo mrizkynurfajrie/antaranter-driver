@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 
 class PageHome extends StatefulWidget {
@@ -14,11 +13,11 @@ class PageHome extends StatefulWidget {
 
 class _PageHomeState extends State<PageHome> {
   bool orderStat = false;
-  Completer<GoogleMapController> _controller = Completer();
-  Map<PolylineId, Polyline> polylines = <PolylineId, Polyline>{};
+  // Completer<GoogleMapController> _controller = Completer();
+  // Map<PolylineId, Polyline> polylines = <PolylineId, Polyline>{};
 
-  static final CameraPosition _cameraPosition = CameraPosition(
-      target: LatLng(-0.4638875724001235, 117.10882384031538), zoom: 17.0);
+  // static final CameraPosition _cameraPosition = CameraPosition(
+  //     target: LatLng(-0.4638875724001235, 117.10882384031538), zoom: 17.0);
 
   _orderNotification() {
     return Container(child: orderStat == true ? _orderIn() : _noOrder());
@@ -235,14 +234,14 @@ class _PageHomeState extends State<PageHome> {
             width: size.width,
             color: AppColor.greyColorLight,
             // child: _orderNotification(),
-            child: GoogleMap(
-              polylines: Set<Polyline>.of(polylines.values),
-              mapType: MapType.normal,
-              initialCameraPosition: _cameraPosition,
-              onMapCreated: (GoogleMapController controller) {
-                _controller.complete(controller);
-              },
-            ),
+            // child: GoogleMap(
+            //   polylines: Set<Polyline>.of(polylines.values),
+            //   mapType: MapType.normal,
+            //   initialCameraPosition: _cameraPosition,
+            //   onMapCreated: (GoogleMapController controller) {
+            //     _controller.complete(controller);
+            //   },
+            // ),
           ),
           Spacer(),
           Column(

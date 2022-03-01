@@ -25,10 +25,6 @@ class PageMain extends GetView<ControllerMain> {
               label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.pedal_bike),
-              label: "Order",
-            ),
-            BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: "Profile",
             ),

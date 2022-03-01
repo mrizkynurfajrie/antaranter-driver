@@ -6,14 +6,13 @@ class ApiLogin {
     required String phoneNumber,
     required String password,
   }) async {
-    String deviceId = await DeviceInfo.deviceInfo();
 
     final loginBody = {
       "phone": phoneNumber,
       "password": password,
     };
 
-    var r = await Api1().apiJSONPost("login-rider", loginBody);
-    return r.data;
+    var apiLoginResponse = await Api1().apiJSONPost("login-rider", loginBody);
+    return apiLoginResponse;
   }
 }

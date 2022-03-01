@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
+import 'package:intake_rider/features/home/page_home.dart';
 import 'package:intake_rider/features/login/page_login.dart';
+import 'package:intake_rider/features/main/binding_main.dart';
 import 'package:intake_rider/features/main/page_main.dart';
+import 'package:intake_rider/features/profile/page_profile.dart';
 import 'package:intake_rider/features/register/binding_register.dart';
 import 'package:intake_rider/features/register/page/page_register.dart';
 import 'package:intake_rider/features/register/page/page_terms.dart';
@@ -32,8 +35,17 @@ class AppPages {
       page: () => const PageRegsuccess(),
     ),
     GetPage(
+      name:Routes.home,
+      page: () => const PageHome(),
+    ),
+    GetPage(
+      name: Routes.profile,
+      page: () => const PageProfile(),
+    ),
+    GetPage(
       name: Routes.main,
       page: () => const PageMain(),
+      binding: BindingMain(),
     ),
   ];
 }
