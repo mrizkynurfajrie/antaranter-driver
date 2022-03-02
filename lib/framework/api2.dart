@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 const String CACHE_USERNAME = "username";
 const String CACHE_TOKEN = "token";
 const String CHECK_LOGIN = "loginState";
+const String CACHE_RIDER = "rider";
 
 class Api2 {
   final box = GetStorage();
@@ -14,6 +15,15 @@ class Api2 {
 
   Future<String?> getUsername() async {
     return box.read(CACHE_USERNAME);
+  }
+
+  Future setRider({dynamic rider}) async {
+    rider ??= "";
+    await box.write(CACHE_RIDER, rider);
+  }
+
+  Future<dynamic> getRider() async {
+    return box.read(CACHE_RIDER);
   }
 
   Future setToken({String? token}) async {
