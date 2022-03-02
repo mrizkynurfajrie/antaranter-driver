@@ -10,7 +10,7 @@ class ControllerHome extends GetxController {
   ControllerHome({required this.api});
 
   final name = ''.obs;
-  var pict = ''.obs;
+  final pict = ''.obs;
   final phone = ''.obs;
 
   @override

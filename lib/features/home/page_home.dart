@@ -50,8 +50,9 @@ class PageHome extends GetView<ControllerHome> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  controller.name.value,
+                                  'hai, ' + controller.name.value,
                                   style: TextStyles.textTitle,
+                                  maxLines: 2,
                                 ),
                                 verticalSpace(5),
                                 Text(
