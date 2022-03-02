@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intake_rider/routes/app_pages.dart';
 import 'package:intake_rider/routes/app_routes.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
@@ -12,7 +13,8 @@ import 'package:intake_rider/shared/helpers/utils.dart';
 
 import 'shared/widgets/others/page_info.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const App());
 }
 
@@ -91,7 +93,7 @@ class _AppViewState extends State<AppView> with WidgetsBindingObserver {
       designSize: const Size(375, 779),
       builder: () => GetMaterialApp(
         navigatorKey: Get.key,
-        title: 'INTAKE-CUSTOMER',
+        title: 'INTAKE-RIDER',
         theme: ThemeData(
           platform: TargetPlatform.android,
           brightness: Brightness.light,

@@ -42,6 +42,7 @@ class ControllerLogin extends GetxController {
       if (loginResult != null) {
         var detailUser = loginResult["data"]["rider"];
         loginResponse result = loginResponse.fromJson(detailUser);
+        await Api2().setRider(rider: detailUser);
         var tokenUser = loginResult["data"]["token"];
         token.value = tokenUser;
         await Api2().setToken(token: token.value);
