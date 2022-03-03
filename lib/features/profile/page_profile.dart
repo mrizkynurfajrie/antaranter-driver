@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
-import 'package:intake_rider/shared/constants/styles.dart';
 
 class PageProfile extends StatelessWidget {
   const PageProfile({Key? key}) : super(key: key);
@@ -18,7 +16,7 @@ class PageProfile extends StatelessWidget {
                 top: MediaQuery.of(context).padding.top,
                 bottom: 10,
               ),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.amber,
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(35),
@@ -28,7 +26,7 @@ class PageProfile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
@@ -36,13 +34,13 @@ class PageProfile extends StatelessWidget {
                     children: [
                       OutlinedButton(
                         onPressed: () {},
-                        child: Icon(
+                        child: const Icon(
                           Icons.favorite,
                           color: Colors.white,
                           size: 47,
                         ),
                         style: OutlinedButton.styleFrom(
-                          padding: EdgeInsets.all(15),
+                          padding: const EdgeInsets.all(15),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(100),
                           ),
@@ -51,19 +49,19 @@ class PageProfile extends StatelessWidget {
                           backgroundColor: Colors.white.withOpacity(0.5),
                         ),
                       ),
-                      CircleAvatar(
+                      const CircleAvatar(
                         backgroundImage: AssetImage("assets/images/fajrie.jpg"),
                         radius: 55,
                       ),
                       OutlinedButton(
                         onPressed: () {},
-                        child: Icon(
+                        child: const Icon(
                           Icons.mail,
                           color: Colors.white,
                           size: 47,
                         ),
                         style: OutlinedButton.styleFrom(
-                          padding: EdgeInsets.all(15),
+                          padding: const EdgeInsets.all(15),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(100),
                           ),
@@ -74,10 +72,10 @@ class PageProfile extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Text(
+                  const Text(
                     "Muhammad Fajrie",
                     style: TextStyle(
                       color: Colors.white,
@@ -85,10 +83,10 @@ class PageProfile extends StatelessWidget {
                       fontSize: 22,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
-                  Text(
+                  const Text(
                     "081234567890",
                     style: TextStyle(
                       color: Colors.white,
@@ -98,7 +96,7 @@ class PageProfile extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Padding(
@@ -111,7 +109,7 @@ class PageProfile extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white,
                         onPrimary: Colors.grey,
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                           top: 15,
                           bottom: 15,
                           left: 15,
@@ -126,7 +124,7 @@ class PageProfile extends StatelessWidget {
                           Container(
                             width: 35,
                             height: 35,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               image: DecorationImage(
                                 image:
                                     AssetImage("assets/icons/access_time.png"),
@@ -134,10 +132,10 @@ class PageProfile extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
-                          Expanded(
+                          const Expanded(
                             child: Text(
                               "Pesanan",
                               style: TextStyle(
@@ -151,7 +149,7 @@ class PageProfile extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -160,7 +158,7 @@ class PageProfile extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white,
                         onPrimary: Colors.grey,
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                           top: 15,
                           bottom: 15,
                           left: 15,
@@ -175,7 +173,7 @@ class PageProfile extends StatelessWidget {
                           Container(
                             width: 35,
                             height: 35,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               image: DecorationImage(
                                 image:
                                     AssetImage("assets/icons/person_add.png"),
@@ -183,10 +181,10 @@ class PageProfile extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
-                          Expanded(
+                          const Expanded(
                             child: Text(
                               "Ajak Teman",
                               style: TextStyle(
@@ -203,7 +201,7 @@ class PageProfile extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Padding(
@@ -216,7 +214,7 @@ class PageProfile extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white,
                         onPrimary: Colors.grey,
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                           top: 15,
                           bottom: 15,
                           left: 15,
@@ -231,7 +229,7 @@ class PageProfile extends StatelessWidget {
                           Container(
                             width: 35,
                             height: 35,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage(
                                     "assets/icons/directions_bike.png"),
@@ -239,10 +237,10 @@ class PageProfile extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
-                          Expanded(
+                          const Expanded(
                             child: Text(
                               "Bergabung",
                               style: TextStyle(
@@ -256,7 +254,7 @@ class PageProfile extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -265,7 +263,7 @@ class PageProfile extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white,
                         onPrimary: Colors.grey,
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                           top: 15,
                           bottom: 15,
                           left: 15,
@@ -280,17 +278,17 @@ class PageProfile extends StatelessWidget {
                           Container(
                             width: 35,
                             height: 35,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage("assets/icons/settings.png"),
                                 fit: BoxFit.contain,
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
-                          Expanded(
+                          const Expanded(
                             child: Text(
                               "Pengaturan",
                               style: TextStyle(

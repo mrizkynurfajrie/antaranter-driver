@@ -1,9 +1,6 @@
-import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:intake_rider/features/home/api_home.dart';
 import 'package:intake_rider/framework/api2.dart';
-import 'package:flutter/material.dart';
 
 class ControllerHome extends GetxController {
   final ApiHome api;

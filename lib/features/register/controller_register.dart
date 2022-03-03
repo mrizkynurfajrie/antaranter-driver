@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/register/api_register.dart';
 import 'package:intake_rider/shared/helpers/utils.dart';
-import 'package:intake_rider/shared/widgets/others/show_dialog.dart';
-
 class ControllerRegister extends GetxController {
   final ApiRegister api;
   ControllerRegister({required this.api});
@@ -90,7 +88,7 @@ class ControllerRegister extends GetxController {
     } catch (_) {
       loading(false);
       log(_.toString());
-      showPopUpError(errorMessage: _.toString());
+     
     }
   }
 }

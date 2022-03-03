@@ -26,35 +26,28 @@ class MenuItemImage extends StatefulWidget {
 class _MenuItemImageState extends State<MenuItemImage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
-        children: [
-          Container(
-            // color: Colors.grey,
-            child: SvgPicture.asset(
-              widget.primaryIcon,
-              color: Color(int.parse("0xFF" + widget.primaryColor)),
-            ),
+    return Stack(
+      children: [
+        SvgPicture.asset(
+          widget.primaryIcon,
+          color: Color(int.parse("0xFF" + widget.primaryColor)),
+        ),
+        Positioned(
+          child: SvgPicture.asset(
+            widget.secondaryIcon,
+            color: Color(int.parse("0xFF" + widget.secondaryColor)),
           ),
-          Positioned(
-            child: SvgPicture.asset(
-              widget.secondaryIcon,
-              color: Color(int.parse("0xFF" + widget.secondaryColor)),
-            ),
-          ),
-          widget.isMaintenance
-              ? Positioned(
-                  width: widget.sizeBox.w * 1.05,
-                  height: widget.sizeBox.w * 1.05,
-                  child: Container(
-                    child: SvgPicture.asset(
-                      "assets/icons/svg/ic_maintenance.svg",
-                    ),
-                  ),
-                )
-              : Container(),
-        ],
-      ),
+        ),
+        widget.isMaintenance
+            ? Positioned(
+                width: widget.sizeBox.w * 1.05,
+                height: widget.sizeBox.w * 1.05,
+                child: SvgPicture.asset(
+                  "assets/icons/svg/ic_maintenance.svg",
+                ),
+              )
+            : Container(),
+      ],
     );
   }
 }

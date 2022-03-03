@@ -20,11 +20,11 @@ class PageMain extends GetView<ControllerMain> {
           currentIndex: controller.currentPage.value,
           onTap: (index) => controller.changePage(index),
           items: [
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: "Home",
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: "Profile",
             ),

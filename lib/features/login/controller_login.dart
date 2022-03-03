@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import 'package:intake_rider/features/login/api_login.dart';
 import 'package:intake_rider/framework/api2.dart';
 import 'package:intake_rider/shared/helpers/utils.dart';
-import 'package:intake_rider/shared/widgets/others/show_dialog.dart';
-import 'package:intake_rider/response/loginResponse.dart';
 import 'package:intake_rider/routes/app_routes.dart';
 
 class ControllerLogin extends GetxController {
@@ -41,7 +39,6 @@ class ControllerLogin extends GetxController {
       loading(false);
       if (loginResult != null) {
         var detailUser = loginResult["data"]["rider"];
-        loginResponse result = loginResponse.fromJson(detailUser);
         await Api2().setRider(rider: detailUser);
         var tokenUser = loginResult["data"]["token"];
         token.value = tokenUser;
