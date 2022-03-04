@@ -60,7 +60,9 @@ class PageHome extends GetView<ControllerHome> {
                             ),
                             horizontalSpace(7),
                             CustomIconButton(
-                              ontap: () {},
+                              ontap: () {
+                                Get.toNamed(Routes.actHistory);
+                              },
                               icon: AppIcons.history,
                               title: 'Riwayat',
                               iconColor: AppColor.whiteColor,

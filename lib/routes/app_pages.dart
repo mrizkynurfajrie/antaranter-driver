@@ -55,7 +55,7 @@ class AppPages {
     ),
     GetPage(
       name: Routes.actHistory,
-      page: () => const PageActivityHistory(),
+      page: () => PageActivityHistory(),
     ),
   ];
 }

@@ -8,6 +8,7 @@ class AppIcons {
   static const custService = 'assets/icons/customer_service.png';
   static const icTopUp = 'assets/icons/top-up.png';
   static const icWithdrawl = 'assets/icons/withdrawl.png';
+  static const roadRoutes = 'assets/icons/road-routes.png';
 }
 
 class AppLogos {
