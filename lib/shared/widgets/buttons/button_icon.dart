@@ -10,15 +10,17 @@ class CustomIconButton extends StatelessWidget {
   final Color? iconColor;
   final double? iconWidth;
   final double? iconHeight;
+  final EdgeInsets? iconPadding;
 
   const CustomIconButton({
     Key? key,
     required this.ontap,
     required this.icon,
     required this.title,
-    required this.iconColor,
-    required this.iconWidth,
-    required this.iconHeight,
+    this.iconColor,
+    this.iconWidth,
+    this.iconHeight,
+    this.iconPadding,
   }) : super(key: key);
 
   @override
@@ -27,38 +29,36 @@ class CustomIconButton extends StatelessWidget {
       width: 60,
       child: InkWell(
         onTap: ontap,
-        child: Container(
-          decoration: BoxDecoration(
-            color: AppColor.bodyColor,
-            border: Border.all(
-              color: AppColor.greyColorLight,
-              width: 3,
-            ),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                width: 32,
-                height: 32,
-                child: SvgPicture.asset(
-                  icon,
-                  color: iconColor,
-                  height: iconHeight,
-                  fit: BoxFit.contain,
-                ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              padding: iconPadding,
+              child: SvgPicture.asset(
+                icon,
+                color: iconColor,
+                height: iconHeight,
+                fit: BoxFit.contain,
               ),
-              Text(
+            ),
+            Container(
+              width: 200,
+              decoration: BoxDecoration(
+                color: AppColor.whiteColor,
+                border: Border.all(color: AppColor.whiteColor),
+                borderRadius: BorderRadius.circular(39),
+              ),
+              child: Text(
                 title,
                 style: TextStyles.inter.copyWith(
                   fontSize: FontSizes.s12,
                   fontWeight: FontWeight.bold,
+                  color: AppColor.primaryColor,
                 ),
                 textAlign: TextAlign.center,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

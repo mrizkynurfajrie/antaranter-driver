@@ -17,6 +17,7 @@ class InputPrimary extends StatefulWidget {
   final bool? enable;
   final dynamic maxLines;
   final String? initialValue;
+  final double? boxWidth;
 
   const InputPrimary({
     Key? key,
@@ -34,6 +35,7 @@ class InputPrimary extends StatefulWidget {
     this.enable = true,
     this.maxLines = 1,
     this.initialValue,
+    this.boxWidth,
   }) : super(key: key);
 
   @override
@@ -60,25 +62,28 @@ class _InputPrimaryState extends State<InputPrimary> {
                   ),
                 )
               : verticalSpace(0),
-          TextFormField(
-            initialValue: widget.initialValue,
-            maxLines: widget.maxLines,
-            enabled: widget.enable,
-            enableInteractiveSelection: true,
-            cursorColor: Theme.of(context).primaryColor,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            onChanged: widget.onChange,
-            keyboardType: widget.keyboardType,
-            controller: widget.controller,
-            obscureText: widget.obsecureText,
-            inputFormatters: widget.inputFormatters,
-            textCapitalization: widget.textCapitalization,
-            validator: widget.validate,
-            style: TextStyles.body2,
-            decoration: inputDecoration(
-                hintText: widget.hintText,
-                prefixIcon: widget.prefixIcon,
-                suffixIcon: widget.suffixIcon),
+          SizedBox(
+            width: widget.boxWidth,
+            child: TextFormField(
+              initialValue: widget.initialValue,
+              maxLines: widget.maxLines,
+              enabled: widget.enable,
+              enableInteractiveSelection: true,
+              cursorColor: Theme.of(context).primaryColor,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              onChanged: widget.onChange,
+              keyboardType: widget.keyboardType,
+              controller: widget.controller,
+              obscureText: widget.obsecureText,
+              inputFormatters: widget.inputFormatters,
+              textCapitalization: widget.textCapitalization,
+              validator: widget.validate,
+              style: TextStyles.body2,
+              decoration: inputDecoration(
+                  hintText: widget.hintText,
+                  prefixIcon: widget.prefixIcon,
+                  suffixIcon: widget.suffixIcon),
+            ),
           ),
         ],
       ),
