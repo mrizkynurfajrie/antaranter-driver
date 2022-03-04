@@ -7,4 +7,5 @@ abstract class Routes {
   static const home = '/home_page';
   static const profile = '/profile_page';
   static const main = '/main_page';
+  static const saldo = '/saldo_page';
 }

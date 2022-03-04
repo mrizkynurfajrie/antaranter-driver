@@ -7,6 +7,7 @@ import 'package:intake_rider/features/profile/page_profile.dart';
 import 'package:intake_rider/features/register/binding_register.dart';
 import 'package:intake_rider/features/register/page/page_register.dart';
 import 'package:intake_rider/features/register/page/page_terms.dart';
+import 'package:intake_rider/features/saldo/page_saldo.dart';
 import 'package:intake_rider/features/splash/page_splash.dart';
 import 'package:intake_rider/features/register/page/page_regsuccess.dart';
 import 'package:intake_rider/routes/app_routes.dart';
@@ -35,7 +36,7 @@ class AppPages {
       page: () => const PageRegsuccess(),
     ),
     GetPage(
-      name:Routes.home,
+      name: Routes.home,
       page: () => const PageHome(),
     ),
     GetPage(
@@ -46,6 +47,10 @@ class AppPages {
       name: Routes.main,
       page: () => const PageMain(),
       binding: BindingMain(),
+    ),
+    GetPage(
+      name: Routes.saldo,
+      page: () => const PageSaldo(),
     ),
   ];
 }

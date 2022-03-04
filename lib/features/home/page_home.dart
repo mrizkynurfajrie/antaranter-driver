@@ -1,7 +1,6 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intake_rider/routes/app_routes.dart';
 import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
@@ -11,21 +10,26 @@ import 'package:intake_rider/shared/widgets/cards/card_primary.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
 import 'package:intake_rider/features/home/controller_home.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
+import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 
 class PageHome extends GetView<ControllerHome> {
   const PageHome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Column(
+    return PageDecorationTop(
+      title: 'IN-TAKE RIDER',
+      padding: EdgeInsets.zero,
+      backgroundColor: AppColor.bgPageColor,
+      toolbarColor: AppColor.bgPageColor,
+      enableBack: false,
+      center: Align(
+        alignment: Alignment.center,
+        child: AppLogos.logoApp(AppLogos.logoColoured),
+      ),
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Container(
-            padding: const EdgeInsets.only(top: 10),
-            child: AppLogos.logoApp(AppLogos.logoColoured),
-          ),
           CardRoundedBorder(
             height: Get.height * 0.13,
             color: AppColor.primaryColor,
@@ -45,7 +49,9 @@ class PageHome extends GetView<ControllerHome> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             CustomIconButton(
-                              ontap: () {},
+                              ontap: () {
+                                Get.toNamed(Routes.saldo);
+                              },
                               icon: AppIcons.wallet,
                               title: 'Saldo',
                               iconColor: AppColor.whiteColor,
@@ -106,7 +112,6 @@ class PageHome extends GetView<ControllerHome> {
               ),
             ),
           ),
-          verticalSpace(5),
           CardPrimary(
             height: Get.height * 0.24,
             width: Get.width * 0.9,
@@ -157,7 +162,7 @@ class PageHome extends GetView<ControllerHome> {
               ],
             ),
           ),
-          verticalSpace(190),
+          verticalSpace(Get.height * 0.18),
           CardPrimary(
             height: Get.height * 0.17,
             width: Get.width * 0.9,
