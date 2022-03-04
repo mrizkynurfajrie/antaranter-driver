@@ -5,7 +5,7 @@ import 'package:intake_rider/shared/constants/styles.dart';
 class InputPrimary extends StatefulWidget {
   final String hintText;
   final String? Function(String?)? validate;
-  final Function(String) onChange;
+  final Function() onTap;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final String label;
@@ -21,10 +21,10 @@ class InputPrimary extends StatefulWidget {
 
   const InputPrimary({
     Key? key,
-    this.hintText = '',
+    required this.hintText,
     this.validate,
-    required this.onChange,
-    this.prefixIcon,
+    required this.onTap,
+    required this.prefixIcon,
     this.suffixIcon,
     this.label = '',
     this.controller,
@@ -71,7 +71,7 @@ class _InputPrimaryState extends State<InputPrimary> {
               enableInteractiveSelection: true,
               cursorColor: Theme.of(context).primaryColor,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              onChanged: widget.onChange,
+              onTap: widget.onTap,
               keyboardType: widget.keyboardType,
               controller: widget.controller,
               obscureText: widget.obsecureText,

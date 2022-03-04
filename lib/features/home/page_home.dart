@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intake_rider/shared/widgets/buttons/button_icon.dart';
+import 'package:intake_rider/shared/widgets/buttons/button_text.dart';
 import 'package:intake_rider/shared/widgets/cards/card_primary.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
 import 'package:intake_rider/features/home/controller_home.dart';
@@ -15,6 +18,7 @@ class PageHome extends GetView<ControllerHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -102,23 +106,29 @@ class PageHome extends GetView<ControllerHome> {
               ),
             ),
           ),
-          verticalSpace(15),
+          verticalSpace(5),
           CardPrimary(
-            height: Get.height * 0.25,
+            height: Get.height * 0.24,
             width: Get.width * 0.9,
-            padding: EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.symmetric(vertical: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      'IN-TAKE',
-                      style: TextStyles.textTableOrangeBold,
+                      '•',
+                      style: TextStyles.textTableOrange,
+                    ),
+                    Image.asset(
+                      AppIcons.carLocation,
+                      height: 55,
+                      width: 55,
                     ),
                     Text(
-                      'Nebeng • Titip',
+                      '•',
                       style: TextStyles.textTableOrange,
                     ),
                   ],
@@ -134,13 +144,65 @@ class PageHome extends GetView<ControllerHome> {
                       ),
                     ),
                     InputPrimary(
-                      onChange: (value) {},
                       boxWidth: 300,
-                      prefixIcon: Icon(
-                        Icons.add_road_outlined,
+                      prefixIcon: const Icon(
+                        Icons.location_city,
                         color: AppColor.primaryColor,
                       ),
-                      hintText: 'Tentukan perjalanan mu',
+                      hintText: 'tentukan perjalanan mu',
+                      onTap: () {},
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          verticalSpace(190),
+          CardPrimary(
+            height: Get.height * 0.17,
+            width: Get.width * 0.9,
+            padding: const EdgeInsets.symmetric(vertical: 2),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      '•',
+                      style: TextStyles.textTableOrange,
+                    ),
+                    Image.asset(
+                      AppIcons.custService,
+                      height: 40,
+                      width: 40,
+                    ),
+                    Text(
+                      '•',
+                      style: TextStyles.textTableOrange,
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    ButtonText(
+                      onPressed: () {},
+                      label: 'Hubungi kami',
+                      textStyle: TextStyles.inter.copyWith(
+                        fontSize: FontSizes.s16,
+                        fontWeight: FontWeight.w500,
+                        color: AppColor.primary.shade800,
+                      ),
+                    ),
+                    Text(
+                      'Butuh bantuan? Hubungi customer service kami dengan pelayanan 24/7',
+                      style: TextStyles.inter.copyWith(
+                        fontSize: FontSizes.s14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 ),

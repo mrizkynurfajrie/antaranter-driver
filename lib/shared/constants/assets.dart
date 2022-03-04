@@ -5,6 +5,7 @@ class AppIcons {
   static const wallet = 'assets/icons/wallet.svg';
   static const history = 'assets/icons/history.svg';
   static const carLocation = 'assets/icons/car_location.png';
+  static const custService = 'assets/icons/customer_service.png';
 }
 
 class AppLogos {

@@ -9,6 +9,7 @@ class PageMain extends GetView<ControllerMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Obx(() => controller.pages.elementAt(
               controller.currentPage.value,
@@ -19,12 +20,12 @@ class PageMain extends GetView<ControllerMain> {
           selectedItemColor: AppColor.primaryColor.shade400,
           currentIndex: controller.currentPage.value,
           onTap: (index) => controller.changePage(index),
-          items: [
-            const BottomNavigationBarItem(
+          items: const [
+            BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: "Beranda",
             ),
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: "Profil",
             ),
