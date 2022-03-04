@@ -8,4 +8,5 @@ abstract class Routes {
   static const profile = '/profile_page';
   static const main = '/main_page';
   static const saldo = '/saldo_page';
+  static const actHistory = 'actHistory_page';
 }

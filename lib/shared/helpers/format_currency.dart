@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 String priceFormat(dynamic price, {bool space = false}) {
