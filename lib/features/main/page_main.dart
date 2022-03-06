@@ -26,8 +26,8 @@ class PageMain extends GetView<ControllerMain> {
               label: "Beranda",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.account_balance_wallet),
-              label: "Saldo",
+              icon: Icon(Icons.departure_board),
+              label: "Jalan",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),

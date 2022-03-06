@@ -4,6 +4,8 @@ import 'package:intake_rider/features/home/page_home.dart';
 import 'package:intake_rider/features/login/page_login.dart';
 import 'package:intake_rider/features/main/binding_main.dart';
 import 'package:intake_rider/features/main/page_main.dart';
+import 'package:intake_rider/features/order/binding_order.dart';
+import 'package:intake_rider/features/order/page_order.dart';
 import 'package:intake_rider/features/profile/page_profile.dart';
 import 'package:intake_rider/features/register/binding_register.dart';
 import 'package:intake_rider/features/register/page/page_register.dart';
@@ -56,6 +58,11 @@ class AppPages {
     GetPage(
       name: Routes.actHistory,
       page: () => PageActivityHistory(),
+    ),
+    GetPage(
+      name: Routes.order,
+      page: () => PageOrder(),
+      binding: BindingOrder(),
     ),
   ];
 }
