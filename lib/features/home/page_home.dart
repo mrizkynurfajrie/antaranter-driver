@@ -144,7 +144,7 @@ class PageHome extends GetView<ControllerHome> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      'Mau kemana hari ini?',
+                      'Buat perjalanan mu menghasilkan!',
                       style: TextStyles.inter.copyWith(
                         fontSize: FontSizes.s16,
                         fontWeight: FontWeight.w500,
@@ -157,7 +157,10 @@ class PageHome extends GetView<ControllerHome> {
                         color: AppColor.primaryColor,
                       ),
                       hintText: 'tentukan perjalanan mu',
-                      onTap: () {},
+                      keyboardType: TextInputType.none,
+                      onTap: () {
+                        Get.toNamed(Routes.order);
+                      },
                     ),
                   ],
                 ),

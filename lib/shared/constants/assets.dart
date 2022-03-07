@@ -9,6 +9,8 @@ class AppIcons {
   static const icTopUp = 'assets/icons/top-up.png';
   static const icWithdrawl = 'assets/icons/withdrawl.png';
   static const roadRoutes = 'assets/icons/road-routes.png';
+  static const locDepart = 'assets/icons/loc_depart.png';
+  static const locArrive = 'assets/icons/loc_arrive.png';
 }
 
 class AppLogos {
