@@ -5,15 +5,20 @@ import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intake_rider/shared/widgets/bottomsheet/bottomsheet_selection.dart';
+import 'package:intake_rider/shared/widgets/cards/card_info.dart';
+import 'package:intake_rider/shared/widgets/cards/card_item.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_icon_underlined.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 import 'controller_order.dart';
 
 class PageOrder extends GetView<ControllerOrder> {
-  const PageOrder({
-    Key? key,
-  }) : super(key: key);
+  var seat = <ModelBottomsheet>[];
+  const PageOrder({Key? key}) : super(key: key);
+
+  getProvince() async {
+    seat.add(ModelBottomsheet(widget: CardInfo));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +134,7 @@ class PageOrder extends GetView<ControllerOrder> {
                   ),
                 ),
                 verticalSpace(Insets.med),
-                CardRounded(
+                CardItem(
                   width: Get.width,
                   margin: EdgeInsets.symmetric(horizontal: Insets.sm),
                   child: Column(
