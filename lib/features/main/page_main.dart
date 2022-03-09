@@ -27,7 +27,7 @@ class PageMain extends GetView<ControllerMain> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.departure_board),
-              label: "Jalan",
+              label: "Perjalanan",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),

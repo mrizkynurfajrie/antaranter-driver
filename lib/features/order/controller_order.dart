@@ -13,16 +13,4 @@ class ControllerOrder extends GetxController {
   var ctrlTimeDept = TextEditingController();
   var ctrlDateArrv = TextEditingController();
   var ctrlTimeArrv = TextEditingController();
-  // TimeOfDay selectedTime = TimeOfDay.now();
-
-  // inputTime(BuildContext context) async {
-  //   final TimeOfDay? timeOfDay = await showTimePicker(
-  //     context: context,
-  //     initialTime: selectedTime,
-  //     initialEntryMode: TimePickerEntryMode.dial,
-  //   );
-  //   if (timeOfDay != null && timeOfDay != selectedTime){
-  //     selectedTime = timeOfDay;
-  //   }
-  // }
 }

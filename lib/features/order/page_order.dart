@@ -158,10 +158,12 @@ class PageOrder extends GetView<ControllerOrder> {
                               ],
                             ),
                           ),
-                          Text('orang',
-                              style: TextStyles.inter.copyWith(
-                                fontSize: FontSizes.s14,
-                              )),
+                          Text(
+                            'orang',
+                            style: TextStyles.inter.copyWith(
+                              fontSize: FontSizes.s14,
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -207,7 +209,7 @@ class PageOrder extends GetView<ControllerOrder> {
                               isValid: (Value) {},
                               prefixIcon: const Icon(
                                 Icons.date_range,
-                                color: AppColor.primaryColor,
+                                color: AppColor.greyColor,
                                 size: 20,
                               ),
                             ),
@@ -220,7 +222,7 @@ class PageOrder extends GetView<ControllerOrder> {
                               prefixIcon: const Icon(
                                 Icons.watch,
                                 size: 20,
-                                color: AppColor.primaryColor,
+                                color: AppColor.greyColor,
                               ),
                             ),
                           ],

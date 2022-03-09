@@ -10,4 +10,5 @@ abstract class Routes {
   static const saldo = '/saldo_page';
   static const actHistory = '/actHistory_page';
   static const order = '/order_page';
+  static const orderDetail = '/order_detail';
 }
