@@ -1,23 +1,21 @@
-import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
-import 'package:intl/intl.dart';
 
-class InputDate extends StatefulWidget {
+class InputTime extends StatefulWidget {
   final String hintText;
   final String? Function(String?)? validate;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final String label;
   final TextEditingController controller;
-  final DateTime? initialDate;
-  final DateTime? firstDate;
-  final DateTime? lastDate;
-  final ValueSetter<DateTime> selectedDate;
+  final TimeOfDay? initialTime;
+  final TimeOfDay? timePicked;
+  final ValueSetter<TimeOfDay> selectedTime;
   final ValueSetter<bool> isValid;
+ 
 
-  const InputDate({
+  const InputTime({
     Key? key,
     this.hintText = 'Pilih Tanggal',
     this.validate,
@@ -25,39 +23,35 @@ class InputDate extends StatefulWidget {
     this.suffixIcon,
     this.label = '',
     required this.controller,
-    this.initialDate,
-    this.firstDate,
-    this.lastDate,
-    required this.selectedDate,
+    this.initialTime,
+    this.timePicked,
+    required this.selectedTime,
     required this.isValid,
+    
   }) : super(key: key);
 
   @override
-  _InputDateState createState() => _InputDateState();
+  _InputTimeState createState() => _InputTimeState();
 }
 
-class _InputDateState extends State<InputDate> {
-  String _date = '';
+class _InputTimeState extends State<InputTime> {
+  String _time = '';
 
-  void _selectDate() async {
-    var datePicked = await DatePicker.showSimpleDatePicker(context,
-        initialDate: widget.initialDate ?? DateTime.now(),
-        firstDate: widget.firstDate ?? DateTime(1900),
-        lastDate: widget.lastDate ?? DateTime(2023),
-        dateFormat: "dd-MMMM-yyyy",
-        locale: DateTimePickerLocale.id,
-        looping: false,
-        textColor: Theme.of(context).primaryColor,
-        cancelText: 'Batal',
-        titleText: 'Pilih Tanggal',
-        itemTextStyle: TextStyles.body2);
+  void _selectTime() async {
+    TimeOfDay? timeOfDay = await showTimePicker(
+      context: context,
+      initialTime: widget.initialTime ?? TimeOfDay.now(),
+      initialEntryMode: TimePickerEntryMode.dial,
+      cancelText: 'Batal',
+      confirmText: 'Pilih',
+    );
 
-    if (datePicked != null) {
+    if (timeOfDay != null) {
       setState(() {
-        _date = DateFormat('dd/MM/yyyy').format(datePicked);
+        _time = timeOfDay.toString();
       });
-      widget.controller.text = _date;
-      widget.selectedDate(datePicked);
+      widget.controller.text = _time;
+      widget.selectedTime(timeOfDay);
       FocusManager.instance.primaryFocus?.unfocus();
     }
   }
@@ -65,7 +59,7 @@ class _InputDateState extends State<InputDate> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: Insets.med),
+      padding: const EdgeInsets.symmetric(vertical: 2),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -81,7 +75,7 @@ class _InputDateState extends State<InputDate> {
                 )
               : verticalSpace(0),
           TextFormField(
-            onTap: _selectDate,
+            onTap: _selectTime,
             readOnly: true,
             cursorColor: Theme.of(context).primaryColor,
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -92,7 +86,7 @@ class _InputDateState extends State<InputDate> {
                 (value) {
                   if (value.toString().isEmpty) {
                     widget.isValid(false);
-                    return 'Pilih tanggal';
+                    return 'Pilih Waktu';
                   }
 
                   widget.isValid(true);

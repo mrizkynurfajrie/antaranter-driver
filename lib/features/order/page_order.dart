@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/shared/constants/assets.dart';
@@ -9,8 +7,8 @@ import 'package:intake_rider/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_date.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_icon_underlined.dart';
+import 'package:intake_rider/shared/widgets/inputs/input_time.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
-import 'package:intl/intl.dart';
 import 'controller_order.dart';
 
 class PageOrder extends GetView<ControllerOrder> {
@@ -186,7 +184,7 @@ class PageOrder extends GetView<ControllerOrder> {
                       verticalSpace(Insets.sm),
                       CardRoundedBorder(
                         width: Get.width,
-                        height: Get.height * 0.35,
+                        height: Get.height * 0.22,
                         child: Column(
                           children: [
                             SizedBox(
@@ -201,13 +199,67 @@ class PageOrder extends GetView<ControllerOrder> {
                             ),
                             InputDate(
                               hintText: 'Pilih Tanggal Berangkat',
-                              controller: controller.ctrlDate,
+                              controller: controller.ctrlDateDept,
                               selectedDate: (Value) {},
                               isValid: (Value) {},
                               prefixIcon: const Icon(
                                 Icons.date_range,
                                 color: AppColor.primaryColor,
                                 size: 20,
+                              ),
+                            ),
+                            // verticalSpace(Insets.sm),
+                            InputTime(
+                              hintText: 'Pilih Waktu Berangkat',
+                              controller: controller.ctrlTimeDept,
+                              selectedTime: (Value) {},
+                              isValid: (Value) {},
+                              prefixIcon: const Icon(
+                                Icons.watch,
+                                size: 20,
+                                color: AppColor.primaryColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      verticalSpace(Insets.med),
+                      CardRoundedBorder(
+                        width: Get.width,
+                        height: Get.height * 0.22,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              width: Get.width,
+                              child: Text(
+                                'Tiba',
+                                style: TextStyles.inter.copyWith(
+                                  fontSize: FontSizes.s14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            InputDate(
+                              hintText: 'Pilih Tanggal Tiba',
+                              controller: controller.ctrlDateArrv,
+                              selectedDate: (Value) {},
+                              isValid: (Value) {},
+                              prefixIcon: const Icon(
+                                Icons.date_range,
+                                color: AppColor.primaryColor,
+                                size: 20,
+                              ),
+                            ),
+                            // verticalSpace(Insets.sm),
+                            InputTime(
+                              hintText: 'Pilih Waktu Tiba',
+                              controller: controller.ctrlTimeArrv,
+                              selectedTime: (Value) {},
+                              isValid: (Value) {},
+                              prefixIcon: const Icon(
+                                Icons.watch,
+                                size: 20,
+                                color: AppColor.primaryColor,
                               ),
                             ),
                           ],
