@@ -52,7 +52,7 @@ InputDecoration inputDecoration(
           BoxConstraints(minHeight: Sizes.lg, minWidth: Sizes.lg),
       suffixIcon: suffixIcon,
       hintStyle:
-          TextStyles.textBase.copyWith(color: AppColor.bodyColor.shade300));
+          TextStyles.textBase.copyWith(color: AppColor.bodyColor.shade300, fontSize: FontSizes.s14));
 }
 
 Widget verticalSpace(double v) {

@@ -1,6 +1,5 @@
-import 'package:basecode_app/features/profile/upgrade_account/controller_upgrade_account.dart';
-import 'package:basecode_app/shared/constants/colors.dart';
-import 'package:basecode_app/shared/constants/styles.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,30 +19,16 @@ class CardItem extends StatefulWidget {
 }
 
 class _CardItemState extends State<CardItem> {
-  final ControllerUpgradeAccount controllerUpgradeaControllerUpgradeAccount =
-      Get.find();
-
   @override
   Widget build(BuildContext context) {
     return Obx(
       () => Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           border: Border(
-            bottom: widget.values
-                ? BorderSide(
-                    width: 1.5,
-                    color: controllerUpgradeaControllerUpgradeAccount
-                                .search.value ==
-                            widget.data['code']
-                        ? AppColor.successColor
-                        : AppColor.weakColor)
-                : BorderSide(
-                    width: 1.5,
-                    color: controllerUpgradeaControllerUpgradeAccount
-                                .search.value ==
-                            widget.data
-                        ? AppColor.successColor
-                        : AppColor.weakColor),
+            bottom:  BorderSide(
+              width: 1.5,
+              color: AppColor.greyColor,
+            ),
           ),
           color: Colors.white,
         ),
@@ -54,27 +39,10 @@ class _CardItemState extends State<CardItem> {
             children: [
               // Padding(padding: const EdgeInsets.all(8.0), child: icon),
               Expanded(
-                child: widget.values
-                    ? Text(
-                        widget.data['name'],
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyles.textBase.copyWith(
-                            color: controllerUpgradeaControllerUpgradeAccount
-                                        .search.value ==
-                                    widget.data['code']
-                                ? AppColor.successColor
-                                : AppColor.bodyColor),
-                      )
-                    : Text(
-                        widget.data,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyles.body1.copyWith(
-                            color: controllerUpgradeaControllerUpgradeAccount
-                                        .search.value ==
-                                    widget.data
-                                ? AppColor.successColor
-                                : AppColor.bodyColor),
-                      ),
+                child: Text(widget.data['name'],
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyles.textBase
+                        .copyWith(color: AppColor.greyColor)),
               ),
             ],
           ),

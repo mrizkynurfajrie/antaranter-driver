@@ -1,24 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
-import 'package:intake_rider/shared/widgets/bottomsheet/bottomsheet_selection.dart';
-import 'package:intake_rider/shared/widgets/cards/card_info.dart';
-import 'package:intake_rider/shared/widgets/cards/card_item.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded.dart';
+import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
+import 'package:intake_rider/shared/widgets/inputs/input_date.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_icon_underlined.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
+import 'package:intl/intl.dart';
 import 'controller_order.dart';
 
 class PageOrder extends GetView<ControllerOrder> {
-  var seat = <ModelBottomsheet>[];
   const PageOrder({Key? key}) : super(key: key);
-
-  getProvince() async {
-    seat.add(ModelBottomsheet(widget: CardInfo));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,11 +126,49 @@ class PageOrder extends GetView<ControllerOrder> {
                           ),
                         ],
                       ),
+                      Row(
+                        children: [
+                          const SizedBox(
+                            child: Icon(
+                              Icons.perm_identity,
+                              color: AppColor.primaryColor,
+                            ),
+                          ),
+                          horizontalSpace(17),
+                          Obx(
+                            () => DropdownButton(
+                              hint: const Text('Ketersediaan Tempat'),
+                              onChanged: (newValue) {
+                                controller.dropDownValue.value =
+                                    newValue.toString();
+                                controller.update();
+                              },
+                              value: controller.dropDownValue.value,
+                              items: [
+                                for (var data in controller.dropDownList)
+                                  DropdownMenuItem(
+                                    child: Text(
+                                      data,
+                                      style: TextStyles.inter.copyWith(
+                                        fontSize: FontSizes.s14,
+                                      ),
+                                    ),
+                                    value: data,
+                                  )
+                              ],
+                            ),
+                          ),
+                          Text('orang',
+                              style: TextStyles.inter.copyWith(
+                                fontSize: FontSizes.s14,
+                              )),
+                        ],
+                      ),
                     ],
                   ),
                 ),
                 verticalSpace(Insets.med),
-                CardItem(
+                CardRounded(
                   width: Get.width,
                   margin: EdgeInsets.symmetric(horizontal: Insets.sm),
                   child: Column(
@@ -147,6 +181,36 @@ class PageOrder extends GetView<ControllerOrder> {
                             fontSize: FontSizes.s14,
                             fontWeight: FontWeight.bold,
                           ),
+                        ),
+                      ),
+                      verticalSpace(Insets.sm),
+                      CardRoundedBorder(
+                        width: Get.width,
+                        height: Get.height * 0.35,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              width: Get.width,
+                              child: Text(
+                                'Berangkat',
+                                style: TextStyles.inter.copyWith(
+                                  fontSize: FontSizes.s14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            InputDate(
+                              hintText: 'Pilih Tanggal Berangkat',
+                              controller: controller.ctrlDate,
+                              selectedDate: (Value) {},
+                              isValid: (Value) {},
+                              prefixIcon: const Icon(
+                                Icons.date_range,
+                                color: AppColor.primaryColor,
+                                size: 20,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
