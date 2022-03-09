@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intake_rider/routes/app_routes.dart';
 import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_date.dart';
@@ -183,6 +185,7 @@ class PageOrder extends GetView<ControllerOrder> {
                       ),
                       verticalSpace(Insets.sm),
                       CardRoundedBorder(
+                        borderColor: AppColor.primaryColor,
                         width: Get.width,
                         height: Get.height * 0.22,
                         child: Column(
@@ -225,6 +228,7 @@ class PageOrder extends GetView<ControllerOrder> {
                       ),
                       verticalSpace(Insets.med),
                       CardRoundedBorder(
+                        borderColor: AppColor.primaryColor,
                         width: Get.width,
                         height: Get.height * 0.22,
                         child: Column(
@@ -267,6 +271,15 @@ class PageOrder extends GetView<ControllerOrder> {
                       ),
                     ],
                   ),
+                ),
+                verticalSpace(Insets.med),
+                ButtonPrimary(
+                  onPressed: () {
+                    Get.offNamed(Routes.main);
+                  },
+                  label: 'Bagikan',
+                  color: AppColor.primaryColor,
+                  size: 345,
                 ),
               ],
             ),
