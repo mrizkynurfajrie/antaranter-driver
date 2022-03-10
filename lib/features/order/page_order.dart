@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/routes/app_routes.dart';
 import 'package:intake_rider/shared/constants/assets.dart';
@@ -7,6 +8,7 @@ import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
+import 'package:intake_rider/shared/widgets/input_format/input_format_money.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_date.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_icon_underlined.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_time.dart';
@@ -167,6 +169,22 @@ class PageOrder extends GetView<ControllerOrder> {
                         ],
                       ),
                     ],
+                  ),
+                ),
+                verticalSpace(Insets.med),
+                CardRounded(
+                  width: Get.width,
+                  margin: EdgeInsets.symmetric(horizontal: Insets.sm),
+                  child: InputIconUnderline(
+                    onChange: (String) {},
+                    icon: Icon(
+                      Icons.money_rounded,
+                      size: IconSizes.med,
+                      color: AppColor.primaryColor,
+                    ),
+                    hintText: 'Harga Perjalanan',
+                    inputFormatters: [ThousandsSeparatorInputFormatter(), LengthLimitingTextInputFormatter(7)],
+                    keyboardType: TextInputType.number,
                   ),
                 ),
                 verticalSpace(Insets.med),

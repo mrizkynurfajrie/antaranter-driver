@@ -47,9 +47,11 @@ class PageOrderDetail extends GetView<ControllerOrderDetail> {
                 padding: const EdgeInsets.all(15),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     CardRounded(
                       width: Get.width,
+                      margin: EdgeInsets.symmetric(horizontal: Insets.sm),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
@@ -213,6 +215,44 @@ class PageOrderDetail extends GetView<ControllerOrderDetail> {
                           ),
                         ],
                       ),
+                    ),
+                    verticalSpace(Insets.xl),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        CardRounded(
+                          width: Get.width * 0.4,
+                          margin: EdgeInsets.symmetric(horizontal: Insets.sm),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Penumpang',
+                                style: TextStyles.inter.copyWith(
+                                  fontSize: FontSizes.s14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        CardRounded(
+                          width: Get.width * 0.4,
+                          margin: EdgeInsets.symmetric(horizontal: Insets.sm),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Penumpang',
+                                style: TextStyles.inter.copyWith(
+                                  fontSize: FontSizes.s14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
