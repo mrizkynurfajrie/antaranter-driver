@@ -217,42 +217,114 @@ class PageOrderDetail extends GetView<ControllerOrderDetail> {
                       ),
                     ),
                     verticalSpace(Insets.xl),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        CardRounded(
-                          width: Get.width * 0.4,
-                          margin: EdgeInsets.symmetric(horizontal: Insets.sm),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                'Penumpang',
-                                style: TextStyles.inter.copyWith(
-                                  fontSize: FontSizes.s14,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                    SingleChildScrollView(
+                      child: Container(
+                        height: Get.height * 0.35,
+                        width: Get.width,
+                        margin: EdgeInsets.symmetric(horizontal: Insets.sm),
+                        child: CustomScrollView(
+                          slivers: [
+                            SliverToBoxAdapter(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  SizedBox(
+                                    height: Get.height * 0.8,
+                                    width: Get.width * 0.95,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: 5,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                          margin: EdgeInsets.only(
+                                              bottom: Insets.sm),
+                                          width: Get.width * 0.8,
+                                          height: Get.height * 0.06,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(9),
+                                              color: AppColor.whiteColor,
+                                              boxShadow: Shadows.universal),
+                                          child: Material(
+                                            color: Colors.transparent,
+                                            child: InkWell(
+                                              onTap: () {},
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 3,
+                                                        horizontal: 20),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: <Widget>[
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: <Widget>[
+                                                        verticalSpace(2),
+                                                        Text(
+                                                          'Anas Kun',
+                                                          style: TextStyles
+                                                              .inter
+                                                              .copyWith(
+                                                            fontSize:
+                                                                FontSizes.s14,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color: AppColor
+                                                                .greyColor,
+                                                          ),
+                                                        ),
+                                                        verticalSpace(2),
+                                                        Text(
+                                                          '0852525252525',
+                                                          style: TextStyles
+                                                              .inter
+                                                              .copyWith(
+                                                            fontSize:
+                                                                FontSizes.s14,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            color: AppColor
+                                                                .greyColorLight,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Text(
+                                                      '#12345',
+                                                      style: TextStyles.inter
+                                                          .copyWith(
+                                                        fontSize: FontSizes.s14,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        color: AppColor
+                                                            .greyColorLight,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            )
+                          ],
                         ),
-                        CardRounded(
-                          width: Get.width * 0.4,
-                          margin: EdgeInsets.symmetric(horizontal: Insets.sm),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                'Penumpang',
-                                style: TextStyles.inter.copyWith(
-                                  fontSize: FontSizes.s14,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
