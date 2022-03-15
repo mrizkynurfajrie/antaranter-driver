@@ -7,6 +7,7 @@ import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intake_rider/shared/widgets/cards/card_primary.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PageSaldo extends GetView<ControllerSaldo> {
   const PageSaldo({Key? key}) : super(key: key);
@@ -20,94 +21,90 @@ class PageSaldo extends GetView<ControllerSaldo> {
       backgroundColor: AppColor.bgPageColor,
       toolbarColor: AppColor.bgPageColor,
       enableBack: true,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            CardPrimary(
-              height: Get.height * 0.25,
-              width: Get.width * 0.9,
-              color: AppColor.primaryColor,
-              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-              radius: 19,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: Get.width * 0.30,
-                        child: AppLogos.logoApp(AppLogos.logoUncoloured),
+      child: Padding(
+        padding: EdgeInsets.only(top: 10.h),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              CardPrimary(
+                height: Get.height * 0.23.h,
+                width: Get.width * 0.87.w,
+                color: AppColor.primaryColor,
+                padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
+                radius: 19,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        SizedBox(
+                          width: Get.width * 0.30.w,
+                          child: AppLogos.logoApp(AppLogos.logoUncoloured),
+                        ),
+                      ],
+                    ),
+                    verticalSpace(15.h),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: SizedBox(
+                        width: Get.width * 0.33.w,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'mrizkynurfajrie',
+                              style: TextStyles.textTitle,
+                            ),
+                            Text(
+                              '085250505050',
+                              style: TextStyles.inter.copyWith(
+                                fontSize: FontSizes.s14,
+                                color: AppColor.whiteColor,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ],
-                  ),
-                  verticalSpace(15),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: SizedBox(
-                      width: Get.width * 0.35,
+                    ),
+                    verticalSpace(20.h),
+                    SizedBox(
+                      width: Get.width * 0.5.w,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'mrizkynurfajrie',
-                            style: TextStyles.textTitle,
-                          ),
-                          Text(
-                            '085250505050',
+                            'Rp 0,-',
                             style: TextStyles.inter.copyWith(
-                              fontSize: FontSizes.s14,
-                              color: AppColor.whiteColor,
-                            ),
-                          )
+                                fontSize: FontSizes.s32,
+                                fontWeight: FontWeight.bold,
+                                color: AppColor.whiteColor),
+                          ),
                         ],
                       ),
-                    ),
+                    )
+                  ],
+                ),
+              ),
+              verticalSpace(25.h),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  ButtonSaldo(
+                    icon: AppIcons.icTopUp,
+                    title: 'Isi Ulang',
+                    buttonHeight: Get.height * 0.09.h,
+                    buttonWidth: 100.w,
+                    ontap: () {},
                   ),
-                  verticalSpace(20),
-                  SizedBox(
-                    width: Get.width * 0.5,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Rp 0,-',
-                          style: TextStyles.inter.copyWith(
-                              fontSize: FontSizes.s32,
-                              fontWeight: FontWeight.bold,
-                              color: AppColor.whiteColor),
-                        ),
-                      ],
-                    ),
-                  )
                 ],
               ),
-            ),
-            verticalSpace(25),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                ButtonSaldo(
-                  icon: AppIcons.icTopUp,
-                  title: 'Isi Ulang',
-                  buttonHeight: Get.height * 0.10,
-                  buttonWidth: 100,
-                  ontap: () {},
-                ),
-                ButtonSaldo(
-                  icon: AppIcons.icWithdrawl,
-                  title: 'Tarik Dana',
-                  buttonHeight: Get.height * 0.10,
-                  buttonWidth: 100,
-                  ontap: () {},
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -135,7 +132,7 @@ class ButtonSaldo extends StatelessWidget {
     return InkWell(
       onTap: ontap,
       child: CardRoundedBorder(
-        padding: const EdgeInsets.symmetric(vertical: 5),
+        padding: EdgeInsets.symmetric(vertical: 5.h),
         height: buttonHeight,
         width: buttonWidth,
         shadow: Shadows.universal,
@@ -143,15 +140,15 @@ class ButtonSaldo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: 35,
-              height: 35,
+              width: 35.w,
+              height: 35.h,
               color: AppColor.whiteColor,
               child: Image.asset(
                 icon,
                 fit: BoxFit.contain,
               ),
             ),
-            verticalSpace(7),
+            verticalSpace(7.h),
             Text(
               title,
               style: TextStyles.inter.copyWith(
