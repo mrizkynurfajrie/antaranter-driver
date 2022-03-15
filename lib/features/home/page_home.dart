@@ -11,6 +11,7 @@ import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
 import 'package:intake_rider/features/home/controller_home.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PageHome extends GetView<ControllerHome> {
   const PageHome({Key? key}) : super(key: key);
@@ -31,16 +32,16 @@ class PageHome extends GetView<ControllerHome> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           CardRoundedBorder(
-            height: Get.height * 0.13,
+            height: Get.height * 0.12.h,
             color: AppColor.primaryColor,
             borderRadius: 30,
-            margin: const EdgeInsets.symmetric(vertical: 15),
+            margin: EdgeInsets.symmetric(vertical: 15.h),
             child: Obx(
               () => Column(
                 children: <Widget>[
                   Container(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -55,8 +56,8 @@ class PageHome extends GetView<ControllerHome> {
                               icon: AppIcons.wallet,
                               title: 'Saldo',
                               iconColor: AppColor.whiteColor,
-                              iconHeight: 32,
-                              iconWidth: 32,
+                              iconHeight: 32.h,
+                              iconWidth: 32.w,
                             ),
                             horizontalSpace(7),
                             CustomIconButton(
@@ -66,10 +67,10 @@ class PageHome extends GetView<ControllerHome> {
                               icon: AppIcons.history,
                               title: 'Riwayat',
                               iconColor: AppColor.whiteColor,
-                              iconHeight: 25,
-                              iconWidth: 25,
+                              iconHeight: 25.h,
+                              iconWidth: 25.w,
                               iconPadding:
-                                  const EdgeInsets.only(bottom: 4, top: 5),
+                                  EdgeInsets.only(bottom: 4.h, top: 5.h),
                             ),
                           ],
                         ),
@@ -78,7 +79,7 @@ class PageHome extends GetView<ControllerHome> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             SizedBox(
-                              width: Get.width * 0.36,
+                              width: Get.width * 0.32.w,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,9 +116,9 @@ class PageHome extends GetView<ControllerHome> {
             ),
           ),
           CardPrimary(
-            height: Get.height * 0.24,
-            width: Get.width * 0.9,
-            padding: const EdgeInsets.symmetric(vertical: 10),
+            height: Get.height * 0.22.h,
+            width: Get.width * 0.85.w,
+            padding: EdgeInsets.symmetric(vertical: 10.h),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -131,8 +132,8 @@ class PageHome extends GetView<ControllerHome> {
                     ),
                     Image.asset(
                       AppIcons.carLocation,
-                      height: 55,
-                      width: 55,
+                      height: 55.h,
+                      width: 55.w,
                     ),
                     Text(
                       '•',
@@ -167,11 +168,11 @@ class PageHome extends GetView<ControllerHome> {
               ],
             ),
           ),
-          verticalSpace(Get.height * 0.18),
+          verticalSpace(Get.height * 0.25.h),
           CardPrimary(
-            height: Get.height * 0.17,
-            width: Get.width * 0.9,
-            padding: const EdgeInsets.symmetric(vertical: 2),
+            height: Get.height * 0.17.h,
+            width: Get.width * 0.85.w,
+            padding: EdgeInsets.symmetric(vertical: 2.h),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -185,8 +186,8 @@ class PageHome extends GetView<ControllerHome> {
                     ),
                     Image.asset(
                       AppIcons.custService,
-                      height: 40,
-                      width: 40,
+                      height: 40.h,
+                      width: 40.w,
                     ),
                     Text(
                       '•',
