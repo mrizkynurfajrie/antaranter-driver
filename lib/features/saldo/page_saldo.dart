@@ -28,7 +28,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               CardPrimary(
-                height: Get.height * 0.23.h,
+                height: Get.height * 0.25.h,
                 width: Get.width * 0.87.w,
                 color: AppColor.primaryColor,
                 padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
@@ -89,20 +89,50 @@ class PageSaldo extends GetView<ControllerSaldo> {
                   ],
                 ),
               ),
-              verticalSpace(25.h),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  ButtonSaldo(
-                    icon: AppIcons.icTopUp,
-                    title: 'Isi Ulang',
-                    buttonHeight: Get.height * 0.09.h,
-                    buttonWidth: 100.w,
-                    ontap: () {},
-                  ),
-                ],
+              verticalSpace(15.h),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    ButtonSaldo(
+                      icon: AppIcons.icTopUp,
+                      title: 'Isi Ulang',
+                      buttonHeight: 55.h,
+                      buttonWidth: 105.w,
+                      ontap: () {},
+                    ),
+                  ],
+                ),
               ),
+              verticalSpace(15.h),
+              CardPrimary(
+                width: Get.width * 0.9.h,
+                height: Get.height * 0.45.h,
+                color: AppColor.whiteColor,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: IconSizes.xxl,
+                      width: IconSizes.xxl,
+                      child: Image.asset('assets/icons/no_data.png'),
+                    ),
+                    verticalSpace(5.h),
+                    SizedBox(
+                      width: Get.width * 0.7,
+                      child: Text(
+                          'Anda belum memiliki transaksi, silakan lakukan isi ulang saldo',
+                          style: TextStyles.inter.copyWith(
+                            fontSize: FontSizes.s12,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          textAlign: TextAlign.center),
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ),
@@ -132,27 +162,27 @@ class ButtonSaldo extends StatelessWidget {
     return InkWell(
       onTap: ontap,
       child: CardRoundedBorder(
-        padding: EdgeInsets.symmetric(vertical: 5.h),
+        padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.h),
         height: buttonHeight,
         width: buttonWidth,
         shadow: Shadows.universal,
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: 35.w,
-              height: 35.h,
+              width: 25.w,
+              height: 25.h,
               color: AppColor.whiteColor,
               child: Image.asset(
                 icon,
                 fit: BoxFit.contain,
               ),
             ),
-            verticalSpace(7.h),
+            horizontalSpace(7.h),
             Text(
               title,
               style: TextStyles.inter.copyWith(
-                fontSize: FontSizes.s14,
+                fontSize: FontSizes.s12,
                 fontWeight: FontWeight.w600,
               ),
               textAlign: TextAlign.center,
@@ -161,14 +191,5 @@ class ButtonSaldo extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class CardHistory extends StatelessWidget {
-  const CardHistory({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

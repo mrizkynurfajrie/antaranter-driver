@@ -28,199 +28,201 @@ class PageHome extends GetView<ControllerHome> {
         alignment: Alignment.center,
         child: AppLogos.logoApp(AppLogos.logoColoured),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          CardRoundedBorder(
-            height: Get.height * 0.12.h,
-            color: AppColor.primaryColor,
-            borderRadius: 30,
-            margin: EdgeInsets.symmetric(vertical: 15.h),
-            child: Obx(
-              () => Column(
-                children: <Widget>[
-                  Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            CustomIconButton(
-                              ontap: () {
-                                Get.toNamed(Routes.saldo);
-                              },
-                              icon: AppIcons.wallet,
-                              title: 'Saldo',
-                              iconColor: AppColor.whiteColor,
-                              iconHeight: 32.h,
-                              iconWidth: 32.w,
-                            ),
-                            horizontalSpace(7),
-                            CustomIconButton(
-                              ontap: () {
-                                Get.toNamed(Routes.actHistory);
-                              },
-                              icon: AppIcons.history,
-                              title: 'Riwayat',
-                              iconColor: AppColor.whiteColor,
-                              iconHeight: 25.h,
-                              iconWidth: 25.w,
-                              iconPadding:
-                                  EdgeInsets.only(bottom: 4.h, top: 5.h),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(
-                              width: Get.width * 0.32.w,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    'hai, ' + controller.name.value,
-                                    style: TextStyles.textTitle,
-                                    maxLines: 2,
-                                  ),
-                                  verticalSpace(5),
-                                  Text(
-                                    controller.phone.value,
-                                    style: TextStyles.inter.copyWith(
-                                      color: AppColor.whiteColor,
-                                      fontSize: FontSizes.s14,
-                                    ),
-                                  ),
-                                ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            CardRoundedBorder(
+              height: Get.height * 0.13.h,
+              color: AppColor.primaryColor,
+              borderRadius: 30,
+              margin: EdgeInsets.symmetric(vertical: 15.h),
+              child: Obx(
+                () => Column(
+                  children: <Widget>[
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              CustomIconButton(
+                                ontap: () {
+                                  Get.toNamed(Routes.saldo);
+                                },
+                                icon: AppIcons.wallet,
+                                title: 'Saldo',
+                                iconColor: AppColor.whiteColor,
+                                iconHeight: 32.h,
+                                iconWidth: 32.w,
                               ),
-                            ),
-                            const CircleAvatar(
-                              backgroundColor: AppColor.transparentColor,
-                              backgroundImage:
-                                  AssetImage("assets/images/fajrie.JPG"),
-                              radius: 30,
-                            ),
-                          ],
-                        ),
-                      ],
+                              horizontalSpace(7),
+                              CustomIconButton(
+                                ontap: () {
+                                  Get.toNamed(Routes.actHistory);
+                                },
+                                icon: AppIcons.history,
+                                title: 'Riwayat',
+                                iconColor: AppColor.whiteColor,
+                                iconHeight: 25.h,
+                                iconWidth: 25.w,
+                                iconPadding:
+                                    EdgeInsets.only(bottom: 4.h, top: 5.h),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              SizedBox(
+                                width: Get.width * 0.32.w,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      'hai, ' + controller.name.value,
+                                      style: TextStyles.textTitle,
+                                      maxLines: 2,
+                                    ),
+                                    verticalSpace(5),
+                                    Text(
+                                      controller.phone.value,
+                                      style: TextStyles.inter.copyWith(
+                                        color: AppColor.whiteColor,
+                                        fontSize: FontSizes.s14,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const CircleAvatar(
+                                backgroundColor: AppColor.transparentColor,
+                                backgroundImage:
+                                    AssetImage("assets/images/fajrie.JPG"),
+                                radius: 30,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
+                  ],
+                ),
+              ),
+            ),
+            CardPrimary(
+              height: Get.height * 0.22.h,
+              width: Get.width * 0.85.w,
+              padding: EdgeInsets.symmetric(vertical: 10.h),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        '•',
+                        style: TextStyles.textTableOrange,
+                      ),
+                      Image.asset(
+                        AppIcons.carLocation,
+                        height: 55.h,
+                        width: 55.w,
+                      ),
+                      Text(
+                        '•',
+                        style: TextStyles.textTableOrange,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Buat perjalanan mu menghasilkan!',
+                        style: TextStyles.inter.copyWith(
+                          fontSize: FontSizes.s16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      InputPrimary(
+                        boxWidth: 300,
+                        prefixIcon: const Icon(
+                          Icons.location_city,
+                          color: AppColor.primaryColor,
+                        ),
+                        hintText: 'tentukan perjalanan mu',
+                        keyboardType: TextInputType.none,
+                        onTap: () {
+                          Get.toNamed(Routes.order);
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-          ),
-          CardPrimary(
-            height: Get.height * 0.22.h,
-            width: Get.width * 0.85.w,
-            padding: EdgeInsets.symmetric(vertical: 10.h),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      '•',
-                      style: TextStyles.textTableOrange,
-                    ),
-                    Image.asset(
-                      AppIcons.carLocation,
-                      height: 55.h,
-                      width: 55.w,
-                    ),
-                    Text(
-                      '•',
-                      style: TextStyles.textTableOrange,
-                    ),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'Buat perjalanan mu menghasilkan!',
-                      style: TextStyles.inter.copyWith(
-                        fontSize: FontSizes.s16,
-                        fontWeight: FontWeight.w500,
+            verticalSpace(Get.height * 0.20.h),
+            CardPrimary(
+              height: Get.height * 0.17.h,
+              width: Get.width * 0.85.w,
+              padding: EdgeInsets.symmetric(vertical: 2.h),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        '•',
+                        style: TextStyles.textTableOrange,
                       ),
-                    ),
-                    InputPrimary(
-                      boxWidth: 300,
-                      prefixIcon: const Icon(
-                        Icons.location_city,
-                        color: AppColor.primaryColor,
+                      Image.asset(
+                        AppIcons.custService,
+                        height: 40.h,
+                        width: 40.w,
                       ),
-                      hintText: 'tentukan perjalanan mu',
-                      keyboardType: TextInputType.none,
-                      onTap: () {
-                        Get.toNamed(Routes.order);
-                      },
-                    ),
-                  ],
-                ),
-              ],
+                      Text(
+                        '•',
+                        style: TextStyles.textTableOrange,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      ButtonText(
+                        onPressed: () {},
+                        label: 'Hubungi kami',
+                        textStyle: TextStyles.inter.copyWith(
+                          fontSize: FontSizes.s16,
+                          fontWeight: FontWeight.w500,
+                          color: AppColor.primary.shade800,
+                        ),
+                      ),
+                      Text(
+                        'Butuh bantuan? Hubungi customer service kami dengan pelayanan 24/7',
+                        style: TextStyles.inter.copyWith(
+                          fontSize: FontSizes.s14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          verticalSpace(Get.height * 0.25.h),
-          CardPrimary(
-            height: Get.height * 0.17.h,
-            width: Get.width * 0.85.w,
-            padding: EdgeInsets.symmetric(vertical: 2.h),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      '•',
-                      style: TextStyles.textTableOrange,
-                    ),
-                    Image.asset(
-                      AppIcons.custService,
-                      height: 40.h,
-                      width: 40.w,
-                    ),
-                    Text(
-                      '•',
-                      style: TextStyles.textTableOrange,
-                    ),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    ButtonText(
-                      onPressed: () {},
-                      label: 'Hubungi kami',
-                      textStyle: TextStyles.inter.copyWith(
-                        fontSize: FontSizes.s16,
-                        fontWeight: FontWeight.w500,
-                        color: AppColor.primary.shade800,
-                      ),
-                    ),
-                    Text(
-                      'Butuh bantuan? Hubungi customer service kami dengan pelayanan 24/7',
-                      style: TextStyles.inter.copyWith(
-                        fontSize: FontSizes.s14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
