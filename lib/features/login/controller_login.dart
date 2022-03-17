@@ -12,6 +12,7 @@ class ControllerLogin extends GetxController {
 
   var cPhoneNumber = TextEditingController();
   var cPassword = TextEditingController();
+  var cFcm = TextEditingController();
 
   var loading = false.obs;
   var token = "".obs;
@@ -35,7 +36,7 @@ class ControllerLogin extends GetxController {
     try {
       loading(true);
       var loginResult = await api.userLogin(
-          phoneNumber: cPhoneNumber.text, password: cPassword.text);
+          phoneNumber: cPhoneNumber.text, password: cPassword.text, fcm: cFcm.text);
       loading(false);
       if (loginResult != null) {
         var detailUser = loginResult["data"]["rider"];

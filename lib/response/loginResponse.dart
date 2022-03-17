@@ -24,6 +24,7 @@ class loginResponse {
     required this.createdAt,
     required this.updatedAt,
     required this.isDeleted,
+    required this.fcm,
   });
 
   int id;
@@ -43,6 +44,7 @@ class loginResponse {
   DateTime createdAt;
   DateTime updatedAt;
   dynamic isDeleted;
+  dynamic fcm;
 
   factory loginResponse.fromJson(Map<String, dynamic> json) => loginResponse(
         id: json["id"],
@@ -62,6 +64,7 @@ class loginResponse {
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         isDeleted: json["isDeleted"],
+        fcm: json["fcm"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -82,5 +85,6 @@ class loginResponse {
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
         "isDeleted": isDeleted,
+        "fcm": fcm,
       };
 }

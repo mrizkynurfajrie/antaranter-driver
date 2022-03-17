@@ -65,15 +65,15 @@ class _InputPasswordState extends State<InputPassword> {
             obscureText: _obsecureText,
             inputFormatters: widget.inputFormatters,
             textCapitalization: widget.textCapitalization,
-            validator: widget.validate ??
-                (value) {
-                  if (!isValidPassword(password: value.toString())) {
-                    return '- Password minimal 8 karakter\n' +
-                        // '- Diawali huruf kapital\n' +
-                        '- Terdiri dari huruf besar, huruf kecil, dan angka';
-                    // dan symbol (!@#\$%^&*(),.?":{}|<>])';
-                  }
-                },
+            // validator: widget.validate ??
+            //     (value) {
+            //       if (!isValidPassword(password: value.toString())) {
+            //         return '- Password minimal 8 karakter\n' +
+            //             // '- Diawali huruf kapital\n' +
+            //             '- Terdiri dari huruf besar, huruf kecil, dan angka';
+            //         // dan symbol (!@#\$%^&*(),.?":{}|<>])';
+            //       }
+            //     },
             style: TextStyles.textBase,
             decoration: inputDecoration(
               hintText: widget.hintText,
