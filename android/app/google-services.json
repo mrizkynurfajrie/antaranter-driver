@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1061266805493",
+    "project_id": "intake-4f0f7",
+    "storage_bucket": "intake-4f0f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061266805493:android:daba46392810f4e86febbc",
+        "android_client_info": {
+          "package_name": "com.example.intake_customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061266805493-8otandp69niqkri65gtojv5uvb2df586.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAucr7AdC8EzW06TcGjXAnN-9HVTZcqRU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061266805493-8otandp69niqkri65gtojv5uvb2df586.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061266805493:android:c4a4612fef2744a36febbc",
+        "android_client_info": {
+          "package_name": "com.intake_rider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061266805493-8otandp69niqkri65gtojv5uvb2df586.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAucr7AdC8EzW06TcGjXAnN-9HVTZcqRU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061266805493-8otandp69niqkri65gtojv5uvb2df586.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

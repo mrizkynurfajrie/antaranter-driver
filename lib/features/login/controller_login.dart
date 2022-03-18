@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/login/api_login.dart';
@@ -16,7 +17,8 @@ class ControllerLogin extends GetxController {
   var loading = false.obs;
   var token = "".obs;
   var loginStatus = false;
-  var fcm ="anakasu";
+  var fcm = "anakasu";
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   @override
   onInit() {
@@ -35,8 +37,12 @@ class ControllerLogin extends GetxController {
     dismisKeyboard();
     try {
       loading(true);
+      var fcmToken = await messaging.getToken();
       var loginResult = await api.userLogin(
-          phoneNumber: cPhoneNumber.text, password: cPassword.text, fcm: fcm);
+          phoneNumber: cPhoneNumber.text,
+          password: cPassword.text,
+          fcm: fcmToken ?? '00');
+
       loading(false);
       if (loginResult != null) {
         var detailUser = loginResult["data"]["rider"];

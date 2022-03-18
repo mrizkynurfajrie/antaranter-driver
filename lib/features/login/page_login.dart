@@ -16,67 +16,69 @@ class PageLogin extends GetView<ControllerLogin> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColor.bodyColor,
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 20, 20, 15),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            SizedBox(height: size.height * 0.025),
-            Image.asset(
-              "assets/logo/logo-besar.png",
-              width: size.width * 0.65,
-            ),
-            SizedBox(height: size.height * 0.035),
-            const Text(
-              "Hai, mitra rider! siap antarin?",
-              style: TextStyle(
-                fontSize: 20,
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.w400,
-                color: AppColor.primaryColor,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 15),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(height: size.height * 0.025),
+              Image.asset(
+                "assets/logo/logo-besar.png",
+                width: size.width * 0.65,
               ),
-            ),
-            SizedBox(height: size.height * 0.050),
-            InputPhone(
-              controller: controller.cPhoneNumber,
-              phoneNumber: (value) {},
-            ),
-            InputPassword(
-              onChange: (value) {},
-              controller: controller.cPassword,
-            ),
-            SizedBox(height: size.height * 0.025),
-            ButtonPrimary(
-              label: 'Masuk',
-              color: AppColor.primaryColor,
-              onPressed: () {
-                controller.login();
-              },
-              size: 300,
-            ),
-            const SizedBox(height: 15),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const SizedBox(
-                  height: 17,
-                  child: Text('Belum punya akun? yuk'),
+              SizedBox(height: size.height * 0.035),
+              const Text(
+                "Hai, mitra rider! siap antarin?",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.w400,
+                  color: AppColor.primaryColor,
                 ),
-                ButtonText(
-                  label: 'Daftar',
-                  onPressed: () {
-                    Get.toNamed('/terms_page');
-                  },
-                  color: AppColor.primary.shade900,
-                ),
-                const SizedBox(
-                  height: 17,
-                  child: Text('dulu.'),
-                ),
-              ],
-            ),
-          ],
+              ),
+              SizedBox(height: size.height * 0.050),
+              InputPhone(
+                controller: controller.cPhoneNumber,
+                phoneNumber: (value) {},
+              ),
+              InputPassword(
+                onChange: (value) {},
+                controller: controller.cPassword,
+              ),
+              SizedBox(height: size.height * 0.025),
+              ButtonPrimary(
+                label: 'Masuk',
+                color: AppColor.primaryColor,
+                onPressed: () {
+                  controller.login();
+                },
+                size: 300,
+              ),
+              const SizedBox(height: 15),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const SizedBox(
+                    height: 17,
+                    child: Text('Belum punya akun? yuk'),
+                  ),
+                  ButtonText(
+                    label: 'Daftar',
+                    onPressed: () {
+                      Get.toNamed('/terms_page');
+                    },
+                    color: AppColor.primary.shade900,
+                  ),
+                  const SizedBox(
+                    height: 17,
+                    child: Text('dulu.'),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,11 +11,12 @@ import 'package:intake_rider/routes/app_routes.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/controller/controller_bind.dart';
 import 'package:intake_rider/shared/helpers/utils.dart';
-
 import 'shared/widgets/others/page_info.dart';
 
 void main() async {
   await GetStorage.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const App());
 }
 
