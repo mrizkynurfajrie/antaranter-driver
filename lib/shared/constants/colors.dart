@@ -70,6 +70,17 @@ class AppColor {
     Color(0XFFFF6900),
   ], begin: Alignment.centerLeft, end: Alignment.centerRight);
 
+  static const LinearGradient shimmerGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    stops: [0.3, 0.5, 0.7],
+    colors: [
+      Color.fromARGB(255, 220, 220, 220),
+      Color.fromARGB(255, 169, 169, 169),
+      Color.fromARGB(255, 220, 220, 220),
+    ],
+  );
+
   static const MaterialColor primary = MaterialColor(
     _primary,
     <int, Color>{

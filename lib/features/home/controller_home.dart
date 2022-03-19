@@ -19,7 +19,7 @@ class ControllerHome extends GetxController {
   void setRider() async {
     var rider = await Api2().getRider();
     name.value = rider['name'] ?? 'Rider';
-    pict.value = rider['pict'] ?? 'No Image';
+    pict.value = rider['pict'] ?? '';
     phone.value = rider['phone'] ?? '08xxxxx';
   }
 }

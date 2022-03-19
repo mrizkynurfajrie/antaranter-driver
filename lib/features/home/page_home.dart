@@ -12,6 +12,8 @@ import 'package:intake_rider/features/home/controller_home.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PageHome extends GetView<ControllerHome> {
   const PageHome({Key? key}) : super(key: key);
@@ -101,11 +103,29 @@ class PageHome extends GetView<ControllerHome> {
                                   ],
                                 ),
                               ),
-                              const CircleAvatar(
-                                backgroundColor: AppColor.transparentColor,
-                                backgroundImage:
-                                    AssetImage("assets/images/fajrie.JPG"),
-                                radius: 30,
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(90),
+                                child: SizedBox(
+                                  height: IconSizes.xl,
+                                  width: IconSizes.xl,
+                                  child: CachedNetworkImage(
+                                    fit: BoxFit.cover,
+                                    imageUrl: controller.pict.value,
+                                    progressIndicatorBuilder:
+                                        (context, url, downloadProgress) =>
+                                            Shimmer(
+                                      gradient: AppColor.shimmerGradient,
+                                      child: Container(
+                                        color: AppColor.whiteColor,
+                                      ),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Image.asset(
+                                      'assets/images/avatar_dummy.png',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
