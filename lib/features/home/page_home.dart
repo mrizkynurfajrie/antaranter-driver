@@ -12,8 +12,6 @@ import 'package:intake_rider/features/home/controller_home.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:shimmer/shimmer.dart';
 
 class PageHome extends GetView<ControllerHome> {
   const PageHome({Key? key}) : super(key: key);

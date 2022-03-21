@@ -2,17 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intake_rider/features/profile/controller_profile.dart';
 import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
-import 'package:intake_rider/shared/widgets/buttons/button_icon_horizontal.dart';
-import 'package:intake_rider/shared/widgets/cards/card_primary.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../shared/constants/styles.dart';
 import '../../shared/widgets/cards/card_rounded_border.dart';
 
-class PageProfile extends StatelessWidget {
+class PageProfile extends GetView<ControllerProfile> {
   const PageProfile({Key? key}) : super(key: key);
 
   @override
@@ -33,54 +32,56 @@ class PageProfile extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 10.h),
               height: Get.height * 0.17.h,
               width: Get.width.w,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(90),
-                    child: SizedBox(
-                      height: IconSizes.xxl,
-                      width: IconSizes.xxl,
-                      child: CachedNetworkImage(
-                        fit: BoxFit.cover,
-                        imageUrl: 'https://via.placeholder.com/150',
-                        progressIndicatorBuilder:
-                            (context, url, downloadProgress) => Shimmer(
-                          gradient: AppColor.shimmerGradient,
-                          child: Container(
-                            color: AppColor.whiteColor,
-                          ),
-                        ),
-                        errorWidget: (context, url, error) => Image.asset(
-                          'assets/images/avatar_dummy.png',
+              child: Obx(
+                () => Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(90),
+                      child: SizedBox(
+                        height: IconSizes.xxl,
+                        width: IconSizes.xxl,
+                        child: CachedNetworkImage(
                           fit: BoxFit.cover,
+                          imageUrl: 'https://via.placeholder.com/150',
+                          progressIndicatorBuilder:
+                              (context, url, downloadProgress) => Shimmer(
+                            gradient: AppColor.shimmerGradient,
+                            child: Container(
+                              color: AppColor.whiteColor,
+                            ),
+                          ),
+                          errorWidget: (context, url, error) => Image.asset(
+                            'assets/images/avatar_dummy.png',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  verticalSpace(5.h),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'Muhammad Rizky Nur Fajrie',
-                        style: TextStyles.inter.copyWith(
-                          fontSize: FontSizes.s14,
-                          fontWeight: FontWeight.w500,
-                          color: AppColor.primaryColor,
-                        ),
-                      ),
-                      verticalSpace(5),
-                      Text(
-                        '085250550505',
-                        style: TextStyles.inter.copyWith(
-                            fontSize: FontSizes.s12,
+                    verticalSpace(5.h),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          controller.name.value,
+                          style: TextStyles.inter.copyWith(
+                            fontSize: FontSizes.s14,
                             fontWeight: FontWeight.w500,
-                            color: AppColor.neutral),
-                      ),
-                    ],
-                  ),
-                ],
+                            color: AppColor.primaryColor,
+                          ),
+                        ),
+                        verticalSpace(5),
+                        Text(
+                          controller.phone.value,
+                          style: TextStyles.inter.copyWith(
+                              fontSize: FontSizes.s12,
+                              fontWeight: FontWeight.w500,
+                              color: AppColor.neutral),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             verticalSpace(10.h),

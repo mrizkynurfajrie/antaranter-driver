@@ -7,7 +7,6 @@ class ControllerHome extends GetxController {
   ControllerHome({required this.api});
 
   final name = ''.obs;
-  final pict = ''.obs;
   final phone = ''.obs;
 
   @override
@@ -19,7 +18,6 @@ class ControllerHome extends GetxController {
   void setRider() async {
     var rider = await Api2().getRider();
     name.value = rider['name'] ?? 'Rider';
-    pict.value = rider['pict'] ?? '';
     phone.value = rider['phone'] ?? '08xxxxx';
   }
 }

@@ -8,6 +8,7 @@ import 'package:intake_rider/features/order/binding_order.dart';
 import 'package:intake_rider/features/order/page_order.dart';
 import 'package:intake_rider/features/order_detail/binding_order_detail.dart';
 import 'package:intake_rider/features/order_detail/page_order_detail.dart';
+import 'package:intake_rider/features/profile/binding_profile.dart';
 import 'package:intake_rider/features/profile/page_profile.dart';
 import 'package:intake_rider/features/register/binding_register.dart';
 import 'package:intake_rider/features/register/page/page_register.dart';
@@ -47,6 +48,7 @@ class AppPages {
     GetPage(
       name: Routes.profile,
       page: () => const PageProfile(),
+      binding: BindingProfile(),
     ),
     GetPage(
       name: Routes.main,
