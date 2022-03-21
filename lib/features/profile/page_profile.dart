@@ -109,6 +109,14 @@ class PageProfile extends GetView<ControllerProfile> {
             verticalSpace(5.h),
             ButtonProfil(
               ontap: () {},
+              icon: AppIcons.profCar,
+              title: 'Profil Kendaraan',
+              buttonHeight: Get.height * 0.07,
+              buttonWidth: Get.width * 0.9,
+            ),
+            verticalSpace(5.h),
+            ButtonProfil(
+              ontap: () {},
               icon: AppIcons.profCallus,
               title: 'Hubungi Kami',
               buttonHeight: Get.height * 0.07,

@@ -17,6 +17,7 @@ class AppIcons {
   static const profPrivacy = 'assets/icons/privacy.png';
   static const profRating = 'assets/icons/rating.png';
   static const profLogout = 'assets/icons/logout.png';
+  static const profCar = 'assets/icons/car.png';
 }
 
 class AppLogos {
