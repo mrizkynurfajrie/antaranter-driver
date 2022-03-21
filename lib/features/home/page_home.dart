@@ -103,30 +103,8 @@ class PageHome extends GetView<ControllerHome> {
                                   ],
                                 ),
                               ),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(90),
-                                child: SizedBox(
-                                  height: IconSizes.xl,
-                                  width: IconSizes.xl,
-                                  child: CachedNetworkImage(
-                                    fit: BoxFit.cover,
-                                    imageUrl: controller.pict.value,
-                                    progressIndicatorBuilder:
-                                        (context, url, downloadProgress) =>
-                                            Shimmer(
-                                      gradient: AppColor.shimmerGradient,
-                                      child: Container(
-                                        color: AppColor.whiteColor,
-                                      ),
-                                    ),
-                                    errorWidget: (context, url, error) =>
-                                        Image.asset(
-                                      'assets/images/avatar_dummy.png',
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              horizontalSpace(5),
+                             
                             ],
                           ),
                         ],

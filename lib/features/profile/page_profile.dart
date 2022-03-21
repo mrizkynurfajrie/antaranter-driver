@@ -1,309 +1,216 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
+import 'package:intake_rider/shared/widgets/buttons/button_icon_horizontal.dart';
+import 'package:intake_rider/shared/widgets/cards/card_primary.dart';
+import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
+import 'package:shimmer/shimmer.dart';
+
+import '../../shared/constants/styles.dart';
+import '../../shared/widgets/cards/card_rounded_border.dart';
 
 class PageProfile extends StatelessWidget {
   const PageProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PageDecorationTop(
+      title: 'INTAKE',
+      enableBack: false,
+      toolbarColor: AppColor.primaryColor,
+      center: AppLogos.logoApp(AppLogos.logoUncoloured),
+      padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
-      body: SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(
-          children: [
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
             Container(
-              padding: EdgeInsets.only(
-                top: MediaQuery.of(context).padding.top,
-                bottom: 10,
-              ),
-              decoration: const BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(35),
-                    bottomRight: Radius.circular(35),
-                  ),
-                  gradient: AppColor.gradient1),
+              padding: EdgeInsets.symmetric(vertical: 10.h),
+              height: Get.height * 0.17.h,
+              width: Get.width.w,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 20,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(90),
+                    child: SizedBox(
+                      height: IconSizes.xxl,
+                      width: IconSizes.xxl,
+                      child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl: 'https://via.placeholder.com/150',
+                        progressIndicatorBuilder:
+                            (context, url, downloadProgress) => Shimmer(
+                          gradient: AppColor.shimmerGradient,
+                          child: Container(
+                            color: AppColor.whiteColor,
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => Image.asset(
+                          'assets/images/avatar_dummy.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      OutlinedButton(
-                        onPressed: () {},
-                        child: const Icon(
-                          Icons.favorite,
-                          color: Colors.white,
-                          size: 47,
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.all(15),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          side: BorderSide.none,
-                          primary: Colors.grey.withOpacity(0.5),
-                          backgroundColor: Colors.white.withOpacity(0.5),
+                  verticalSpace(5.h),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Muhammad Rizky Nur Fajrie',
+                        style: TextStyles.inter.copyWith(
+                          fontSize: FontSizes.s14,
+                          fontWeight: FontWeight.w500,
+                          color: AppColor.primaryColor,
                         ),
                       ),
-                      const CircleAvatar(
-                        backgroundImage: AssetImage("assets/images/fajrie.jpg"),
-                        radius: 55,
-                      ),
-                      OutlinedButton(
-                        onPressed: () {},
-                        child: const Icon(
-                          Icons.mail,
-                          color: Colors.white,
-                          size: 47,
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.all(15),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          side: BorderSide.none,
-                          primary: Colors.grey.withOpacity(0.5),
-                          backgroundColor: Colors.white.withOpacity(0.5),
-                        ),
+                      verticalSpace(5),
+                      Text(
+                        '085250550505',
+                        style: TextStyles.inter.copyWith(
+                            fontSize: FontSizes.s12,
+                            fontWeight: FontWeight.w500,
+                            color: AppColor.neutral),
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text(
-                    "Muhammad Fajrie",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const Text(
-                    "081234567890",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
-                  ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 25,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.grey,
-                        padding: const EdgeInsets.only(
-                          top: 15,
-                          bottom: 15,
-                          left: 15,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 35,
-                            height: 35,
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                image:
-                                    AssetImage("assets/icons/access_time.png"),
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          const Expanded(
-                            child: Text(
-                              "Pesanan",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppColor.greyColor,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+            verticalSpace(10.h),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                child: Text(
+                  'Informasi Akun',
+                  style: TextStyles.inter.copyWith(
+                    fontSize: FontSizes.s16,
+                    fontWeight: FontWeight.bold,
                   ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.grey,
-                        padding: const EdgeInsets.only(
-                          top: 15,
-                          bottom: 15,
-                          left: 15,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 35,
-                            height: 35,
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                image:
-                                    AssetImage("assets/icons/person_add.png"),
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          const Expanded(
-                            child: Text(
-                              "Ajak Teman",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppColor.greyColor,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
-            const SizedBox(
-              height: 25,
+            verticalSpace(5.h),
+            ButtonProfil(
+              ontap: () {},
+              icon: AppIcons.profUser,
+              title: 'Profil Pengguna',
+              buttonHeight: Get.height * 0.07,
+              buttonWidth: Get.width * 0.9,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.grey,
-                        padding: const EdgeInsets.only(
-                          top: 15,
-                          bottom: 15,
-                          left: 15,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 35,
-                            height: 35,
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(
-                                    "assets/icons/directions_bike.png"),
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          const Expanded(
-                            child: Text(
-                              "Bergabung",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppColor.greyColor,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+            verticalSpace(5.h),
+            ButtonProfil(
+              ontap: () {},
+              icon: AppIcons.profCallus,
+              title: 'Hubungi Kami',
+              buttonHeight: Get.height * 0.07,
+              buttonWidth: Get.width * 0.9,
+            ),
+            verticalSpace(15.h),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                child: Text(
+                  'Lainnya',
+                  style: TextStyles.inter.copyWith(
+                    fontSize: FontSizes.s16,
+                    fontWeight: FontWeight.bold,
                   ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.grey,
-                        padding: const EdgeInsets.only(
-                          top: 15,
-                          bottom: 15,
-                          left: 15,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 35,
-                            height: 35,
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage("assets/icons/settings.png"),
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          const Expanded(
-                            child: Text(
-                              "Pengaturan",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppColor.greyColor,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
+            ),
+            verticalSpace(5.h),
+            ButtonProfil(
+              ontap: () {},
+              icon: AppIcons.profTnc,
+              title: 'Syarat & Ketentuan',
+              buttonHeight: Get.height * 0.07,
+              buttonWidth: Get.width * 0.9,
+            ),
+            verticalSpace(5.h),
+            ButtonProfil(
+              ontap: () {},
+              icon: AppIcons.profPrivacy,
+              title: 'Kebijakan Privasi',
+              buttonHeight: Get.height * 0.07,
+              buttonWidth: Get.width * 0.9,
+            ),
+            verticalSpace(5.h),
+            ButtonProfil(
+              ontap: () {},
+              icon: AppIcons.profRating,
+              title: 'Beri Penilaian Aplikasi',
+              buttonHeight: Get.height * 0.07,
+              buttonWidth: Get.width * 0.9,
+            ),
+            verticalSpace(5.h),
+            ButtonProfil(
+              ontap: () {},
+              icon: AppIcons.profLogout,
+              title: 'Keluar',
+              buttonHeight: Get.height * 0.07,
+              buttonWidth: Get.width * 0.9,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ButtonProfil extends StatelessWidget {
+  final Function() ontap;
+  final String icon;
+  final String title;
+  final double? buttonHeight;
+  final double? buttonWidth;
+
+  const ButtonProfil({
+    Key? key,
+    required this.ontap,
+    required this.icon,
+    required this.title,
+    this.buttonHeight,
+    this.buttonWidth,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: ontap,
+      child: CardRoundedBorder(
+        padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.h),
+        height: buttonHeight,
+        width: buttonWidth,
+        shadow: Shadows.universal,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 25.w,
+              height: 25.h,
+              color: AppColor.whiteColor,
+              child: Image.asset(
+                icon,
+                fit: BoxFit.contain,
+              ),
+            ),
+            horizontalSpace(7.h),
+            Text(
+              title,
+              style: TextStyles.inter.copyWith(
+                fontSize: FontSizes.s12,
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
             ),
           ],
         ),

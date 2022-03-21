@@ -11,6 +11,12 @@ class AppIcons {
   static const roadRoutes = 'assets/icons/road-routes.png';
   static const locDepart = 'assets/icons/loc_depart.png';
   static const locArrive = 'assets/icons/loc_arrive.png';
+  static const profUser = 'assets/icons/person.png';
+  static const profCallus = 'assets/icons/callus.png';
+  static const profTnc = 'assets/icons/tnc.png';
+  static const profPrivacy = 'assets/icons/privacy.png';
+  static const profRating = 'assets/icons/rating.png';
+  static const profLogout = 'assets/icons/logout.png';
 }
 
 class AppLogos {
