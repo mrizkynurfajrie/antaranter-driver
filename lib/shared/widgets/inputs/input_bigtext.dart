@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 
-import '../../constants/colors.dart';
-
-class InputPrimary extends StatefulWidget {
+class InputBigText extends StatefulWidget {
   final String hintText;
   final String? Function(String?)? validate;
   final Function() onTap;
@@ -23,7 +21,7 @@ class InputPrimary extends StatefulWidget {
   final double? boxWidth;
   final EdgeInsets? padding;
 
-  const InputPrimary({
+  const InputBigText({
     Key? key,
     required this.hintText,
     this.validate,
@@ -45,10 +43,10 @@ class InputPrimary extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _InputPrimaryState createState() => _InputPrimaryState();
+  _InputBigTextState createState() => _InputBigTextState();
 }
 
-class _InputPrimaryState extends State<InputPrimary> {
+class _InputBigTextState extends State<InputBigText> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -70,9 +68,9 @@ class _InputPrimaryState extends State<InputPrimary> {
           padding: widget.padding,
           width: widget.boxWidth,
           child: TextFormField(
+            maxLength: widget.maxLenght,
             initialValue: widget.initialValue,
             maxLines: widget.maxLines,
-            maxLength: widget.maxLenght,
             enabled: widget.enable,
             enableInteractiveSelection: true,
             cursorColor: Theme.of(context).primaryColor,
@@ -86,10 +84,9 @@ class _InputPrimaryState extends State<InputPrimary> {
             validator: widget.validate,
             style: TextStyles.body2,
             decoration: inputDecoration(
-              hintText: widget.hintText,
-              prefixIcon: widget.prefixIcon,
-              suffixIcon: widget.suffixIcon,
-            ),
+                hintText: widget.hintText,
+                prefixIcon: widget.prefixIcon,
+                suffixIcon: widget.suffixIcon),
           ),
         ),
       ],

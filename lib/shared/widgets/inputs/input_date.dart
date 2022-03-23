@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InputDate extends StatefulWidget {
   final String hintText;
@@ -16,6 +17,7 @@ class InputDate extends StatefulWidget {
   final DateTime? lastDate;
   final ValueSetter<DateTime> selectedDate;
   final ValueSetter<bool> isValid;
+  final double? boxWidth;
 
   const InputDate({
     Key? key,
@@ -30,6 +32,7 @@ class InputDate extends StatefulWidget {
     this.lastDate,
     required this.selectedDate,
     required this.isValid,
+    this.boxWidth,
   }) : super(key: key);
 
   @override
@@ -65,7 +68,7 @@ class _InputDateState extends State<InputDate> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: Insets.med),
+      padding: EdgeInsets.only(top: 5.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -80,29 +83,32 @@ class _InputDateState extends State<InputDate> {
                   ),
                 )
               : verticalSpace(0),
-          TextFormField(
-            onTap: _selectDate,
-            readOnly: true,
-            cursorColor: Theme.of(context).primaryColor,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            keyboardType: TextInputType.datetime,
-            controller: widget.controller,
-            inputFormatters: [LengthLimitingTextInputFormatter(10)],
-            validator: widget.validate ??
-                (value) {
-                  if (value.toString().isEmpty) {
-                    widget.isValid(false);
-                    return 'Pilih tanggal';
-                  }
-
-                  widget.isValid(true);
-                  return null;
-                },
-            style: TextStyles.body2,
-            decoration: inputDecoration(
-              hintText: widget.hintText,
-              prefixIcon: widget.prefixIcon,
-              suffixIcon: widget.suffixIcon,
+          SizedBox(
+            width: widget.boxWidth,
+            child: TextFormField(
+              onTap: _selectDate,
+              readOnly: true,
+              cursorColor: Theme.of(context).primaryColor,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              keyboardType: TextInputType.datetime,
+              controller: widget.controller,
+              inputFormatters: [LengthLimitingTextInputFormatter(10)],
+              validator: widget.validate ??
+                  (value) {
+                    if (value.toString().isEmpty) {
+                      widget.isValid(false);
+                      return 'Pilih tanggal';
+                    }
+          
+                    widget.isValid(true);
+                    return null;
+                  },
+              style: TextStyles.body2,
+              decoration: inputDecoration(
+                hintText: widget.hintText,
+                prefixIcon: widget.prefixIcon,
+                suffixIcon: widget.suffixIcon,
+              ),
             ),
           ),
         ],

@@ -19,6 +19,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   device_apps: ^2.1.1
   device_info: ^2.0.1
+  dotted_border: ^2.0.0+1
   dropdown_search: ^2.0.1
   easy_mask: ^2.0.1
   encrypt: ^5.0.0

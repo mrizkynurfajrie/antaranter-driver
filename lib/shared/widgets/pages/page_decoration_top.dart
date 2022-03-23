@@ -41,7 +41,7 @@ class PageDecorationTop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
+        // resizeToAvoidBottomInset: false,
         backgroundColor: backgroundColor ?? AppColor.whiteColor,
         appBar: CustomAppBar(
           title: title,

@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -57,7 +58,7 @@ class _InputPhoneState extends State<InputPhone> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: Insets.med),
+      padding: EdgeInsets.symmetric(vertical: 5.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -74,11 +75,11 @@ class _InputPhoneState extends State<InputPhone> {
               : verticalSpace(0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               widget.setContryCode
                   ? SizedBox(
-                      width: Get.width / 4,
+                      width: Get.width * 0.26.w,
                       child: TextFormField(
                         decoration: inputDecoration(
                           prefixIcon: InkWell(
@@ -108,8 +109,9 @@ class _InputPhoneState extends State<InputPhone> {
                         ),
                       ))
                   : Container(),
-              widget.setContryCode ? horizontalSpace(20) : Container(),
-              Expanded(
+              widget.setContryCode ? horizontalSpace(7) : Container(),
+              SizedBox(
+                width: Get.width * 0.60.w,
                 child: TextFormField(
                   enableInteractiveSelection: true,
                   cursorColor: Theme.of(context).primaryColor,

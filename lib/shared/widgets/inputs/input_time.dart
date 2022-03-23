@@ -17,7 +17,7 @@ class InputTime extends StatefulWidget {
 
   const InputTime({
     Key? key,
-    this.hintText = 'Pilih Tanggal',
+    this.hintText = '',
     this.validate,
     this.prefixIcon,
     this.suffixIcon,
@@ -48,7 +48,7 @@ class _InputTimeState extends State<InputTime> {
 
     if (timeOfDay != null) {
       setState(() {
-        _time = timeOfDay.toString();
+        _time = '${timeOfDay.hour}:${timeOfDay.minute}:00';
       });
       widget.controller.text = _time;
       widget.selectedTime(timeOfDay);

@@ -13,7 +13,8 @@ class BorderStyles {
   );
 
   static OutlineInputBorder focusTextField = OutlineInputBorder(
-    borderSide: const BorderSide(color: AppColor.primary, width: Strokes.thin),
+    borderSide:
+        const BorderSide(color: AppColor.primaryColor, width: Strokes.thin),
     borderRadius: Corners.lgBorder,
   );
 
@@ -51,8 +52,8 @@ InputDecoration inputDecoration(
       suffixIconConstraints:
           BoxConstraints(minHeight: Sizes.lg, minWidth: Sizes.lg),
       suffixIcon: suffixIcon,
-      hintStyle:
-          TextStyles.textBase.copyWith(color: AppColor.bodyColor.shade300, fontSize: FontSizes.s14));
+      hintStyle: TextStyles.textBase.copyWith(
+          color: AppColor.bodyColor.shade300, fontSize: FontSizes.s14,));
 }
 
 Widget verticalSpace(double v) {

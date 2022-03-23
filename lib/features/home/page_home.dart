@@ -36,7 +36,7 @@ class PageHome extends GetView<ControllerHome> {
               height: Get.height * 0.13.h,
               color: AppColor.primaryColor,
               borderRadius: 30,
-              margin: EdgeInsets.symmetric(vertical: 15.h),
+              margin: EdgeInsets.symmetric(vertical: 15.h, horizontal: 5.w),
               child: Obx(
                 () => Column(
                   children: <Widget>[
@@ -102,7 +102,6 @@ class PageHome extends GetView<ControllerHome> {
                                 ),
                               ),
                               horizontalSpace(5),
-                             
                             ],
                           ),
                         ],
