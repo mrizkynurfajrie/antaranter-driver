@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 
 class InputPrimary extends StatefulWidget {
@@ -18,6 +19,7 @@ class InputPrimary extends StatefulWidget {
   final dynamic maxLines;
   final String? initialValue;
   final double? boxWidth;
+  final EdgeInsets? padding;
 
   const InputPrimary({
     Key? key,
@@ -36,6 +38,7 @@ class InputPrimary extends StatefulWidget {
     this.maxLines = 1,
     this.initialValue,
     this.boxWidth,
+    this.padding,
   }) : super(key: key);
 
   @override
@@ -45,48 +48,46 @@ class InputPrimary extends StatefulWidget {
 class _InputPrimaryState extends State<InputPrimary> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: Insets.med),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          widget.label != ''
-              ? Container(
-                  margin: EdgeInsets.only(
-                    bottom: Insets.sm,
-                  ),
-                  child: Text(
-                    widget.label,
-                    style: TextStyles.textBase,
-                  ),
-                )
-              : verticalSpace(0),
-          SizedBox(
-            width: widget.boxWidth,
-            child: TextFormField(
-              initialValue: widget.initialValue,
-              maxLines: widget.maxLines,
-              enabled: widget.enable,
-              enableInteractiveSelection: true,
-              cursorColor: Theme.of(context).primaryColor,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              onTap: widget.onTap,
-              keyboardType: widget.keyboardType,
-              controller: widget.controller,
-              obscureText: widget.obsecureText,
-              inputFormatters: widget.inputFormatters,
-              textCapitalization: widget.textCapitalization,
-              validator: widget.validate,
-              style: TextStyles.body2,
-              decoration: inputDecoration(
-                  hintText: widget.hintText,
-                  prefixIcon: widget.prefixIcon,
-                  suffixIcon: widget.suffixIcon),
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        widget.label != ''
+            ? Container(
+                margin: EdgeInsets.only(
+                  bottom: Insets.sm,
+                ),
+                child: Text(
+                  widget.label,
+                  style: TextStyles.textBase,
+                ),
+              )
+            : verticalSpace(0),
+        Container(
+          padding: widget.padding,
+          width: widget.boxWidth,
+          child: TextFormField(
+            initialValue: widget.initialValue,
+            maxLines: widget.maxLines,
+            enabled: widget.enable,
+            enableInteractiveSelection: true,
+            cursorColor: Theme.of(context).primaryColor,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            onTap: widget.onTap,
+            keyboardType: widget.keyboardType,
+            controller: widget.controller,
+            obscureText: widget.obsecureText,
+            inputFormatters: widget.inputFormatters,
+            textCapitalization: widget.textCapitalization,
+            validator: widget.validate,
+            style: TextStyles.body2,
+            decoration: inputDecoration(
+                hintText: widget.hintText,
+                prefixIcon: widget.prefixIcon,
+                suffixIcon: widget.suffixIcon),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

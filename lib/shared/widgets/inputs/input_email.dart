@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InputEmail extends StatefulWidget {
   final String hintText;
@@ -16,6 +17,7 @@ class InputEmail extends StatefulWidget {
   final ValueSetter<bool> isValid;
   final ValueSetter<String> email;
   final String? Function(String?)? onChange;
+  final double? boxWidth;
 
   const InputEmail({
     Key? key,
@@ -31,6 +33,7 @@ class InputEmail extends StatefulWidget {
     this.obsecureText = false,
     required this.isValid,
     required this.email,
+    this.boxWidth,
   }) : super(key: key);
 
   @override
@@ -40,8 +43,8 @@ class InputEmail extends StatefulWidget {
 class _InputEmailState extends State<InputEmail> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: Insets.med),
+    return SizedBox(
+      width: widget.boxWidth,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

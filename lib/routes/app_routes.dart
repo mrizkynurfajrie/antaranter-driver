@@ -11,4 +11,5 @@ abstract class Routes {
   static const actHistory = '/actHistory_page';
   static const order = '/order_page';
   static const orderDetail = '/order_detail';
+  static const userAccount = '/userAccount_page';
 }

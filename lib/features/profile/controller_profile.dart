@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:intake_rider/framework/api2.dart';
 import 'api_profile.dart';
@@ -8,18 +10,24 @@ class ControllerProfile extends GetxController {
 
   final name = ''.obs;
   final phone = ''.obs;
-  final pict = ''.obs;
+  final image = ''.obs;
 
   @override
-  void onInit(){
-    setRider();
+  void onInit() async {
+    // setRider();
+    var rider = await Api2().getRider();
+    log(rider.toString());
+    name.value = rider['name'] ?? 'Rider';
+    phone.value = rider['phone'] ?? '08xxxxxxxx';
+    image.value = rider['image'] ?? '';
     super.onInit();
   }
 
-  void setRider() async {
-    var rider = await Api2().getRider();
-    name.value = rider['name'] ?? 'Rider';
-    phone.value = rider['phone'] ?? '08xxxxxxxx';
-    pict.value = rider['pict'] ?? '';
-  }
+  // void setRider() async {
+  //   var rider = await Api2().getRider();
+  //   log(rider.toString());
+  //   name.value = rider['name'] ?? 'Rider';
+  //   phone.value = rider['phone'] ?? '08xxxxxxxx';
+  //   image.value = rider['image'] ?? '';
+  // }
 }

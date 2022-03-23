@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/profile/controller_profile.dart';
+import 'package:intake_rider/routes/app_routes.dart';
 import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 import 'package:shimmer/shimmer.dart';
-
+import '../../framework/api1.dart';
 import '../../shared/constants/styles.dart';
 import '../../shared/widgets/cards/card_rounded_border.dart';
 
@@ -43,7 +44,7 @@ class PageProfile extends GetView<ControllerProfile> {
                         width: IconSizes.xxl,
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,
-                          imageUrl: 'https://via.placeholder.com/150',
+                          imageUrl: "${Api1().baseUrl}images/${controller.image.value}",
                           progressIndicatorBuilder:
                               (context, url, downloadProgress) => Shimmer(
                             gradient: AppColor.shimmerGradient,
@@ -100,7 +101,9 @@ class PageProfile extends GetView<ControllerProfile> {
             ),
             verticalSpace(5.h),
             ButtonProfil(
-              ontap: () {},
+              ontap: () {
+                Get.toNamed(Routes.userAccount);
+              },
               icon: AppIcons.profUser,
               title: 'Profil Pengguna',
               buttonHeight: Get.height * 0.07,

@@ -87,6 +87,7 @@ class IconSizes {
   static double get lg => 32.w;
   static double get xl => 48.w;
   static double get xxl => 60.w;
+  static double get xxxl => 90.w;
 }
 
 class Insets {
