@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/user_account/controller_user_account.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
-import 'package:intake_rider/shared/widgets/inputs/input_bigtext.dart';
+import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_date.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_email.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_phone.dart';
@@ -192,6 +192,15 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     hintText: 'Tanggal Lahir',
                   ),
                   InputPrimary(
+                    hintText: 'Kota',
+                    onTap: () {},
+                    prefixIcon: const Icon(
+                      Icons.place,
+                    ),
+                    boxWidth: Get.width * 0.88.w,
+                    padding: EdgeInsets.only(top: 5.h),
+                  ),
+                  InputPrimary(
                     controller: controller.txtAddress,
                     onTap: () {},
                     hintText: 'Alamat',
@@ -200,6 +209,11 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     maxLines: 3,
                     boxWidth: Get.width * 0.88.w,
                     padding: EdgeInsets.only(top: 5.h),
+                  ),
+                  verticalSpace(5.h),
+                  ButtonPrimary(
+                    onPressed: () {},
+                    label: 'Simpan',
                   ),
                 ],
               ),

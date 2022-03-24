@@ -135,7 +135,7 @@ class _InputPhoneState extends State<InputPhone> {
                   inputFormatters: [LengthLimitingTextInputFormatter(13)],
                   decoration: inputDecoration(
                     suffixIcon: widget.suffixIcon,
-                    hintText: 'Contoh : 82x xxxx xxxx',
+                    hintText: 'Contoh : 08xx xxxx xxxx',
                   ),
                 ),
               ),

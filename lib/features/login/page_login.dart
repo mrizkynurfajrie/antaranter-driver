@@ -18,7 +18,7 @@ class PageLogin extends GetView<ControllerLogin> {
       backgroundColor: AppColor.bodyColor,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 15),
+          padding: const EdgeInsets.fromLTRB(15, 20, 15, 15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[

@@ -18,6 +18,8 @@ import 'package:intake_rider/features/splash/page_splash.dart';
 import 'package:intake_rider/features/register/page/page_regsuccess.dart';
 import 'package:intake_rider/features/user_account/binding_user_account.dart';
 import 'package:intake_rider/features/user_account/page_user_account.dart';
+import 'package:intake_rider/features/vehicle_account/binding_vehicle_account.dart';
+import 'package:intake_rider/features/vehicle_account/page_vehicle_account.dart';
 import 'package:intake_rider/routes/app_routes.dart';
 
 class AppPages {
@@ -79,6 +81,11 @@ class AppPages {
       name: Routes.userAccount,
       page: () => const PageUserAccount(),
       binding: BindingUserAccount(),
-    )
+    ),
+    GetPage(
+      name: Routes.vehicleAccount,
+      page:  () => const PageVehicleAccount(),
+      binding: BindingVehicleAccount(),
+    ),
   ];
 }

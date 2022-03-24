@@ -71,7 +71,7 @@ class PageProfile extends GetView<ControllerProfile> {
                             color: AppColor.primaryColor,
                           ),
                         ),
-                        verticalSpace(5),
+                        verticalSpace(5.h),
                         Text(
                           controller.phone.value,
                           style: TextStyles.inter.copyWith(
@@ -111,7 +111,9 @@ class PageProfile extends GetView<ControllerProfile> {
             ),
             verticalSpace(5.h),
             ButtonProfil(
-              ontap: () {},
+              ontap: () {
+                Get.toNamed(Routes.vehicleAccount);
+              },
               icon: AppIcons.profCar,
               title: 'Profil Kendaraan',
               buttonHeight: Get.height * 0.07,
