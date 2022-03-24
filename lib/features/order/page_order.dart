@@ -12,6 +12,7 @@ import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
 import 'package:intake_rider/shared/widgets/input_format/input_format_money.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_date.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_icon_underlined.dart';
+import 'package:intake_rider/shared/widgets/inputs/input_selection.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_time.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 import 'controller_order.dart';
@@ -51,15 +52,18 @@ class PageOrder extends GetView<ControllerOrder> {
                         ),
                       ),
                       verticalSpace(Insets.sm),
-                      InputIconUnderline(
-                        icon: Icon(
+                      InputSelection(
+                        prefixIcon: Icon(
                           Icons.my_location_rounded,
                           size: IconSizes.med,
-                          color: AppColor.greyColor,
+                          color: AppColor.greyColorLight,
                         ),
-                        hintText: 'Kota Berangkat',
-                        isDense: true,
-                        onChange: (String) {},
+                        valueText: controller.itemProvince.value,
+                        hintText: 'select_province'.tr,
+                        onTap: () {
+                          controller.buildProvince(context);
+                        },
+                        label: 'Kota Berangkat'.tr,
                       ),
                       verticalSpace(Insets.med),
                       InputIconUnderline(
@@ -203,7 +207,10 @@ class PageOrder extends GetView<ControllerOrder> {
                       color: AppColor.primaryColor,
                     ),
                     hintText: 'Harga Perjalanan',
-                    inputFormatters: [ThousandsSeparatorInputFormatter(), LengthLimitingTextInputFormatter(7)],
+                    inputFormatters: [
+                      ThousandsSeparatorInputFormatter(),
+                      LengthLimitingTextInputFormatter(7)
+                    ],
                     keyboardType: TextInputType.number,
                   ),
                 ),

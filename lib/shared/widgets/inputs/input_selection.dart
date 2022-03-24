@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
@@ -42,7 +43,7 @@ class _InputSelectionState extends State<InputSelection> {
                       padding: EdgeInsets.only(bottom: Insets.xs),
                       child: Text(
                         widget.label,
-                        style: TextStyles.textBase,
+                        style: TextStyles.inter.copyWith(fontSize: FontSizes.s14, fontWeight: FontWeight.w400),
                       ),
                     )
                   : Container(),

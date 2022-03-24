@@ -44,7 +44,8 @@ class PageProfile extends GetView<ControllerProfile> {
                         width: IconSizes.xxl,
                         child: CachedNetworkImage(
                           fit: BoxFit.cover,
-                          imageUrl: "${Api1().baseUrl}images/${controller.image.value}",
+                          imageUrl:
+                              "${Api1().baseUrl}images/${controller.image.value}",
                           progressIndicatorBuilder:
                               (context, url, downloadProgress) => Shimmer(
                             gradient: AppColor.shimmerGradient,
@@ -175,6 +176,17 @@ class PageProfile extends GetView<ControllerProfile> {
               buttonHeight: Get.height * 0.07,
               buttonWidth: Get.width * 0.9,
             ),
+            verticalSpace(25.h),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 20.h),
+              child: Text(
+                'ver. 0.1',
+                style: TextStyles.inter.copyWith(
+                  fontSize: FontSizes.s14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            )
           ],
         ),
       ),
