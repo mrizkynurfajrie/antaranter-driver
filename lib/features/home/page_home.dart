@@ -195,7 +195,9 @@ class PageHome extends GetView<ControllerHome> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       ButtonText(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed(Routes.contact);
+                        },
                         label: 'Hubungi kami',
                         textStyle: TextStyles.inter.copyWith(
                           fontSize: FontSizes.s16,
@@ -204,7 +206,7 @@ class PageHome extends GetView<ControllerHome> {
                         ),
                       ),
                       Text(
-                        'Butuh bantuan? Hubungi customer service kami dengan pelayanan 24/7',
+                        'Butuh bantuan? Hubungi customer service kami dengan pelayanan terbaik',
                         style: TextStyles.inter.copyWith(
                           fontSize: FontSizes.s14,
                           fontWeight: FontWeight.w400,

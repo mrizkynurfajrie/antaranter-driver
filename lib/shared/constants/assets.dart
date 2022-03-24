@@ -18,6 +18,11 @@ class AppIcons {
   static const profRating = 'assets/icons/rating.png';
   static const profLogout = 'assets/icons/logout.png';
   static const profCar = 'assets/icons/car.png';
+  static const contWhatsapp = 'assets/icons/whatsapp.png';
+  static const contFacebook = 'assets/icons/facebook.png';
+  static const contInstagram = 'assets/icons/instagram.png';
+  static const contEmail = 'assets/icons/email.png';
+  static const contWebsite = 'assets/icons/website.png';
 }
 
 class AppLogos {

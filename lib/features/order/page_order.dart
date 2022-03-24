@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -94,7 +95,7 @@ class PageOrder extends GetView<ControllerOrder> {
                       Row(
                         children: <Widget>[
                           Icon(
-                            Icons.car_rental_rounded,
+                            CupertinoIcons.car,
                             color: AppColor.primaryColor,
                             size: IconSizes.med,
                           ),
@@ -113,13 +114,32 @@ class PageOrder extends GetView<ControllerOrder> {
                       Row(
                         children: <Widget>[
                           Icon(
-                            Icons.card_travel,
+                            Icons.numbers,
                             color: AppColor.primaryColor,
                             size: IconSizes.med,
                           ),
                           horizontalSpace(16),
                           Text(
                             'KT 3322 SS',
+                            style: TextStyles.inter.copyWith(
+                              fontSize: FontSizes.s14,
+                              fontWeight: FontWeight.w500,
+                              color: AppColor.greyColorLight,
+                            ),
+                          ),
+                        ],
+                      ),
+                      verticalSpace(Insets.sm),
+                      Row(
+                        children: <Widget>[
+                          Icon(
+                            CupertinoIcons.color_filter,
+                            color: AppColor.primaryColor,
+                            size: IconSizes.med,
+                          ),
+                          horizontalSpace(16),
+                          Text(
+                            'Hitam',
                             style: TextStyles.inter.copyWith(
                               fontSize: FontSizes.s14,
                               fontWeight: FontWeight.w500,
