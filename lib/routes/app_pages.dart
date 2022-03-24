@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:intake_rider/features/activity_history/page_actHistory.dart';
+import 'package:intake_rider/features/contact/page_contact.dart';
 import 'package:intake_rider/features/home/page_home.dart';
 import 'package:intake_rider/features/login/page_login.dart';
 import 'package:intake_rider/features/main/binding_main.dart';
@@ -84,8 +85,12 @@ class AppPages {
     ),
     GetPage(
       name: Routes.vehicleAccount,
-      page:  () => const PageVehicleAccount(),
+      page: () => const PageVehicleAccount(),
       binding: BindingVehicleAccount(),
+    ),
+    GetPage(
+      name: Routes.contact,
+      page: () => const PageContact(),
     ),
   ];
 }

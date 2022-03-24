@@ -121,7 +121,9 @@ class PageProfile extends GetView<ControllerProfile> {
             ),
             verticalSpace(5.h),
             ButtonProfil(
-              ontap: () {},
+              ontap: () {
+                Get.toNamed(Routes.contact);
+              },
               icon: AppIcons.profCallus,
               title: 'Hubungi Kami',
               buttonHeight: Get.height * 0.07,
