@@ -1,7 +1,8 @@
-import 'package:intake_rider/shared/constants/styles.dart';
-import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intake_rider/features/order/controller_order.dart';
+import 'package:intake_rider/shared/constants/colors.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
 
 class CardItem extends StatefulWidget {
   const CardItem({
@@ -19,16 +20,25 @@ class CardItem extends StatefulWidget {
 }
 
 class _CardItemState extends State<CardItem> {
+  final ControllerOrder controllerOrder = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    return Obx(
+    return Obx( 
       () => Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           border: Border(
-            bottom:  BorderSide(
-              width: 1.5,
-              color: AppColor.greyColor,
-            ),
+            bottom: widget.values
+                ? BorderSide(
+                    width: 1.5,
+                    color: controllerOrder.search.value == widget.data['name']
+                        ? AppColor.successColor
+                        : AppColor.weakColor)
+                : BorderSide(
+                    width: 1.5,
+                    color: controllerOrder.search.value == widget.data
+                        ? AppColor.successColor
+                        : AppColor.weakColor),
           ),
           color: Colors.white,
         ),
@@ -39,10 +49,24 @@ class _CardItemState extends State<CardItem> {
             children: [
               // Padding(padding: const EdgeInsets.all(8.0), child: icon),
               Expanded(
-                child: Text(widget.data['name'],
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyles.textBase
-                        .copyWith(color: AppColor.greyColor)),
+                child: widget.values
+                    ? Text(
+                        widget.data['name'],
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyles.textBase.copyWith(
+                            color: controllerOrder.search.value ==
+                                    widget.data['name']
+                                ? AppColor.successColor
+                                : AppColor.neutral),
+                      )
+                    : Text(
+                        widget.data,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyles.body1.copyWith(
+                            color: controllerOrder.search.value == widget.data['name']
+                                ? AppColor.successColor
+                                : AppColor.neutral),
+                      ),
               ),
             ],
           ),

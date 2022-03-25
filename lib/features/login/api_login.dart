@@ -6,7 +6,6 @@ class ApiLogin {
     required String password,
     required String fcm,
   }) async {
-
     final loginBody = {
       "phone": phoneNumber,
       "password": password,

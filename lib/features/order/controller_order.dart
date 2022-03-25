@@ -18,17 +18,32 @@ class ControllerOrder extends GetxController {
   var ctrlDateArrv = TextEditingController();
   var ctrlTimeArrv = TextEditingController();
   var ctrlProvince = TextEditingController().obs;
+  var ctrlCities = TextEditingController().obs;
 
   var itemProvince = ''.obs;
+  var itemCities = ''.obs;
   var search = ''.obs;
+  var idProvince = 0.obs;
+  var idCities = 0.obs;
 
   var provinces = <ModelBottomsheet>[].obs;
   var cities = <ModelBottomsheet>[].obs;
 
+  @override
+  onInit() {
+    super.onInit();
+    getProvinces();
+  }
+
   getProvinces() async {
     try {
+      // log("datanye");
+
       var r = await api.getProvince();
-      for (var x in r['message']) {
+      // print("datanye" + r.toString());
+
+      for (var x in r['data']) {
+        // log(x.toString());
         provinces.add(
           ModelBottomsheet(
               itemName: x['name'],
@@ -38,13 +53,14 @@ class ControllerOrder extends GetxController {
               value: x['id']),
         );
         provinces.sort((a, b) => a.itemName.compareTo(b.itemName));
+        log('isi province :' + provinces.toString());
       }
     } catch (_) {}
   }
 
-  getCity() async {
+  getCities() async {
     try {
-      var r = await api.getCity();
+      var r = await api.getCity(idProvince: idProvince.value);
       for (var x in r['data']) {
         cities.add(ModelBottomsheet(
           itemName: x['name'],
@@ -67,13 +83,31 @@ class ControllerOrder extends GetxController {
           if (value != null) {
             search('');
             log(value.toString());
-            ctrlProvince(value);
+            idProvince(value);
             search(value);
-            getCity();
+            getCities();
           }
         },
         itemName: (value) {
           itemProvince(value);
+        }).showSelection();
+  }
+  buildCities(context) {
+    BottomsheetSelection(
+        title: 'Pilih Kota',
+        context: context,
+        listWidget: cities,
+        value: (value) async {
+          if (value != null) {
+            search('');
+            log(value.toString());
+            idCities(value);
+            search(value);
+            getCities();
+          }
+        },
+        itemName: (value) {
+          itemCities(value);
         }).showSelection();
   }
 }
