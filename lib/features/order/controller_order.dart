@@ -17,11 +17,13 @@ class ControllerOrder extends GetxController {
   var ctrlTimeDept = TextEditingController();
   var ctrlDateArrv = TextEditingController();
   var ctrlTimeArrv = TextEditingController();
-  var ctrlProvince = TextEditingController().obs;
+  // var ctrlProvince = TextEditingController().obs;
   var ctrlCities = TextEditingController().obs;
 
-  var itemProvince = ''.obs;
-  var itemCities = ''.obs;
+  var itemProvinceDept = 'Provinsi'.obs;
+  var itemCitiesDept = 'Kota'.obs;
+  var itemProvinceArrv = 'Provinsi'.obs;
+  var itemCitiesArrv = 'Kota'.obs;
   var search = ''.obs;
   var idProvince = 0.obs;
   var idCities = 0.obs;
@@ -53,13 +55,14 @@ class ControllerOrder extends GetxController {
               value: x['id']),
         );
         provinces.sort((a, b) => a.itemName.compareTo(b.itemName));
-        log('isi province :' + provinces.toString());
+     
       }
     } catch (_) {}
   }
 
   getCities() async {
     try {
+      cities.clear();
       var r = await api.getCity(idProvince: idProvince.value);
       for (var x in r['data']) {
         cities.add(ModelBottomsheet(
@@ -84,14 +87,15 @@ class ControllerOrder extends GetxController {
             search('');
             log(value.toString());
             idProvince(value);
-            search(value);
-            getCities();
+            // search(value);
+            await getCities();
           }
         },
         itemName: (value) {
-          itemProvince(value);
+          itemProvinceDept(value);
         }).showSelection();
   }
+
   buildCities(context) {
     BottomsheetSelection(
         title: 'Pilih Kota',
@@ -103,11 +107,46 @@ class ControllerOrder extends GetxController {
             log(value.toString());
             idCities(value);
             search(value);
-            getCities();
           }
         },
         itemName: (value) {
-          itemCities(value);
+          itemCitiesDept(value);
+        }).showSelection();
+  }
+  buildProvinceArrv(context) {
+    BottomsheetSelection(
+        title: 'Pilih Provinsi',
+        context: context,
+        listWidget: provinces,
+        value: (value) async {
+          if (value != null) {
+            search('');
+            log(value.toString());
+            idProvince(value);
+            // search(value);
+            await getCities();
+          }
+        },
+        itemName: (value) {
+          itemProvinceArrv(value);
+        }).showSelection();
+  }
+
+  buildCitiesArrv(context) {
+    BottomsheetSelection(
+        title: 'Pilih Kota',
+        context: context,
+        listWidget: cities,
+        value: (value) async {
+          if (value != null) {
+            search('');
+            log(value.toString());
+            idCities(value);
+            search(value);
+          }
+        },
+        itemName: (value) {
+          itemCitiesArrv(value);
         }).showSelection();
   }
 }

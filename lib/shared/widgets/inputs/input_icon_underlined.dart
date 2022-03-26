@@ -23,7 +23,7 @@ class InputIconUnderline extends StatefulWidget {
     this.hintText = '',
     this.validate,
     required this.onChange,
-    required this.icon,
+    this.icon,
     this.controller,
     this.keyboardType = TextInputType.text,
     this.inputFormatters,
@@ -60,7 +60,6 @@ class _InputIconUnderlineState extends State<InputIconUnderline> {
       decoration: InputDecoration(
         hintText: widget.hintText,
         hintStyle: TextStyles.body2,
-        icon: widget.icon,
         isDense: widget.isDense,
         focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(

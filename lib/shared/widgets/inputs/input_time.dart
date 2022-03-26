@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 
 class InputTime extends StatefulWidget {
@@ -13,7 +14,7 @@ class InputTime extends StatefulWidget {
   final TimeOfDay? timePicked;
   final ValueSetter<TimeOfDay> selectedTime;
   final ValueSetter<bool> isValid;
- 
+  final double? boxWidth;
 
   const InputTime({
     Key? key,
@@ -27,7 +28,7 @@ class InputTime extends StatefulWidget {
     this.timePicked,
     required this.selectedTime,
     required this.isValid,
-    
+    this.boxWidth,
   }) : super(key: key);
 
   @override
@@ -58,23 +59,23 @@ class _InputTimeState extends State<InputTime> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          widget.label != ''
-              ? Container(
-                  margin: EdgeInsets.only(
-                    bottom: Insets.xs,
-                  ),
-                  child: Text(
-                    widget.label,
-                    style: TextStyles.small1,
-                  ),
-                )
-              : verticalSpace(0),
-          TextFormField(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        widget.label != ''
+            ? Container(
+                margin: EdgeInsets.only(
+                  bottom: Insets.xs,
+                ),
+                child: Text(
+                  widget.label,
+                  style: TextStyles.small1,
+                ),
+              )
+            : verticalSpace(0),
+        SizedBox(
+          width: widget.boxWidth,
+          child: TextFormField(
             onTap: _selectTime,
             readOnly: true,
             cursorColor: Theme.of(context).primaryColor,
@@ -92,15 +93,18 @@ class _InputTimeState extends State<InputTime> {
                   widget.isValid(true);
                   return null;
                 },
-            style: TextStyles.body2,
+            style: TextStyles.inter.copyWith(
+              fontSize: FontSizes.s12,
+              fontWeight: FontWeight.w500,
+            ),
             decoration: inputDecoration(
               hintText: widget.hintText,
               prefixIcon: widget.prefixIcon,
               suffixIcon: widget.suffixIcon,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

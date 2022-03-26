@@ -79,10 +79,10 @@ class Api1 {
         headers: headers,
         body: jsonEncode(params),
         encoding: Encoding.getByName("utf-8"));
-    var data = jsonDecode(r.body);
     log("status codenya " + r.statusCode.toString());
+    var data = jsonDecode(r.body);
 
-    log(data);
+    // log(data);
     return data;
   }
 }

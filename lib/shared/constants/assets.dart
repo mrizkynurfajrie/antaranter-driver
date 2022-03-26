@@ -23,6 +23,11 @@ class AppIcons {
   static const contInstagram = 'assets/icons/instagram.png';
   static const contEmail = 'assets/icons/email.png';
   static const contWebsite = 'assets/icons/website.png';
+  static const rupiah = 'assets/icons/rupiah.png';
+
+  static Widget iconApp(String asset){
+    return Image.asset(asset, height: IconSizes.sm);
+  }
 }
 
 class AppLogos {

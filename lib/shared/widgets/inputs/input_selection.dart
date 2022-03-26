@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
@@ -12,6 +12,9 @@ class InputSelection extends StatefulWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final Widget? suffixLabel;
+  final EdgeInsets? padding;
+  final EdgeInsets? margin;
+  final double? width;
 
   const InputSelection({
     Key? key,
@@ -22,6 +25,9 @@ class InputSelection extends StatefulWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.suffixLabel,
+    this.padding,
+    this.margin,
+    this.width,
   }) : super(key: key);
 
   @override
@@ -31,38 +37,42 @@ class InputSelection extends StatefulWidget {
 class _InputSelectionState extends State<InputSelection> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: Insets.med),
+    return SizedBox(
+      // padding: EdgeInsets.symmetric(vertical: Insets.med),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              widget.label != ''
-                  ? Container(
-                      padding: EdgeInsets.only(bottom: Insets.xs),
-                      child: Text(
-                        widget.label,
-                        style: TextStyles.inter.copyWith(fontSize: FontSizes.s14, fontWeight: FontWeight.w400),
-                      ),
-                    )
-                  : Container(),
-              const Spacer(),
-              if (widget.suffixLabel != null)
-                widget.suffixLabel!
-              else
-                Container()
-            ],
-          ),
+          // Row(
+          //   children: [
+          //     widget.label != ''
+          //         ? Container(
+          //             padding: EdgeInsets.only(bottom: Insets.xs),
+          //             child: Text(
+          //               widget.label,
+          //               style: TextStyles.inter.copyWith(
+          //                 fontSize: FontSizes.s14,
+          //                 fontWeight: FontWeight.w400,
+          //               ),
+          //             ),
+          //           )
+          //         : Container(),
+          //     const Spacer(),
+          //     if (widget.suffixLabel != null)
+          //       widget.suffixLabel!
+          //     else
+          //       Container()
+          //   ],
+          // ),
           InkWell(
             onTap: () {
               FocusScope.of(context).unfocus();
               widget.onTap();
             },
             child: Container(
-              width: Get.width,
-              padding: EdgeInsets.symmetric(
-                  horizontal: Insets.med, vertical: Insets.sm),
+              width: widget.width,
+              height: Get.height * 0.05.h,
+              padding: widget.padding,
+              margin: widget.margin,
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: Corners.lgBorder,
@@ -82,9 +92,14 @@ class _InputSelectionState extends State<InputSelection> {
                     child: Text(
                       widget.valueText,
                       style: widget.valueText != widget.hintText
-                          ? TextStyles.body2
-                          : TextStyles.body2
-                              .copyWith(color: AppColor.bodyColor.shade600),
+                          ? TextStyles.inter.copyWith(
+                              fontSize: FontSizes.s12,
+                              fontWeight: FontWeight.w500,
+                              color: AppColor.greyColor,
+                            )
+                          : TextStyles.inter.copyWith(
+                              color: AppColor.bodyColor.shade600,
+                              fontSize: FontSizes.s12),
                     ),
                   ),
                   // const Spacer(),

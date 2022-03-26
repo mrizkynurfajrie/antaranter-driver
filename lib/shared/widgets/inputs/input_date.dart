@@ -67,52 +67,51 @@ class _InputDateState extends State<InputDate> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 5.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          widget.label != ''
-              ? Container(
-                  margin: EdgeInsets.only(
-                    bottom: Insets.xs,
-                  ),
-                  child: Text(
-                    widget.label,
-                    style: TextStyles.small1,
-                  ),
-                )
-              : verticalSpace(0),
-          SizedBox(
-            width: widget.boxWidth,
-            child: TextFormField(
-              onTap: _selectDate,
-              readOnly: true,
-              cursorColor: Theme.of(context).primaryColor,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              keyboardType: TextInputType.datetime,
-              controller: widget.controller,
-              inputFormatters: [LengthLimitingTextInputFormatter(10)],
-              validator: widget.validate ??
-                  (value) {
-                    if (value.toString().isEmpty) {
-                      widget.isValid(false);
-                      return 'Pilih tanggal';
-                    }
-          
-                    widget.isValid(true);
-                    return null;
-                  },
-              style: TextStyles.body2,
-              decoration: inputDecoration(
-                hintText: widget.hintText,
-                prefixIcon: widget.prefixIcon,
-                suffixIcon: widget.suffixIcon,
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        widget.label != ''
+            ? Container(
+                margin: EdgeInsets.only(
+                  bottom: Insets.xs,
+                ),
+                child: Text(
+                  widget.label,
+                  style: TextStyles.small1,
+                ),
+              )
+            : verticalSpace(0),
+        SizedBox(
+          width: widget.boxWidth,
+          child: TextFormField(
+            onTap: _selectDate,
+            readOnly: true,
+            cursorColor: Theme.of(context).primaryColor,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.datetime,
+            controller: widget.controller,
+            inputFormatters: [LengthLimitingTextInputFormatter(10)],
+            validator: widget.validate ??
+                (value) {
+                  if (value.toString().isEmpty) {
+                    widget.isValid(false);
+                    return 'Pilih tanggal';
+                  }
+
+                  widget.isValid(true);
+                  return null;
+                },
+            style: TextStyles.inter.copyWith(
+              fontSize: FontSizes.s12,
+            ),
+            decoration: inputDecoration(
+              hintText: widget.hintText,
+              prefixIcon: widget.prefixIcon,
+              suffixIcon: widget.suffixIcon,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

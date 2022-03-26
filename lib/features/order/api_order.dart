@@ -8,7 +8,7 @@ class ApiOrder {
   }
 
   Future<dynamic> getCity({required int idProvince}) async {
-    final bodyProvince = {"id": idProvince};
+    final bodyProvince = {"province_id": idProvince};
     var responseCity = await Api1()
         .apiJSONPostWithToken("cities/findbyprovince", bodyProvince);
 
