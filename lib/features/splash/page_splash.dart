@@ -3,26 +3,26 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
+//   @override
+//   State<SplashScreen> createState() => _SplashScreenState();
+// }
 
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState;
-    splashscreenStart();
-  }
+// class _SplashScreenState extends State<SplashScreen> {
+//   @override
+//   void initState() {
+//     super.initState;
+//     splashscreenStart();
+//   }
 
-  splashscreenStart() async {
-    var duration = const Duration(seconds: 4);
-    return Timer(duration, () {
-      Get.offNamed('/login_page');
-    });
-  }
+//   splashscreenStart() async {
+//     var duration = const Duration(seconds: 4);
+//     return Timer(duration, () {
+//       Get.offNamed('/login_page');
+//     });
+//   }
 
   @override
   Widget build(BuildContext context) {

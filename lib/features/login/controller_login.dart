@@ -63,6 +63,7 @@ class ControllerLogin extends GetxController {
 
   checkLogin() async {
     var statusLogin = await Api2().getLoginStatus();
+    await Future.delayed(const Duration(seconds: 2));
     log('cek status : ' + statusLogin.toString());
     if (statusLogin == true) {
       Get.offNamed(Routes.main);
