@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/user_account/controller_user_account.dart';
+import 'package:intake_rider/framework/api1.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_date.dart';
@@ -41,6 +42,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                         onTap: () => controller.imgSourceSelector(context),
                         child: (controller.imgPreview != "")
                             ? SizedBox(
+                                width: IconSizes.xxl,
+                                height: IconSizes.xxl,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(100),
                                   child: Image.file(
@@ -55,17 +58,14 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                 alignment: Alignment.topCenter,
                                 height: IconSizes.xxl,
                                 width: IconSizes.xxl,
-                                decoration: const BoxDecoration(
+                                decoration: BoxDecoration(
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(100)),
-                                    color: Color(0xffffffff)),
-                                child: Center(
-                                  child: Icon(
-                                    CupertinoIcons.person_fill,
-                                    size: IconSizes.xl,
-                                    color: AppColor.bodyColor.shade600,
-                                  ),
-                                ),
+                                        const BorderRadius.all(Radius.circular(100)),
+                                    color: AppColor.whiteColor,
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                        image: NetworkImage(
+                                            "${Api1().baseUrl}images/${controller.image.value}"))),
                               ),
                       ),
                       horizontalSpace(10.w),

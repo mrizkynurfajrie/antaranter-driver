@@ -57,7 +57,7 @@ class _InputDateState extends State<InputDate> {
 
     if (datePicked != null) {
       setState(() {
-        _date = DateFormat('dd/MM/yyyy').format(datePicked);
+        _date = DateFormat('yyyy/MM/dd').format(datePicked);
       });
       widget.controller.text = _date;
       widget.selectedDate(datePicked);

@@ -20,7 +20,6 @@ class ControllerUserAccount extends GetxController {
   var txtCity = TextEditingController();
   var txtNik = TextEditingController();
 
-  final image = ''.obs;
   final name = ''.obs;
   final phone = ''.obs;
   final email = ''.obs;
@@ -30,6 +29,7 @@ class ControllerUserAccount extends GetxController {
   var uploadImg = '';
   var uploadKtp = '';
   var loading = false;
+  var image = ''.obs;
 
   final ImagePicker picker = ImagePicker();
   XFile? img;
@@ -180,6 +180,7 @@ class ControllerUserAccount extends GetxController {
         city: txtCity.text,
         idRider: idRider.value,
       );
+      log(updateResult.toString());
       if (updateResult != null) {
         var result = updateResult["data"];
         await Api2().setRider(rider: result);
