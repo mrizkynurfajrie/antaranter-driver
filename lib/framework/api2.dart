@@ -4,6 +4,8 @@ const String CACHE_USERNAME = "username";
 const String CACHE_TOKEN = "token";
 const String CHECK_LOGIN = "loginState";
 const String CACHE_RIDER = "rider";
+const String STATUS_ACTIVE_ORDER = "status_active_order";
+const String CACHE_ACTIVE_ORDER = "active_order";
 
 class Api2 {
   final box = GetStorage();
@@ -49,5 +51,23 @@ class Api2 {
     await box.remove(CACHE_USERNAME);
     await box.remove(CACHE_TOKEN);
     await box.remove(CACHE_RIDER);
+  }
+
+  Future setHasActiveOrder({bool? isHasActiveOrder}) async {
+    isHasActiveOrder ??= false;
+    await box.write(STATUS_ACTIVE_ORDER, isHasActiveOrder);
+  }
+
+  Future<bool?> getHasActiveOrder() async {
+    return box.read(STATUS_ACTIVE_ORDER);
+  }
+
+  Future setActiveOrder({dynamic activeOrder}) async {
+    activeOrder ??= "";
+    await box.write(CACHE_ACTIVE_ORDER, activeOrder);
+  }
+
+  Future<dynamic> getActiveOrder() async {
+    return box.read(CACHE_ACTIVE_ORDER);
   }
 }
