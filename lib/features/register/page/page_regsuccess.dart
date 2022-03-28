@@ -1,30 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
-import 'dart:async';
-import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-class PageRegsuccess extends StatefulWidget {
+class PageRegsuccess extends StatelessWidget {
   const PageRegsuccess({Key? key}) : super(key: key);
 
-  @override
-  State<PageRegsuccess> createState() => _PageRegsuccessState();
-}
 
-class _PageRegsuccessState extends State<PageRegsuccess> {
-  @override
-  void initState() {
-    super.initState;
-    splashscreenStart();
-  }
-
-  splashscreenStart() async {
-    var duration = const Duration(seconds: 4);
-    return Timer(duration, () {
-      Get.toNamed('/login_page');
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

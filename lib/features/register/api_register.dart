@@ -3,24 +3,19 @@ import 'package:intake_rider/shared/helpers/get_device_info.dart';
 
 class ApiRegister {
   //contoh
-  Future<dynamic> userLogin({
-    required String username,
+  Future<dynamic> userRegister({
+    required String name,
     required String password,
-    String? phoneNumber,
-    String passType = "P",
+    required String phone,
   }) async {
-    String deviceId = await DeviceInfo.deviceInfo();
 
     final payload = {
-      "username": username,
+      "name": name,
       "password": password,
-      "device_id": deviceId,
-      "allow_any_devices": "T",
-      "clientid": "autopay01",
-      "passtype": passType,
+      "phone": phone,
     };
 
-    var r = await Api1().apiJSONPost("auth/access-login", payload);
-    return r.data;
+    var r = await Api1().apiJSONPost("register-rider", payload);
+    return r;
   }
 }

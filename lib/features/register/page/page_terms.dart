@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intake_rider/features/register/controller_register.dart';
+import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
@@ -6,14 +8,9 @@ import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
 import 'package:intake_rider/shared/widgets/others/checkbox_label.dart';
 import 'package:get/get.dart';
 
-class PageTerms extends StatefulWidget {
+class PageTerms extends GetView<ControllerRegister> {
   const PageTerms({Key? key}) : super(key: key);
 
-  @override
-  State<PageTerms> createState() => _PageTermsState();
-}
-
-class _PageTermsState extends State<PageTerms> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -25,7 +22,7 @@ class _PageTermsState extends State<PageTerms> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Image.asset(
-              "assets/logo/logo-besar.png",
+              AppLogos.logoColoured,
               width: size.width * 0.35,
             ),
             SizedBox(height: size.height * 0.025),
@@ -159,7 +156,9 @@ class _PageTermsState extends State<PageTerms> {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: CheckboxLabel(
-                onChange: (value) {},
+                onChange: (value) {
+                  controller.statusAgreementTerm.value = value;
+                },
                 label:
                     'Saya mengerti dan memahami dengan syarat serta ketentuan yang berlaku',
                 colorBorder: AppColor.greyColorLight,
@@ -167,12 +166,15 @@ class _PageTermsState extends State<PageTerms> {
               ),
             ),
             const Spacer(),
-            ButtonPrimary(
-              label: 'Konfirmasi',
-              color: AppColor.primaryColor,
-              onPressed: () {
-                Get.toNamed('/register_page');
-              },
+            Obx(
+              () => ButtonPrimary(
+                enable: controller.statusAgreementTerm.value,
+                label: 'Konfirmasi',
+                color: AppColor.primaryColor,
+                onPressed: () {
+                  Get.toNamed('/register_page');
+                },
+              ),
             ),
           ],
         ),

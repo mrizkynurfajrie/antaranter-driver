@@ -36,6 +36,7 @@ class AppPages {
     GetPage(
       name: Routes.terms,
       page: () => const PageTerms(),
+      binding: BindingRegister(),
     ),
     GetPage(
       name: Routes.register,

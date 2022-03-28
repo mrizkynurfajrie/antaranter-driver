@@ -3,16 +3,20 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/register/api_register.dart';
+import 'package:intake_rider/routes/app_routes.dart';
 import 'package:intake_rider/shared/helpers/utils.dart';
+
 class ControllerRegister extends GetxController {
   final ApiRegister api;
   ControllerRegister({required this.api});
+
+  var statusAgreementTerm = false.obs;
 
   var cName = TextEditingController();
   var cPhoneNumber = TextEditingController();
   var cPassword = TextEditingController();
   var isValidName = false.obs;
-  var isValidUsername = false.obs;
+  var isValidPhoneNumber = false.obs;
   var isValidPassword = false.obs;
   var isValidForm = false.obs;
 
@@ -36,7 +40,7 @@ class ControllerRegister extends GetxController {
 
   formValidationListener() {
     cPhoneNumber.addListener(() {
-      isValidUsername.value = cPhoneNumber.text.isNotEmpty;
+      isValidPhoneNumber.value = cPhoneNumber.text.isNotEmpty;
       validateForm();
     });
     cPassword.addListener(() {
@@ -45,50 +49,42 @@ class ControllerRegister extends GetxController {
     });
     cName.addListener(() {
       isValidName.value = cName.text.isNotEmpty;
+      validateForm();
     });
   }
 
   validateForm() {
-    isValidForm.value = isValidUsername.value && isValidPassword.value;
+    isValidForm.value = isValidPhoneNumber.value &&
+        isValidPassword.value &&
+        isValidPhoneNumber.value;
   }
 
-  login() async {
+  register() async {
     dismisKeyboard();
+    loading.value = true;
     try {
-      // var status = await Permission.location.status;
+      await Future.delayed(const Duration(seconds: 2));
+      var res = await api.userRegister(
+        name: cName.text,
+        password: cPassword.text,
+        phone: cPhoneNumber.text,
+      );
 
-      //if (status.isGranted) {
-      loading(true);
-      var r = await api.userLogin(
-          username: cPhoneNumber.text, password: cPassword.text);
-      loading(false);
-      if (r != null) {
-        // await Api1().setTokenWithTimer(r['access_token']);
-        // await Api1().setTokenRefresh(tokenRefresh: r['refresh_token']);
-        // await Api1().setUserName(userName: selectedCountry + cPhoneNumber.text);
-        // await Api1().setPhoneNumber(phoneNumber: cPhoneNumber.text);
-        // await Api1().setReferral(s: r['referral_code']);
-        // await Api1().setAccountType(accountType: r['account_type']);
-        // await Api1().setFirstOpen(s: '1');
-        // Get.find<ControllerUserInfo>().setAccountType(r['account_type']);
-        // Get.offAllNamed(Routes.PAGE_HOME);
+      if (res['success'] == true) {
+        loading.value = false;
+        Get.offAllNamed(Routes.regsuccess);
+        await Future.delayed(const Duration(seconds: 2));
+        var phoneNumber = res['data']['newRider']['phone'];
+        Get.offAllNamed(Routes.login,
+            arguments: phoneNumber);
+      } else {
+        var firstError = res['errors'][0];
+        throw firstError['message'];
       }
-
-      // } else {
-      //   showPopUp(
-      //       title: "Akses GPS",
-      //       description:
-      //           "Aplikasi memerlukan akses GPS supaya dapat mengoptimalkan layanan. Data akan dijamin penggunaannya hanya untuk kepentingan sistem aplikasi.",
-      //       labelButton: "OK",
-      //       onPress: () {
-      //         Get.back();
-      //         Permission.location.request().;
-      //       });
-      // }
-    } catch (_) {
-      loading(false);
-      log(_.toString());
-     
+    } catch (e) {
+      loading.value = false;
+      log(e.toString());
+      Get.snackbar("Terjadi kesalahan", e.toString());
     }
   }
 }
