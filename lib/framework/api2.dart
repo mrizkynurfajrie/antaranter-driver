@@ -43,4 +43,11 @@ class Api2 {
   Future<bool?> getLoginStatus() async {
     return box.read(CHECK_LOGIN);
   }
+
+  Future removeData() async {
+    await box.remove(CHECK_LOGIN);
+    await box.remove(CACHE_USERNAME);
+    await box.remove(CACHE_TOKEN);
+    await box.remove(CACHE_RIDER);
+  }
 }

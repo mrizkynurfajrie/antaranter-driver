@@ -170,7 +170,9 @@ class PageProfile extends GetView<ControllerProfile> {
             ),
             verticalSpace(5.h),
             ButtonProfil(
-              ontap: () {},
+              ontap: () {
+                controller.logout();
+              },
               icon: AppIcons.profLogout,
               title: 'Keluar',
               buttonHeight: Get.height * 0.07,

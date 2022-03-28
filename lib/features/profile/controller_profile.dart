@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:intake_rider/framework/api2.dart';
+import 'package:intake_rider/routes/app_routes.dart';
 import 'api_profile.dart';
 
 class ControllerProfile extends GetxController {
@@ -30,4 +31,9 @@ class ControllerProfile extends GetxController {
   //   phone.value = rider['phone'] ?? '08xxxxxxxx';
   //   image.value = rider['image'] ?? '';
   // }
+
+  void logout() async {
+    await Api2().removeData();
+    Get.offAllNamed(Routes.login);
+  }
 }
