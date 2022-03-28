@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,6 @@ import 'package:intake_rider/shared/widgets/inputs/input_phone.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shimmer/shimmer.dart';
 import '../../shared/constants/styles.dart';
 
 class PageUserAccount extends GetView<ControllerUserAccount> {
@@ -39,34 +37,67 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(90),
-                        child: SizedBox(
-                          height: IconSizes.xxxl,
-                          width: IconSizes.xxxl,
-                          child: CachedNetworkImage(
-                            fit: BoxFit.cover,
-                            imageUrl: 'https://via.placeholder.com/150',
-                            progressIndicatorBuilder:
-                                (context, url, downloadProgress) => Shimmer(
-                              gradient: AppColor.shimmerGradient,
-                              child: Container(
-                                color: AppColor.whiteColor,
+                      GestureDetector(
+                        onTap: () => controller.imgSourceSelector(context),
+                        child: (controller.imgPreview != "")
+                            ? SizedBox(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(100),
+                                  child: Image.file(
+                                    File(controller.imgPreview.value),
+                                    width: IconSizes.xxl,
+                                    height: IconSizes.xxl,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              )
+                            : Container(
+                                alignment: Alignment.topCenter,
+                                height: IconSizes.xxl,
+                                width: IconSizes.xxl,
+                                decoration: const BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(100)),
+                                    color: Color(0xffffffff)),
+                                child: Center(
+                                  child: Icon(
+                                    CupertinoIcons.person_fill,
+                                    size: IconSizes.xl,
+                                    color: AppColor.bodyColor.shade600,
+                                  ),
+                                ),
                               ),
-                            ),
-                            errorWidget: (context, url, error) => Image.asset(
-                              'assets/images/avatar_dummy.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
+
+                        // ClipRRect(
+                        //   borderRadius: BorderRadius.circular(90),
+                        //   child: SizedBox(
+                        //     height: IconSizes.xxxl,
+                        //     width: IconSizes.xxxl,
+                        //     child: CachedNetworkImage(
+                        //       fit: BoxFit.cover,
+                        //       imageUrl:
+                        //           "${Api1().baseUrl}images/${controller.image.value}",
+                        //       progressIndicatorBuilder:
+                        //           (context, url, downloadProgress) => Shimmer(
+                        //         gradient: AppColor.shimmerGradient,
+                        //         child: Container(
+                        //           color: AppColor.whiteColor,
+                        //         ),
+                        //       ),
+                        //       errorWidget: (context, url, error) => Image.asset(
+                        //         'assets/images/avatar_dummy.png',
+                        //         fit: BoxFit.cover,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                       ),
                       horizontalSpace(10.w),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'mrizkynurfajrie',
+                            controller.name.value,
                             style: TextStyles.inter.copyWith(
                               fontSize: FontSizes.s14,
                               color: AppColor.primaryColor,
@@ -75,7 +106,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                           ),
                           verticalSpace(2.h),
                           Text(
-                            '0852xxxxxx',
+                            controller.phone.value,
                             style: TextStyles.inter.copyWith(
                               fontSize: FontSizes.s14,
                               color: AppColor.neutral,
@@ -84,7 +115,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                           ),
                           verticalSpace(2.h),
                           Text(
-                            'driver@mail.com',
+                            controller.email.value,
                             style: TextStyles.inter.copyWith(
                               fontSize: FontSizes.s14,
                               color: AppColor.neutral,
