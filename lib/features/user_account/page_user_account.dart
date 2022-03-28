@@ -41,31 +41,74 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                       GestureDetector(
                         onTap: () => controller.imgSourceSelector(context),
                         child: (controller.imgPreview != "")
-                            ? SizedBox(
-                                width: IconSizes.xxl,
-                                height: IconSizes.xxl,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(100),
-                                  child: Image.file(
-                                    File(controller.imgPreview.value),
-                                    width: IconSizes.xxl,
-                                    height: IconSizes.xxl,
-                                    fit: BoxFit.cover,
+                            ? DottedBorder(
+                                dashPattern: const [12, 4],
+                                strokeWidth: 1,
+                                strokeCap: StrokeCap.round,
+                                color: AppColor.greyColorLight,
+                                borderType: BorderType.Circle,
+                                radius: const Radius.circular(12),
+                                child: SizedBox(
+                                  width: IconSizes.xxl,
+                                  height: IconSizes.xxl,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(100),
+                                    child: Image.file(
+                                      File(controller.imgPreview.value),
+                                      width: IconSizes.xxl,
+                                      height: IconSizes.xxl,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               )
-                            : Container(
-                                alignment: Alignment.topCenter,
-                                height: IconSizes.xxl,
-                                width: IconSizes.xxl,
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                        const BorderRadius.all(Radius.circular(100)),
+                            : DottedBorder(
+                                dashPattern: const [12, 4],
+                                strokeWidth: 1,
+                                strokeCap: StrokeCap.round,
+                                color: AppColor.greyColorLight,
+                                borderType: BorderType.Circle,
+                                radius: const Radius.circular(12),
+                                child: Container(
+                                  alignment: Alignment.topCenter,
+                                  height: IconSizes.xxl,
+                                  width: IconSizes.xxl,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(5),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width:  IconSizes.med,
+                                          height: IconSizes.med,
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            child: Image.asset(
+                                                'assets/images/avatar_dummy.png'),
+                                          ),
+                                        ),
+                                        Text(
+                                          'Tambah Foto',
+                                          style: TextStyles.inter.copyWith(
+                                            fontSize: 8,
+                                            color: AppColor.greyColor,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(100)),
                                     color: AppColor.whiteColor,
                                     image: DecorationImage(
-                                      fit: BoxFit.cover,
+                                        fit: BoxFit.cover,
                                         image: NetworkImage(
-                                            "${Api1().baseUrl}images/${controller.image.value}"))),
+                                            "${Api1().baseUrl}images/${controller.image.value}")),
+                                  ),
+                                ),
                               ),
                       ),
                       horizontalSpace(10.w),

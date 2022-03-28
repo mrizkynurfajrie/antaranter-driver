@@ -6,6 +6,7 @@ const String CHECK_LOGIN = "loginState";
 const String CACHE_RIDER = "rider";
 const String STATUS_ACTIVE_ORDER = "status_active_order";
 const String CACHE_ACTIVE_ORDER = "active_order";
+const String CACHE_VEHICLE = "vehicle";
 
 class Api2 {
   final box = GetStorage();
@@ -26,6 +27,15 @@ class Api2 {
 
   Future<dynamic> getRider() async {
     return box.read(CACHE_RIDER);
+  }
+
+  Future<dynamic> setVehicle({dynamic vehicle}) async {
+    vehicle ??= "";
+    await box.write(CACHE_VEHICLE, vehicle);
+  }
+
+  Future<dynamic> getVehicle() async {
+    return box.read(CACHE_VEHICLE);
   }
 
   Future setToken({String? token}) async {

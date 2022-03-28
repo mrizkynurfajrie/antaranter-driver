@@ -6,6 +6,7 @@ import 'package:intake_rider/features/login/api_login.dart';
 import 'package:intake_rider/framework/api2.dart';
 import 'package:intake_rider/response/rider.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
+// import 'package:intake_rider/shared/controller/controller_vehicle_info.dart';
 import 'package:intake_rider/shared/helpers/utils.dart';
 import 'package:intake_rider/routes/app_routes.dart';
 
@@ -20,11 +21,12 @@ class ControllerLogin extends GetxController {
   var isValidForm = false.obs;
 
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
+  // var controllerVehicleInfo = Get.find<ControllerVehicleInfo>();
 
   var loading = false.obs;
   var token = "".obs;
   var loginStatus = false;
-  var fcm = "anakasu";
+  var fcm = "dummytoken";
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   @override
@@ -74,6 +76,7 @@ class ControllerLogin extends GetxController {
           await Api2().setRider(rider: detailUser);
           var tokenUser = loginResult["data"]["token"];
           token.value = tokenUser;
+
           await Api2().setToken(token: token.value);
           loginStatus = true;
           await Api2().setIsLogin(isLogin: loginStatus);
