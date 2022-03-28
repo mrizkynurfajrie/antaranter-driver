@@ -14,6 +14,7 @@ import 'package:intake_rider/features/profile/page_profile.dart';
 import 'package:intake_rider/features/register/binding_register.dart';
 import 'package:intake_rider/features/register/page/page_register.dart';
 import 'package:intake_rider/features/register/page/page_terms.dart';
+import 'package:intake_rider/features/saldo/binding_saldo.dart';
 import 'package:intake_rider/features/saldo/page_saldo.dart';
 import 'package:intake_rider/features/splash/page_splash.dart';
 import 'package:intake_rider/features/register/page/page_regsuccess.dart';
@@ -64,6 +65,7 @@ class AppPages {
     GetPage(
       name: Routes.saldo,
       page: () => const PageSaldo(),
+      binding: BindingSaldo(),
     ),
     GetPage(
       name: Routes.actHistory,

@@ -4,10 +4,12 @@ import 'package:intake_rider/features/saldo/controller_saldo.dart';
 import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:intake_rider/shared/helpers/currency_formatter.dart';
 import 'package:intake_rider/shared/widgets/cards/card_primary.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PageSaldo extends GetView<ControllerSaldo> {
   const PageSaldo({Key? key}) : super(key: key);
@@ -70,20 +72,32 @@ class PageSaldo extends GetView<ControllerSaldo> {
                       ),
                     ),
                     verticalSpace(20.h),
-                    SizedBox(
-                      width: Get.width * 0.5.w,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'Rp 0,-',
-                            style: TextStyles.inter.copyWith(
-                                fontSize: FontSizes.s32,
-                                fontWeight: FontWeight.bold,
-                                color: AppColor.whiteColor),
-                          ),
-                        ],
+                    Obx(
+                      () => Container(
+                        child: Shimmer.fromColors(
+                          baseColor: Colors.grey.shade300,
+                          highlightColor: Colors.grey.shade50,
+                          enabled: controller.loading.isTrue,
+                          child: controller.loading.isTrue
+                              ? Container(
+                                  width: 100.w,
+                                  height: 40.w,
+                                  decoration: BoxDecoration(
+                                    borderRadius: Corners.lgBorder,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : Text(
+                                  CurrencyFormat.convertToIdr(
+                                    controller.balance.value.currBalance,
+                                    2,
+                                  ),
+                                  style: TextStyles.inter.copyWith(
+                                      fontSize: FontSizes.s32,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColor.whiteColor),
+                                ),
+                        ),
                       ),
                     )
                   ],
