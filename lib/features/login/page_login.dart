@@ -6,6 +6,7 @@ import 'package:intake_rider/shared/widgets/inputs/input_password.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_phone.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
+import 'package:intake_rider/shared/widgets/others/loading_indicator.dart';
 
 class PageLogin extends GetView<ControllerLogin> {
   const PageLogin({Key? key}) : super(key: key);
@@ -47,13 +48,21 @@ class PageLogin extends GetView<ControllerLogin> {
                 controller: controller.cPassword,
               ),
               SizedBox(height: size.height * 0.025),
-              ButtonPrimary(
-                label: 'Masuk',
-                color: AppColor.primaryColor,
-                onPressed: () {
-                  controller.login();
-                },
-                size: 300,
+              Obx(
+                () => controller.loading.isFalse
+                    ? ButtonPrimary(
+                        enable: controller.isValidForm.value,
+                        label: 'Masuk',
+                        color: AppColor.primaryColor,
+                        onPressed: () {
+                          controller.validateForm();
+                          if (controller.isValidForm.value) {
+                            controller.login();
+                          }
+                        },
+                        size: 300,
+                      )
+                    : loadingIndicatorBottom(context),
               ),
               const SizedBox(height: 15),
               Row(

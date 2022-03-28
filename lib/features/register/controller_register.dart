@@ -56,7 +56,7 @@ class ControllerRegister extends GetxController {
   validateForm() {
     isValidForm.value = isValidPhoneNumber.value &&
         isValidPassword.value &&
-        isValidPhoneNumber.value;
+        isValidName.value;
   }
 
   register() async {
