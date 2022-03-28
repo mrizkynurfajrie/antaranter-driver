@@ -67,30 +67,6 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                   ),
                                 ),
                               ),
-
-                        // ClipRRect(
-                        //   borderRadius: BorderRadius.circular(90),
-                        //   child: SizedBox(
-                        //     height: IconSizes.xxxl,
-                        //     width: IconSizes.xxxl,
-                        //     child: CachedNetworkImage(
-                        //       fit: BoxFit.cover,
-                        //       imageUrl:
-                        //           "${Api1().baseUrl}images/${controller.image.value}",
-                        //       progressIndicatorBuilder:
-                        //           (context, url, downloadProgress) => Shimmer(
-                        //         gradient: AppColor.shimmerGradient,
-                        //         child: Container(
-                        //           color: AppColor.whiteColor,
-                        //         ),
-                        //       ),
-                        //       errorWidget: (context, url, error) => Image.asset(
-                        //         'assets/images/avatar_dummy.png',
-                        //         fit: BoxFit.cover,
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
                       ),
                       horizontalSpace(10.w),
                       Column(
@@ -142,6 +118,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     maxLines: 1,
                     boxWidth: Get.width * 0.88.w,
                     padding: EdgeInsets.only(top: 5.h),
+                    controller: controller.txtName,
                   ),
                   InputPhone(
                     controller: controller.txtPhone,
@@ -155,16 +132,17 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     maxLines: 1,
                     boxWidth: Get.width * 0.88.w,
                     padding: EdgeInsets.only(top: 5.h),
+                    controller: controller.txtNik,
                   ),
                   GestureDetector(
                     onTap: () => controller.ktpSourceSelector(context),
-                    child: (controller.ktp.value != "")
+                    child: (controller.ktpPreview.value != "")
                         ? Container(
                             margin: EdgeInsets.only(top: 5.h),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image.file(
-                                File(controller.ktp.toString()),
+                                File(controller.ktpPreview.toString()),
                                 width: Get.width * 0.88.w,
                                 height: Get.height * 0.25.h,
                                 fit: BoxFit.cover,
@@ -230,6 +208,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     ),
                     boxWidth: Get.width * 0.88.w,
                     padding: EdgeInsets.only(top: 5.h),
+                    controller: controller.txtCity,
                   ),
                   InputPrimary(
                     controller: controller.txtAddress,
@@ -243,7 +222,11 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                   ),
                   verticalSpace(5.h),
                   ButtonPrimary(
-                    onPressed: () {},
+                    onPressed: () async {
+                      await controller.uploadImgRider();
+                      await controller.uploadKtpRider();
+                      controller.updateUserAccount();
+                    },
                     label: 'Simpan',
                   ),
                 ],
