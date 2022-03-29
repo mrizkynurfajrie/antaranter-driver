@@ -9,6 +9,8 @@ import 'package:intake_rider/response/rider.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
 
 class ControllerUserAccount extends GetxController {
+   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
+
   final ApiUserAccount api;
   ControllerUserAccount({required this.api});
 
@@ -23,6 +25,10 @@ class ControllerUserAccount extends GetxController {
   final name = ''.obs;
   final phone = ''.obs;
   final email = ''.obs;
+  final nik = ''.obs;
+  final city = ''.obs;
+  final date =''.obs;
+  final address = ''.obs;
   var idRider = 0.obs;
   var ktpPreview = ''.obs;
   var imgPreview = ''.obs;
@@ -30,6 +36,7 @@ class ControllerUserAccount extends GetxController {
   var uploadKtp = '';
   var loading = false;
   var image = ''.obs;
+  var ktpImage = ''.obs;
 
   final ImagePicker picker = ImagePicker();
   XFile? img;
@@ -41,7 +48,21 @@ class ControllerUserAccount extends GetxController {
     name.value = rider['name'] ?? 'Rider';
     phone.value = rider['phone'] ?? '08xxxxxxx';
     email.value = rider['email'] ?? 'driver@mail.com';
+    nik.value = rider['nik'] ?? '';
+    city.value = rider['cityLocation'] ?? '';
+    date.value = rider['birth'] ?? '';
+    address.value = rider['address'] ?? '';
     idRider.value = rider['id'] ?? 0;
+
+    txtName.text = name.value;
+    txtEmail.text = email.value;
+    txtNik.text = nik.value;
+    txtDate.text = date.value;
+    txtAddress.text = address.value;
+    txtPhone.text = phone.value;
+    txtCity.text = city.value;
+
+
     super.onInit();
   }
 

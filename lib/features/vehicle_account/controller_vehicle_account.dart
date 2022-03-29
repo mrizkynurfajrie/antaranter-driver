@@ -10,12 +10,10 @@ import 'package:intake_rider/shared/controller/controller_rider_info.dart';
 import 'package:intake_rider/shared/controller/controller_vehicle_info.dart';
 
 class ControllerVehicleAccount extends GetxController {
-   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
+  var controllerRiderInfo = Get.find<ControllerRiderInfo>();
 
   final ApiVehicleAccount api;
   ControllerVehicleAccount({required this.api});
-
-  var vehicleRider = NebengRider().obs;
 
   var txtSimNum = TextEditingController();
   var txtSimExp = TextEditingController();
@@ -42,19 +40,32 @@ class ControllerVehicleAccount extends GetxController {
 
   @override
   void onInit() async {
-    var vehicle = await Api2().getVehicle();
+    // var vehicle = await Api2().getVehicle();
     var rider = await Api2().getRider();
-    simNum.value = vehicle['sim'] ?? '';
-    simExp.value = vehicle['simExp'] ?? '';
-    imgSim.value = vehicle['simPict'] ?? '';
-    platNum.value = vehicle['plat_number'] ?? '';
-    vehicleVar.value = vehicle['vehicle_variant'] ?? '';
-    vehicleCol.value = vehicle['vehicle_color'] ?? '';
-    imgStnk.value = vehicle['stnkPict'] ?? '';
-    idRider.value = rider['id'] ?? 0;
+    log('data rider : ' + rider.toString());
+    // simNum.value = vehicle['sim'] ?? '';
+    // simExp.value = vehicle['simExp'] ?? '';
+    // imgSim.value = vehicle['simPict'] ?? '';
+    // platNum.value = vehicle['plat_number'] ?? '';
+    // vehicleVar.value = vehicle['vehicle_variant'] ?? '';
+    // vehicleCol.value = vehicle['vehicle_color'] ?? '';
+    // imgStnk.value = vehicle['stnkPict'] ?? '';
+    // idRider.value = int.parse(rider['id'] ?? 0);
 
-    vehicleRider.value = NebengRider.fromArguments(Get.arguments);
+    getVehicleData();
+    // vehicleRider.value = NebengRider.fromArguments(Get.arguments);
     super.onInit();
+  }
+
+  getVehicleData() async {
+    try {
+      var responData = await api.updateNebengRider(
+          riderId: controllerRiderInfo.rider.value.id);
+
+    return responData;
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   @override
@@ -185,9 +196,9 @@ class ControllerVehicleAccount extends GetxController {
           platNum: txtPlatNum.text,
           vehicleVar: txtVehicleVar.text,
           vehicleCol: txtVehicleCol.text,
-          stnkPict: uploadStnk,
-          idRider: idRider.value);
-      log(updateResult.toString());
+          stnkPict: uploadStnk);
+          // idRider: idRider.value);
+      // log(updateResult.toString());
       if (updateResult != null) {
         var result = updateResult["data"];
         await Api2().setVehicle(vehicle: result);

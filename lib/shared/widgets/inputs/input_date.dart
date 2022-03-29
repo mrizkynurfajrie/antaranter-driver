@@ -18,6 +18,7 @@ class InputDate extends StatefulWidget {
   final ValueSetter<DateTime> selectedDate;
   final ValueSetter<bool> isValid;
   final double? boxWidth;
+  final EdgeInsets? padding;
 
   const InputDate({
     Key? key,
@@ -33,6 +34,7 @@ class InputDate extends StatefulWidget {
     required this.selectedDate,
     required this.isValid,
     this.boxWidth,
+    this.padding,
   }) : super(key: key);
 
   @override
@@ -81,7 +83,8 @@ class _InputDateState extends State<InputDate> {
                 ),
               )
             : verticalSpace(0),
-        SizedBox(
+        Container(
+          padding: widget.padding,
           width: widget.boxWidth,
           child: TextFormField(
             onTap: _selectDate,

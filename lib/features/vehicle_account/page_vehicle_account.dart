@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                     prefixIcon: const Icon(CupertinoIcons.creditcard),
                     boxWidth: Get.width * 0.88.w,
                     controller: controller.txtSimNum,
+                    inputFormatters: [LengthLimitingTextInputFormatter(16)],
                   ),
                   InputDate(
                     controller: controller.txtSimExp,
@@ -48,6 +50,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                     boxWidth: Get.width * 0.88.w,
                     prefixIcon: const Icon(Icons.date_range),
                     hintText: 'Masa Berlaku SIM',
+                    padding: EdgeInsets.only(top: 5.h),
                   ),
                   GestureDetector(
                     onTap: () => controller.simSourceSelector(context),
@@ -109,11 +112,13 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                   ),
                   InputPrimary(
                     hintText: 'Nomor Plat Kendaraan',
+                    label: 'Nomor Plat Kendaraan',
                     onTap: () {},
                     prefixIcon: const Icon(CupertinoIcons.number_square),
                     boxWidth: Get.width * 0.88.w,
                     padding: EdgeInsets.only(top: 5.h),
                     controller: controller.txtPlatNum,
+                    inputFormatters: [LengthLimitingTextInputFormatter(9)],
                   ),
                   InputPrimary(
                     hintText: 'Merek Kendaraan',

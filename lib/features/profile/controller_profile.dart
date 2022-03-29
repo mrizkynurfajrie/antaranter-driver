@@ -1,11 +1,13 @@
 import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:intake_rider/framework/api2.dart';
 import 'package:intake_rider/routes/app_routes.dart';
+import 'package:intake_rider/shared/controller/controller_rider_info.dart';
 import 'api_profile.dart';
 
 class ControllerProfile extends GetxController {
+  var controllerRiderInfo = Get.find<ControllerRiderInfo>();
+
   final ApiProfile api;
   ControllerProfile({required this.api});
 

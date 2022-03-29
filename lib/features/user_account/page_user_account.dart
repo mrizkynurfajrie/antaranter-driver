@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,6 @@ import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_date.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_email.dart';
-import 'package:intake_rider/shared/widgets/inputs/input_phone.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -74,40 +72,49 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                   height: IconSizes.xxl,
                                   width: IconSizes.xxl,
                                   child: Container(
-                                    padding: const EdgeInsets.all(5),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        SizedBox(
-                                          width:  IconSizes.med,
-                                          height: IconSizes.med,
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(100),
-                                            child: Image.asset(
-                                                'assets/images/avatar_dummy.png'),
-                                          ),
-                                        ),
-                                        Text(
-                                          'Tambah Foto',
-                                          style: TextStyles.inter.copyWith(
-                                            fontSize: 8,
-                                            color: AppColor.greyColor,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(100)),
-                                    color: AppColor.whiteColor,
-                                    image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: NetworkImage(
-                                            "${Api1().baseUrl}images/${controller.image.value}")),
-                                  ),
+                                      padding: const EdgeInsets.all(2),
+                                      child: (controller.controllerRiderInfo
+                                                  .rider.value !=
+                                              null)
+                                          ? ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(90),
+                                              child: SizedBox(
+                                                height: IconSizes.xxl,
+                                                width: IconSizes.xxl,
+                                                child: Image.network(
+                                                  "${Api1().baseUrl}images/${controller.controllerRiderInfo.rider.value.image}",
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            )
+                                          : Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                SizedBox(
+                                                  width: IconSizes.med,
+                                                  height: IconSizes.med,
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            100),
+                                                    child: Image.asset(
+                                                      'assets/images/avatar_dummy.png',
+                                                    ),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'Tambah Foto',
+                                                  style:
+                                                      TextStyles.inter.copyWith(
+                                                    fontSize: 8,
+                                                    color: AppColor.greyColor,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                )
+                                              ],
+                                            )),
                                 ),
                               ),
                       ),
@@ -116,7 +123,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            controller.name.value,
+                            controller.controllerRiderInfo.rider.value.name ??
+                                '-',
                             style: TextStyles.inter.copyWith(
                               fontSize: FontSizes.s14,
                               color: AppColor.primaryColor,
@@ -125,7 +133,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                           ),
                           verticalSpace(2.h),
                           Text(
-                            controller.phone.value,
+                            controller.controllerRiderInfo.rider.value.phone ??
+                                '-',
                             style: TextStyles.inter.copyWith(
                               fontSize: FontSizes.s14,
                               color: AppColor.neutral,
@@ -134,7 +143,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                           ),
                           verticalSpace(2.h),
                           Text(
-                            controller.email.value,
+                            controller.controllerRiderInfo.rider.value.email ??
+                                '-',
                             style: TextStyles.inter.copyWith(
                               fontSize: FontSizes.s14,
                               color: AppColor.neutral,
@@ -162,11 +172,6 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     boxWidth: Get.width * 0.88.w,
                     padding: EdgeInsets.only(top: 5.h),
                     controller: controller.txtName,
-                  ),
-                  InputPhone(
-                    controller: controller.txtPhone,
-                    phoneNumber: (value) {},
-                    label: '',
                   ),
                   InputPrimary(
                     hintText: 'NIK',
@@ -242,6 +247,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     boxWidth: Get.width * 0.88.w,
                     prefixIcon: const Icon(Icons.date_range),
                     hintText: 'Tanggal Lahir',
+                    padding: EdgeInsets.only(top: 5.h),
                   ),
                   InputPrimary(
                     hintText: 'Kota',
