@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +18,14 @@ void main() async {
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   runApp(const App());
+}
+
+// receive message when app in background
+Future<void> backgroundHandler(RemoteMessage message) async {
+  log(message.data.toString());
+  // log(message.notification?.title?.toString());
 }
 
 class App extends StatelessWidget {
