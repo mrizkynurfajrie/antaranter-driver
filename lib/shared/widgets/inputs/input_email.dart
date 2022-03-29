@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -51,40 +52,44 @@ class _InputEmailState extends State<InputEmail> {
           widget.label != ''
               ? Container(
                   margin: EdgeInsets.only(
-                    bottom: Insets.xs,
+                    bottom: 2.h,
                   ),
                   child: Text(
                     widget.label,
-                    style: TextStyles.small1,
+                    style: TextStyles.inter.copyWith(
+                        fontSize: FontSizes.s12, color: AppColor.neutral, fontWeight: FontWeight.w400),
                   ),
                 )
               : verticalSpace(0),
-          TextFormField(
-            enableInteractiveSelection: true,
-            cursorColor: Theme.of(context).primaryColor,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            keyboardType: TextInputType.emailAddress,
-            controller: widget.controller,
-            obscureText: widget.obsecureText,
-            inputFormatters: widget.inputFormatters,
-            textCapitalization: widget.textCapitalization,
-            onChanged: widget.onChange,
-            validator: widget.validate ??
-                (value) {
-                  if (!GetUtils.isEmail(value.toString())) {
-                    widget.isValid(false);
-                    widget.email('');
-                    return 'Format email belum benar';
-                  }
-                  widget.email(value.toString());
-                  widget.isValid(true);
-                  return null;
-                },
-            style: TextStyles.body2,
-            decoration: inputDecoration(
-                hintText: widget.hintText,
-                prefixIcon: widget.prefixIcon,
-                suffixIcon: widget.suffixIcon),
+          Container(
+            padding: EdgeInsets.only(bottom: 3.h),
+            child: TextFormField(
+              enableInteractiveSelection: true,
+              cursorColor: Theme.of(context).primaryColor,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              keyboardType: TextInputType.emailAddress,
+              controller: widget.controller,
+              obscureText: widget.obsecureText,
+              inputFormatters: widget.inputFormatters,
+              textCapitalization: widget.textCapitalization,
+              onChanged: widget.onChange,
+              validator: widget.validate ??
+                  (value) {
+                    if (!GetUtils.isEmail(value.toString())) {
+                      widget.isValid(false);
+                      widget.email('');
+                      return 'Format email belum benar';
+                    }
+                    widget.email(value.toString());
+                    widget.isValid(true);
+                    return null;
+                  },
+              style: TextStyles.body2,
+              decoration: inputDecoration(
+                  hintText: widget.hintText,
+                  prefixIcon: widget.prefixIcon,
+                  suffixIcon: widget.suffixIcon),
+            ),
           ),
         ],
       ),

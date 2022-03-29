@@ -62,7 +62,7 @@ class _InputPrimaryState extends State<InputPrimary> {
                   style: TextStyles.inter.copyWith(
                     fontSize: FontSizes.s12,
                     fontWeight: FontWeight.w400,
-                    color: AppColor.greyColor,
+                    color: AppColor.neutral,
                   ),
                 ),
               )

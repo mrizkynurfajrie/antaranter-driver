@@ -51,8 +51,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                   height: IconSizes.xxl,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
-                                    child: Image.file(
-                                      File(controller.imgPreview.value),
+                                    child: Image.network(
+                                      "${Api1().baseUrl}images/${controller.controllerRiderInfo.rider.value.image}",
                                       width: IconSizes.xxl,
                                       height: IconSizes.xxl,
                                       fit: BoxFit.cover,
@@ -74,7 +74,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                   child: Container(
                                       padding: const EdgeInsets.all(2),
                                       child: (controller.controllerRiderInfo
-                                                  .rider.value !=
+                                                  .rider.value.image !=
                                               null)
                                           ? ClipRRect(
                                               borderRadius:
@@ -162,7 +162,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     email: (value) {},
                     hintText: 'E-mail',
                     prefixIcon: const Icon(Icons.mail),
-                    boxWidth: 345.w,
+                    boxWidth: Get.width * 0.88.w,
+                    label: 'E-mail',
                   ),
                   InputPrimary(
                     hintText: 'Nama',
@@ -170,8 +171,9 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     prefixIcon: const Icon(Icons.person),
                     maxLines: 1,
                     boxWidth: Get.width * 0.88.w,
-                    padding: EdgeInsets.only(top: 5.h),
+                    padding: EdgeInsets.only(bottom: 3.h, top: 2.h),
                     controller: controller.txtName,
+                    label: 'Nama',
                   ),
                   InputPrimary(
                     hintText: 'NIK',
@@ -179,66 +181,81 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     prefixIcon: const Icon(CupertinoIcons.number),
                     maxLines: 1,
                     boxWidth: Get.width * 0.88.w,
-                    padding: EdgeInsets.only(top: 5.h),
+                    padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
                     controller: controller.txtNik,
+                    label: 'NIK',
                   ),
-                  GestureDetector(
-                    onTap: () => controller.ktpSourceSelector(context),
-                    child: (controller.ktpPreview.value != "")
-                        ? Container(
-                            margin: EdgeInsets.only(top: 5.h),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.file(
-                                File(controller.ktpPreview.toString()),
-                                width: Get.width * 0.88.w,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Unggah Foto KTP',
+                        style: TextStyles.inter.copyWith(
+                            fontSize: FontSizes.s12,
+                            color: AppColor.neutral,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      GestureDetector(
+                        onTap: () => controller.ktpSourceSelector(context),
+                        child: (controller.ktpPreview.value != "")
+                            ? Container(
+                                margin: EdgeInsets.only(top: 5.h),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.file(
+                                    File(controller.ktpPreview.value),
+                                    width: Get.width * 0.88.w,
+                                    height: Get.height * 0.25.h,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              )
+                            : Container(
+                                alignment: Alignment.topCenter,
+                                margin: EdgeInsets.only(top: 5.h),
                                 height: Get.height * 0.25.h,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          )
-                        : Container(
-                            alignment: Alignment.topCenter,
-                            margin: EdgeInsets.only(top: 5.h),
-                            height: Get.height * 0.25.h,
-                            width: Get.width * 0.88.w,
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                color: AppColor.whiteColor),
-                            child: Center(
-                              child: DottedBorder(
-                                dashPattern: const [12, 4],
-                                strokeWidth: 1,
-                                strokeCap: StrokeCap.round,
-                                color: AppColor.greyColorLight,
-                                borderType: BorderType.RRect,
-                                radius: const Radius.circular(12),
-                                child: SizedBox(
-                                  width: Get.width * 0.75.w,
-                                  height: Get.height * 0.20.h,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      const Icon(
-                                        CupertinoIcons.person_fill,
-                                        size: 35,
-                                        color: AppColor.greyColorLight,
+                                width: Get.width * 0.88.w,
+                                decoration: const BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    color: AppColor.whiteColor),
+                                child: Center(
+                                  child: DottedBorder(
+                                    dashPattern: const [12, 4],
+                                    strokeWidth: 1,
+                                    strokeCap: StrokeCap.round,
+                                    color: AppColor.greyColorLight,
+                                    borderType: BorderType.RRect,
+                                    radius: const Radius.circular(12),
+                                    child: SizedBox(
+                                      width: Get.width * 0.75.w,
+                                      height: Get.height * 0.20.h,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          const Icon(
+                                            CupertinoIcons.person_fill,
+                                            size: 35,
+                                            color: AppColor.greyColorLight,
+                                          ),
+                                          verticalSpace(5.h),
+                                          Text(
+                                            'Foto KTP',
+                                            style: TextStyles.inter.copyWith(
+                                                fontSize: FontSizes.s14,
+                                                fontWeight: FontWeight.w400,
+                                                color: AppColor.greyColorLight),
+                                          )
+                                        ],
                                       ),
-                                      verticalSpace(5.h),
-                                      Text(
-                                        'Foto KTP',
-                                        style: TextStyles.inter.copyWith(
-                                            fontSize: FontSizes.s14,
-                                            fontWeight: FontWeight.w400,
-                                            color: AppColor.greyColorLight),
-                                      )
-                                    ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ),
+                      ),
+                      verticalSpace(5.h)
+                    ],
                   ),
                   InputDate(
                     controller: controller.txtDate,
@@ -247,7 +264,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     boxWidth: Get.width * 0.88.w,
                     prefixIcon: const Icon(Icons.date_range),
                     hintText: 'Tanggal Lahir',
-                    padding: EdgeInsets.only(top: 5.h),
+                    padding: EdgeInsets.only(top: 1.h, bottom: 3.h),
+                    label: 'Tanggal Lahir',
                   ),
                   InputPrimary(
                     hintText: 'Kota',
@@ -256,7 +274,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                       Icons.place,
                     ),
                     boxWidth: Get.width * 0.88.w,
-                    padding: EdgeInsets.only(top: 5.h),
+                    padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
+                    label: 'Kota',
                     controller: controller.txtCity,
                   ),
                   InputPrimary(
@@ -267,7 +286,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     maxLenght: 150,
                     maxLines: 3,
                     boxWidth: Get.width * 0.88.w,
-                    padding: EdgeInsets.only(top: 5.h),
+                    padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
+                    label: 'Alamat',
                   ),
                   verticalSpace(5.h),
                   ButtonPrimary(

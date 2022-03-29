@@ -53,6 +53,7 @@ class ControllerUserAccount extends GetxController {
     date.value = rider['birth'] ?? '';
     address.value = rider['address'] ?? '';
     idRider.value = rider['id'] ?? 0;
+    ktpImage.value = rider['ktp_pict'] ?? '';
 
     txtName.text = name.value;
     txtEmail.text = email.value;
@@ -61,6 +62,7 @@ class ControllerUserAccount extends GetxController {
     txtAddress.text = address.value;
     txtPhone.text = phone.value;
     txtCity.text = city.value;
+    ktpPreview.value =ktpImage.value;
 
 
     super.onInit();
