@@ -1,6 +1,7 @@
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +19,7 @@ class InputDate extends StatefulWidget {
   final ValueSetter<DateTime> selectedDate;
   final ValueSetter<bool> isValid;
   final double? boxWidth;
+  final EdgeInsets? padding;
 
   const InputDate({
     Key? key,
@@ -33,6 +35,7 @@ class InputDate extends StatefulWidget {
     required this.selectedDate,
     required this.isValid,
     this.boxWidth,
+    this.padding,
   }) : super(key: key);
 
   @override
@@ -73,15 +76,17 @@ class _InputDateState extends State<InputDate> {
         widget.label != ''
             ? Container(
                 margin: EdgeInsets.only(
-                  bottom: Insets.xs,
+                  bottom: 2.h,
                 ),
                 child: Text(
                   widget.label,
-                  style: TextStyles.small1,
+                  style: TextStyles.inter.copyWith(
+                        fontSize: FontSizes.s12, color: AppColor.neutral, fontWeight: FontWeight.w400),
                 ),
               )
             : verticalSpace(0),
-        SizedBox(
+        Container(
+          padding: widget.padding,
           width: widget.boxWidth,
           child: TextFormField(
             onTap: _selectDate,

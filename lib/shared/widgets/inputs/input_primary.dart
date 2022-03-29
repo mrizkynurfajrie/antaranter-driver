@@ -56,13 +56,14 @@ class _InputPrimaryState extends State<InputPrimary> {
       mainAxisSize: MainAxisSize.min,
       children: [
         widget.label != ''
-            ? Container(
-                margin: EdgeInsets.only(
-                  bottom: Insets.sm,
-                ),
+            ? SizedBox(
                 child: Text(
                   widget.label,
-                  style: TextStyles.textBase,
+                  style: TextStyles.inter.copyWith(
+                    fontSize: FontSizes.s12,
+                    fontWeight: FontWeight.w400,
+                    color: AppColor.neutral,
+                  ),
                 ),
               )
             : verticalSpace(0),

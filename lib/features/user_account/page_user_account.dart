@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,6 @@ import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_date.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_email.dart';
-import 'package:intake_rider/shared/widgets/inputs/input_phone.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,31 +39,83 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                       GestureDetector(
                         onTap: () => controller.imgSourceSelector(context),
                         child: (controller.imgPreview != "")
-                            ? SizedBox(
-                                width: IconSizes.xxl,
-                                height: IconSizes.xxl,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(100),
-                                  child: Image.file(
-                                    File(controller.imgPreview.value),
-                                    width: IconSizes.xxl,
-                                    height: IconSizes.xxl,
-                                    fit: BoxFit.cover,
+                            ? DottedBorder(
+                                dashPattern: const [12, 4],
+                                strokeWidth: 1,
+                                strokeCap: StrokeCap.round,
+                                color: AppColor.greyColorLight,
+                                borderType: BorderType.Circle,
+                                radius: const Radius.circular(12),
+                                child: SizedBox(
+                                  width: IconSizes.xxl,
+                                  height: IconSizes.xxl,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(100),
+                                    child: Image.network(
+                                      "${Api1().baseUrl}images/${controller.controllerRiderInfo.rider.value.image}",
+                                      width: IconSizes.xxl,
+                                      height: IconSizes.xxl,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               )
-                            : Container(
-                                alignment: Alignment.topCenter,
-                                height: IconSizes.xxl,
-                                width: IconSizes.xxl,
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                        const BorderRadius.all(Radius.circular(100)),
-                                    color: AppColor.whiteColor,
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                        image: NetworkImage(
-                                            "${Api1().baseUrl}images/${controller.image.value}"))),
+                            : DottedBorder(
+                                dashPattern: const [12, 4],
+                                strokeWidth: 1,
+                                strokeCap: StrokeCap.round,
+                                color: AppColor.greyColorLight,
+                                borderType: BorderType.Circle,
+                                radius: const Radius.circular(12),
+                                child: Container(
+                                  alignment: Alignment.topCenter,
+                                  height: IconSizes.xxl,
+                                  width: IconSizes.xxl,
+                                  child: Container(
+                                      padding: const EdgeInsets.all(2),
+                                      child: (controller.controllerRiderInfo
+                                                  .rider.value.image !=
+                                              null)
+                                          ? ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(90),
+                                              child: SizedBox(
+                                                height: IconSizes.xxl,
+                                                width: IconSizes.xxl,
+                                                child: Image.network(
+                                                  "${Api1().baseUrl}images/${controller.controllerRiderInfo.rider.value.image}",
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            )
+                                          : Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                SizedBox(
+                                                  width: IconSizes.med,
+                                                  height: IconSizes.med,
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            100),
+                                                    child: Image.asset(
+                                                      'assets/images/avatar_dummy.png',
+                                                    ),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'Tambah Foto',
+                                                  style:
+                                                      TextStyles.inter.copyWith(
+                                                    fontSize: 8,
+                                                    color: AppColor.greyColor,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                )
+                                              ],
+                                            )),
+                                ),
                               ),
                       ),
                       horizontalSpace(10.w),
@@ -73,7 +123,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            controller.name.value,
+                            controller.controllerRiderInfo.rider.value.name ??
+                                '-',
                             style: TextStyles.inter.copyWith(
                               fontSize: FontSizes.s14,
                               color: AppColor.primaryColor,
@@ -82,7 +133,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                           ),
                           verticalSpace(2.h),
                           Text(
-                            controller.phone.value,
+                            controller.controllerRiderInfo.rider.value.phone ??
+                                '-',
                             style: TextStyles.inter.copyWith(
                               fontSize: FontSizes.s14,
                               color: AppColor.neutral,
@@ -91,7 +143,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                           ),
                           verticalSpace(2.h),
                           Text(
-                            controller.email.value,
+                            controller.controllerRiderInfo.rider.value.email ??
+                                '-',
                             style: TextStyles.inter.copyWith(
                               fontSize: FontSizes.s14,
                               color: AppColor.neutral,
@@ -109,7 +162,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     email: (value) {},
                     hintText: 'E-mail',
                     prefixIcon: const Icon(Icons.mail),
-                    boxWidth: 345.w,
+                    boxWidth: Get.width * 0.88.w,
+                    label: 'E-mail',
                   ),
                   InputPrimary(
                     hintText: 'Nama',
@@ -117,13 +171,9 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     prefixIcon: const Icon(Icons.person),
                     maxLines: 1,
                     boxWidth: Get.width * 0.88.w,
-                    padding: EdgeInsets.only(top: 5.h),
+                    padding: EdgeInsets.only(bottom: 3.h, top: 2.h),
                     controller: controller.txtName,
-                  ),
-                  InputPhone(
-                    controller: controller.txtPhone,
-                    phoneNumber: (value) {},
-                    label: '',
+                    label: 'Nama',
                   ),
                   InputPrimary(
                     hintText: 'NIK',
@@ -131,66 +181,81 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     prefixIcon: const Icon(CupertinoIcons.number),
                     maxLines: 1,
                     boxWidth: Get.width * 0.88.w,
-                    padding: EdgeInsets.only(top: 5.h),
+                    padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
                     controller: controller.txtNik,
+                    label: 'NIK',
                   ),
-                  GestureDetector(
-                    onTap: () => controller.ktpSourceSelector(context),
-                    child: (controller.ktpPreview.value != "")
-                        ? Container(
-                            margin: EdgeInsets.only(top: 5.h),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.file(
-                                File(controller.ktpPreview.toString()),
-                                width: Get.width * 0.88.w,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Unggah Foto KTP',
+                        style: TextStyles.inter.copyWith(
+                            fontSize: FontSizes.s12,
+                            color: AppColor.neutral,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      GestureDetector(
+                        onTap: () => controller.ktpSourceSelector(context),
+                        child: (controller.ktpPreview.value != "")
+                            ? Container(
+                                margin: EdgeInsets.only(top: 5.h),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.file(
+                                    File(controller.ktpPreview.value),
+                                    width: Get.width * 0.88.w,
+                                    height: Get.height * 0.25.h,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              )
+                            : Container(
+                                alignment: Alignment.topCenter,
+                                margin: EdgeInsets.only(top: 5.h),
                                 height: Get.height * 0.25.h,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          )
-                        : Container(
-                            alignment: Alignment.topCenter,
-                            margin: EdgeInsets.only(top: 5.h),
-                            height: Get.height * 0.25.h,
-                            width: Get.width * 0.88.w,
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                color: AppColor.whiteColor),
-                            child: Center(
-                              child: DottedBorder(
-                                dashPattern: const [12, 4],
-                                strokeWidth: 1,
-                                strokeCap: StrokeCap.round,
-                                color: AppColor.greyColorLight,
-                                borderType: BorderType.RRect,
-                                radius: const Radius.circular(12),
-                                child: SizedBox(
-                                  width: Get.width * 0.75.w,
-                                  height: Get.height * 0.20.h,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      const Icon(
-                                        CupertinoIcons.person_fill,
-                                        size: 35,
-                                        color: AppColor.greyColorLight,
+                                width: Get.width * 0.88.w,
+                                decoration: const BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    color: AppColor.whiteColor),
+                                child: Center(
+                                  child: DottedBorder(
+                                    dashPattern: const [12, 4],
+                                    strokeWidth: 1,
+                                    strokeCap: StrokeCap.round,
+                                    color: AppColor.greyColorLight,
+                                    borderType: BorderType.RRect,
+                                    radius: const Radius.circular(12),
+                                    child: SizedBox(
+                                      width: Get.width * 0.75.w,
+                                      height: Get.height * 0.20.h,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          const Icon(
+                                            CupertinoIcons.person_fill,
+                                            size: 35,
+                                            color: AppColor.greyColorLight,
+                                          ),
+                                          verticalSpace(5.h),
+                                          Text(
+                                            'Foto KTP',
+                                            style: TextStyles.inter.copyWith(
+                                                fontSize: FontSizes.s14,
+                                                fontWeight: FontWeight.w400,
+                                                color: AppColor.greyColorLight),
+                                          )
+                                        ],
                                       ),
-                                      verticalSpace(5.h),
-                                      Text(
-                                        'Foto KTP',
-                                        style: TextStyles.inter.copyWith(
-                                            fontSize: FontSizes.s14,
-                                            fontWeight: FontWeight.w400,
-                                            color: AppColor.greyColorLight),
-                                      )
-                                    ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ),
+                      ),
+                      verticalSpace(5.h)
+                    ],
                   ),
                   InputDate(
                     controller: controller.txtDate,
@@ -199,6 +264,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     boxWidth: Get.width * 0.88.w,
                     prefixIcon: const Icon(Icons.date_range),
                     hintText: 'Tanggal Lahir',
+                    padding: EdgeInsets.only(top: 1.h, bottom: 3.h),
+                    label: 'Tanggal Lahir',
                   ),
                   InputPrimary(
                     hintText: 'Kota',
@@ -207,7 +274,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                       Icons.place,
                     ),
                     boxWidth: Get.width * 0.88.w,
-                    padding: EdgeInsets.only(top: 5.h),
+                    padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
+                    label: 'Kota',
                     controller: controller.txtCity,
                   ),
                   InputPrimary(
@@ -218,7 +286,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     maxLenght: 150,
                     maxLines: 3,
                     boxWidth: Get.width * 0.88.w,
-                    padding: EdgeInsets.only(top: 5.h),
+                    padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
+                    label: 'Alamat',
                   ),
                   verticalSpace(5.h),
                   ButtonPrimary(
