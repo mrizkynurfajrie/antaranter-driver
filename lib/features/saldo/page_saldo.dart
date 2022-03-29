@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/saldo/controller_saldo.dart';
@@ -5,8 +6,11 @@ import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intake_rider/shared/helpers/currency_formatter.dart';
+import 'package:intake_rider/shared/helpers/format_date_time.dart';
 import 'package:intake_rider/shared/widgets/cards/card_primary.dart';
+import 'package:intake_rider/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
+import 'package:intake_rider/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
@@ -23,9 +27,14 @@ class PageSaldo extends GetView<ControllerSaldo> {
       backgroundColor: AppColor.bgPageColor,
       toolbarColor: AppColor.bgPageColor,
       enableBack: true,
-      child: Padding(
-        padding: EdgeInsets.only(top: 10.h),
-        child: Center(
+      child: RefreshIndicator(
+        color: AppColor.primaryColor,
+        onRefresh: () async {
+          await controller.refreshData();
+        },
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          padding: EdgeInsets.only(top: 10.h),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -57,11 +66,14 @@ class PageSaldo extends GetView<ControllerSaldo> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'mrizkynurfajrie',
+                              controller.controllerRiderInfo.rider.value.name ??
+                                  "-",
                               style: TextStyles.textTitle,
                             ),
                             Text(
-                              '085250505050',
+                              controller
+                                      .controllerRiderInfo.rider.value.phone ??
+                                  "-",
                               style: TextStyles.inter.copyWith(
                                 fontSize: FontSizes.s14,
                                 color: AppColor.whiteColor,
@@ -73,31 +85,29 @@ class PageSaldo extends GetView<ControllerSaldo> {
                     ),
                     verticalSpace(20.h),
                     Obx(
-                      () => Container(
-                        child: Shimmer.fromColors(
-                          baseColor: Colors.grey.shade300,
-                          highlightColor: Colors.grey.shade50,
-                          enabled: controller.loading.isTrue,
-                          child: controller.loading.isTrue
-                              ? Container(
-                                  width: 100.w,
-                                  height: 40.w,
-                                  decoration: BoxDecoration(
-                                    borderRadius: Corners.lgBorder,
-                                    color: Colors.white,
-                                  ),
-                                )
-                              : Text(
-                                  CurrencyFormat.convertToIdr(
-                                    controller.balance.value.currBalance,
-                                    2,
-                                  ),
-                                  style: TextStyles.inter.copyWith(
-                                      fontSize: FontSizes.s32,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColor.whiteColor),
+                      () => Shimmer.fromColors(
+                        baseColor: Colors.grey.shade300,
+                        highlightColor: Colors.grey.shade50,
+                        enabled: controller.loading.isTrue,
+                        child: controller.loading.isTrue
+                            ? Container(
+                                width: 100.w,
+                                height: 40.w,
+                                decoration: BoxDecoration(
+                                  borderRadius: Corners.lgBorder,
+                                  color: Colors.white,
                                 ),
-                        ),
+                              )
+                            : Text(
+                                CurrencyFormat.convertToIdr(
+                                  controller.balance.value.currBalance,
+                                  2,
+                                ),
+                                style: TextStyles.inter.copyWith(
+                                    fontSize: FontSizes.s32,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColor.whiteColor),
+                              ),
                       ),
                     )
                   ],
@@ -125,26 +135,78 @@ class PageSaldo extends GetView<ControllerSaldo> {
                 width: Get.width * 0.9.h,
                 height: Get.height * 0.45.h,
                 color: AppColor.whiteColor,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: IconSizes.xxl,
-                      width: IconSizes.xxl,
-                      child: Image.asset('assets/icons/no_data.png'),
-                    ),
-                    verticalSpace(5.h),
-                    SizedBox(
-                      width: Get.width * 0.7,
-                      child: Text(
-                          'Anda belum memiliki transaksi, silakan lakukan isi ulang saldo',
-                          style: TextStyles.inter.copyWith(
-                            fontSize: FontSizes.s12,
-                            fontWeight: FontWeight.w400,
+                child: controller.obx(
+                  (state) => Scrollbar(
+                    child: ListView.builder(
+                      controller: controller.scrollController,
+                      itemCount: controller.listTransaction.length,
+                      itemBuilder: (context, index) => ListTile(
+                        title: Text(
+                          controller.listTransaction[index].trxType == 1
+                              ? "Top Up"
+                              : "Transaksi",
+                          style: TextStyles.body1,
+                        ),
+                        subtitle: Text(
+                            "${FormatDateTime.formatDateLocale(controller.listTransaction[index].datetimeSaldo.toString())} . ${FormatDateTime.formatTime(dateString: controller.listTransaction[index].datetimeSaldo.toString())}"),
+                        leading: CardRoundedBorder(
+                          padding: EdgeInsets.zero,
+                          width: IconSizes.xl,
+                          child: Icon(
+                            controller.listTransaction[index].trxType == 1
+                                ? CupertinoIcons.plus
+                                : CupertinoIcons.car_detailed,
+                            color:
+                                controller.listTransaction[index].trxType == 1
+                                    ? Colors.green
+                                    : Colors.red,
+                            size: IconSizes.lg,
                           ),
-                          textAlign: TextAlign.center),
-                    )
-                  ],
+                        ),
+                        trailing: RichText(
+                            text: TextSpan(
+                                text:
+                                    controller.listTransaction[index].trxType ==
+                                            1
+                                        ? ''
+                                        : '-',
+                                style: TextStyles.textStd
+                                    .copyWith(color: Colors.black),
+                                children: [
+                              TextSpan(
+                                text: CurrencyFormat.convertToIdr(
+                                    controller.listTransaction[index].amount,
+                                    0),
+                              ),
+                            ])),
+                      ),
+                    ),
+                  ),
+                  onLoading: loadingIndicatorBottom(context),
+                  onEmpty: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: IconSizes.xxl,
+                        width: IconSizes.xxl,
+                        child: Image.asset('assets/icons/no_data.png'),
+                      ),
+                      verticalSpace(5.h),
+                      SizedBox(
+                        width: Get.width * 0.7,
+                        child: Text(
+                            'Anda belum memiliki transaksi, silakan lakukan isi ulang saldo',
+                            style: TextStyles.inter.copyWith(
+                              fontSize: FontSizes.s12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            textAlign: TextAlign.center),
+                      )
+                    ],
+                  ),
+                  onError: (e) {
+                    return const Text("Something wrong");
+                  },
                 ),
               )
             ],
