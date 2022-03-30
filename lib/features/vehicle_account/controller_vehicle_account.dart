@@ -8,9 +8,11 @@ import 'package:intake_rider/framework/api2.dart';
 import 'package:intake_rider/response/nebeng_rider.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
 import 'package:intake_rider/shared/controller/controller_vehicle_info.dart';
+import 'package:intake_rider/shared/helpers/format_date_time.dart';
 
 class ControllerVehicleAccount extends GetxController {
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
+  var controllerVehicleInfo = Get.find<ControllerVehicleInfo>();
 
   final ApiVehicleAccount api;
   ControllerVehicleAccount({required this.api});
@@ -41,20 +43,21 @@ class ControllerVehicleAccount extends GetxController {
 
   @override
   void onInit() async {
-    // var vehicle = await Api2().getVehicle();
     var rider = await Api2().getRider();
     log('data rider : ' + rider.toString());
-    // simNum.value = vehicle['sim'] ?? '';
-    // simExp.value = vehicle['simExp'] ?? '';
-    // imgSim.value = vehicle['simPict'] ?? '';
-    // platNum.value = vehicle['plat_number'] ?? '';
-    // vehicleVar.value = vehicle['vehicle_variant'] ?? '';
-    // vehicleCol.value = vehicle['vehicle_color'] ?? '';
-    // imgStnk.value = vehicle['stnkPict'] ?? '';
     idRider.value = rider["id"] ?? 0;
 
-    getVehicleData();
-    // vehicleRider.value = NebengRider.fromArguments(Get.arguments);
+    await getVehicleData();
+
+    txtSimNum.text = controllerVehicleInfo.vehicle.value.sim ?? '';
+    txtSimExp.text = controllerVehicleInfo.vehicle.value.simExp == null
+        ? ''
+        : FormatDateTime.formatDateWithoutHour(
+            value: controllerVehicleInfo.vehicle.value.simExp!);
+    txtPlatNum.text = controllerVehicleInfo.vehicle.value.platNumber ?? '';
+    txtVehicleCol.text = controllerVehicleInfo.vehicle.value.vehicleColor ?? '';
+    txtVehicleVar.text =
+        controllerVehicleInfo.vehicle.value.vehicleVariant ?? '';
     super.onInit();
   }
 
@@ -63,7 +66,8 @@ class ControllerVehicleAccount extends GetxController {
       var responData = await api.updateNebengRider(
           riderId: controllerRiderInfo.rider.value.id);
       idNebengRider.value = responData['data']['nebeng_rider']['id'];
-
+      controllerVehicleInfo.vehicle.value =
+          NebengRider.fromJson(responData['data']['nebeng_rider']);
       return responData;
     } catch (e) {
       log(e.toString());
@@ -199,7 +203,7 @@ class ControllerVehicleAccount extends GetxController {
           vehicleVar: txtVehicleVar.text,
           vehicleCol: txtVehicleCol.text,
           stnkPict: uploadStnk,
-          idRiderNebeng: idNebengRider.value ,
+          idRiderNebeng: idNebengRider.value,
           idRider: idRider.value);
       log(updateResult.toString());
       if (updateResult != null) {
