@@ -74,8 +74,11 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                   child: Container(
                                       padding: const EdgeInsets.all(2),
                                       child: (controller.controllerRiderInfo
-                                                  .rider.value.image !=
-                                              '')
+                                                      .rider.value.image !=
+                                                  '' &&
+                                              controller.controllerRiderInfo
+                                                      .rider.value.image !=
+                                                  null)
                                           ? ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(90),
@@ -219,39 +222,63 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
                                     color: AppColor.whiteColor),
-                                child: Center(
-                                  child: DottedBorder(
-                                    dashPattern: const [12, 4],
-                                    strokeWidth: 1,
-                                    strokeCap: StrokeCap.round,
-                                    color: AppColor.greyColorLight,
-                                    borderType: BorderType.RRect,
-                                    radius: const Radius.circular(12),
-                                    child: SizedBox(
-                                      width: Get.width * 0.75.w,
-                                      height: Get.height * 0.20.h,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          const Icon(
-                                            CupertinoIcons.person_fill,
-                                            size: 35,
-                                            color: AppColor.greyColorLight,
+                                child: (controller.controllerRiderInfo.rider
+                                                .value.ktpPict !=
+                                            "" &&
+                                        controller.controllerRiderInfo.rider
+                                                .value.ktpPict ==
+                                            null)
+                                    ? Container(
+                                        width: Get.width * 0.75.w,
+                                        height: Get.height * 0.20.h,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            border: Border.all(
+                                                style: BorderStyle.solid)),
+                                        child: Image.network(
+                                          "${Api1().baseUrl}images/${controller.controllerRiderInfo.rider.value.ktpPict}",
+                                          fit: BoxFit.cover,
+                                        ),
+                                      )
+                                    : Center(
+                                        child: DottedBorder(
+                                          dashPattern: const [12, 4],
+                                          strokeWidth: 1,
+                                          strokeCap: StrokeCap.round,
+                                          color: AppColor.greyColorLight,
+                                          borderType: BorderType.RRect,
+                                          radius: const Radius.circular(12),
+                                          child: SizedBox(
+                                            width: Get.width * 0.75.w,
+                                            height: Get.height * 0.20.h,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                const Icon(
+                                                  CupertinoIcons.person_fill,
+                                                  size: 35,
+                                                  color:
+                                                      AppColor.greyColorLight,
+                                                ),
+                                                verticalSpace(5.h),
+                                                Text(
+                                                  'Foto KTP',
+                                                  style: TextStyles.inter
+                                                      .copyWith(
+                                                          fontSize:
+                                                              FontSizes.s14,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          color: AppColor
+                                                              .greyColorLight),
+                                                )
+                                              ],
+                                            ),
                                           ),
-                                          verticalSpace(5.h),
-                                          Text(
-                                            'Foto KTP',
-                                            style: TextStyles.inter.copyWith(
-                                                fontSize: FontSizes.s14,
-                                                fontWeight: FontWeight.w400,
-                                                color: AppColor.greyColorLight),
-                                          )
-                                        ],
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                ),
                               ),
                       ),
                       verticalSpace(5.h)

@@ -9,7 +9,7 @@ import 'package:intake_rider/response/rider.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
 
 class ControllerUserAccount extends GetxController {
-   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
+  var controllerRiderInfo = Get.find<ControllerRiderInfo>();
 
   final ApiUserAccount api;
   ControllerUserAccount({required this.api});
@@ -27,7 +27,7 @@ class ControllerUserAccount extends GetxController {
   final email = ''.obs;
   final nik = ''.obs;
   final city = ''.obs;
-  final date =''.obs;
+  final date = ''.obs;
   final address = ''.obs;
   var idRider = 0.obs;
   var ktpPreview = ''.obs;
@@ -45,9 +45,9 @@ class ControllerUserAccount extends GetxController {
   void onInit() async {
     var rider = await Api2().getRider();
     image.value = rider['image'] ?? '';
-    name.value = rider['name'] ?? 'Rider';
-    phone.value = rider['phone'] ?? '08xxxxxxx';
-    email.value = rider['email'] ?? 'driver@mail.com';
+    name.value = rider['name'] ?? '';
+    phone.value = rider['phone'] ?? '';
+    email.value = rider['email'] ?? '';
     nik.value = rider['nik'] ?? '';
     city.value = rider['cityLocation'] ?? '';
     date.value = rider['birth'] ?? '';
@@ -62,8 +62,6 @@ class ControllerUserAccount extends GetxController {
     txtAddress.text = address.value;
     txtPhone.text = phone.value;
     txtCity.text = city.value;
-    ktpPreview.value =ktpImage.value;
-
 
     super.onInit();
   }
@@ -191,9 +189,14 @@ class ControllerUserAccount extends GetxController {
   updateUserAccount() async {
     try {
       loading = true;
-      if(uploadImg == '') {
-        if(controllerRiderInfo.rider.value.image != null) {
+      if (uploadImg == '') {
+        if (controllerRiderInfo.rider.value.image != null) {
           uploadImg = controllerRiderInfo.rider.value.image!;
+        }
+      }
+      if (uploadKtp == '') {
+        if (controllerRiderInfo.rider.value.ktpPict != null) {
+          uploadKtp = controllerRiderInfo.rider.value.ktpPict!;
         }
       }
       var updateResult = await api.updateUserAccount(

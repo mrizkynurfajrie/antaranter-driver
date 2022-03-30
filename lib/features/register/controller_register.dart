@@ -85,17 +85,9 @@ class ControllerRegister extends GetxController {
         Get.offAllNamed(Routes.regsuccess);
         await Future.delayed(const Duration(seconds: 2));
         var phoneNumber = res['data']['newRider']['phone'];
-        var riderId = res['data']['newRider']['rider_id'];
+        var riderId = res['data']['newRider']['id'];
         var resNebengRider = await api.createNebengRider(
           idRider: riderId,
-          statusNebeng: statusNebeng.value,
-          sim: sim.value,
-          simPict: simPict.value,
-          stnkPict: stnkPict.value,
-          rating: rating.value,
-          vehicleVariant: vehicleVar.value,
-          platNumber: platNum.value,
-          vehicleColor: vehicleCol.value,
         );
         log(resNebengRider.toString());
         Get.offAllNamed(Routes.login, arguments: phoneNumber);

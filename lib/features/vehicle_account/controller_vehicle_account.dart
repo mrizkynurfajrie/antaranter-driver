@@ -29,6 +29,7 @@ class ControllerVehicleAccount extends GetxController {
   final vehicleCol = ''.obs;
   final imgStnk = ''.obs;
 
+  var idNebengRider = 0.obs;
   var simPreview = ''.obs;
   var stnkPreview = ''.obs;
   var idRider = 0.obs;
@@ -61,8 +62,9 @@ class ControllerVehicleAccount extends GetxController {
     try {
       var responData = await api.updateNebengRider(
           riderId: controllerRiderInfo.rider.value.id);
+      idNebengRider.value = responData['data']['nebeng_rider']['id'];
 
-    return responData;
+      return responData;
     } catch (e) {
       log(e.toString());
     }
@@ -197,6 +199,7 @@ class ControllerVehicleAccount extends GetxController {
           vehicleVar: txtVehicleVar.text,
           vehicleCol: txtVehicleCol.text,
           stnkPict: uploadStnk,
+          idRiderNebeng: idNebengRider.value ,
           idRider: idRider.value);
       log(updateResult.toString());
       if (updateResult != null) {
