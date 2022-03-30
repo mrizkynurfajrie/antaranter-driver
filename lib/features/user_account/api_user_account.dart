@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:intake_rider/framework/api1.dart';
 
 class ApiUserAccount {
@@ -41,5 +43,19 @@ class ApiUserAccount {
     var upload = Api1().apiJSONMultipartWithToken(ktpImg, 'upload');
 
     return upload;
+  }
+
+   Future<dynamic> getProvince() async {
+    var responseProvince = await Api1().apiJSONGetWitToken("provincies/list");
+    log('provinsi : ' + responseProvince.toString());
+    return responseProvince;
+  }
+
+  Future<dynamic> getCity({required int idProvince}) async {
+    final bodyProvince = {"province_id": idProvince};
+    var responseCity = await Api1()
+        .apiJSONPostWithToken("cities/findbyprovince", bodyProvince);
+
+    return responseCity;
   }
 }
