@@ -20,9 +20,6 @@ class ControllerLogin extends GetxController {
   var isValidPassword = false.obs;
   var isValidForm = false.obs;
 
-  var controllerRiderInfo = Get.find<ControllerRiderInfo>();
-  // var controllerVehicleInfo = Get.find<ControllerVehicleInfo>();
-
   var loading = false.obs;
   var token = "".obs;
   var loginStatus = false;
@@ -73,9 +70,9 @@ class ControllerLogin extends GetxController {
         if (loginResult['success'] == true) {
           var detailUser = loginResult["data"]["rider"];
           await Api2().setRider(rider: detailUser);
-          var apaja = await Api2().getRider();
-          log(apaja.toString());
-          controllerRiderInfo.rider.value = Rider.fromJson(detailUser);
+          var getDetailUser = await Api2().getRider();
+          log(getDetailUser.toString());
+          // controllerRiderInfo.rider.value = Rider.fromJson(detailUser);
           var tokenUser = loginResult["data"]["token"];
           token.value = tokenUser;
           await Api2().setToken(token: token.value);

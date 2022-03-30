@@ -158,6 +158,7 @@ class PageHome extends GetView<ControllerHome> {
                         onTap: () {
                           Get.toNamed(Routes.order);
                         },
+                        padding: EdgeInsets.only(top: 10.h),
                       ),
                     ],
                   ),
