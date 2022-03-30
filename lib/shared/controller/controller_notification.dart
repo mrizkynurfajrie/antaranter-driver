@@ -2,8 +2,12 @@ import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
+import 'package:intake_rider/shared/helpers/local_notification_service.dart';
 
 class ControllerNotification extends GetxController {
+
+
+
   @override
   void onInit() {
     super.onInit();
@@ -19,6 +23,7 @@ class ControllerNotification extends GetxController {
     // only work in foreground
     FirebaseMessaging.onMessage.listen((message) {
       log("onMessage");
+      LocalNotificationService.displayNotification(message);
     });
 
     // when the app is in backgroudn but opened
