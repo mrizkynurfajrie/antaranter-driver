@@ -50,7 +50,7 @@ class ControllerVehicleAccount extends GetxController {
     // vehicleVar.value = vehicle['vehicle_variant'] ?? '';
     // vehicleCol.value = vehicle['vehicle_color'] ?? '';
     // imgStnk.value = vehicle['stnkPict'] ?? '';
-    // idRider.value = int.parse(rider['id'] ?? 0);
+    idRider.value = rider["id"] ?? 0;
 
     getVehicleData();
     // vehicleRider.value = NebengRider.fromArguments(Get.arguments);
@@ -196,9 +196,9 @@ class ControllerVehicleAccount extends GetxController {
           platNum: txtPlatNum.text,
           vehicleVar: txtVehicleVar.text,
           vehicleCol: txtVehicleCol.text,
-          stnkPict: uploadStnk);
-          // idRider: idRider.value);
-      // log(updateResult.toString());
+          stnkPict: uploadStnk,
+          idRider: idRider.value);
+      log(updateResult.toString());
       if (updateResult != null) {
         var result = updateResult["data"];
         await Api2().setVehicle(vehicle: result);

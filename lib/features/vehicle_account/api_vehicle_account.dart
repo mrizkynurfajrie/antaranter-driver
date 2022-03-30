@@ -11,6 +11,7 @@ class ApiVehicleAccount {
     required var vehicleVar,
     required var vehicleCol,
     required var stnkPict,
+    required var idRider,
     // required var idRider,
   }) async {
     final inputBody = {
@@ -24,7 +25,7 @@ class ApiVehicleAccount {
     };
 
     var apiVehicleAccountResponse = await Api1()
-        .apiJSONPostWithToken('nebengriders/create/', inputBody);
+        .apiJSONPostWithToken('nebengriders/update/$idRider', inputBody);
 
     return apiVehicleAccountResponse;
   }
