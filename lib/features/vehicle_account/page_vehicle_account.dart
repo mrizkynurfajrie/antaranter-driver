@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intake_rider/features/vehicle_account/controller_vehicle_account.dart';
+import 'package:intake_rider/framework/api1.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
@@ -89,39 +90,61 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
                                     color: AppColor.whiteColor),
-                                child: Center(
-                                  child: DottedBorder(
-                                    dashPattern: const [12, 4],
-                                    strokeWidth: 1,
-                                    strokeCap: StrokeCap.round,
-                                    color: AppColor.greyColorLight,
-                                    borderType: BorderType.RRect,
-                                    radius: const Radius.circular(12),
-                                    child: SizedBox(
-                                      width: Get.width * 0.75.w,
-                                      height: Get.height * 0.20.h,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          const Icon(
-                                            CupertinoIcons.person_fill,
-                                            size: 35,
-                                            color: AppColor.greyColorLight,
+                                child: (controller.controllerVehicleInfo.vehicle
+                                                .value.simPict !=
+                                            '' &&
+                                        controller.controllerVehicleInfo.vehicle
+                                                .value.simPict !=
+                                            null)
+                                    ? ClipRRect(
+                                        borderRadius: BorderRadius.circular(12),
+                                        child: SizedBox(
+                                          width: Get.width.w,
+                                          height: Get.height.h,
+                                          child: Image.network(
+                                            "${Api1().baseUrl}images/${controller.controllerVehicleInfo.vehicle.value.simPict}",
+                                            fit: BoxFit.cover,
                                           ),
-                                          verticalSpace(5.h),
-                                          Text(
-                                            'Foto SIM',
-                                            style: TextStyles.inter.copyWith(
-                                                fontSize: FontSizes.s14,
-                                                fontWeight: FontWeight.w400,
-                                                color: AppColor.greyColorLight),
-                                          )
-                                        ],
+                                        ),
+                                      )
+                                    : Center(
+                                        child: DottedBorder(
+                                          dashPattern: const [12, 4],
+                                          strokeWidth: 1,
+                                          strokeCap: StrokeCap.round,
+                                          color: AppColor.greyColorLight,
+                                          borderType: BorderType.RRect,
+                                          radius: const Radius.circular(12),
+                                          child: SizedBox(
+                                            width: Get.width * 0.75.w,
+                                            height: Get.height * 0.20.h,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                const Icon(
+                                                  CupertinoIcons.person_fill,
+                                                  size: 35,
+                                                  color:
+                                                      AppColor.greyColorLight,
+                                                ),
+                                                verticalSpace(5.h),
+                                                Text(
+                                                  'Foto SIM',
+                                                  style: TextStyles.inter
+                                                      .copyWith(
+                                                          fontSize:
+                                                              FontSizes.s14,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          color: AppColor
+                                                              .greyColorLight),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                ),
                               ),
                       ),
                       verticalSpace(5.h)
@@ -136,9 +159,10 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                     padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
                     controller: controller.txtPlatNum,
                     inputFormatters: [
-                      LengthLimitingTextInputFormatter(11),
+                      LengthLimitingTextInputFormatter(9),
                       FilteringTextInputFormatter.deny(RegExp(r'\s')),
-                      FilteringTextInputFormatter.singleLineFormatter
+                      FilteringTextInputFormatter.singleLineFormatter,
+                      // UpperCaseTextFormatter(),
                     ],
                     textCapitalization: TextCapitalization.characters,
                   ),
@@ -196,39 +220,61 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
                                     color: AppColor.whiteColor),
-                                child: Center(
-                                  child: DottedBorder(
-                                    dashPattern: const [12, 4],
-                                    strokeWidth: 1,
-                                    strokeCap: StrokeCap.round,
-                                    color: AppColor.greyColorLight,
-                                    borderType: BorderType.RRect,
-                                    radius: const Radius.circular(12),
-                                    child: SizedBox(
-                                      width: Get.width * 0.75.w,
-                                      height: Get.height * 0.20.h,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          const Icon(
-                                            CupertinoIcons.person_fill,
-                                            size: 35,
-                                            color: AppColor.greyColorLight,
+                                child: (controller.controllerVehicleInfo.vehicle
+                                                .value.stnkPict !=
+                                            '' &&
+                                        controller.controllerVehicleInfo.vehicle
+                                                .value.stnkPict !=
+                                            null)
+                                    ? ClipRRect(
+                                        borderRadius: BorderRadius.circular(12),
+                                        child: SizedBox(
+                                          width: Get.width.w,
+                                          height: Get.height.h,
+                                          child: Image.network(
+                                            "${Api1().baseUrl}images/${controller.controllerRiderInfo.rider.value.ktpPict}",
+                                            fit: BoxFit.cover,
                                           ),
-                                          verticalSpace(5.h),
-                                          Text(
-                                            'Foto STNK',
-                                            style: TextStyles.inter.copyWith(
-                                                fontSize: FontSizes.s14,
-                                                fontWeight: FontWeight.w400,
-                                                color: AppColor.greyColorLight),
-                                          )
-                                        ],
+                                        ),
+                                      )
+                                    : Center(
+                                        child: DottedBorder(
+                                          dashPattern: const [12, 4],
+                                          strokeWidth: 1,
+                                          strokeCap: StrokeCap.round,
+                                          color: AppColor.greyColorLight,
+                                          borderType: BorderType.RRect,
+                                          radius: const Radius.circular(12),
+                                          child: SizedBox(
+                                            width: Get.width * 0.75.w,
+                                            height: Get.height * 0.20.h,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                const Icon(
+                                                  CupertinoIcons.person_fill,
+                                                  size: 35,
+                                                  color:
+                                                      AppColor.greyColorLight,
+                                                ),
+                                                verticalSpace(5.h),
+                                                Text(
+                                                  'Foto STNK',
+                                                  style: TextStyles.inter
+                                                      .copyWith(
+                                                          fontSize:
+                                                              FontSizes.s14,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          color: AppColor
+                                                              .greyColorLight),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                ),
                               ),
                       ),
                     ],
@@ -251,3 +297,13 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
     );
   }
 }
+
+// class UpperCaseTextFormatter extends TextInputFormatter {
+//   @override
+//   TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+//     return TextEditingValue(
+//       text: newValue.text.toUpperCase(),
+//       selection: newValue.selection,
+//     );
+//   }
+// }
