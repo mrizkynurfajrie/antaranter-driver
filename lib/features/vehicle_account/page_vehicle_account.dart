@@ -135,7 +135,12 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                     boxWidth: Get.width * 0.88.w,
                     padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
                     controller: controller.txtPlatNum,
-                    inputFormatters: [LengthLimitingTextInputFormatter(9)],
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(11),
+                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                      FilteringTextInputFormatter.singleLineFormatter
+                    ],
+                    textCapitalization: TextCapitalization.characters,
                   ),
                   InputPrimary(
                     hintText: 'Merek Kendaraan',
@@ -145,6 +150,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                     padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
                     controller: controller.txtVehicleVar,
                     label: 'Merek Kendaraan',
+                    textCapitalization: TextCapitalization.characters,
                   ),
                   InputPrimary(
                     hintText: 'Warna Kendaraan',
@@ -154,6 +160,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                     padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
                     controller: controller.txtVehicleCol,
                     label: 'Warna Kendaraan',
+                    textCapitalization: TextCapitalization.characters,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -201,7 +208,8 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                                       width: Get.width * 0.75.w,
                                       height: Get.height * 0.20.h,
                                       child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: <Widget>[
                                           const Icon(
                                             CupertinoIcons.person_fill,

@@ -9,7 +9,6 @@ import 'package:intake_rider/response/rider.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
 import 'package:intake_rider/shared/helpers/format_date_time.dart';
 import 'package:intake_rider/shared/widgets/bottomsheet/bottomsheet_selection.dart';
-import 'package:intake_rider/shared/widgets/cards/card_item.dart';
 import 'package:intake_rider/shared/widgets/cards/card_item_profile.dart';
 
 class ControllerUserAccount extends GetxController {
@@ -23,6 +22,7 @@ class ControllerUserAccount extends GetxController {
   var txtDate = TextEditingController();
   var txtAddress = TextEditingController();
   var txtPhone = TextEditingController();
+  var txtProvince = TextEditingController();
   var txtCity = TextEditingController();
   var txtNik = TextEditingController();
 
@@ -41,6 +41,9 @@ class ControllerUserAccount extends GetxController {
   var loading = false;
   var image = ''.obs;
   var ktpImage = ''.obs;
+  var isValidProvince = false.obs;
+  var isValidForm = false.obs;
+  var loadingForm = false.obs;
 
   var itemProvince = 'Provinsi'.obs;
   var itemCities = 'Kota'.obs;
@@ -83,6 +86,17 @@ class ControllerUserAccount extends GetxController {
     txtPhone.dispose();
     txtCity.dispose();
   }
+
+  // formValidationListener() {
+  //   provinces.addListener(() {
+  //     isValidProvince.value = itemProvince.isNotEmpty;
+  //     validateForm();
+  //   });
+  // }
+
+  // validateForm() {
+  //   isValidForm.value = isValidProvince.value;
+  // }
 
   getRiderData() async {
     try {
