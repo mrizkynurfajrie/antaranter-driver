@@ -191,6 +191,11 @@ class ControllerUserAccount extends GetxController {
   updateUserAccount() async {
     try {
       loading = true;
+      if(uploadImg == '') {
+        if(controllerRiderInfo.rider.value.image != null) {
+          uploadImg = controllerRiderInfo.rider.value.image!;
+        }
+      }
       var updateResult = await api.updateUserAccount(
         name: txtName.text,
         email: txtEmail.text,

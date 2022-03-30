@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/login/api_login.dart';
 import 'package:intake_rider/framework/api2.dart';
-import 'package:intake_rider/response/rider.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
-// import 'package:intake_rider/shared/controller/controller_vehicle_info.dart';
 import 'package:intake_rider/shared/helpers/utils.dart';
 import 'package:intake_rider/routes/app_routes.dart';
 
 class ControllerLogin extends GetxController {
+  var controllerRiderInfo = Get.find<ControllerRiderInfo>();
+
   final ApiLogin api;
   ControllerLogin({required this.api});
 
@@ -72,7 +72,6 @@ class ControllerLogin extends GetxController {
           await Api2().setRider(rider: detailUser);
           var getDetailUser = await Api2().getRider();
           log(getDetailUser.toString());
-          // controllerRiderInfo.rider.value = Rider.fromJson(detailUser);
           var tokenUser = loginResult["data"]["token"];
           token.value = tokenUser;
           await Api2().setToken(token: token.value);

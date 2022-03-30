@@ -51,8 +51,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                   height: IconSizes.xxl,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
-                                    child: Image.network(
-                                      "${Api1().baseUrl}images/${controller.controllerRiderInfo.rider.value.image}",
+                                    child: Image.file(
+                                      File(controller.imgPreview.value),
                                       width: IconSizes.xxl,
                                       height: IconSizes.xxl,
                                       fit: BoxFit.cover,
@@ -75,7 +75,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                       padding: const EdgeInsets.all(2),
                                       child: (controller.controllerRiderInfo
                                                   .rider.value.image !=
-                                              null)
+                                              '')
                                           ? ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(90),
