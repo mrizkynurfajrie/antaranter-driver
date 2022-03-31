@@ -42,13 +42,6 @@ class PageContact extends GetView<ControllerContact> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              ButtonContact(
-                ontap: () {},
-                icon: AppIcons.contWhatsapp,
-                title: 'Whatsapp',
-                buttonHeight: Get.height * 0.07.h,
-                buttonWidth: Get.width * 0.88.w,
-              ),
               verticalSpace(5.h),
               ButtonContact(
                 ontap: () {},

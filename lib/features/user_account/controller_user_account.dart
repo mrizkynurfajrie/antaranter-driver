@@ -7,9 +7,12 @@ import 'package:intake_rider/features/user_account/api_user_account.dart';
 import 'package:intake_rider/framework/api2.dart';
 import 'package:intake_rider/response/rider.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
+import 'package:intake_rider/shared/helpers/format_date_time.dart';
+import 'package:intake_rider/shared/widgets/bottomsheet/bottomsheet_selection.dart';
+import 'package:intake_rider/shared/widgets/cards/card_item_profile.dart';
 
 class ControllerUserAccount extends GetxController {
-   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
+  var controllerRiderInfo = Get.find<ControllerRiderInfo>();
 
   final ApiUserAccount api;
   ControllerUserAccount({required this.api});
@@ -19,6 +22,7 @@ class ControllerUserAccount extends GetxController {
   var txtDate = TextEditingController();
   var txtAddress = TextEditingController();
   var txtPhone = TextEditingController();
+  var txtProvince = TextEditingController();
   var txtCity = TextEditingController();
   var txtNik = TextEditingController();
 
@@ -27,7 +31,7 @@ class ControllerUserAccount extends GetxController {
   final email = ''.obs;
   final nik = ''.obs;
   final city = ''.obs;
-  final date =''.obs;
+  final date = ''.obs;
   final address = ''.obs;
   var idRider = 0.obs;
   var ktpPreview = ''.obs;
@@ -37,33 +41,37 @@ class ControllerUserAccount extends GetxController {
   var loading = false;
   var image = ''.obs;
   var ktpImage = ''.obs;
+  var isValidProvince = false.obs;
+  var isValidForm = false.obs;
+  var loadingForm = false.obs;
+
+  var itemProvince = 'Provinsi'.obs;
+  var itemCities = 'Kota'.obs;
+  var search = ''.obs;
+  var idProvince = 0.obs;
+  var idCities = 0.obs;
+
+  var provinces = <ModelBottomsheet>[].obs;
+  var cities = <ModelBottomsheet>[].obs;
 
   final ImagePicker picker = ImagePicker();
   XFile? img;
 
   @override
   void onInit() async {
-    var rider = await Api2().getRider();
-    image.value = rider['image'] ?? '';
-    name.value = rider['name'] ?? 'Rider';
-    phone.value = rider['phone'] ?? '08xxxxxxx';
-    email.value = rider['email'] ?? 'driver@mail.com';
-    nik.value = rider['nik'] ?? '';
-    city.value = rider['cityLocation'] ?? '';
-    date.value = rider['birth'] ?? '';
-    address.value = rider['address'] ?? '';
-    idRider.value = rider['id'] ?? 0;
-    ktpImage.value = rider['ktp_pict'] ?? '';
+    await getRiderData();
+    await getProvinces();
 
-    txtName.text = name.value;
-    txtEmail.text = email.value;
-    txtNik.text = nik.value;
-    txtDate.text = date.value;
-    txtAddress.text = address.value;
-    txtPhone.text = phone.value;
-    txtCity.text = city.value;
-    ktpPreview.value =ktpImage.value;
-
+    txtName.text = controllerRiderInfo.rider.value.name ?? '';
+    txtEmail.text = controllerRiderInfo.rider.value.email ?? '';
+    txtNik.text = controllerRiderInfo.rider.value.nik ?? '';
+    txtDate.text = controllerRiderInfo.rider.value.birth == null
+        ? ''
+        : FormatDateTime.formatDateWithoutHour(
+            value: controllerRiderInfo.rider.value.birth!);
+    txtAddress.text = controllerRiderInfo.rider.value.address ?? '';
+    txtPhone.text = controllerRiderInfo.rider.value.phone ?? '';
+    txtCity.text = controllerRiderInfo.rider.value.cityLocation ?? '';
 
     super.onInit();
   }
@@ -77,6 +85,39 @@ class ControllerUserAccount extends GetxController {
     txtAddress.dispose();
     txtPhone.dispose();
     txtCity.dispose();
+  }
+
+  // formValidationListener() {
+  //   provinces.addListener(() {
+  //     isValidProvince.value = itemProvince.isNotEmpty;
+  //     validateForm();
+  //   });
+  // }
+
+  // validateForm() {
+  //   isValidForm.value = isValidProvince.value;
+  // }
+
+  getRiderData() async {
+    try {
+      var responData = await api.updateUserAccount(
+        idRider: controllerRiderInfo.rider.value.id,
+        name: controllerRiderInfo.rider.value.name,
+        img: controllerRiderInfo.rider.value.image,
+        email: controllerRiderInfo.rider.value.email,
+        nik: controllerRiderInfo.rider.value.nik,
+        ktp: controllerRiderInfo.rider.value.ktpPict,
+        phone: controllerRiderInfo.rider.value.phone,
+        birth: controllerRiderInfo.rider.value.birth,
+        address: controllerRiderInfo.rider.value.address,
+        city: controllerRiderInfo.rider.value.cityLocation,
+      );
+
+      controllerRiderInfo.rider.value = Rider.fromJson(responData['data']);
+      return responData;
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
 //KTP//
@@ -188,9 +229,91 @@ class ControllerUserAccount extends GetxController {
     }
   }
 
+  getProvinces() async {
+    try {
+      var r = await api.getProvince();
+
+      for (var x in r['data']) {
+        // log(x.toString());
+        provinces.add(
+          ModelBottomsheet(
+              itemName: x['name'],
+              widget: CardItemProfile(
+                data: x,
+              ),
+              value: x['id']),
+        );
+        provinces.sort((a, b) => a.itemName.compareTo(b.itemName));
+      }
+    } catch (_) {}
+  }
+
+  getCities() async {
+    try {
+      cities.clear();
+      var r = await api.getCity(idProvince: idProvince.value);
+      for (var x in r['data']) {
+        cities.add(ModelBottomsheet(
+          itemName: x['name'],
+          widget: CardItemProfile(
+            data: x,
+          ),
+          value: x['id'],
+        ));
+        cities.sort((a, b) => a.itemName.compareTo(b.itemName));
+      }
+    } catch (_) {}
+  }
+
+  buildProvince(context) {
+    BottomsheetSelection(
+        title: 'Pilih Provinsi',
+        context: context,
+        listWidget: provinces,
+        value: (value) async {
+          if (value != null) {
+            search('');
+            log(value.toString());
+            idProvince(value);
+            await getCities();
+          }
+        },
+        itemName: (value) {
+          itemProvince(value);
+        }).showSelection();
+  }
+
+  buildCities(context) {
+    BottomsheetSelection(
+        title: 'Pilih Kota',
+        context: context,
+        listWidget: cities,
+        value: (value) async {
+          if (value != null) {
+            search('');
+            log(value.toString());
+            idCities(value);
+            search(value);
+          }
+        },
+        itemName: (value) {
+          itemCities(value);
+        }).showSelection();
+  }
+
   updateUserAccount() async {
     try {
       loading = true;
+      if (uploadImg == '') {
+        if (controllerRiderInfo.rider.value.image != null) {
+          uploadImg = controllerRiderInfo.rider.value.image!;
+        }
+      }
+      if (uploadKtp == '') {
+        if (controllerRiderInfo.rider.value.ktpPict != null) {
+          uploadKtp = controllerRiderInfo.rider.value.ktpPict!;
+        }
+      }
       var updateResult = await api.updateUserAccount(
         name: txtName.text,
         email: txtEmail.text,

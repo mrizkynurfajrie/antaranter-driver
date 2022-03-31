@@ -5,7 +5,6 @@
 import 'dart:convert';
 
 import 'package:intake_rider/response/main_rider.dart';
-import 'package:intake_rider/response/rider.dart';
 
 NebengRider vehicleFromJson(String str) =>
     NebengRider.fromJson(json.decode(str));
@@ -69,8 +68,8 @@ class NebengRider {
         accountApproved: json["account_approved"] == null
             ? null
             : DateTime.parse(json["account_approved"]),
-        lat: json["lat"].toDouble(),
-        lang: json["lang"].toDouble(),
+        lat: json["lat"]?.toDouble(),
+        lang: json["lang"]?.toDouble(),
         rating: json["rating"],
         approvedBy: json["approvedBy"],
         vehicleVariant: json["vehicle_variant"],

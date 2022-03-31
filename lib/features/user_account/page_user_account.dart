@@ -10,6 +10,7 @@ import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_date.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_email.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
+import 'package:intake_rider/shared/widgets/inputs/input_selection.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../shared/constants/styles.dart';
@@ -51,8 +52,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                   height: IconSizes.xxl,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
-                                    child: Image.network(
-                                      "${Api1().baseUrl}images/${controller.controllerRiderInfo.rider.value.image}",
+                                    child: Image.file(
+                                      File(controller.imgPreview.value),
                                       width: IconSizes.xxl,
                                       height: IconSizes.xxl,
                                       fit: BoxFit.cover,
@@ -74,8 +75,11 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                   child: Container(
                                       padding: const EdgeInsets.all(2),
                                       child: (controller.controllerRiderInfo
-                                                  .rider.value.image !=
-                                              null)
+                                                      .rider.value.image !=
+                                                  '' &&
+                                              controller.controllerRiderInfo
+                                                      .rider.value.image !=
+                                                  null)
                                           ? ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(90),
@@ -219,39 +223,61 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
                                     color: AppColor.whiteColor),
-                                child: Center(
-                                  child: DottedBorder(
-                                    dashPattern: const [12, 4],
-                                    strokeWidth: 1,
-                                    strokeCap: StrokeCap.round,
-                                    color: AppColor.greyColorLight,
-                                    borderType: BorderType.RRect,
-                                    radius: const Radius.circular(12),
-                                    child: SizedBox(
-                                      width: Get.width * 0.75.w,
-                                      height: Get.height * 0.20.h,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          const Icon(
-                                            CupertinoIcons.person_fill,
-                                            size: 35,
-                                            color: AppColor.greyColorLight,
+                                child: (controller.controllerRiderInfo.rider
+                                                .value.ktpPict !=
+                                            '' &&
+                                        controller.controllerRiderInfo.rider
+                                                .value.ktpPict !=
+                                            null)
+                                    ? ClipRRect(
+                                        borderRadius: BorderRadius.circular(12),
+                                        child: SizedBox(
+                                          width: Get.width.w,
+                                          height: Get.height.h,
+                                          child: Image.network(
+                                            "${Api1().baseUrl}images/${controller.controllerRiderInfo.rider.value.ktpPict}",
+                                            fit: BoxFit.cover,
                                           ),
-                                          verticalSpace(5.h),
-                                          Text(
-                                            'Foto KTP',
-                                            style: TextStyles.inter.copyWith(
-                                                fontSize: FontSizes.s14,
-                                                fontWeight: FontWeight.w400,
-                                                color: AppColor.greyColorLight),
-                                          )
-                                        ],
+                                        ),
+                                      )
+                                    : Center(
+                                        child: DottedBorder(
+                                          dashPattern: const [12, 4],
+                                          strokeWidth: 1,
+                                          strokeCap: StrokeCap.round,
+                                          color: AppColor.greyColorLight,
+                                          borderType: BorderType.RRect,
+                                          radius: const Radius.circular(12),
+                                          child: SizedBox(
+                                            width: Get.width * 0.75.w,
+                                            height: Get.height * 0.20.h,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                const Icon(
+                                                  CupertinoIcons.person_fill,
+                                                  size: 35,
+                                                  color:
+                                                      AppColor.greyColorLight,
+                                                ),
+                                                verticalSpace(5.h),
+                                                Text(
+                                                  'Foto KTP',
+                                                  style: TextStyles.inter
+                                                      .copyWith(
+                                                          fontSize:
+                                                              FontSizes.s14,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          color: AppColor
+                                                              .greyColorLight),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                ),
                               ),
                       ),
                       verticalSpace(5.h)
@@ -264,19 +290,47 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     boxWidth: Get.width * 0.88.w,
                     prefixIcon: const Icon(Icons.date_range),
                     hintText: 'Tanggal Lahir',
-                    padding: EdgeInsets.only(top: 1.h, bottom: 3.h),
+                    padding: EdgeInsets.only(top: 1.h, bottom: 4.h),
                     label: 'Tanggal Lahir',
                   ),
-                  InputPrimary(
-                    hintText: 'Kota',
-                    onTap: () {},
-                    prefixIcon: const Icon(
-                      Icons.place,
+                  Container(
+                    width: Get.width,
+                    margin: EdgeInsets.symmetric(horizontal: 4.w),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Provinsi & Kota',
+                          style: TextStyles.inter.copyWith(
+                            fontSize: FontSizes.s12,
+                            color: AppColor.neutral,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        InputSelection(
+                          valueText: controller.itemProvince.value,
+                          hintText: 'select_province'.tr,
+                          onTap: () {
+                            controller.buildProvince(context);
+                            controller.cities.clear();
+                          },
+                          padding: EdgeInsets.all(Insets.sm),
+                          width: Get.width * 0.88.w,
+                          margin: EdgeInsets.only(bottom: 5.h),
+                        ),
+                        InputSelection(
+                          valueText: controller.itemCities.value,
+                          hintText: 'select_cities'.tr,
+                          onTap: () {
+                            controller.buildCities(context);
+                          },
+                          padding: EdgeInsets.all(Insets.sm),
+                          margin: EdgeInsets.only(bottom: 5.h),
+                          width: Get.width * 0.88.w,
+                        ),
+                      ],
                     ),
-                    boxWidth: Get.width * 0.88.w,
-                    padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
-                    label: 'Kota',
-                    controller: controller.txtCity,
                   ),
                   InputPrimary(
                     controller: controller.txtAddress,

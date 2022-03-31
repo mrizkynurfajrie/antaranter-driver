@@ -17,8 +17,6 @@ class ControllerOrder extends GetxController {
   var ctrlTimeDept = TextEditingController();
   var ctrlDateArrv = TextEditingController();
   var ctrlTimeArrv = TextEditingController();
-  // var ctrlProvince = TextEditingController().obs;
-  var ctrlCities = TextEditingController().obs;
 
   var itemProvinceDept = 'Provinsi'.obs;
   var itemCitiesDept = 'Kota'.obs;
@@ -42,7 +40,7 @@ class ControllerOrder extends GetxController {
       // log("datanye");
 
       var r = await api.getProvince();
-      // print("datanye" + r.toString());
+      log("datanye" + r.toString());
 
       for (var x in r['data']) {
         // log(x.toString());

@@ -12,9 +12,10 @@ class ApiVehicleAccount {
     required var vehicleCol,
     required var stnkPict,
     required var idRider,
-    // required var idRider,
+    required var idRiderNebeng,
   }) async {
     final inputBody = {
+      "rider_id" : idRider,
       "sim": simNum,
       "simExp": simExp,
       "simPict": simPict,
@@ -24,8 +25,10 @@ class ApiVehicleAccount {
       "stnkPict": stnkPict,
     };
 
+    log('inputbody : ' + inputBody.toString());
+
     var apiVehicleAccountResponse = await Api1()
-        .apiJSONPostWithToken('nebengriders/update/$idRider', inputBody);
+        .apiJSONPostWithToken('nebengriders/update/$idRiderNebeng', inputBody);
 
     return apiVehicleAccountResponse;
   }

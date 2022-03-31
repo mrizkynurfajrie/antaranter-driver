@@ -21,28 +21,12 @@ class ApiRegister {
 
  Future<dynamic> createNebengRider({
     required int idRider,
-    required int statusNebeng,
-    required String sim,
-    required String simPict,
-    required String stnkPict,
-    required int rating,
-    required String vehicleVariant,
-    required String platNumber,
-    required String vehicleColor,
   }) async {
     final payload = {
       "rider_id": idRider,
-      "statusNebeng": statusNebeng,
-      "sim": sim,
-      "simPict": simPict,
-      "stnkPict": stnkPict,
-      "rating": rating,
-      "vehicle_variant": vehicleVariant,
-      "plat_number": platNumber,
-      "vehicle_color": vehicleColor,
     };
 
-    var r = await Api1().apiJSONPost('nebengriders/create', payload);
+    var r = await Api1().apiJSONPost('register-nebeng-rider', payload);
 
     return r;
   }
