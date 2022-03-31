@@ -59,9 +59,8 @@ class ControllerUserAccount extends GetxController {
 
   @override
   void onInit() async {
-    await getRiderData();
-    await getProvinces();
-
+    // await getRiderData();
+    
     txtName.text = controllerRiderInfo.rider.value.name ?? '';
     txtEmail.text = controllerRiderInfo.rider.value.email ?? '';
     txtNik.text = controllerRiderInfo.rider.value.nik ?? '';
@@ -72,7 +71,7 @@ class ControllerUserAccount extends GetxController {
     txtAddress.text = controllerRiderInfo.rider.value.address ?? '';
     txtPhone.text = controllerRiderInfo.rider.value.phone ?? '';
     txtCity.text = controllerRiderInfo.rider.value.cityLocation ?? '';
-
+    await getProvinces();
     super.onInit();
   }
 
@@ -302,8 +301,10 @@ class ControllerUserAccount extends GetxController {
   }
 
   updateUserAccount() async {
+    loadingForm.value = true;
     try {
-      loading = true;
+      await uploadImgRider();
+      await uploadKtpRider();
       if (uploadImg == '') {
         if (controllerRiderInfo.rider.value.image != null) {
           uploadImg = controllerRiderInfo.rider.value.image!;
@@ -324,10 +325,10 @@ class ControllerUserAccount extends GetxController {
         address: txtAddress.text,
         phone: txtPhone.text,
         city: txtCity.text,
-        idRider: idRider.value,
+        idRider: controllerRiderInfo.rider.value.id,
       );
       log(updateResult.toString());
-      if (updateResult != null) {
+      if (updateResult['success'] == true) {
         var result = updateResult["data"];
         await Api2().setRider(rider: result);
         var rider = Rider.fromJson(result);
@@ -337,11 +338,14 @@ class ControllerUserAccount extends GetxController {
           'Akun Pengguna anda berhasil diperbarui',
           snackPosition: SnackPosition.BOTTOM,
         );
+      }else{
+        throw "Gagal memperbarui akun";
       }
-      loading = false;
+      loadingForm.value = false;
     } catch (e) {
-      loading = false;
+      loadingForm.value = false;
       log(e.toString());
+      Get.snackbar("Terjadi kesalahan", e.toString());
     }
   }
 }
