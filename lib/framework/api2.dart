@@ -4,10 +4,11 @@ const String CACHE_USERNAME = "username";
 const String CACHE_TOKEN = "token";
 const String CHECK_LOGIN = "loginState";
 const String CACHE_RIDER = "rider";
-const String STATUS_ACTIVE_ORDER = "status_active_order";
-const String CACHE_ACTIVE_ORDER = "active_order";
+const String STATUS_ACTIVE_POST = "status_active_post";
+const String CACHE_ACTIVE_POST = "active_post";
 const String CACHE_VEHICLE = "vehicle";
 const String CACHE_POSTING = "posting";
+const String CACHE_USER = "user";
 
 class Api2 {
   final box = GetStorage();
@@ -30,6 +31,15 @@ class Api2 {
     return box.read(CACHE_RIDER);
   }
 
+  Future setUser({dynamic user}) async {
+    user ??= "";
+    await box.write(CACHE_USER, user);
+  }
+
+  Future<dynamic> getUser() async {
+    return box.read(CACHE_USER);
+  }
+
   Future<dynamic> setVehicle({dynamic vehicle}) async {
     vehicle ??= "";
     await box.write(CACHE_VEHICLE, vehicle);
@@ -38,6 +48,7 @@ class Api2 {
   Future<dynamic> getVehicle() async {
     return box.read(CACHE_VEHICLE);
   }
+
   Future<dynamic> setPosting({dynamic posting}) async {
     posting ??= "";
     await box.write(CACHE_POSTING, posting);
@@ -73,21 +84,21 @@ class Api2 {
     await box.remove(CACHE_VEHICLE);
   }
 
-  Future setHasActiveOrder({bool? isHasActiveOrder}) async {
-    isHasActiveOrder ??= false;
-    await box.write(STATUS_ACTIVE_ORDER, isHasActiveOrder);
+  Future setHasActivePost({bool? isHasActivePost}) async {
+    isHasActivePost ??= false;
+    await box.write(STATUS_ACTIVE_POST, isHasActivePost);
   }
 
-  Future<bool?> getHasActiveOrder() async {
-    return box.read(STATUS_ACTIVE_ORDER);
+  Future<bool?> getHasActivePost() async {
+    return box.read(STATUS_ACTIVE_POST);
   }
 
-  Future setActiveOrder({dynamic activeOrder}) async {
-    activeOrder ??= "";
-    await box.write(CACHE_ACTIVE_ORDER, activeOrder);
+  Future setActivePost({dynamic activePost}) async {
+    activePost ??= "";
+    await box.write(CACHE_ACTIVE_POST, activePost);
   }
 
-  Future<dynamic> getActiveOrder() async {
-    return box.read(CACHE_ACTIVE_ORDER);
+  Future<dynamic> getActivePost() async {
+    return box.read(CACHE_ACTIVE_POST);
   }
 }

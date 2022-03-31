@@ -59,16 +59,13 @@ class ControllerUserAccount extends GetxController {
 
   @override
   void onInit() async {
-<<<<<<< HEAD
     await getRiderData();
     await getProvinces();
     var rider = await Api2().getRider();
     idRider.value = rider["id"] ?? 0;
 
-=======
     // await getRiderData();
-    
->>>>>>> 27b79fda428640e493b983657751f4cff0f22b87
+
     txtName.text = controllerRiderInfo.rider.value.name ?? '';
     txtEmail.text = controllerRiderInfo.rider.value.email ?? '';
     txtNik.text = controllerRiderInfo.rider.value.nik ?? '';
@@ -78,13 +75,11 @@ class ControllerUserAccount extends GetxController {
             value: controllerRiderInfo.rider.value.birth!);
     txtAddress.text = controllerRiderInfo.rider.value.address ?? '';
     txtPhone.text = controllerRiderInfo.rider.value.phone ?? '';
-<<<<<<< HEAD
     itemCities.value = itemCities.value;
 
-=======
     txtCity.text = controllerRiderInfo.rider.value.cityLocation ?? '';
     await getProvinces();
->>>>>>> 27b79fda428640e493b983657751f4cff0f22b87
+
     super.onInit();
   }
 
@@ -335,13 +330,8 @@ class ControllerUserAccount extends GetxController {
         birth: txtDate.text,
         address: txtAddress.text,
         phone: txtPhone.text,
-<<<<<<< HEAD
         city: itemCities.value,
         idRider: idRider.value,
-=======
-        city: txtCity.text,
-        idRider: controllerRiderInfo.rider.value.id,
->>>>>>> 27b79fda428640e493b983657751f4cff0f22b87
       );
       log(updateResult.toString());
       if (updateResult['success'] == true) {
@@ -354,7 +344,7 @@ class ControllerUserAccount extends GetxController {
           'Akun Pengguna anda berhasil diperbarui',
           snackPosition: SnackPosition.BOTTOM,
         );
-      }else{
+      } else {
         throw "Gagal memperbarui akun";
       }
       loadingForm.value = false;

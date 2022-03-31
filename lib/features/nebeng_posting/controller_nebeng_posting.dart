@@ -181,7 +181,7 @@ class ControllerNebengPosting extends GetxController {
       loading = true;
       var priceformatted = maskFormatter.getUnmaskedText();
       var updateResult = await api.postingNebeng(
-        idRider: idNebengRider.value,
+        idRider: controllerRiderInfo.rider.value.id,
         cityOrigin: itemCitiesDept.value,
         cityDestination: itemCitiesArrv.value,
         dateDep: txtDateDept.text,
@@ -201,7 +201,7 @@ class ControllerNebengPosting extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
         );
         await Future.delayed(const Duration(seconds: 2));
-        Get.offNamed(Routes.home);
+        Get.offNamed(Routes.main);
       }
       loading = false;
     } catch (e) {

@@ -156,7 +156,7 @@ class PageHome extends GetView<ControllerHome> {
                         hintText: 'tentukan perjalanan mu',
                         keyboardType: TextInputType.none,
                         onTap: () {
-                          Get.toNamed(Routes.order);
+                          Get.toNamed(Routes.posting);
                         },
                         padding: EdgeInsets.only(top: 10.h),
                       ),

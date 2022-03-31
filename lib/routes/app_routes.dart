@@ -9,8 +9,8 @@ abstract class Routes {
   static const main = '/main_page';
   static const saldo = '/saldo_page';
   static const actHistory = '/actHistory_page';
-  static const order = '/order_page';
-  static const orderDetail = '/order_detail';
+  static const posting = '/posting_page';
+  static const postingDetail = '/posting_detail_page';
   static const userAccount = '/userAccount_page';
   static const vehicleAccount = '/vehicleAccount_page';
   static const contact = '/contact_page';

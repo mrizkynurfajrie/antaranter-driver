@@ -3,30 +3,30 @@ import 'package:intake_rider/framework/api2.dart';
 import 'package:intake_rider/response/rider.dart';
 
 class ControllerRiderInfo extends GetxController {
-  var hasActiveOrder = false.obs;
+  var hasActivePost = false.obs;
   var rider = Rider().obs;
 
   @override
   void onInit() async {
     super.onInit();
-    checkRiderHasActiveOrder();
+    checkRiderHasActivePost();
     await setRiderData();
   }
 
-  void setRiderHasActiveOrder(bool status) async {
-    await Api2().setHasActiveOrder(isHasActiveOrder: status);
-    hasActiveOrder.value = status;
+  void setRiderHasActivePost(bool status) async {
+    await Api2().setHasActivePost(isHasActivePost: status);
+    hasActivePost.value = status;
   }
 
-  void checkRiderHasActiveOrder() async {
-    var isHasActiveOrder = await Api2().getHasActiveOrder();
-    if (isHasActiveOrder != null) {
-      setRiderHasActiveOrder(isHasActiveOrder);
+  void checkRiderHasActivePost() async {
+    var isHasActivePost = await Api2().getHasActivePost();
+    if (isHasActivePost != null) {
+      setRiderHasActivePost(isHasActivePost);
     }
   }
 
-  void setActiveOrder(int idOrder, String type) async {
-    await Api2().setActiveOrder(activeOrder: {'id' : idOrder, 'type': type});
+  void setActivePost(int idPost, String type) async {
+    await Api2().setActivePost(activePost: {'id' : idPost, 'type': type});
   }
 
   setRiderData() async {

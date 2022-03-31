@@ -9,6 +9,7 @@ import 'package:intake_rider/response/nebeng_rider.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
 import 'package:intake_rider/shared/controller/controller_vehicle_info.dart';
 import 'package:intake_rider/shared/helpers/format_date_time.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class ControllerVehicleAccount extends GetxController {
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
@@ -40,6 +41,12 @@ class ControllerVehicleAccount extends GetxController {
   var loading = false.obs;
 
   final ImagePicker picker = ImagePicker();
+
+  var maskFormatter = MaskTextInputFormatter(
+    mask: '##-####-###',
+    filter: {"#": RegExp(r'[A-Z][0-9]')},
+    type: MaskAutoCompletionType.lazy,
+  );
 
   @override
   void onInit() async {
@@ -197,11 +204,12 @@ class ControllerVehicleAccount extends GetxController {
       loading.value = true;
       await uploadSimPict();
       await uploadStnkPict();
+      var platMasked = maskFormatter.getUnmaskedText();
       var updateResult = await api.updateVehicleAccount(
           simNum: txtSimNum.text,
           simExp: txtSimExp.text,
           simPict: uploadSim,
-          platNum: txtPlatNum.text,
+          platNum: platMasked,
           vehicleVar: txtVehicleVar.text,
           vehicleCol: txtVehicleCol.text,
           stnkPict: uploadStnk,
@@ -218,7 +226,7 @@ class ControllerVehicleAccount extends GetxController {
           'Profil Kendaraan anda berhasil diperbarui',
           snackPosition: SnackPosition.BOTTOM,
         );
-      }else{
+      } else {
         throw "Gagal memperbarui akun";
       }
       loading.value = false;

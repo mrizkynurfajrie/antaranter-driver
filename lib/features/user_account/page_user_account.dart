@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/user_account/controller_user_account.dart';
 import 'package:intake_rider/framework/api1.dart';
@@ -190,6 +191,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
                     controller: controller.txtNik,
                     label: 'NIK',
+                    inputFormatters: [LengthLimitingTextInputFormatter(16)],
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

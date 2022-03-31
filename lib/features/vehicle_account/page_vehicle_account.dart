@@ -160,10 +160,8 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                     padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
                     controller: controller.txtPlatNum,
                     inputFormatters: [
-                      LengthLimitingTextInputFormatter(9),
-                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
-                      FilteringTextInputFormatter.singleLineFormatter,
-                      // UpperCaseTextFormatter(),
+                      LengthLimitingTextInputFormatter(11),
+                      controller.maskFormatter,
                     ],
                     textCapitalization: TextCapitalization.characters,
                   ),

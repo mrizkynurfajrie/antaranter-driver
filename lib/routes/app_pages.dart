@@ -8,8 +8,8 @@ import 'package:intake_rider/features/main/binding_main.dart';
 import 'package:intake_rider/features/main/page_main.dart';
 import 'package:intake_rider/features/nebeng_posting/binding_nebeng_posting.dart';
 import 'package:intake_rider/features/nebeng_posting/page_nebeng_posting.dart';
-import 'package:intake_rider/features/order_detail/binding_order_detail.dart';
-import 'package:intake_rider/features/order_detail/page_order_detail.dart';
+import 'package:intake_rider/features/nebeng_posting_detail/binding_nebeng_posting_detail.dart';
+import 'package:intake_rider/features/nebeng_posting_detail/page_nebeng_posting_detail.dart';
 import 'package:intake_rider/features/profile/binding_profile.dart';
 import 'package:intake_rider/features/profile/page_profile.dart';
 import 'package:intake_rider/features/register/binding_register.dart';
@@ -74,14 +74,14 @@ class AppPages {
         page: () => PageActivityHistory(),
         binding: BindingActivityHistory(),),
     GetPage(
-      name: Routes.order,
+      name: Routes.posting,
       page: () => const PageNebengPosting(),
       binding: BindingNebengPosting(),
     ),
     GetPage(
-      name: Routes.orderDetail,
-      page: () => const PageOrderDetail(),
-      binding: BindingOrderDetail(),
+      name: Routes.postingDetail,
+      page: () => const PageNebengPostingDetail(),
+      binding: BindingNebengPostingDetail(),
     ),
     GetPage(
       name: Routes.userAccount,
