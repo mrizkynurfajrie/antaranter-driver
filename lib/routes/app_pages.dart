@@ -5,8 +5,8 @@ import 'package:intake_rider/features/home/page_home.dart';
 import 'package:intake_rider/features/login/page_login.dart';
 import 'package:intake_rider/features/main/binding_main.dart';
 import 'package:intake_rider/features/main/page_main.dart';
-import 'package:intake_rider/features/order/binding_order.dart';
-import 'package:intake_rider/features/order/page_order.dart';
+import 'package:intake_rider/features/nebeng_posting/binding_nebeng_posting.dart';
+import 'package:intake_rider/features/nebeng_posting/page_nebeng_posting.dart';
 import 'package:intake_rider/features/order_detail/binding_order_detail.dart';
 import 'package:intake_rider/features/order_detail/page_order_detail.dart';
 import 'package:intake_rider/features/profile/binding_profile.dart';
@@ -73,8 +73,8 @@ class AppPages {
     ),
     GetPage(
       name: Routes.order,
-      page: () => const PageOrder(),
-      binding: BindingOrder(),
+      page: () => const PageNebengPosting(),
+      binding: BindingNebengPosting(),
     ),
     GetPage(
       name: Routes.orderDetail,

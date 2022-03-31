@@ -61,6 +61,8 @@ class ControllerUserAccount extends GetxController {
   void onInit() async {
     await getRiderData();
     await getProvinces();
+    var rider = await Api2().getRider();
+    idRider.value = rider["id"] ?? 0;
 
     txtName.text = controllerRiderInfo.rider.value.name ?? '';
     txtEmail.text = controllerRiderInfo.rider.value.email ?? '';
@@ -71,7 +73,7 @@ class ControllerUserAccount extends GetxController {
             value: controllerRiderInfo.rider.value.birth!);
     txtAddress.text = controllerRiderInfo.rider.value.address ?? '';
     txtPhone.text = controllerRiderInfo.rider.value.phone ?? '';
-    txtCity.text = controllerRiderInfo.rider.value.cityLocation ?? '';
+    itemCities.value = itemCities.value;
 
     super.onInit();
   }
@@ -273,7 +275,6 @@ class ControllerUserAccount extends GetxController {
         value: (value) async {
           if (value != null) {
             search('');
-            log(value.toString());
             idProvince(value);
             await getCities();
           }
@@ -291,7 +292,6 @@ class ControllerUserAccount extends GetxController {
         value: (value) async {
           if (value != null) {
             search('');
-            log(value.toString());
             idCities(value);
             search(value);
           }
@@ -323,7 +323,7 @@ class ControllerUserAccount extends GetxController {
         birth: txtDate.text,
         address: txtAddress.text,
         phone: txtPhone.text,
-        city: txtCity.text,
+        city: itemCities.value,
         idRider: idRider.value,
       );
       log(updateResult.toString());

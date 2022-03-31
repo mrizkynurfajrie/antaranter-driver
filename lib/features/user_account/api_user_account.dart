@@ -47,7 +47,6 @@ class ApiUserAccount {
 
    Future<dynamic> getProvince() async {
     var responseProvince = await Api1().apiJSONGetWitToken("provincies/list");
-    log('provinsi : ' + responseProvince.toString());
     return responseProvince;
   }
 

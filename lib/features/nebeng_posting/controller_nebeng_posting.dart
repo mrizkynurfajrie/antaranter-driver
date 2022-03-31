@@ -3,47 +3,80 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intake_rider/features/nebeng_posting/api_nebeng_posting.dart';
+import 'package:intake_rider/framework/api2.dart';
+import 'package:intake_rider/response/nebeng_rider.dart';
+import 'package:intake_rider/routes/app_routes.dart';
+import 'package:intake_rider/shared/controller/controller_rider_info.dart';
+import 'package:intake_rider/shared/controller/controller_vehicle_info.dart';
 import 'package:intake_rider/shared/widgets/bottomsheet/bottomsheet_selection.dart';
 import 'package:intake_rider/shared/widgets/cards/card_item.dart';
-import 'api_order.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class ControllerOrder extends GetxController {
-  final ApiOrder api;
-  ControllerOrder({required this.api});
+class ControllerNebengPosting extends GetxController {
+  var controllerVehicleInfo = Get.find<ControllerVehicleInfo>();
+  var controllerRiderInfo = Get.find<ControllerRiderInfo>();
 
-  List dropDownList = ['1', '2', '3', '4', '5'];
-  var dropDownValue = '1'.obs;
-  var ctrlDateDept = TextEditingController();
-  var ctrlTimeDept = TextEditingController();
-  var ctrlDateArrv = TextEditingController();
-  var ctrlTimeArrv = TextEditingController();
+  final ApiNebengPosting api;
+  ControllerNebengPosting({required this.api});
 
+  var txtSeatAvail = TextEditingController();
+  var txtPrice = TextEditingController();
+  var txtDateDept = TextEditingController();
+  var txtDateArrv = TextEditingController();
+  var txtTimeDept = TextEditingController();
+  var txtTimeArrv = TextEditingController();
   var itemProvinceDept = 'Provinsi'.obs;
   var itemCitiesDept = 'Kota'.obs;
   var itemProvinceArrv = 'Provinsi'.obs;
   var itemCitiesArrv = 'Kota'.obs;
+
+  List dropDownList = ['1', '2', '3', '4', '5'];
+
+  var dropDownValue = '1'.obs;
   var search = ''.obs;
   var idProvince = 0.obs;
   var idCities = 0.obs;
-
   var provinces = <ModelBottomsheet>[].obs;
   var cities = <ModelBottomsheet>[].obs;
+  var idRider = 0.obs;
+  var idNebengRider = 0.obs;
+  var loading = false;
+
+  var maskFormatter = MaskTextInputFormatter(
+    mask: '###.###',
+    filter: {"#": RegExp(r'[0-9]')},
+    type: MaskAutoCompletionType.lazy,
+    
+  );
 
   @override
-  onInit() {
+  void onInit() async {
+    await getVehicle();
+    await getProvinces();
+
     super.onInit();
-    getProvinces();
+  }
+
+  getVehicle() async {
+    try {
+      var r =
+          await api.getVehicleInfo(riderId: controllerRiderInfo.rider.value.id);
+      log('data r' + r.toString());
+      idNebengRider.value = r["data"]["nebeng_rider"]["id"];
+      controllerVehicleInfo.vehicle.value =
+          NebengRider.fromJson(r["data"]["nebeng_rider"]);
+      return r;
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   getProvinces() async {
     try {
-      // log("datanye");
-
       var r = await api.getProvince();
-      log("datanye" + r.toString());
 
       for (var x in r['data']) {
-        // log(x.toString());
         provinces.add(
           ModelBottomsheet(
               itemName: x['name'],
@@ -53,7 +86,6 @@ class ControllerOrder extends GetxController {
               value: x['id']),
         );
         provinces.sort((a, b) => a.itemName.compareTo(b.itemName));
-     
       }
     } catch (_) {}
   }
@@ -83,9 +115,7 @@ class ControllerOrder extends GetxController {
         value: (value) async {
           if (value != null) {
             search('');
-            log(value.toString());
             idProvince(value);
-            // search(value);
             await getCities();
           }
         },
@@ -102,7 +132,6 @@ class ControllerOrder extends GetxController {
         value: (value) async {
           if (value != null) {
             search('');
-            log(value.toString());
             idCities(value);
             search(value);
           }
@@ -111,6 +140,7 @@ class ControllerOrder extends GetxController {
           itemCitiesDept(value);
         }).showSelection();
   }
+
   buildProvinceArrv(context) {
     BottomsheetSelection(
         title: 'Pilih Provinsi',
@@ -119,9 +149,7 @@ class ControllerOrder extends GetxController {
         value: (value) async {
           if (value != null) {
             search('');
-            log(value.toString());
             idProvince(value);
-            // search(value);
             await getCities();
           }
         },
@@ -146,5 +174,39 @@ class ControllerOrder extends GetxController {
         itemName: (value) {
           itemCitiesArrv(value);
         }).showSelection();
+  }
+
+  createNebengPosting() async {
+    try {
+      loading = true;
+      var priceformatted = maskFormatter.getUnmaskedText();
+      var updateResult = await api.postingNebeng(
+        idRider: idNebengRider.value,
+        cityOrigin: itemCitiesDept.value,
+        cityDestination: itemCitiesArrv.value,
+        dateDep: txtDateDept.text,
+        dateArr: txtDateArrv.text,
+        timeDep: txtTimeDept.text,
+        timeArr: txtTimeArrv.text,
+        seatAvail: dropDownValue.value,
+        price: priceformatted,
+      );
+      log('hasil data : ' + updateResult.toString());
+      if (updateResult != null) {
+        var result = updateResult["data"];
+        await Api2().setPosting(posting: result);
+        Get.snackbar(
+          "Nebeng",
+          "Anda telah berhasil membagikan perjalanan anda",
+          snackPosition: SnackPosition.BOTTOM,
+        );
+        await Future.delayed(const Duration(seconds: 2));
+        Get.offNamed(Routes.home);
+      }
+      loading = false;
+    } catch (e) {
+      loading = false;
+      log(e.toString());
+    }
   }
 }

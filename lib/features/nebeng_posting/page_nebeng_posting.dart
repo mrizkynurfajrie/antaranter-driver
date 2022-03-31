@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/routes/app_routes.dart';
 import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
@@ -16,10 +14,10 @@ import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_selection.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_time.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
-import 'controller_order.dart';
+import 'controller_nebeng_posting.dart';
 
-class PageOrder extends GetView<ControllerOrder> {
-  const PageOrder({Key? key}) : super(key: key);
+class PageNebengPosting extends GetView<ControllerNebengPosting> {
+  const PageNebengPosting({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,20 +69,21 @@ class PageOrder extends GetView<ControllerOrder> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Icon(
-                                  CupertinoIcons.car,
+                                  CupertinoIcons.car_detailed,
                                   color: AppColor.primaryColor,
                                   size: IconSizes.sm,
                                 ),
-                                horizontalSpace(3.w),
+                                horizontalSpace(10.w),
                                 Flexible(
                                   child: Text(
-                                    'Kijang Innova',
+                                    controller.controllerVehicleInfo.vehicle
+                                            .value.vehicleVariant ??
+                                        '',
                                     style: TextStyles.inter.copyWith(
                                       fontSize: FontSizes.s12,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColor.greyColorLight,
+                                      color: AppColor.greyColor,
+                                      fontWeight: FontWeight.w400,
                                     ),
-                                    maxLines: 2,
                                   ),
                                 )
                               ],
@@ -110,13 +109,14 @@ class PageOrder extends GetView<ControllerOrder> {
                                 horizontalSpace(3.w),
                                 Flexible(
                                   child: Text(
-                                    'Hitam',
+                                    controller.controllerVehicleInfo.vehicle
+                                            .value.vehicleColor ??
+                                        '',
                                     style: TextStyles.inter.copyWith(
                                       fontSize: FontSizes.s12,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColor.greyColorLight,
+                                      color: AppColor.greyColor,
+                                      fontWeight: FontWeight.w400,
                                     ),
-                                    maxLines: 2,
                                   ),
                                 ),
                               ],
@@ -142,13 +142,14 @@ class PageOrder extends GetView<ControllerOrder> {
                                 horizontalSpace(3.w),
                                 Flexible(
                                   child: Text(
-                                    'KT 3322 SSS',
+                                    controller.controllerVehicleInfo.vehicle
+                                            .value.platNumber ??
+                                        '',
                                     style: TextStyles.inter.copyWith(
                                       fontSize: FontSizes.s12,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColor.greyColorLight,
+                                      color: AppColor.greyColor,
+                                      fontWeight: FontWeight.w400,
                                     ),
-                                    maxLines: 2,
                                   ),
                                 ),
                               ],
@@ -280,7 +281,7 @@ class PageOrder extends GetView<ControllerOrder> {
                             ),
                             InputDate(
                               hintText: 'Pilih Tanggal Berangkat',
-                              controller: controller.ctrlDateDept,
+                              controller: controller.txtDateDept,
                               selectedDate: (Value) {},
                               isValid: (Value) {},
                               prefixIcon: const Icon(
@@ -293,7 +294,7 @@ class PageOrder extends GetView<ControllerOrder> {
                             verticalSpace(5.h),
                             InputTime(
                               hintText: 'Pilih Waktu Berangkat',
-                              controller: controller.ctrlTimeDept,
+                              controller: controller.txtTimeDept,
                               selectedTime: (Value) {},
                               isValid: (Value) {},
                               prefixIcon: const Icon(
@@ -358,7 +359,7 @@ class PageOrder extends GetView<ControllerOrder> {
                             ),
                             InputDate(
                               hintText: 'Pilih Tanggal Tiba',
-                              controller: controller.ctrlDateArrv,
+                              controller: controller.txtDateArrv,
                               selectedDate: (Value) {},
                               isValid: (Value) {},
                               prefixIcon: const Icon(
@@ -371,7 +372,7 @@ class PageOrder extends GetView<ControllerOrder> {
                             verticalSpace(5.h),
                             InputTime(
                               hintText: 'Pilih Waktu Tiba',
-                              controller: controller.ctrlTimeArrv,
+                              controller: controller.txtTimeArrv,
                               selectedTime: (Value) {},
                               isValid: (Value) {},
                               prefixIcon: const Icon(
@@ -396,16 +397,18 @@ class PageOrder extends GetView<ControllerOrder> {
                     onTap: () {},
                     prefixIcon: const Icon(Icons.confirmation_number),
                     inputFormatters: [
-                      ThousandsSeparatorInputFormatter(),
+                      controller.maskFormatter,
                       LengthLimitingTextInputFormatter(7)
                     ],
                     keyboardType: TextInputType.number,
+                    controller: controller.txtPrice,
                   ),
+                  
                 ),
                 verticalSpace(Insets.med),
                 ButtonPrimary(
-                  onPressed: () {
-                    Get.offNamed(Routes.main);
+                  onPressed: () async {
+                    await controller.createNebengPosting();
                   },
                   label: 'Bagikan',
                   color: AppColor.primaryColor,

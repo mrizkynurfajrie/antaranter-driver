@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/features/order/controller_order.dart';
 import 'package:intake_rider/features/user_account/controller_user_account.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
@@ -25,14 +24,15 @@ class _CardItemProfileState extends State<CardItemProfile> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx( 
+    return Obx(
       () => Container(
         decoration: BoxDecoration(
           border: Border(
             bottom: widget.values
                 ? BorderSide(
                     width: 1.5,
-                    color: controllerUserAccount.search.value == widget.data['name']
+                    color: controllerUserAccount.search.value ==
+                            widget.data['name']
                         ? AppColor.successColor
                         : AppColor.weakColor)
                 : BorderSide(
@@ -64,7 +64,8 @@ class _CardItemProfileState extends State<CardItemProfile> {
                         widget.data,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyles.body1.copyWith(
-                            color: controllerUserAccount.search.value == widget.data['name']
+                            color: controllerUserAccount.search.value ==
+                                    widget.data['name']
                                 ? AppColor.successColor
                                 : AppColor.neutral),
                       ),

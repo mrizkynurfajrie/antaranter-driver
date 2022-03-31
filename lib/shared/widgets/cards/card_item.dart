@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/features/order/controller_order.dart';
+import 'package:intake_rider/features/nebeng_posting/controller_nebeng_posting.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 
@@ -20,7 +20,7 @@ class CardItem extends StatefulWidget {
 }
 
 class _CardItemState extends State<CardItem> {
-  final ControllerOrder controllerOrder = Get.find();
+  final ControllerNebengPosting controllerOrder = Get.find();
 
   @override
   Widget build(BuildContext context) {
