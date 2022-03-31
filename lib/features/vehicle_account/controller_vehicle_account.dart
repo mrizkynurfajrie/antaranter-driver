@@ -37,7 +37,7 @@ class ControllerVehicleAccount extends GetxController {
   var idRider = 0.obs;
   var uploadSim = '';
   var uploadStnk = '';
-  var loading = false;
+  var loading = false.obs;
 
   final ImagePicker picker = ImagePicker();
 
@@ -194,7 +194,9 @@ class ControllerVehicleAccount extends GetxController {
 
   updateVehicleAccount() async {
     try {
-      loading = true;
+      loading.value = true;
+      await uploadSimPict();
+      await uploadStnkPict();
       var updateResult = await api.updateVehicleAccount(
           simNum: txtSimNum.text,
           simExp: txtSimExp.text,
@@ -206,7 +208,7 @@ class ControllerVehicleAccount extends GetxController {
           idRiderNebeng: idNebengRider.value,
           idRider: idRider.value);
       log(updateResult.toString());
-      if (updateResult != null) {
+      if (updateResult['success'] == true) {
         var result = updateResult["data"];
         await Api2().setVehicle(vehicle: result);
         var vehicle = NebengRider.fromJson(result);
@@ -216,11 +218,14 @@ class ControllerVehicleAccount extends GetxController {
           'Profil Kendaraan anda berhasil diperbarui',
           snackPosition: SnackPosition.BOTTOM,
         );
+      }else{
+        throw "Gagal memperbarui akun";
       }
-      loading = false;
+      loading.value = false;
     } catch (e) {
-      loading = false;
+      loading.value = false;
       log(e.toString());
+      Get.snackbar("Terjadi kesalahan", e.toString());
     }
   }
 }

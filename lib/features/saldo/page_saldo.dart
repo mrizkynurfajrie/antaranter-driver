@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/saldo/controller_saldo.dart';
+import 'package:intake_rider/routes/app_routes.dart';
 import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
@@ -22,10 +23,10 @@ class PageSaldo extends GetView<ControllerSaldo> {
   Widget build(BuildContext context) {
     return PageDecorationTop(
       title: 'SALDO',
-      toolbarTitleColor: AppColor.neutral.shade900,
+      toolbarTitleColor: AppColor.whiteColor,
       padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
-      toolbarColor: AppColor.bgPageColor,
+      toolbarColor: AppColor.primaryColor,
       enableBack: true,
       child: RefreshIndicator(
         color: AppColor.primaryColor,
@@ -126,7 +127,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
                       buttonHeight: 55.h,
                       buttonWidth: 105.w,
                       ontap: () {
-                        
+                        Get.toNamed(Routes.topup);
                       },
                     ),
                   ],

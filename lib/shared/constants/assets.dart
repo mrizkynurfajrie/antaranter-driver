@@ -24,6 +24,7 @@ class AppIcons {
   static const contEmail = 'assets/icons/email.png';
   static const contWebsite = 'assets/icons/website.png';
   static const rupiah = 'assets/icons/rupiah.png';
+  static const mandiri = 'assets/icons/mandiri.png';
 
   static Widget iconApp(String asset){
     return Image.asset(asset, height: IconSizes.sm);

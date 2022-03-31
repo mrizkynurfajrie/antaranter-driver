@@ -14,4 +14,5 @@ abstract class Routes {
   static const userAccount = '/userAccount_page';
   static const vehicleAccount = '/vehicleAccount_page';
   static const contact = '/contact_page';
+  static const topup = '/topup_page';
 }

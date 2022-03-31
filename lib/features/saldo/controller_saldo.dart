@@ -22,6 +22,8 @@ class ControllerSaldo extends GetxController
 
   var loading = true.obs;
 
+  var nominalTopUp = 50.obs;
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -96,4 +98,6 @@ class ControllerSaldo extends GetxController
       Get.snackbar("Terjadi kesalahan", e.toString());
     }
   }
+
+  
 }

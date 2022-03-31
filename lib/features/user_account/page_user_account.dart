@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,6 +12,7 @@ import 'package:intake_rider/shared/widgets/inputs/input_date.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_email.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_selection.dart';
+import 'package:intake_rider/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../shared/constants/styles.dart';
@@ -344,14 +346,13 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     label: 'Alamat',
                   ),
                   verticalSpace(5.h),
+                  controller.loadingForm.isFalse?
                   ButtonPrimary(
                     onPressed: () async {
-                      await controller.uploadImgRider();
-                      await controller.uploadKtpRider();
-                      controller.updateUserAccount();
+                      await controller.updateUserAccount();
                     },
                     label: 'Simpan',
-                  ),
+                  ):loadingIndicator(context),
                 ],
               ),
             ),

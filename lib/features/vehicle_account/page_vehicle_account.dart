@@ -12,6 +12,7 @@ import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_date.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
+import 'package:intake_rider/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 
 class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
@@ -280,14 +281,13 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                     ],
                   ),
                   verticalSpace(10.h),
+                  controller.loading.isFalse?
                   ButtonPrimary(
                     onPressed: () async {
-                      await controller.uploadSimPict();
-                      await controller.uploadStnkPict();
-                      controller.updateVehicleAccount();
+                      await controller.updateVehicleAccount();
                     },
                     label: 'Simpan',
-                  )
+                  ):loadingIndicator(context),
                 ],
               ),
             ),

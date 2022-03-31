@@ -59,11 +59,16 @@ class ControllerUserAccount extends GetxController {
 
   @override
   void onInit() async {
+<<<<<<< HEAD
     await getRiderData();
     await getProvinces();
     var rider = await Api2().getRider();
     idRider.value = rider["id"] ?? 0;
 
+=======
+    // await getRiderData();
+    
+>>>>>>> 27b79fda428640e493b983657751f4cff0f22b87
     txtName.text = controllerRiderInfo.rider.value.name ?? '';
     txtEmail.text = controllerRiderInfo.rider.value.email ?? '';
     txtNik.text = controllerRiderInfo.rider.value.nik ?? '';
@@ -73,8 +78,13 @@ class ControllerUserAccount extends GetxController {
             value: controllerRiderInfo.rider.value.birth!);
     txtAddress.text = controllerRiderInfo.rider.value.address ?? '';
     txtPhone.text = controllerRiderInfo.rider.value.phone ?? '';
+<<<<<<< HEAD
     itemCities.value = itemCities.value;
 
+=======
+    txtCity.text = controllerRiderInfo.rider.value.cityLocation ?? '';
+    await getProvinces();
+>>>>>>> 27b79fda428640e493b983657751f4cff0f22b87
     super.onInit();
   }
 
@@ -302,8 +312,10 @@ class ControllerUserAccount extends GetxController {
   }
 
   updateUserAccount() async {
+    loadingForm.value = true;
     try {
-      loading = true;
+      await uploadImgRider();
+      await uploadKtpRider();
       if (uploadImg == '') {
         if (controllerRiderInfo.rider.value.image != null) {
           uploadImg = controllerRiderInfo.rider.value.image!;
@@ -323,11 +335,16 @@ class ControllerUserAccount extends GetxController {
         birth: txtDate.text,
         address: txtAddress.text,
         phone: txtPhone.text,
+<<<<<<< HEAD
         city: itemCities.value,
         idRider: idRider.value,
+=======
+        city: txtCity.text,
+        idRider: controllerRiderInfo.rider.value.id,
+>>>>>>> 27b79fda428640e493b983657751f4cff0f22b87
       );
       log(updateResult.toString());
-      if (updateResult != null) {
+      if (updateResult['success'] == true) {
         var result = updateResult["data"];
         await Api2().setRider(rider: result);
         var rider = Rider.fromJson(result);
@@ -337,11 +354,14 @@ class ControllerUserAccount extends GetxController {
           'Akun Pengguna anda berhasil diperbarui',
           snackPosition: SnackPosition.BOTTOM,
         );
+      }else{
+        throw "Gagal memperbarui akun";
       }
-      loading = false;
+      loadingForm.value = false;
     } catch (e) {
-      loading = false;
+      loadingForm.value = false;
       log(e.toString());
+      Get.snackbar("Terjadi kesalahan", e.toString());
     }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:intake_rider/features/activity_history/binding_actHistory.dart';
 import 'package:intake_rider/features/activity_history/page_actHistory.dart';
 import 'package:intake_rider/features/contact/page_contact.dart';
 import 'package:intake_rider/features/home/page_home.dart';
@@ -15,6 +16,7 @@ import 'package:intake_rider/features/register/binding_register.dart';
 import 'package:intake_rider/features/register/page/page_register.dart';
 import 'package:intake_rider/features/register/page/page_terms.dart';
 import 'package:intake_rider/features/saldo/binding_saldo.dart';
+import 'package:intake_rider/features/saldo/page/page_topup.dart';
 import 'package:intake_rider/features/saldo/page_saldo.dart';
 import 'package:intake_rider/features/splash/page_splash.dart';
 import 'package:intake_rider/features/register/page/page_regsuccess.dart';
@@ -68,9 +70,9 @@ class AppPages {
       binding: BindingSaldo(),
     ),
     GetPage(
-      name: Routes.actHistory,
-      page: () => PageActivityHistory(),
-    ),
+        name: Routes.actHistory,
+        page: () => PageActivityHistory(),
+        binding: BindingActivityHistory(),),
     GetPage(
       name: Routes.order,
       page: () => const PageNebengPosting(),
@@ -94,6 +96,10 @@ class AppPages {
     GetPage(
       name: Routes.contact,
       page: () => const PageContact(),
+    ),
+    GetPage(
+      name: Routes.topup,
+      page: () => const PageTopUp(),
     ),
   ];
 }
