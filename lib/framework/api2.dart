@@ -61,6 +61,7 @@ class Api2 {
     await box.remove(CACHE_USERNAME);
     await box.remove(CACHE_TOKEN);
     await box.remove(CACHE_RIDER);
+    await box.remove(CACHE_VEHICLE);
   }
 
   Future setHasActiveOrder({bool? isHasActiveOrder}) async {

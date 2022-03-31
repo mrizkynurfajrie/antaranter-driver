@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:intake_rider/features/activity_history/binding_actHistory.dart';
 import 'package:intake_rider/features/activity_history/page_actHistory.dart';
 import 'package:intake_rider/features/contact/page_contact.dart';
 import 'package:intake_rider/features/home/page_home.dart';
@@ -69,9 +70,9 @@ class AppPages {
       binding: BindingSaldo(),
     ),
     GetPage(
-      name: Routes.actHistory,
-      page: () => PageActivityHistory(),
-    ),
+        name: Routes.actHistory,
+        page: () => PageActivityHistory(),
+        binding: BindingActivityHistory(),),
     GetPage(
       name: Routes.order,
       page: () => const PageOrder(),
