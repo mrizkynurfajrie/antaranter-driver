@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:intake_rider/framework/api2.dart';
-import 'package:intake_rider/response/rider.dart';
+import 'package:intake_rider/response/main_rider.dart';
 
 class ControllerRiderInfo extends GetxController {
   var hasActivePost = false.obs;
-  var rider = Rider().obs;
+  var rider = MainRider().obs;
 
   @override
   void onInit() async {
@@ -26,13 +26,13 @@ class ControllerRiderInfo extends GetxController {
   }
 
   void setActivePost(int idPost) async {
-    await Api2().setActivePost(activePost: {'id' : idPost});
+    await Api2().setActivePost(activePost: {'id': idPost});
   }
 
   setRiderData() async {
     var data = await Api2().getRider();
     if (data != null) {
-      rider.value = Rider.fromJson(data);
+      rider.value = MainRider.fromJson(data);
     }
   }
 }

@@ -73,73 +73,76 @@ class _InputPhoneState extends State<InputPhone> {
                   ),
                 )
               : verticalSpace(0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              widget.setContryCode
-                  ? SizedBox(
-                      width: Get.width * 0.26.w,
-                      child: TextFormField(
-                        decoration: inputDecoration(
-                          prefixIcon: InkWell(
-                            onTap: _showListCountry,
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.symmetric(horizontal: Insets.med),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  // Text(_flag),
-                                  // horizontalSpace(Insets.xs),
-                                  Text(
-                                    _countryCode,
-                                    style: TextStyles.body2,
-                                  ),
-                                  const Icon(
-                                    Icons.keyboard_arrow_down,
-                                    size: 30,
-                                  )
-                                ],
+          SizedBox(
+            width: Get.width * 0.88.w,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                widget.setContryCode
+                    ? SizedBox(
+                        width: Get.width * 0.25.w,
+                        child: TextFormField(
+                          decoration: inputDecoration(
+                            prefixIcon: InkWell(
+                              onTap: _showListCountry,
+                              child: Padding(
+                                padding:
+                                    EdgeInsets.symmetric(horizontal: Insets.med),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    // Text(_flag),
+                                    // horizontalSpace(Insets.xs),
+                                    Text(
+                                      _countryCode,
+                                      style: TextStyles.body2,
+                                    ),
+                                    const Icon(
+                                      Icons.keyboard_arrow_down,
+                                      size: 30,
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
+                            hintText: '',
                           ),
-                          hintText: '',
-                        ),
-                      ))
-                  : Container(),
-              widget.setContryCode ? horizontalSpace(7) : Container(),
-              SizedBox(
-                width: Get.width * 0.60.w,
-                child: TextFormField(
-                  enableInteractiveSelection: true,
-                  cursorColor: Theme.of(context).primaryColor,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  onChanged: widget.onChange ??
-                      (value) {
-                        widget.phoneNumber(_countryCode + value);
-                      },
-                  onEditingComplete: widget.onEditingComplete,
-                  onSaved: widget.onSave,
-                  keyboardType: TextInputType.phone,
-                  controller: widget.controller,
-                  validator: (value) {
-                    if (!GetUtils.isPhoneNumber(
-                        _countryCode + value.toString())) {
-                      return 'Masukkan nomor Telepon dengan benar';
-                    }
-                    return null;
-                  },
-                  style: TextStyles.body2,
-                  inputFormatters: [LengthLimitingTextInputFormatter(13)],
-                  decoration: inputDecoration(
-                    suffixIcon: widget.suffixIcon,
-                    hintText: 'Contoh : 08xx xxxx xxxx',
+                        ))
+                    : Container(),
+                widget.setContryCode ? horizontalSpace(7) : Container(),
+                SizedBox(
+                  width: Get.width * 0.60.w,
+                  child: TextFormField(
+                    enableInteractiveSelection: true,
+                    cursorColor: Theme.of(context).primaryColor,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    onChanged: widget.onChange ??
+                        (value) {
+                          widget.phoneNumber(_countryCode + value);
+                        },
+                    onEditingComplete: widget.onEditingComplete,
+                    onSaved: widget.onSave,
+                    keyboardType: TextInputType.phone,
+                    controller: widget.controller,
+                    validator: (value) {
+                      if (!GetUtils.isPhoneNumber(
+                          _countryCode + value.toString())) {
+                        return 'Masukkan nomor Telepon dengan benar';
+                      }
+                      return null;
+                    },
+                    style: TextStyles.body2,
+                    inputFormatters: [LengthLimitingTextInputFormatter(13)],
+                    decoration: inputDecoration(
+                      suffixIcon: widget.suffixIcon,
+                      hintText: 'Contoh : 08xx xxxx xxxx',
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

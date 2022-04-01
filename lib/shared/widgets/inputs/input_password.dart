@@ -16,6 +16,7 @@ class InputPassword extends StatefulWidget {
   final TextEditingController controller;
   final List<TextInputFormatter>? inputFormatters;
   final TextCapitalization textCapitalization;
+  final double? boxWidth;
 
   const InputPassword({
     Key? key,
@@ -29,6 +30,7 @@ class InputPassword extends StatefulWidget {
     required this.controller,
     this.inputFormatters,
     this.textCapitalization = TextCapitalization.none,
+    this.boxWidth,
   }) : super(key: key);
 
   @override
@@ -55,42 +57,45 @@ class _InputPasswordState extends State<InputPassword> {
                   ),
                 )
               : verticalSpace(0),
-          TextFormField(
-            enableInteractiveSelection: true,
-            cursorColor: Theme.of(context).primaryColor,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            onChanged: widget.onChange,
-            keyboardType: TextInputType.text,
-            controller: widget.controller,
-            obscureText: _obsecureText,
-            inputFormatters: widget.inputFormatters,
-            textCapitalization: widget.textCapitalization,
-            validator: widget.validate ??
-                (value) {
-                  // if (!isValidPassword(password: value.toString())) {
-                  //   return '- Password minimal 8 karakter\n' +
-                  //       // '- Diawali huruf kapital\n' +
-                  //       '- Terdiri dari huruf besar, huruf kecil, dan angka';
-                  //   // dan symbol (!@#\$%^&*(),.?":{}|<>])';
-                  // }
-                },
-            style: TextStyles.textBase,
-            decoration: inputDecoration(
-              hintText: widget.hintText,
-              prefixIcon: widget.prefixIcon,
-              suffixIcon: Padding(
-                padding: EdgeInsets.only(right: Insets.lg),
-                child: InkWell(
-                  child: _obsecureText
-                      ? Icon(
-                          Icons.visibility_off,
-                          size: IconSizes.med,
-                        )
-                      : Icon(
-                          Icons.visibility,
-                          size: IconSizes.med,
-                        ),
-                  onTap: onTap,
+          SizedBox(
+            width: widget.boxWidth,
+            child: TextFormField(
+              enableInteractiveSelection: true,
+              cursorColor: Theme.of(context).primaryColor,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              onChanged: widget.onChange,
+              keyboardType: TextInputType.text,
+              controller: widget.controller,
+              obscureText: _obsecureText,
+              inputFormatters: widget.inputFormatters,
+              textCapitalization: widget.textCapitalization,
+              validator: widget.validate ??
+                  (value) {
+                    // if (!isValidPassword(password: value.toString())) {
+                    //   return '- Password minimal 8 karakter\n' +
+                    //       // '- Diawali huruf kapital\n' +
+                    //       '- Terdiri dari huruf besar, huruf kecil, dan angka';
+                    //   // dan symbol (!@#\$%^&*(),.?":{}|<>])';
+                    // }
+                  },
+              style: TextStyles.textBase,
+              decoration: inputDecoration(
+                hintText: widget.hintText,
+                prefixIcon: widget.prefixIcon,
+                suffixIcon: Padding(
+                  padding: EdgeInsets.only(right: Insets.lg),
+                  child: InkWell(
+                    child: _obsecureText
+                        ? Icon(
+                            Icons.visibility_off,
+                            size: IconSizes.med,
+                          )
+                        : Icon(
+                            Icons.visibility,
+                            size: IconSizes.med,
+                          ),
+                    onTap: onTap,
+                  ),
                 ),
               ),
             ),

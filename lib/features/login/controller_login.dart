@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/login/api_login.dart';
 import 'package:intake_rider/framework/api2.dart';
+import 'package:intake_rider/response/main_rider.dart';
 import 'package:intake_rider/response/rider.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
 import 'package:intake_rider/shared/helpers/utils.dart';
@@ -72,7 +73,7 @@ class ControllerLogin extends GetxController {
           var detailUser = loginResult["data"]["rider"];
           await Api2().setRider(rider: detailUser);
           var getDetailUser = await Api2().getRider();
-          controllerRiderInfo.rider.value = Rider.fromJson(detailUser);
+          controllerRiderInfo.rider.value = MainRider.fromJson(detailUser);
           log(getDetailUser.toString());
           var tokenUser = loginResult["data"]["token"];
           token.value = tokenUser;

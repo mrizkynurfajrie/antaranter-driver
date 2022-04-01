@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/login/controller_login.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intake_rider/shared/widgets/buttons/button_text.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_password.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_phone.dart';
@@ -13,7 +15,6 @@ class PageLogin extends GetView<ControllerLogin> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColor.bodyColor,
@@ -23,22 +24,11 @@ class PageLogin extends GetView<ControllerLogin> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: size.height * 0.025),
               Image.asset(
                 "assets/logo/logo-besar.png",
-                width: size.width * 0.65,
+                width: Get.width * 0.65.w,
               ),
-              SizedBox(height: size.height * 0.035),
-              const Text(
-                "Hai, mitra rider! siap antarin?",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.w400,
-                  color: AppColor.primaryColor,
-                ),
-              ),
-              SizedBox(height: size.height * 0.050),
+              verticalSpace(45.h),
               InputPhone(
                 controller: controller.cPhoneNumber,
                 phoneNumber: (value) {},
@@ -46,8 +36,10 @@ class PageLogin extends GetView<ControllerLogin> {
               InputPassword(
                 onChange: (value) {},
                 controller: controller.cPassword,
+                label: 'Kata Sandi',
+                boxWidth: Get.width * 0.88.w,
               ),
-              SizedBox(height: size.height * 0.025),
+              verticalSpace(15.h),
               Obx(
                 () => controller.loading.isFalse
                     ? ButtonPrimary(
@@ -60,11 +52,11 @@ class PageLogin extends GetView<ControllerLogin> {
                             controller.login();
                           }
                         },
-                        size: 300,
+                        size: 250,
                       )
                     : loadingIndicatorBottom(context),
               ),
-              const SizedBox(height: 15),
+              verticalSpace(10.h),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
