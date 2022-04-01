@@ -25,8 +25,8 @@ class ControllerRiderInfo extends GetxController {
     }
   }
 
-  void setActivePost(int idPost, String type) async {
-    await Api2().setActivePost(activePost: {'id' : idPost, 'type': type});
+  void setActivePost(int idPost) async {
+    await Api2().setActivePost(activePost: {'id' : idPost});
   }
 
   setRiderData() async {

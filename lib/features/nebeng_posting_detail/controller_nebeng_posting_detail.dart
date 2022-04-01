@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/nebeng_posting_detail/api_nebeng_posting_detail.dart';
 import 'package:intake_rider/response/nebeng_posting_response.dart';
-import 'package:intake_rider/response/nebeng_rider.dart';
 import 'package:intake_rider/response/users.dart';
 import 'package:intake_rider/shared/controller/controller_postingan.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
@@ -38,7 +37,6 @@ class ControllerNebengPostingDetail extends GetxController
       idNebengRider.value = r["data"]["nebeng_rider"]["id"];
       var nebengPostingRes = NebengPostingResponse.fromJson(r["data"]);
       controllerPostingan.postingan.value = nebengPostingRes;
-      log('data nebeng posting : ' + nebengPostingRes.toString());
 
       return r;
     } catch (e) {

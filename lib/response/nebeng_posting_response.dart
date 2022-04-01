@@ -14,27 +14,27 @@ String nebengPostingResponseToJson(NebengPostingResponse data) =>
 class NebengPostingResponse {
   NebengPostingResponse({
     this.nebengPosting,
-    this.nebengOrder,
+    // this.nebengOrder,
     this.nebengRider,
     this.mainRider,
   });
 
   NebengPosting? nebengPosting;
-  NebengOrder? nebengOrder;
+  // NebengOrder? nebengOrder;
   NebengRider? nebengRider;
   MainRider? mainRider;
 
   factory NebengPostingResponse.fromJson(Map<String, dynamic> json) =>
       NebengPostingResponse(
-        nebengPosting: NebengPosting.fromJson(json["nebeng_posting"]),
-        nebengOrder: NebengOrder.fromJson(json["nebeng_order"]),
+        nebengPosting: NebengPosting.fromJson(json["post"]),
+        // nebengOrder: NebengOrder.fromJson(json["nebeng_order"]),
         nebengRider: NebengRider.fromJson(json["nebeng_rider"]),
         mainRider: MainRider.fromJson(json["main_rider"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "nebeng_posting": nebengPosting?.toJson(),
-        "nebengOrder": nebengOrder?.toJson(),
+        "post": nebengPosting?.toJson(),
+        // "nebengOrder": nebengOrder?.toJson(),
         "nebeng_rider": nebengRider?.toJson(),
         "main_rider": mainRider?.toJson(),
       };
