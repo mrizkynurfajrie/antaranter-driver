@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:intake_rider/features/nebeng_posting/api_nebeng_posting.dart';
 import 'package:intake_rider/framework/api2.dart';
 import 'package:intake_rider/response/nebeng_rider.dart';
+import 'package:intake_rider/response/post.dart';
 import 'package:intake_rider/routes/app_routes.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
 import 'package:intake_rider/shared/controller/controller_vehicle_info.dart';
@@ -47,7 +48,6 @@ class ControllerNebengPosting extends GetxController {
     mask: '###.###',
     filter: {"#": RegExp(r'[0-9]')},
     type: MaskAutoCompletionType.lazy,
-    
   );
 
   @override
@@ -192,16 +192,19 @@ class ControllerNebengPosting extends GetxController {
         price: priceformatted,
       );
       log('hasil data : ' + updateResult.toString());
-      if (updateResult != null) {
+      if (updateResult['success'] == true) {
+        controllerRiderInfo.setRiderHasActivePost(true);
         var result = updateResult["data"];
-        await Api2().setPosting(posting: result);
+        var postResponse = Post.fromJson(result);
+        controllerRiderInfo.setActivePost(postResponse.id!);
+
         Get.snackbar(
           "Nebeng",
           "Anda telah berhasil membagikan perjalanan anda",
           snackPosition: SnackPosition.BOTTOM,
         );
         await Future.delayed(const Duration(seconds: 2));
-        Get.offNamed(Routes.main);
+        Get.offAllNamed(Routes.main, arguments: 1);
       }
       loading = false;
     } catch (e) {

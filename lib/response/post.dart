@@ -23,6 +23,7 @@ class Post {
         this.seatAvail,
         this.price,
         this.status,
+        this.statusUpdate,
         this.note,
         this.createdAt,
         this.updatedAt,
@@ -42,6 +43,7 @@ class Post {
     int? seatAvail;
     int? price;
     int? status;
+    int? statusUpdate;
     String? note;
     DateTime? createdAt;
     DateTime? updatedAt;
@@ -61,6 +63,7 @@ class Post {
         seatAvail: json["seatAvail"],
         price: json["price"],
         status: json["status"],
+        statusUpdate: json["status_update"],
         note: json["note"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
@@ -81,6 +84,7 @@ class Post {
         "seatAvail": seatAvail,
         "price": price,
         "status": status,
+        "status_update" : statusUpdate,
         "note": note,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),

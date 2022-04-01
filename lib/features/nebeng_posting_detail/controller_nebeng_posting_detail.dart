@@ -20,7 +20,7 @@ class ControllerNebengPostingDetail extends GetxController
   ControllerNebengPostingDetail({required this.api});
 
   var userOrder = Users().obs;
-
+  var loading = false.obs;
   var idNebengRider = 0.obs;
 
   @override
@@ -31,15 +31,17 @@ class ControllerNebengPostingDetail extends GetxController
 
   getDataPosting() async {
     try {
+      loading.value = true;
       var r = await api.detailNebengPosting(
           riderId: controllerRiderInfo.rider.value.id);
       log('data r' + r.toString());
       idNebengRider.value = r["data"]["nebeng_rider"]["id"];
       var nebengPostingRes = NebengPostingResponse.fromJson(r["data"]);
       controllerPostingan.postingan.value = nebengPostingRes;
-
+      loading.value = false;
       return r;
     } catch (e) {
+      loading.value = false;
       log(e.toString());
     }
   }
