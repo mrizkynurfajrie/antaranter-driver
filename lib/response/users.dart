@@ -98,4 +98,27 @@ class Users {
         "updatedAt": updatedAt?.toIso8601String(),
         "isDeleted": isDeleted,
     };
+
+    factory Users.fromArguments(Map<String, dynamic> json) => Users(
+       id: json["id"],
+        username: json["username"],
+        email: json["email"],
+        password: json["password"],
+        nik: json["nik"],
+        ktpPict: json["ktp_pict"],
+        image: json["image"],
+        birth:json["birth"],
+        address: json["address"],
+        phone: json["phone"],
+        status: json["status"],
+        lat: json["lat"],
+        lang: json["lang"],
+        city: json["city"],
+        role: json["role"],
+        fcm: json["fcm"],
+        blockedAt: json["blockedAt"],
+        createdAt: json["createdAt"],
+        updatedAt: json["updatedAt"],
+        isDeleted: json["isDeleted"],
+    );
 }

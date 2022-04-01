@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/nebeng_posting_detail/controller_nebeng_posting_detail.dart';
+import 'package:intake_rider/response/nebeng_order.dart';
 import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
@@ -296,119 +297,178 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                       ),
                     ),
                     verticalSpace(Insets.xl),
-                    SingleChildScrollView(
-                      child: Container(
-                        height: Get.height * 0.35,
-                        width: Get.width,
-                        margin: EdgeInsets.symmetric(horizontal: Insets.sm),
-                        child: CustomScrollView(
-                          slivers: [
-                            SliverToBoxAdapter(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  SizedBox(
-                                    height: Get.height * 0.8,
-                                    width: Get.width * 0.95,
-                                    child: ListView.builder(
-                                      scrollDirection: Axis.vertical,
-                                      itemCount: 5,
-                                      itemBuilder: (context, index) {
-                                        return Container(
-                                          margin: EdgeInsets.only(
-                                              bottom: Insets.sm),
-                                          width: Get.width * 0.8,
-                                          height: Get.height * 0.06,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(9),
-                                              color: AppColor.whiteColor,
-                                              boxShadow: Shadows.universal),
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            child: InkWell(
-                                              onTap: () {},
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 3,
-                                                        horizontal: 20),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: <Widget>[
-                                                    Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: <Widget>[
-                                                        verticalSpace(2),
-                                                        Text(
-                                                          'Anas Kun',
-                                                          style: TextStyles
-                                                              .inter
-                                                              .copyWith(
-                                                            fontSize:
-                                                                FontSizes.s14,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: AppColor
-                                                                .greyColor,
-                                                          ),
-                                                        ),
-                                                        verticalSpace(2),
-                                                        Text(
-                                                          '0852525252525',
-                                                          style: TextStyles
-                                                              .inter
-                                                              .copyWith(
-                                                            fontSize:
-                                                                FontSizes.s14,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            color: AppColor
-                                                                .greyColorLight,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Text(
-                                                      '#12345',
-                                                      style: TextStyles.inter
-                                                          .copyWith(
-                                                        fontSize: FontSizes.s14,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        color: AppColor
-                                                            .greyColorLight,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
+                    Container(
+                      height: Get.height * 0.35,
+                      width: Get.width,
+                      margin: EdgeInsets.symmetric(horizontal: Insets.sm),
+                      child: controller.obx(
+                        (state) => ListView.builder(
+                          itemBuilder: (context, index) => UserNebeng(
+                              nebengOrder: controller.listUserNebeng[index]),
+                          itemCount: controller.listUserNebeng.length,
                         ),
                       ),
+                      // child: CustomScrollView(
+                      //   slivers: [
+                      //     SliverToBoxAdapter(
+                      //       child: Column(
+                      //         mainAxisAlignment: MainAxisAlignment.start,
+                      //         children: <Widget>[
+                      //           SizedBox(
+                      //             height: Get.height * 0.8,
+                      //             width: Get.width * 0.95,
+                      //             child: ListView.builder(
+                      //               scrollDirection: Axis.vertical,
+                      //               itemCount: 5,
+                      //               itemBuilder: (context, index) {
+                      //                 return Container(
+                      //                   margin: EdgeInsets.only(
+                      //                       bottom: Insets.sm),
+                      //                   width: Get.width * 0.8,
+                      //                   height: Get.height * 0.06,
+                      //                   decoration: BoxDecoration(
+                      //                       borderRadius:
+                      //                           BorderRadius.circular(9),
+                      //                       color: AppColor.whiteColor,
+                      //                       boxShadow: Shadows.universal),
+                      //                   child: Material(
+                      //                     color: Colors.transparent,
+                      //                     child: InkWell(
+                      //                       onTap: () {},
+                      //                       child: Padding(
+                      //                         padding:
+                      //                             const EdgeInsets.symmetric(
+                      //                                 vertical: 3,
+                      //                                 horizontal: 20),
+                      //                         child: Row(
+                      //                           mainAxisAlignment:
+                      //                               MainAxisAlignment
+                      //                                   .spaceBetween,
+                      //                           crossAxisAlignment:
+                      //                               CrossAxisAlignment.center,
+                      //                           children: <Widget>[
+                      //                             Column(
+                      //                               mainAxisAlignment:
+                      //                                   MainAxisAlignment
+                      //                                       .start,
+                      //                               crossAxisAlignment:
+                      //                                   CrossAxisAlignment
+                      //                                       .start,
+                      //                               children: <Widget>[
+                      //                                 verticalSpace(2),
+                      //                                 Text(
+                      //                                   'Anas Kun',
+                      //                                   style: TextStyles
+                      //                                       .inter
+                      //                                       .copyWith(
+                      //                                     fontSize:
+                      //                                         FontSizes.s14,
+                      //                                     fontWeight:
+                      //                                         FontWeight.w500,
+                      //                                     color: AppColor
+                      //                                         .greyColor,
+                      //                                   ),
+                      //                                 ),
+                      //                                 verticalSpace(2),
+                      //                                 Text(
+                      //                                   '0852525252525',
+                      //                                   style: TextStyles
+                      //                                       .inter
+                      //                                       .copyWith(
+                      //                                     fontSize:
+                      //                                         FontSizes.s14,
+                      //                                     fontWeight:
+                      //                                         FontWeight.w400,
+                      //                                     color: AppColor
+                      //                                         .greyColorLight,
+                      //                                   ),
+                      //                                 ),
+                      //                               ],
+                      //                             ),
+                      //                             Text(
+                      //                               '#12345',
+                      //                               style: TextStyles.inter
+                      //                                   .copyWith(
+                      //                                 fontSize: FontSizes.s14,
+                      //                                 fontWeight:
+                      //                                     FontWeight.w400,
+                      //                                 color: AppColor
+                      //                                     .greyColorLight,
+                      //                               ),
+                      //                             ),
+                      //                           ],
+                      //                         ),
+                      //                       ),
+                      //                     ),
+                      //                   ),
+                      //                 );
+                      //               },
+                      //             ),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     )
+                      //   ],
+                      // ),
                     ),
                   ],
                 ),
               )
             : loadingIndicator(context),
+      ),
+    );
+  }
+}
+
+class UserNebeng extends StatelessWidget {
+  const UserNebeng({Key? key, required this.nebengOrder})
+      : super(
+          key: key,
+        );
+
+  final NebengOrder nebengOrder;
+
+  @override
+  Widget build(BuildContext context) {
+    return CardRounded(
+      width: Get.width,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              verticalSpace(2),
+              Text(
+                '${nebengOrder.users?.username}',
+                style: TextStyles.inter.copyWith(
+                  fontSize: FontSizes.s14,
+                  fontWeight: FontWeight.w500,
+                  color: AppColor.greyColor,
+                ),
+              ),
+              verticalSpace(2),
+              Text(
+                '${nebengOrder.users?.phone}',
+                style: TextStyles.inter.copyWith(
+                  fontSize: FontSizes.s14,
+                  fontWeight: FontWeight.w400,
+                  color: AppColor.greyColorLight,
+                ),
+              ),
+            ],
+          ),
+          Text(
+            '#12345',
+            style: TextStyles.inter.copyWith(
+              fontSize: FontSizes.s14,
+              fontWeight: FontWeight.w400,
+              color: AppColor.greyColorLight,
+            ),
+          ),
+        ],
       ),
     );
   }

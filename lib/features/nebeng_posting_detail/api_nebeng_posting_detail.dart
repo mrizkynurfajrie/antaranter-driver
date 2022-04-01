@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:intake_rider/framework/api1.dart';
 
 class ApiNebengPostingDetail {

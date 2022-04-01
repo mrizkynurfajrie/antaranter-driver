@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/routes/app_routes.dart';
@@ -80,7 +79,7 @@ class PageHome extends GetView<ControllerHome> {
                                     iconHeight: 25.h,
                                     iconWidth: 25.w,
                                     iconPadding:
-                                        EdgeInsets.only(bottom: 4.h, top: 5.h),
+                                        EdgeInsets.only(bottom: 3.h, top: 5.h),
                                   ),
                                 ],
                               ),
@@ -128,19 +127,20 @@ class PageHome extends GetView<ControllerHome> {
                     ),
                   ),
                 ),
-                CardPrimary(
-                  height: Get.height * 0.13.h,
-                  width: Get.width * 0.85.w,
-                  child: Obx(
-                    () => controller.controllerRiderInfo.rider.value.status != 2
-                        ? Container(
+                Obx(
+                  () => controller.controllerRiderInfo.rider.value.status != 2
+                      ? CardPrimary(
+                          height: Get.height * 0.10.h,
+                          width: Get.width * 0.85.w,
+                          child: Container(
                             margin: EdgeInsets.symmetric(
-                                horizontal: Insets.sm.w,
-                                vertical: Insets.sm.h),
+                                horizontal: Insets.xs.w,
+                                vertical: Insets.xs.h),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15)),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Icon(
@@ -151,12 +151,14 @@ class PageHome extends GetView<ControllerHome> {
                                 horizontalSpace(Insets.med),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        controller.controllerRiderInfo.rider.value
-                                                    .status ==
+                                        controller.controllerRiderInfo.rider
+                                                    .value.status ==
                                                 0
                                             ? "Lengkapi data diri & kendaraan anda untuk mulai menggunakan layanan kami"
                                             : "Admin sedang memverifikasi data anda, mohon tunggu 1x24 jam",
@@ -168,7 +170,7 @@ class PageHome extends GetView<ControllerHome> {
                                     ],
                                   ),
                                 ),
-                                horizontalSpace(Insets.sm),
+                                horizontalSpace(Insets.xs),
                                 controller.controllerRiderInfo.rider.value
                                             .status ==
                                         0
@@ -176,8 +178,8 @@ class PageHome extends GetView<ControllerHome> {
                                         onPressed: () {
                                           Get.toNamed(Routes.userAccount);
                                         },
-                                        child:
-                                            const Icon(Icons.arrow_forward_ios),
+                                        child: const Icon(
+                                            Icons.arrow_forward_ios),
                                         style: OutlinedButton.styleFrom(
                                           shape: const CircleBorder(),
                                           primary: AppColor.primaryColor,
@@ -186,9 +188,9 @@ class PageHome extends GetView<ControllerHome> {
                                     : const SizedBox(),
                               ],
                             ),
-                          )
-                        : const SizedBox(),
-                  ),
+                          ),
+                        )
+                      : const SizedBox(),
                 ),
                 verticalSpace(10.h),
                 CardPrimary(

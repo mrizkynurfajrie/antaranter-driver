@@ -46,6 +46,18 @@ class NebengOrder {
         "status": status,
         "updatedAt": updatedAt?.toIso8601String(),
         "createdAt": createdAt?.toIso8601String(),
-        "users": users,
+        "users": users?.toJson(),
     };
+
+    factory NebengOrder.fromArguments(Map<String, dynamic> json) =>
+      NebengOrder(
+        id: json["id"],
+        usersId: json["users_id"],
+        nebengPostingId: json["nebeng_posting_id"],
+        rating: json["rating"],
+        status: json["status"],
+        updatedAt: json["updatedAt"],
+        createdAt: json["createdAt"],
+        users: Users.fromArguments(json["users"]),
+      );
 }
