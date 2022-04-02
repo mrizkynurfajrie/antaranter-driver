@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
 NebengPosting nebengPostingFromJson(String str) =>
     NebengPosting.fromJson(json.decode(str));
 
@@ -13,6 +15,8 @@ class NebengPosting {
   NebengPosting({
     this.id,
     this.riderId,
+    this.datetimeStart,
+    this.datetimeFinish,
     this.cityOrigin,
     this.cityDestination,
     this.dateDep,
@@ -22,49 +26,59 @@ class NebengPosting {
     this.seatAvail,
     this.price,
     this.status,
-    this.updatedAt,
+    this.statusUpdate,
+    this.note,
     this.createdAt,
+    this.updatedAt,
+    this.isDeleted,
   });
 
   int? id;
   int? riderId;
+  DateTime? datetimeStart;
+  DateTime? datetimeFinish;
   String? cityOrigin;
   String? cityDestination;
   DateTime? dateDep;
   DateTime? dateArr;
-  String? timeDep;
-  String? timeArr;
+  dynamic timeDep;
+  dynamic timeArr;
   int? seatAvail;
   int? price;
   int? status;
-  DateTime? updatedAt;
+  int? statusUpdate;
+  String? note;
   DateTime? createdAt;
+  DateTime? updatedAt;
+  DateTime? isDeleted;
 
   factory NebengPosting.fromJson(Map<String, dynamic> json) => NebengPosting(
         id: json["id"],
         riderId: json["rider_id"],
+        datetimeStart: DateTime.parse(json["datetimeStart"]),
+        datetimeFinish: DateTime.parse(json["datetimeFinish"]),
         cityOrigin: json["city_origin"],
         cityDestination: json["city_destination"],
         dateDep:
             json["dateDep"] == null ? null : DateTime.parse(json["dateDep"]),
-        dateArr:
-            json["dateArr"] == null ? null : DateTime.parse(json["dateArr"]),
+        dateArr: DateTime.parse(json["dateArr"]),
         timeDep: json["timeDep"],
         timeArr: json["timeArr"],
         seatAvail: json["seatAvail"],
         price: json["price"],
         status: json["status"],
-        updatedAt: json["updatedAt"] == null
-            ? null
-            : DateTime.parse(json["updatedAt"]),
-        createdAt: json["createdAt"] == null
-            ? null
-            : DateTime.parse(json["createdAt"]),
+        statusUpdate: json["status_update"],
+        note: json["note"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        isDeleted: json["isDeleted"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "rider_id": riderId,
+        "datetimeStart": datetimeStart?.toIso8601String(),
+        "datetimeFinish": datetimeFinish?.toIso8601String(),
         "city_origin": cityOrigin,
         "city_destination": cityDestination,
         "dateDep": dateDep?.toIso8601String(),
@@ -74,7 +88,10 @@ class NebengPosting {
         "seatAvail": seatAvail,
         "price": price,
         "status": status,
-        "updatedAt": updatedAt?.toIso8601String(),
+        "status_update": statusUpdate,
+        "note": note,
         "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        "isDeleted": isDeleted,
       };
 }

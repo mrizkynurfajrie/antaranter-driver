@@ -1,6 +1,6 @@
 // To parse this JSON data, do
 //
-//     final Users = UsersFromJson(jsonString);
+//     final users = usersFromJson(jsonString);
 
 import 'dart:convert';
 
@@ -33,25 +33,25 @@ class Users {
     });
 
     int? id;
-    String? username;
-    String? email;
+    dynamic username;
+    dynamic email;
     String? password;
-    String? nik;
-    String? ktpPict;
-    String? image;
-    DateTime? birth;
-    String? address;
+    dynamic nik;
+    dynamic ktpPict;
+    dynamic image;
+    dynamic birth;
+    dynamic address;
     String? phone;
     int? status;
-    double? lat;
-    double? lang;
-    String? city;
+    dynamic lat;
+    dynamic lang;
+    dynamic city;
     String? role;
     String? fcm;
-    DateTime? blockedAt;
+    dynamic blockedAt;
     DateTime? createdAt;
     DateTime? updatedAt;
-    int? isDeleted;
+    dynamic isDeleted;
 
     factory Users.fromJson(Map<String, dynamic> json) => Users(
         id: json["id"],
@@ -61,53 +61,7 @@ class Users {
         nik: json["nik"],
         ktpPict: json["ktp_pict"],
         image: json["image"],
-        birth:json["birth"] == null ? null : DateTime.parse(json["birth"]),
-        address: json["address"],
-        phone: json["phone"],
-        status: json["status"],
-        lat: json["lat"],
-        lang: json["lang"],
-        city: json["city"],
-        role: json["role"],
-        fcm: json["fcm"],
-        blockedAt: json["blockedAt"] == null ? null : DateTime.parse(json["blockedAt"]),
-        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-        isDeleted: json["isDeleted"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "id": id,
-        "Usersname": username,
-        "email": email,
-        "password": password,
-        "nik": nik,
-        "ktp_pict": ktpPict,
-        "image": image,
-        "birth": birth?.toIso8601String(),
-        "address": address,
-        "phone": phone,
-        "status": status,
-        "lat": lat,
-        "lang": lang,
-        "city": city,
-        "role": role,
-        "fcm": fcm,
-        "blockedAt": blockedAt?.toIso8601String(),
-        "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
-        "isDeleted": isDeleted,
-    };
-
-    factory Users.fromArguments(Map<String, dynamic> json) => Users(
-       id: json["id"],
-        username: json["username"],
-        email: json["email"],
-        password: json["password"],
-        nik: json["nik"],
-        ktpPict: json["ktp_pict"],
-        image: json["image"],
-        birth:json["birth"],
+        birth: json["birth"],
         address: json["address"],
         phone: json["phone"],
         status: json["status"],
@@ -117,8 +71,54 @@ class Users {
         role: json["role"],
         fcm: json["fcm"],
         blockedAt: json["blockedAt"],
-        createdAt: json["createdAt"],
-        updatedAt: json["updatedAt"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
         isDeleted: json["isDeleted"],
     );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "username": username,
+        "email": email,
+        "password": password,
+        "nik": nik,
+        "ktp_pict": ktpPict,
+        "image": image,
+        "birth": birth,
+        "address": address,
+        "phone": phone,
+        "status": status,
+        "lat": lat,
+        "lang": lang,
+        "city": city,
+        "role": role,
+        "fcm": fcm,
+        "blockedAt": blockedAt,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        "isDeleted": isDeleted,
+    };
+
+    factory Users.fromArguments(Map<String, dynamic> json) => Users(
+        id: json["id"],
+        username: json["username"],
+        email: json["email"],
+        password: json["password"],
+        nik: json["nik"],
+        ktpPict: json["ktp_pict"],
+        image: json["image"],
+        birth: json["birth"],
+        address: json["address"],
+        phone: json["phone"],
+        status: json["status"],
+        lat: json["lat"],
+        lang: json["lang"],
+        city: json["city"],
+        role: json["role"],
+        fcm: json["fcm"],
+        blockedAt: json["blockedAt"],
+        createdAt: json["createdAt"].toIso8601String(),
+        updatedAt: json["updatedAt"].toIso8601String(),
+        isDeleted: json["isDeleted"],
+      );
 }

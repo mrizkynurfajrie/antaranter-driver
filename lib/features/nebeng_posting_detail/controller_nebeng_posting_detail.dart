@@ -44,12 +44,11 @@ class ControllerNebengPostingDetail extends GetxController
         idNebengRider.value = r["data"]["nebeng_rider"]["id"];
         var nebengPostingRes = NebengPostingResponse.fromJson(r["data"]);
         controllerPostingan.postingan.value = nebengPostingRes;
-        log("data controller : " +
-            controllerPostingan.postingan.value.toString());
-        var data = r['data']['data'];
-        var resultListNebeng =
-            (data as List).map((data) => NebengOrder.fromJson(data)).toList();
-        listUserNebeng.addAll(resultListNebeng);
+
+        if (nebengPostingRes.nebengOrder != null) {
+          listUserNebeng.addAll(nebengPostingRes.nebengOrder!);
+        }
+
         change(listUserNebeng, status: RxStatus.success());
         loading.value = false;
       }

@@ -201,13 +201,15 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                               SizedBox(
                                 width: Get.width * 0.20.w,
                                 child: Text(
-                                  FormatDateTime.formatDateWithoutHour(
-                                      value: controller
-                                          .controllerPostingan
-                                          .postingan
-                                          .value
-                                          .nebengPosting!
-                                          .dateDep!),
+                                  // FormatDateTime.formatDateWithoutHour(
+                                  // value:
+                                  // controller
+                                  //     .controllerPostingan
+                                  //     .postingan
+                                  //     .value
+                                  //     .nebengPosting!
+                                  //     .dateDep.toString(),
+                                  "kntl",
                                   style: TextStyles.inter.copyWith(
                                     fontSize: FontSizes.s14,
                                     fontWeight: FontWeight.w400,
@@ -219,7 +221,8 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                 width: Get.width * 0.15.w,
                                 child: Text(
                                   controller.controllerPostingan.postingan.value
-                                      .nebengPosting!.timeDep!,
+                                      .nebengPosting!.timeDep!
+                                      .toString(),
                                   style: TextStyles.inter.copyWith(
                                     fontSize: FontSizes.s14,
                                     fontWeight: FontWeight.w400,
@@ -266,12 +269,13 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                 width: Get.width * 0.20.w,
                                 child: Text(
                                   FormatDateTime.formatDateWithoutHour(
-                                      value: controller
-                                          .controllerPostingan
-                                          .postingan
-                                          .value
-                                          .nebengPosting!
-                                          .dateArr!),
+                                          value: controller
+                                              .controllerPostingan
+                                              .postingan
+                                              .value
+                                              .nebengPosting!
+                                              .dateArr!)
+                                      .toString(),
                                   style: TextStyles.inter.copyWith(
                                     fontSize: FontSizes.s14,
                                     fontWeight: FontWeight.w400,
@@ -283,7 +287,8 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                 width: Get.width * 0.15.w,
                                 child: Text(
                                   controller.controllerPostingan.postingan.value
-                                      .nebengPosting!.timeArr!,
+                                      .nebengPosting!.timeArr!
+                                      .toString(),
                                   style: TextStyles.inter.copyWith(
                                     fontSize: FontSizes.s14,
                                     fontWeight: FontWeight.w400,
