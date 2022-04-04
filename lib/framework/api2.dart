@@ -108,4 +108,7 @@ class Api2 {
   Future<dynamic> getActivePost() async {
     return box.read(CACHE_ACTIVE_POST);
   }
+    Future removeActivePost() async {
+    await box.remove(CACHE_ACTIVE_POST);
+  }
 }

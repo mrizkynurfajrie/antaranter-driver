@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/nebeng_posting_detail/api_nebeng_posting_detail.dart';
+import 'package:intake_rider/framework/api2.dart';
 import 'package:intake_rider/response/nebeng_order.dart';
+import 'package:intake_rider/response/nebeng_posting.dart';
 import 'package:intake_rider/response/nebeng_posting_response.dart';
 import 'package:intake_rider/response/users.dart';
+import 'package:intake_rider/routes/app_routes.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intake_rider/shared/controller/controller_postingan.dart';
@@ -33,6 +36,7 @@ class ControllerNebengPostingDetail extends GetxController
   var loading = false.obs;
   var idNebengRider = 0.obs;
   var isPosting = true;
+  var isEmpty = true;
 
   var txtTimeDept = TextEditingController();
   var txtTimeArrv = TextEditingController();
@@ -49,9 +53,10 @@ class ControllerNebengPostingDetail extends GetxController
 
   ourWa(String? phoneNum) async {
     var whatsapp = phoneNum;
-    var whatsappURlAndroid = "https://wa.me/$whatsapp?text=${Uri.parse("halo driver saya telah memesan nebeng anda")}";
+    var whatsappURlAndroid =
+        "https://wa.me/$whatsapp?text=${Uri.parse("halo driver saya telah memesan nebeng anda")}";
     var whatappURLIos = "https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
-  
+
     if (Platform.isIOS) {
       // for iOS phone only
       if (await canLaunch(whatappURLIos)) {
@@ -61,7 +66,7 @@ class ControllerNebengPostingDetail extends GetxController
       }
     } else {
       // android , web
-  
+
       if (await canLaunch(whatsappURlAndroid)) {
         await launch(whatsappURlAndroid);
       } else {
@@ -96,8 +101,6 @@ class ControllerNebengPostingDetail extends GetxController
     }
   }
 
-  
-
   dialogUbah() {
     return Get.defaultDialog(
         title: 'Ubah Waktu Perjalanan',
@@ -117,6 +120,8 @@ class ControllerNebengPostingDetail extends GetxController
               InputTime(
                 label: 'Waktu Berangkat',
                 controller: txtTimeDept,
+                hintText:
+                    controllerPostingan.postingan.value.nebengPosting?.timeDep,
                 selectedTime: (value) {},
                 isValid: (value) {},
                 boxWidth: Get.width * 0.65,
@@ -125,6 +130,8 @@ class ControllerNebengPostingDetail extends GetxController
               InputTime(
                 label: 'Waktu Tiba',
                 controller: txtTimeArrv,
+                hintText:
+                    controllerPostingan.postingan.value.nebengPosting?.timeArr,
                 selectedTime: (value) {},
                 isValid: (value) {},
                 boxWidth: Get.width * 0.65,
@@ -138,6 +145,11 @@ class ControllerNebengPostingDetail extends GetxController
             var hasil = await ubahWaktu();
             if (hasil == true) {
               Get.back();
+              Get.snackbar(
+                "Ubah Waktu",
+                "Berhasil ubah waktu",
+                snackPosition: SnackPosition.BOTTOM,
+              );
             } else {
               Get.snackbar(
                 "Gagal",
@@ -204,9 +216,10 @@ class ControllerNebengPostingDetail extends GetxController
       ),
       confirm: ButtonPrimary(
         onPressed: () async {
-          var hasil = await ubahWaktu();
+          var hasil = await hapusPosting();
           if (hasil == true) {
-            Get.back();
+            Get.snackbar("Batalkan Pesanan", "Berhasil membatalkan pesanan");
+            Get.offAllNamed(Routes.main);
           } else {
             Get.snackbar(
               "Gagal",
@@ -231,10 +244,12 @@ class ControllerNebengPostingDetail extends GetxController
         timeDep: txtTimeDept.text,
         timeArrv: txtTimeArrv.text,
       );
-      if (updateResult == "success") {
+      if (updateResult["success"] == true) {
         var result = updateResult["data"]["nebeng_post"];
-        log("result : " + result);
-        Get.snackbar("Ubah Waktu", "Berhasil ubah waktu");
+        log("result : " + result.toString());
+        controllerPostingan.postingan.value.nebengPosting =
+            NebengPosting.fromJson(result);
+        controllerPostingan.postingan.refresh();
         return true;
       } else {
         throw "Gagal mengubah waktu";
@@ -250,13 +265,38 @@ class ControllerNebengPostingDetail extends GetxController
         nebengPostingId: controllerPostingan.postingan.value.nebengPosting?.id,
         note: txtNote.text,
       );
-      if (updateResult == "success") {
-        var result = updateResult["data"]["nebeng_post"];
-        log("result : " + result);
-        Get.snackbar("Batalkan Pesanan", "Berhasil membatalkan pesanan");
+      if (updateResult["success"] == true) {
+        var result = updateResult["data"];
+        log("result : " + result.toString());
+        controllerPostingan.postingan.value = NebengPostingResponse();
+        controllerRiderInfo.setRiderHasActivePost(false);
+        await Api2().removePosting();
+        await Api2().removeActivePost();
         return true;
       } else {
         throw "Gagal membatalkan pesanan";
+      }
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> ubahStatus(int status) async {
+    try {
+      var updateResult = await api.changeStatus(
+        status: status,
+        riderId: controllerRiderInfo.rider.value.id,
+      );
+      if (updateResult["success"] == true) {
+        var result = updateResult["data"]["nebeng_post"];
+        log("result : " + result.toString());
+        controllerPostingan.postingan.value.nebengPosting =
+            NebengPosting.fromJson(result);
+        controllerPostingan.postingan.refresh();
+        isEmpty = false;
+        return true;
+      } else {
+        throw "Gagal mengubah status";
       }
     } catch (e) {
       return false;

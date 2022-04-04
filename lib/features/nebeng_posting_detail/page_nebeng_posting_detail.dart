@@ -229,14 +229,16 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                 ),
                                 SizedBox(
                                   width: Get.width * 0.15.w,
-                                  child: Text(
-                                    controller.controllerPostingan.postingan
-                                        .value.nebengPosting!.timeDep!
-                                        .toString(),
-                                    style: TextStyles.inter.copyWith(
-                                      fontSize: FontSizes.s14,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColor.greyColor,
+                                  child: Obx(
+                                    () => Text(
+                                      controller.controllerPostingan.postingan
+                                          .value.nebengPosting!.timeDep!
+                                          .toString(),
+                                      style: TextStyles.inter.copyWith(
+                                        fontSize: FontSizes.s14,
+                                        fontWeight: FontWeight.w400,
+                                        color: AppColor.greyColor,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -295,14 +297,16 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                 ),
                                 SizedBox(
                                   width: Get.width * 0.15.w,
-                                  child: Text(
-                                    controller.controllerPostingan.postingan
-                                        .value.nebengPosting!.timeArr!
-                                        .toString(),
-                                    style: TextStyles.inter.copyWith(
-                                      fontSize: FontSizes.s14,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColor.greyColor,
+                                  child: Obx(
+                                    () => Text(
+                                      controller.controllerPostingan.postingan
+                                          .value.nebengPosting!.timeArr!
+                                          .toString(),
+                                      style: TextStyles.inter.copyWith(
+                                        fontSize: FontSizes.s14,
+                                        fontWeight: FontWeight.w400,
+                                        color: AppColor.greyColor,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -353,6 +357,68 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                             ),
                           ],
                         ),
+                      ),
+                      verticalSpace(10.h),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.w),
+                        height: Get.height * 0.07.h,
+                        child: controller.controllerPostingan.postingan.value
+                                    .nebengPosting?.status ==
+                                1
+                            ? DottedBorder(
+                                dashPattern: const [12, 4],
+                                strokeWidth: 1,
+                                strokeCap: StrokeCap.round,
+                                color: AppColor.greyColorLight,
+                                borderType: BorderType.RRect,
+                                radius: const Radius.circular(4),
+                                child: ButtonPrimary(
+                                  onPressed: () {
+                                    controller.ubahStatus(2);
+                                  },
+                                  label: 'Mulai Perjalanan',
+                                  color: AppColor.primaryColor,
+                                  labelStyle: TextStyles.inter.copyWith(
+                                    color: AppColor.whiteColor,
+                                    fontSize: FontSizes.s14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  height: Get.height * 0.08,
+                                  cornerRadius: 4,
+                                ),
+                              )
+                            : const SizedBox(),
+                      ),
+                      verticalSpace(10.h),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.w),
+                        height: Get.height * 0.07.h,
+                        child: controller.controllerPostingan.postingan.value
+                                    .nebengPosting?.status ==
+                                2
+                            ? DottedBorder(
+                                dashPattern: const [12, 4],
+                                strokeWidth: 1,
+                                strokeCap: StrokeCap.round,
+                                color: AppColor.greyColorLight,
+                                borderType: BorderType.RRect,
+                                radius: const Radius.circular(4),
+                                child: ButtonPrimary(
+                                  onPressed: () {
+                                    controller.ubahStatus(3);
+                                  },
+                                  label: 'Perjalanan Selesai',
+                                  color: AppColor.errorColor,
+                                  labelStyle: TextStyles.inter.copyWith(
+                                    color: AppColor.whiteColor,
+                                    fontSize: FontSizes.s14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  height: Get.height * 0.08,
+                                  cornerRadius: 4,
+                                ),
+                              )
+                            : const SizedBox(),
                       ),
                       verticalSpace(Insets.xl),
                       Container(
