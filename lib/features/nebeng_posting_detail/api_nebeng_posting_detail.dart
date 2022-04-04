@@ -10,4 +10,20 @@ class ApiNebengPostingDetail {
 
     return responseNebengPosting;
   }
+
+  Future<dynamic> updateSchedule({
+    required var postingId,
+    required var timeDep,
+    required var timeArrv,
+  }) async {
+    final bodyIdPosting = {
+      "id": postingId,
+      "timeDep": timeDep,
+      "timeArrv": timeArrv,
+    };
+    var responUpdateSchedule =
+        await Api1().apiJSONPostWithToken('updateschedule', bodyIdPosting);
+
+    return responUpdateSchedule;
+  }
 }

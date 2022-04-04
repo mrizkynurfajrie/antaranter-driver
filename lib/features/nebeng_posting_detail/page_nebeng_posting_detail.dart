@@ -307,35 +307,40 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                     verticalSpace(15.h),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 10.w),
-                      child: Row(
+                      height: Get.height * 0.10.h,
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
                             child: ButtonPrimary(
-                              onPressed: () {},
-                              label: 'Ubah',
-                              color: AppColor.primaryColor,
+                              onPressed: () {
+                                controller.dialogUbah();
+                              },
+                              label: 'Ubah Waktu Perjalanan',
+                              color: AppColor.whiteColor,
                               labelStyle: TextStyles.inter.copyWith(
-                                color: AppColor.whiteColor,
+                                color: AppColor.primaryColor,
                                 fontSize: FontSizes.s14,
                                 fontWeight: FontWeight.w500,
                               ),
-                              height: Get.height * 0.06,
+                              height: Get.height * 0.08,
+                              cornerRadius: 4,
+                              borderColor: AppColor.primaryColor,
                             ),
                           ),
-                          horizontalSpace(10.w),
+                          verticalSpace(10.h),
                           Expanded(
                             child: ButtonPrimary(
-                              onPressed: () {},
-                              label: 'Gatal',
-                              color: AppColor.errorColor,
-                              labelStyle: TextStyles.inter.copyWith(
-                                color: AppColor.whiteColor,
-                                fontSize: FontSizes.s14,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              height: Get.height * 0.06,
-                            ),
+                                onPressed: () {},
+                                label: 'Batalkan Perjalanan',
+                                color: AppColor.errorColor,
+                                labelStyle: TextStyles.inter.copyWith(
+                                  color: AppColor.whiteColor,
+                                  fontSize: FontSizes.s14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                height: Get.height * 0.08,
+                                cornerRadius: 4),
                           ),
                         ],
                       ),

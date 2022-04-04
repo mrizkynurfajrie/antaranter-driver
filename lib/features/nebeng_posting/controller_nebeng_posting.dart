@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/nebeng_posting/api_nebeng_posting.dart';
-import 'package:intake_rider/framework/api2.dart';
 import 'package:intake_rider/response/nebeng_rider.dart';
 import 'package:intake_rider/response/post.dart';
 import 'package:intake_rider/routes/app_routes.dart';
