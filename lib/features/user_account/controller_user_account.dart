@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intake_rider/features/user_account/api_user_account.dart';
 import 'package:intake_rider/framework/api2.dart';
-import 'package:intake_rider/response/rider.dart';
+import 'package:intake_rider/response/main_rider.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
 import 'package:intake_rider/shared/helpers/format_date_time.dart';
 import 'package:intake_rider/shared/widgets/bottomsheet/bottomsheet_selection.dart';
@@ -120,7 +120,7 @@ class ControllerUserAccount extends GetxController {
         city: controllerRiderInfo.rider.value.cityLocation,
       );
 
-      controllerRiderInfo.rider.value = Rider.fromJson(responData['data']);
+      controllerRiderInfo.rider.value = MainRider.fromJson(responData['data']);
       return responData;
     } catch (e) {
       log(e.toString());
@@ -238,6 +238,7 @@ class ControllerUserAccount extends GetxController {
 
   getProvinces() async {
     try {
+      provinces.clear();
       var r = await api.getProvince();
 
       for (var x in r['data']) {
@@ -337,7 +338,7 @@ class ControllerUserAccount extends GetxController {
       if (updateResult['success'] == true) {
         var result = updateResult["data"];
         await Api2().setRider(rider: result);
-        var rider = Rider.fromJson(result);
+        var rider = MainRider.fromJson(result);
         Get.find<ControllerRiderInfo>().rider.value = rider;
         Get.snackbar(
           'Update Profile Pengguna',

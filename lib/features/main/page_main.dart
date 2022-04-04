@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/main/controller_main.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
+import 'package:intake_rider/shared/widgets/buttons/custom_bottom_navbar.dart';
 
 class PageMain extends GetView<ControllerMain> {
   const PageMain({Key? key}) : super(key: key);
@@ -16,26 +17,34 @@ class PageMain extends GetView<ControllerMain> {
             )),
       ),
       bottomNavigationBar: Obx(
-        () => BottomNavigationBar(
-          selectedItemColor: AppColor.primaryColor.shade400,
-          currentIndex: controller.currentPage.value,
-          onTap: (index) => controller.changePage(index),
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Beranda",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.departure_board),
-              label: "Perjalanan",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Profil",
-            ),
-          ],
+        () => CustomBottomNavBar(
+          selectedIndex: controller.currentPage.value,
+          onTap: (pageIndex) {
+            controller.changePage(pageIndex);
+          },
         ),
       ),
+      // Obx(
+      //   () => BottomNavigationBar(
+      //     selectedItemColor: AppColor.primaryColor.shade400,
+      //     currentIndex: controller.currentPage.value,
+      //     onTap: (index) => controller.changePage(index),
+      //     items: const [
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.home),
+      //         label: "Beranda",
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.departure_board),
+      //         label: "Perjalanan",
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.person),
+      //         label: "Profil",
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }

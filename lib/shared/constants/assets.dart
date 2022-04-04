@@ -25,6 +25,9 @@ class AppIcons {
   static const contWebsite = 'assets/icons/website.png';
   static const rupiah = 'assets/icons/rupiah.png';
   static const mandiri = 'assets/icons/mandiri.png';
+  static const profile = 'assets/icons/profile.svg';
+  static const activity = 'assets/icons/activity.svg';
+  static const home = 'assets/icons/home.svg';
 
   static Widget iconApp(String asset){
     return Image.asset(asset, height: IconSizes.sm);

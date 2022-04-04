@@ -82,6 +82,13 @@ class Api2 {
     await box.remove(CACHE_TOKEN);
     await box.remove(CACHE_RIDER);
     await box.remove(CACHE_VEHICLE);
+    await box.remove(CACHE_POSTING);
+    await box.remove(CACHE_ACTIVE_POST);
+    await box.remove(CACHE_USER);
+  }
+
+  Future removePosting() async {
+    await box.remove(CACHE_POSTING);
   }
 
   Future setHasActivePost({bool? isHasActivePost}) async {
@@ -100,5 +107,8 @@ class Api2 {
 
   Future<dynamic> getActivePost() async {
     return box.read(CACHE_ACTIVE_POST);
+  }
+    Future removeActivePost() async {
+    await box.remove(CACHE_ACTIVE_POST);
   }
 }

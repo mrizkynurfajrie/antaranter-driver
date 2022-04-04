@@ -39,6 +39,7 @@ class ControllerVehicleAccount extends GetxController {
   var uploadSim = '';
   var uploadStnk = '';
   var loading = false.obs;
+  var statusUpdate = 0.obs;
 
   final ImagePicker picker = ImagePicker();
 
@@ -65,6 +66,9 @@ class ControllerVehicleAccount extends GetxController {
     txtVehicleCol.text = controllerVehicleInfo.vehicle.value.vehicleColor ?? '';
     txtVehicleVar.text =
         controllerVehicleInfo.vehicle.value.vehicleVariant ?? '';
+    controllerRiderInfo.rider.value.status = 1;
+    statusUpdate.value = controllerRiderInfo.rider.value.status!;
+
     super.onInit();
   }
 
@@ -204,17 +208,18 @@ class ControllerVehicleAccount extends GetxController {
       loading.value = true;
       await uploadSimPict();
       await uploadStnkPict();
-      var platMasked = maskFormatter.getUnmaskedText();
+
       var updateResult = await api.updateVehicleAccount(
           simNum: txtSimNum.text,
           simExp: txtSimExp.text,
           simPict: uploadSim,
-          platNum: platMasked,
+          platNum: txtPlatNum.text,
           vehicleVar: txtVehicleVar.text,
           vehicleCol: txtVehicleCol.text,
           stnkPict: uploadStnk,
           idRiderNebeng: idNebengRider.value,
           idRider: idRider.value);
+
       log(updateResult.toString());
       if (updateResult['success'] == true) {
         var result = updateResult["data"];

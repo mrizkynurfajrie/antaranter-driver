@@ -16,6 +16,7 @@ class ButtonPrimary extends StatelessWidget {
     this.icon,
     this.iconColor,
     this.cornerRadius,
+    this.borderColor
   }) : super(key: key);
 
   final Function() onPressed;
@@ -29,6 +30,7 @@ class ButtonPrimary extends StatelessWidget {
   final EdgeInsets? margin;
   final double? size;
   final double? cornerRadius;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +48,7 @@ class ButtonPrimary extends StatelessWidget {
                 borderRadius: cornerRadius != null
                     ? BorderRadius.all(Radius.circular(cornerRadius!))
                     : Corners.xxlBorder * 2,
+              side: BorderSide(color: borderColor ?? AppColor.transparentColor)
               ),
             ),
             child: Row(

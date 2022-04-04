@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class FormatDateTime {
@@ -22,7 +23,7 @@ class FormatDateTime {
   }
 
   static String formatDateWithoutHour({required DateTime value}) {
-    final dateFormat = DateFormat('yyyy-MM-dd');
+    final dateFormat = DateFormat('dd-MM-yyyy');
     try {
       return dateFormat.format(value);
     } catch (e) {
@@ -187,14 +188,13 @@ class FormatDateTime {
     } else if (dateTime.month == 12) {
       month = "Desember";
     }
-    dateTimeConvert =
-        "${dateTime.day} $month ${dateTime.year}";
+    dateTimeConvert = "${dateTime.day} $month ${dateTime.year}";
     return dateTimeConvert;
   }
 
   static String formatTime({required String dateString}) {
     var inputFormat = DateFormat('dd-MM-yyyy HH:mm:ss');
-    DateTime dateTime =  inputFormat.parse(dateString);
+    DateTime dateTime = inputFormat.parse(dateString);
     var dateTimeConvert = "${dateTime.hour}:${dateTime.minute}";
     return dateTimeConvert;
   }

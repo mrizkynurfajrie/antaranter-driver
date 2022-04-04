@@ -15,7 +15,7 @@ class ApiVehicleAccount {
     required var idRiderNebeng,
   }) async {
     final inputBody = {
-      "rider_id" : idRider,
+      "rider_id": idRider,
       "sim": simNum,
       "simExp": simExp,
       "simPict": simPict,
@@ -42,7 +42,7 @@ class ApiVehicleAccount {
 
     var apiNebengRider = await Api1()
         .apiJSONPostWithToken('nebengriders/findbyrider', inputBody);
-      log(apiNebengRider.toString());
+    log(apiNebengRider.toString());
     return apiNebengRider;
   }
 
