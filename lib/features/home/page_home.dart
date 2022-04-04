@@ -85,14 +85,23 @@ class PageHome extends GetView<ControllerHome> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Text(
-                                      'hai, ' + controller.name.value,
-                                      style: TextStyles.textTitle,
-                                      maxLines: 2,
-                                    ),
+                                    RichText(
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              text: TextSpan(
+                                style: TextStyles.textTitle.copyWith(color: Colors.white),
+                                text: "Hi, ",
+                                children: [
+                                  TextSpan(
+                                      text: controller.controllerRiderInfo.rider.value.name ??
+                                          "Driver")
+                                ],
+                              ),
+                            ),
                                     verticalSpace(5),
                                     Text(
-                                      controller.phone.value,
+                                      controller.controllerRiderInfo.rider.value.phone ??
+                                          "08xx",
                                       style: TextStyles.inter.copyWith(
                                         color: AppColor.whiteColor,
                                         fontSize: FontSizes.s14,
