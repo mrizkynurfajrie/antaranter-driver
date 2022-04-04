@@ -1,3 +1,4 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,31 +31,59 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
       center: AppLogos.logoApp(AppLogos.logoColoured),
       child: Obx(
         () => controller.loading.isFalse
-            ? Padding(
-                padding: const EdgeInsets.all(15),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    CardRounded(
-                      width: Get.width,
-                      margin: EdgeInsets.symmetric(horizontal: Insets.sm),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  SizedBox(
-                                    width: Get.width * 0.32.w,
-                                    child: Row(
+            ? SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      CardRounded(
+                        width: Get.width,
+                        margin: EdgeInsets.symmetric(horizontal: Insets.sm),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    SizedBox(
+                                      width: Get.width * 0.32.w,
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Icon(
+                                            Icons.car_rental,
+                                            size: IconSizes.med,
+                                            color: AppColor.primaryColor,
+                                          ),
+                                          horizontalSpace(5.w),
+                                          Text(
+                                            controller
+                                                    .controllerPostingan
+                                                    .postingan
+                                                    .value
+                                                    .nebengRider
+                                                    ?.vehicleVariant ??
+                                                '',
+                                            style: TextStyles.inter.copyWith(
+                                              fontSize: FontSizes.s14,
+                                              fontWeight: FontWeight.w500,
+                                              color: AppColor.greyColorLight,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: <Widget>[
                                         Icon(
-                                          Icons.car_rental,
+                                          Icons.perm_identity,
                                           size: IconSizes.med,
                                           color: AppColor.primaryColor,
                                         ),
@@ -64,8 +93,9 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                   .controllerPostingan
                                                   .postingan
                                                   .value
-                                                  .nebengRider
-                                                  ?.vehicleVariant ??
+                                                  .nebengPosting
+                                                  ?.seatAvail
+                                                  .toString() ??
                                               '',
                                           style: TextStyles.inter.copyWith(
                                             fontSize: FontSizes.s14,
@@ -75,20 +105,42 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                         )
                                       ],
                                     ),
+                                  ],
+                                ),
+                                Text(
+                                  CurrencyFormat.convertToIdr(
+                                      controller.controllerPostingan.postingan
+                                              .value.nebengPosting?.price ??
+                                          0,
+                                      0),
+                                  style: TextStyles.inter.copyWith(
+                                    fontSize: FontSizes.s14,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColor.greyColorLight,
                                   ),
-                                  Row(
+                                ),
+                              ],
+                            ),
+                            verticalSpace(9.h),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: Get.width * 0.30.w,
+                                  child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: <Widget>[
                                       Icon(
-                                        Icons.perm_identity,
+                                        CupertinoIcons.color_filter,
                                         size: IconSizes.med,
                                         color: AppColor.primaryColor,
                                       ),
                                       horizontalSpace(5.w),
                                       Text(
                                         controller.controllerPostingan.postingan
-                                                .value.nebengPosting?.seatAvail
+                                                .value.nebengRider?.platNumber
                                                 .toString() ??
                                             '',
                                         style: TextStyles.inter.copyWith(
@@ -99,30 +151,9 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                       )
                                     ],
                                   ),
-                                ],
-                              ),
-                              Text(
-                                CurrencyFormat.convertToIdr(
-                                    controller.controllerPostingan.postingan
-                                            .value.nebengPosting?.price ??
-                                        0,
-                                    0),
-                                style: TextStyles.inter.copyWith(
-                                  fontSize: FontSizes.s14,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColor.greyColorLight,
                                 ),
-                              ),
-                            ],
-                          ),
-                          verticalSpace(9.h),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: Get.width * 0.30.w,
-                                child: Row(
+                                horizontalSpace(9.w),
+                                Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     Icon(
@@ -133,7 +164,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                     horizontalSpace(5.w),
                                     Text(
                                       controller.controllerPostingan.postingan
-                                              .value.nebengRider?.platNumber
+                                              .value.nebengRider?.vehicleColor
                                               .toString() ??
                                           '',
                                       style: TextStyles.inter.copyWith(
@@ -144,221 +175,200 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                     )
                                   ],
                                 ),
-                              ),
-                              horizontalSpace(9.w),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                    CupertinoIcons.color_filter,
-                                    size: IconSizes.med,
-                                    color: AppColor.primaryColor,
-                                  ),
-                                  horizontalSpace(5.w),
-                                  Text(
-                                    controller.controllerPostingan.postingan
-                                            .value.nebengRider?.vehicleColor
-                                            .toString() ??
-                                        '',
+                              ],
+                            ),
+                            verticalSpace(15.h),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.my_location,
+                                      size: IconSizes.med,
+                                      color: AppColor.greyColor,
+                                    ),
+                                    horizontalSpace(5.w),
+                                    SizedBox(
+                                      width: Get.width * 0.32.w,
+                                      child: Text(
+                                        controller
+                                                .controllerPostingan
+                                                .postingan
+                                                .value
+                                                .nebengPosting
+                                                ?.cityOrigin ??
+                                            '',
+                                        style: TextStyles.inter.copyWith(
+                                          fontSize: FontSizes.s14,
+                                          color: AppColor.greyColor,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: Get.width * 0.20.w,
+                                  child: Text(
+                                    FormatDateTime.formatDateWithoutHour(
+                                            value: controller
+                                                .controllerPostingan
+                                                .postingan
+                                                .value
+                                                .nebengPosting!
+                                                .dateDep!)
+                                        .toString(),
                                     style: TextStyles.inter.copyWith(
                                       fontSize: FontSizes.s14,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColor.greyColorLight,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                          verticalSpace(15.h),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.my_location,
-                                    size: IconSizes.med,
-                                    color: AppColor.greyColor,
-                                  ),
-                                  horizontalSpace(5.w),
-                                  SizedBox(
-                                    width: Get.width * 0.32.w,
-                                    child: Text(
-                                      controller
-                                              .controllerPostingan
-                                              .postingan
-                                              .value
-                                              .nebengPosting
-                                              ?.cityOrigin ??
-                                          '',
-                                      style: TextStyles.inter.copyWith(
-                                        fontSize: FontSizes.s14,
-                                        color: AppColor.greyColor,
-                                        fontWeight: FontWeight.w400,
-                                      ),
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColor.greyColor,
                                     ),
                                   ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: Get.width * 0.20.w,
-                                child: Text(
-                                  FormatDateTime.formatDateWithoutHour(
-                                          value: controller
-                                              .controllerPostingan
-                                              .postingan
-                                              .value
-                                              .nebengPosting!
-                                              .dateDep!)
-                                      .toString(),
-                                  style: TextStyles.inter.copyWith(
-                                    fontSize: FontSizes.s14,
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColor.greyColor,
-                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: Get.width * 0.15.w,
-                                child: Text(
-                                  controller.controllerPostingan.postingan.value
-                                      .nebengPosting!.timeDep!
-                                      .toString(),
-                                  style: TextStyles.inter.copyWith(
-                                    fontSize: FontSizes.s14,
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColor.greyColor,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          verticalSpace(5.h),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.my_location,
-                                    size: IconSizes.med,
-                                    color: AppColor.primaryColor,
-                                  ),
-                                  horizontalSpace(5.w),
-                                  SizedBox(
-                                    width: Get.width * 0.323.w,
-                                    child: Text(
-                                      controller
-                                              .controllerPostingan
-                                              .postingan
-                                              .value
-                                              .nebengPosting
-                                              ?.cityDestination
-                                              .toString() ??
-                                          '',
-                                      style: TextStyles.inter.copyWith(
-                                        fontSize: FontSizes.s14,
-                                        color: AppColor.greyColor,
-                                        fontWeight: FontWeight.w400,
-                                      ),
+                                SizedBox(
+                                  width: Get.width * 0.15.w,
+                                  child: Text(
+                                    controller.controllerPostingan.postingan
+                                        .value.nebengPosting!.timeDep!
+                                        .toString(),
+                                    style: TextStyles.inter.copyWith(
+                                      fontSize: FontSizes.s14,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColor.greyColor,
                                     ),
                                   ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: Get.width * 0.20.w,
-                                child: Text(
-                                  FormatDateTime.formatDateWithoutHour(
-                                          value: controller
-                                              .controllerPostingan
-                                              .postingan
-                                              .value
-                                              .nebengPosting!
-                                              .dateArr!)
-                                      .toString(),
-                                  style: TextStyles.inter.copyWith(
-                                    fontSize: FontSizes.s14,
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColor.greyColor,
-                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: Get.width * 0.15.w,
-                                child: Text(
-                                  controller.controllerPostingan.postingan.value
-                                      .nebengPosting!.timeArr!
-                                      .toString(),
-                                  style: TextStyles.inter.copyWith(
-                                    fontSize: FontSizes.s14,
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColor.greyColor,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    verticalSpace(15.h),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.w),
-                      height: Get.height * 0.10.h,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: ButtonPrimary(
-                              onPressed: () {
-                                controller.dialogUbah();
-                              },
-                              label: 'Ubah Waktu Perjalanan',
-                              color: AppColor.whiteColor,
-                              labelStyle: TextStyles.inter.copyWith(
-                                color: AppColor.primaryColor,
-                                fontSize: FontSizes.s14,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              height: Get.height * 0.08,
-                              cornerRadius: 4,
-                              borderColor: AppColor.primaryColor,
+                              ],
                             ),
-                          ),
-                          verticalSpace(10.h),
-                          Expanded(
-                            child: ButtonPrimary(
-                                onPressed: () {},
-                                label: 'Batalkan Perjalanan',
-                                color: AppColor.errorColor,
+                            verticalSpace(5.h),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.my_location,
+                                      size: IconSizes.med,
+                                      color: AppColor.primaryColor,
+                                    ),
+                                    horizontalSpace(5.w),
+                                    SizedBox(
+                                      width: Get.width * 0.323.w,
+                                      child: Text(
+                                        controller
+                                                .controllerPostingan
+                                                .postingan
+                                                .value
+                                                .nebengPosting
+                                                ?.cityDestination
+                                                .toString() ??
+                                            '',
+                                        style: TextStyles.inter.copyWith(
+                                          fontSize: FontSizes.s14,
+                                          color: AppColor.greyColor,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: Get.width * 0.20.w,
+                                  child: Text(
+                                    FormatDateTime.formatDateWithoutHour(
+                                            value: controller
+                                                .controllerPostingan
+                                                .postingan
+                                                .value
+                                                .nebengPosting!
+                                                .dateArr!)
+                                        .toString(),
+                                    style: TextStyles.inter.copyWith(
+                                      fontSize: FontSizes.s14,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColor.greyColor,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: Get.width * 0.15.w,
+                                  child: Text(
+                                    controller.controllerPostingan.postingan
+                                        .value.nebengPosting!.timeArr!
+                                        .toString(),
+                                    style: TextStyles.inter.copyWith(
+                                      fontSize: FontSizes.s14,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColor.greyColor,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      verticalSpace(15.h),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.w),
+                        height: Get.height * 0.10.h,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: ButtonPrimary(
+                                onPressed: () {
+                                  controller.dialogUbah();
+                                },
+                                label: 'Ubah Waktu Perjalanan',
+                                color: AppColor.whiteColor,
                                 labelStyle: TextStyles.inter.copyWith(
-                                  color: AppColor.whiteColor,
+                                  color: AppColor.primaryColor,
                                   fontSize: FontSizes.s14,
                                   fontWeight: FontWeight.w500,
                                 ),
                                 height: Get.height * 0.08,
-                                cornerRadius: 4),
-                          ),
-                        ],
-                      ),
-                    ),
-                    verticalSpace(Insets.xl),
-                    Container(
-                      height: Get.height * 0.35,
-                      width: Get.width,
-                      margin: EdgeInsets.symmetric(horizontal: Insets.sm),
-                      child: controller.obx(
-                        (state) => ListView.builder(
-                          itemBuilder: (context, index) => UserNebeng(
-                              nebengOrder: controller.listUserNebeng[index]),
-                          itemCount: controller.listUserNebeng.length,
+                                cornerRadius: 4,
+                                borderColor: AppColor.primaryColor,
+                              ),
+                            ),
+                            verticalSpace(10.h),
+                            Expanded(
+                              child: ButtonPrimary(
+                                  onPressed: () {
+                                    controller.dialogBatal();
+                                  },
+                                  label: 'Batalkan Perjalanan',
+                                  color: AppColor.errorColor,
+                                  labelStyle: TextStyles.inter.copyWith(
+                                    color: AppColor.whiteColor,
+                                    fontSize: FontSizes.s14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  height: Get.height * 0.08,
+                                  cornerRadius: 4),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
+                      verticalSpace(Insets.xl),
+                      Container(
+                        height: Get.height * 0.35,
+                        width: Get.width,
+                        margin: EdgeInsets.symmetric(horizontal: Insets.sm),
+                        child: controller.obx(
+                          (state) => ListView.builder(
+                            itemBuilder: (context, index) => UserNebeng(
+                                nebengOrder: controller.listUserNebeng[index]),
+                            itemCount: controller.listUserNebeng.length,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               )
             : loadingIndicator(context),
@@ -407,14 +417,13 @@ class UserNebeng extends GetView<ControllerNebengPostingDetail> {
               ),
             ],
           ),
-          Text(
-            '#12345',
-            style: TextStyles.inter.copyWith(
-              fontSize: FontSizes.s14,
-              fontWeight: FontWeight.w400,
-              color: AppColor.greyColorLight,
-            ),
-          ),
+          IconButton(
+            onPressed: () {
+              controller.ourWa(nebengOrder.users?.phone);
+            },
+            icon: Image.asset(AppIcons.contWhatsapp),
+            iconSize: IconSizes.sm,
+          )
         ],
       ),
     );

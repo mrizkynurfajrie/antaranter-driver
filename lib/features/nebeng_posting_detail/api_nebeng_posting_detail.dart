@@ -26,4 +26,9 @@ class ApiNebengPostingDetail {
 
     return responUpdateSchedule;
   }
+
+  Future<dynamic> deletePosting ({required var nebengPostingId, required var note,}) async {
+    final bodyHapus = {"nebeng_posting_id" : nebengPostingId, "note" : note};
+    
+  }
 }
