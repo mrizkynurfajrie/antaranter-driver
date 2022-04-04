@@ -59,7 +59,7 @@ class ControllerUserAccount extends GetxController {
 
   @override
   void onInit() async {
-    await getRiderData();
+    // await getRiderData();
     await getProvinces();
     var rider = await Api2().getRider();
     idRider.value = rider["id"] ?? 0;
@@ -105,27 +105,27 @@ class ControllerUserAccount extends GetxController {
   //   isValidForm.value = isValidProvince.value;
   // }
 
-  getRiderData() async {
-    try {
-      var responData = await api.updateUserAccount(
-        idRider: controllerRiderInfo.rider.value.id,
-        name: controllerRiderInfo.rider.value.name,
-        img: controllerRiderInfo.rider.value.image,
-        email: controllerRiderInfo.rider.value.email,
-        nik: controllerRiderInfo.rider.value.nik,
-        ktp: controllerRiderInfo.rider.value.ktpPict,
-        phone: controllerRiderInfo.rider.value.phone,
-        birth: controllerRiderInfo.rider.value.birth,
-        address: controllerRiderInfo.rider.value.address,
-        city: controllerRiderInfo.rider.value.cityLocation,
-      );
+  // getRiderData() async {
+  //   try {
+  //     var responData = await api.updateUserAccount(
+  //       idRider: controllerRiderInfo.rider.value.id,
+  //       name: controllerRiderInfo.rider.value.name,
+  //       img: controllerRiderInfo.rider.value.image,
+  //       email: controllerRiderInfo.rider.value.email,
+  //       nik: controllerRiderInfo.rider.value.nik,
+  //       ktp: controllerRiderInfo.rider.value.ktpPict,
+  //       phone: controllerRiderInfo.rider.value.phone,
+  //       birth: controllerRiderInfo.rider.value.birth,
+  //       address: controllerRiderInfo.rider.value.address,
+  //       city: controllerRiderInfo.rider.value.cityLocation,
+  //     );
 
-      controllerRiderInfo.rider.value = MainRider.fromJson(responData['data']);
-      return responData;
-    } catch (e) {
-      log(e.toString());
-    }
-  }
+  //     controllerRiderInfo.rider.value = MainRider.fromJson(responData['data']);
+  //     return responData;
+  //   } catch (e) {
+  //     log(e.toString());
+  //   }
+  // }
 
 //KTP//
   getKtpFromCamera() async {
