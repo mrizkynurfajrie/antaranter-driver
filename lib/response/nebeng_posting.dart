@@ -55,13 +55,13 @@ class NebengPosting {
   factory NebengPosting.fromJson(Map<String, dynamic> json) => NebengPosting(
         id: json["id"],
         riderId: json["rider_id"],
-        datetimeStart: DateTime.parse(json["datetimeStart"]),
-        datetimeFinish: DateTime.parse(json["datetimeFinish"]),
+        datetimeStart: json["datetimeStart"] == null ? null : DateTime.parse(json["datetimeStart"]),
+        datetimeFinish: json["datetimeFinish"] == null ? null : DateTime.parse(json["datetimeFinish"]),
         cityOrigin: json["city_origin"],
         cityDestination: json["city_destination"],
         dateDep:
             json["dateDep"] == null ? null : DateTime.parse(json["dateDep"]),
-        dateArr: DateTime.parse(json["dateArr"]),
+        dateArr: json["dateArr"] == null ? null : DateTime.parse(json["dateArr"]),
         timeDep: json["timeDep"],
         timeArr: json["timeArr"],
         seatAvail: json["seatAvail"],

@@ -40,7 +40,7 @@ class PageHome extends GetView<ControllerHome> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 CardRoundedBorder(
-                  height: Get.height * 0.12.h,
+                  height: Get.height * 0.14.h,
                   color: AppColor.primaryColor,
                   borderRadius: 30,
                   margin: EdgeInsets.symmetric(vertical: 15.h, horizontal: 5.w),

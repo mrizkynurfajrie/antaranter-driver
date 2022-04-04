@@ -23,6 +23,7 @@ class ControllerNebengPostingDetail extends GetxController
   var userOrder = Users().obs;
   var loading = false.obs;
   var idNebengRider = 0.obs;
+  var isPosting = true;
 
   final listUserNebeng = List<NebengOrder>.empty().obs;
 
@@ -44,7 +45,7 @@ class ControllerNebengPostingDetail extends GetxController
         idNebengRider.value = r["data"]["nebeng_rider"]["id"];
         var nebengPostingRes = NebengPostingResponse.fromJson(r["data"]);
         controllerPostingan.postingan.value = nebengPostingRes;
-
+      log('disini aja');
         if (nebengPostingRes.nebengOrder != null) {
           listUserNebeng.addAll(nebengPostingRes.nebengOrder!);
         }

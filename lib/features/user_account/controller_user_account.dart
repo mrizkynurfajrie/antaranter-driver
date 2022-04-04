@@ -238,6 +238,7 @@ class ControllerUserAccount extends GetxController {
 
   getProvinces() async {
     try {
+      provinces.clear();
       var r = await api.getProvince();
 
       for (var x in r['data']) {

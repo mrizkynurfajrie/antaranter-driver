@@ -54,7 +54,7 @@ class AppColor {
   static const int _bodyColorValue = 0xFFFFFFFF;
 
   //ACCENT
-  static const Color errorColor = Color(0xFFD95952); //Danger - Use for errors
+  static const Color errorColor = Color(0xFFE53935); //Danger - Use for errors
   static const Color successColor = Color(0xFF31B76A); //Succes - Use for Succes
   static const Color whiteColor = Color(0xFFFFFFFF);
   static const Color bgPageColor = Color(0xFFE5E5E5);

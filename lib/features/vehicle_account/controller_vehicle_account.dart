@@ -208,17 +208,16 @@ class ControllerVehicleAccount extends GetxController {
       loading.value = true;
       await uploadSimPict();
       await uploadStnkPict();
-      var platMasked = maskFormatter.getUnmaskedText();
+
       var updateResult = await api.updateVehicleAccount(
           simNum: txtSimNum.text,
           simExp: txtSimExp.text,
           simPict: uploadSim,
-          platNum: platMasked,
+          platNum: txtPlatNum.text,
           vehicleVar: txtVehicleVar.text,
           vehicleCol: txtVehicleCol.text,
           stnkPict: uploadStnk,
           idRiderNebeng: idNebengRider.value,
-          status: statusUpdate.value,
           idRider: idRider.value);
 
       log(updateResult.toString());

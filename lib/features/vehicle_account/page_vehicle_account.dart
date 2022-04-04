@@ -161,7 +161,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                     controller: controller.txtPlatNum,
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(11),
-                      controller.maskFormatter,
+                      // controller.maskFormatter,
                     ],
                     textCapitalization: TextCapitalization.characters,
                   ),

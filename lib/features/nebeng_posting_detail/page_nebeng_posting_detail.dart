@@ -9,6 +9,7 @@ import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intake_rider/shared/helpers/currency_formatter.dart';
 import 'package:intake_rider/shared/helpers/format_date_time.dart';
+import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_rider/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
@@ -47,7 +48,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                               Row(
                                 children: <Widget>[
                                   SizedBox(
-                                    width: Get.width * 0.26.w,
+                                    width: Get.width * 0.32.w,
                                     child: Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
@@ -119,27 +120,30 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                    CupertinoIcons.color_filter,
-                                    size: IconSizes.med,
-                                    color: AppColor.primaryColor,
-                                  ),
-                                  horizontalSpace(5.w),
-                                  Text(
-                                    controller.controllerPostingan.postingan
-                                            .value.nebengRider?.platNumber
-                                            .toString() ??
-                                        '',
-                                    style: TextStyles.inter.copyWith(
-                                      fontSize: FontSizes.s14,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColor.greyColorLight,
+                              SizedBox(
+                                width: Get.width * 0.30.w,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(
+                                      CupertinoIcons.color_filter,
+                                      size: IconSizes.med,
+                                      color: AppColor.primaryColor,
                                     ),
-                                  )
-                                ],
+                                    horizontalSpace(5.w),
+                                    Text(
+                                      controller.controllerPostingan.postingan
+                                              .value.nebengRider?.platNumber
+                                              .toString() ??
+                                          '',
+                                      style: TextStyles.inter.copyWith(
+                                        fontSize: FontSizes.s14,
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColor.greyColorLight,
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                               horizontalSpace(9.w),
                               Row(
@@ -180,7 +184,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                   ),
                                   horizontalSpace(5.w),
                                   SizedBox(
-                                    width: Get.width * 0.35.w,
+                                    width: Get.width * 0.32.w,
                                     child: Text(
                                       controller
                                               .controllerPostingan
@@ -201,15 +205,14 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                               SizedBox(
                                 width: Get.width * 0.20.w,
                                 child: Text(
-                                  // FormatDateTime.formatDateWithoutHour(
-                                  // value:
-                                  // controller
-                                  //     .controllerPostingan
-                                  //     .postingan
-                                  //     .value
-                                  //     .nebengPosting!
-                                  //     .dateDep.toString(),
-                                  "kntl",
+                                  FormatDateTime.formatDateWithoutHour(
+                                          value: controller
+                                              .controllerPostingan
+                                              .postingan
+                                              .value
+                                              .nebengPosting!
+                                              .dateDep!)
+                                      .toString(),
                                   style: TextStyles.inter.copyWith(
                                     fontSize: FontSizes.s14,
                                     fontWeight: FontWeight.w400,
@@ -246,7 +249,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                   ),
                                   horizontalSpace(5.w),
                                   SizedBox(
-                                    width: Get.width * 0.35.w,
+                                    width: Get.width * 0.323.w,
                                     child: Text(
                                       controller
                                               .controllerPostingan
@@ -301,6 +304,42 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                         ],
                       ),
                     ),
+                    verticalSpace(15.h),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10.w),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: ButtonPrimary(
+                              onPressed: () {},
+                              label: 'Ubah',
+                              color: AppColor.primaryColor,
+                              labelStyle: TextStyles.inter.copyWith(
+                                color: AppColor.whiteColor,
+                                fontSize: FontSizes.s14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              height: Get.height * 0.06,
+                            ),
+                          ),
+                          horizontalSpace(10.w),
+                          Expanded(
+                            child: ButtonPrimary(
+                              onPressed: () {},
+                              label: 'Gatal',
+                              color: AppColor.errorColor,
+                              labelStyle: TextStyles.inter.copyWith(
+                                color: AppColor.whiteColor,
+                                fontSize: FontSizes.s14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              height: Get.height * 0.06,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     verticalSpace(Insets.xl),
                     Container(
                       height: Get.height * 0.35,
@@ -313,108 +352,6 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                           itemCount: controller.listUserNebeng.length,
                         ),
                       ),
-                      // child: CustomScrollView(
-                      //   slivers: [
-                      //     SliverToBoxAdapter(
-                      //       child: Column(
-                      //         mainAxisAlignment: MainAxisAlignment.start,
-                      //         children: <Widget>[
-                      //           SizedBox(
-                      //             height: Get.height * 0.8,
-                      //             width: Get.width * 0.95,
-                      //             child: ListView.builder(
-                      //               scrollDirection: Axis.vertical,
-                      //               itemCount: 5,
-                      //               itemBuilder: (context, index) {
-                      //                 return Container(
-                      //                   margin: EdgeInsets.only(
-                      //                       bottom: Insets.sm),
-                      //                   width: Get.width * 0.8,
-                      //                   height: Get.height * 0.06,
-                      //                   decoration: BoxDecoration(
-                      //                       borderRadius:
-                      //                           BorderRadius.circular(9),
-                      //                       color: AppColor.whiteColor,
-                      //                       boxShadow: Shadows.universal),
-                      //                   child: Material(
-                      //                     color: Colors.transparent,
-                      //                     child: InkWell(
-                      //                       onTap: () {},
-                      //                       child: Padding(
-                      //                         padding:
-                      //                             const EdgeInsets.symmetric(
-                      //                                 vertical: 3,
-                      //                                 horizontal: 20),
-                      //                         child: Row(
-                      //                           mainAxisAlignment:
-                      //                               MainAxisAlignment
-                      //                                   .spaceBetween,
-                      //                           crossAxisAlignment:
-                      //                               CrossAxisAlignment.center,
-                      //                           children: <Widget>[
-                      //                             Column(
-                      //                               mainAxisAlignment:
-                      //                                   MainAxisAlignment
-                      //                                       .start,
-                      //                               crossAxisAlignment:
-                      //                                   CrossAxisAlignment
-                      //                                       .start,
-                      //                               children: <Widget>[
-                      //                                 verticalSpace(2),
-                      //                                 Text(
-                      //                                   'Anas Kun',
-                      //                                   style: TextStyles
-                      //                                       .inter
-                      //                                       .copyWith(
-                      //                                     fontSize:
-                      //                                         FontSizes.s14,
-                      //                                     fontWeight:
-                      //                                         FontWeight.w500,
-                      //                                     color: AppColor
-                      //                                         .greyColor,
-                      //                                   ),
-                      //                                 ),
-                      //                                 verticalSpace(2),
-                      //                                 Text(
-                      //                                   '0852525252525',
-                      //                                   style: TextStyles
-                      //                                       .inter
-                      //                                       .copyWith(
-                      //                                     fontSize:
-                      //                                         FontSizes.s14,
-                      //                                     fontWeight:
-                      //                                         FontWeight.w400,
-                      //                                     color: AppColor
-                      //                                         .greyColorLight,
-                      //                                   ),
-                      //                                 ),
-                      //                               ],
-                      //                             ),
-                      //                             Text(
-                      //                               '#12345',
-                      //                               style: TextStyles.inter
-                      //                                   .copyWith(
-                      //                                 fontSize: FontSizes.s14,
-                      //                                 fontWeight:
-                      //                                     FontWeight.w400,
-                      //                                 color: AppColor
-                      //                                     .greyColorLight,
-                      //                               ),
-                      //                             ),
-                      //                           ],
-                      //                         ),
-                      //                       ),
-                      //                     ),
-                      //                   ),
-                      //                 );
-                      //               },
-                      //             ),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     )
-                      //   ],
-                      // ),
                     ),
                   ],
                 ),
@@ -425,7 +362,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
   }
 }
 
-class UserNebeng extends StatelessWidget {
+class UserNebeng extends GetView<ControllerNebengPostingDetail> {
   const UserNebeng({Key? key, required this.nebengOrder})
       : super(
           key: key,
