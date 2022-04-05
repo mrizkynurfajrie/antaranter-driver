@@ -16,7 +16,7 @@ class PageContact extends GetView<ControllerContact> {
     return PageDecorationTop(
       title: 'INTAKE',
       backgroundColor: AppColor.bgPageColor,
-      toolbarColor: AppColor.primaryColor,
+      toolbarColor: AppColor.greyColorLight,
       center: Center(child: AppLogos.logoApp(AppLogos.logoHorizontal)),
       enableBack: true,
       child: SafeArea(

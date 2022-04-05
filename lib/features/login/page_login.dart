@@ -25,7 +25,7 @@ class PageLogin extends GetView<ControllerLogin> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Image.asset(
-                "assets/logo/logo-besar.png",
+                "assets/logo/logo_horizontal.png",
                 width: Get.width * 0.65.w,
               ),
               verticalSpace(45.h),

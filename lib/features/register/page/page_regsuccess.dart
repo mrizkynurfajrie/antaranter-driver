@@ -21,7 +21,7 @@ class PageRegsuccess extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Image.asset(
-                  "assets/logo/logo-besar.png",
+                  "assets/logo/logo_horizontal.png",
                   width: size.width * 0.65,
                 ),
                 SizedBox(height: size.height * 0.30),

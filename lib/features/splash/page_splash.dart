@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 import 'package:get/get.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
+import 'package:intake_rider/shared/constants/styles.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -42,11 +42,24 @@ class Body extends StatelessWidget {
     return BackgroundSplash(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Image.asset(
-            "assets/logo/logo-kecil-white.png",
-            width: size.width * 0.50,
+          SizedBox(
+            height: Get.height * 0.5,
+            child: Image.asset(
+              "assets/logo/logo_only.png",
+              width: size.width * 0.40,
+            ),
           ),
+
+          Text(
+            "In-Take App",
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: FontSizes.s20,
+              color: AppColor.primaryColor,
+            ),
+          )
         ],
       ),
     );
@@ -69,9 +82,7 @@ class BackgroundSplash extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          Container(
-            color: AppColor.primaryColor,
-          ),
+          Container(color: AppColor.whiteColor),
           child!,
         ],
       ),

@@ -41,7 +41,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
               CardPrimary(
                 height: Get.height * 0.25.h,
                 width: Get.width * 0.87.w,
-                color: AppColor.primaryColor,
+                color: AppColor.greyColor,
                 padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
                 radius: 19,
                 child: Column(

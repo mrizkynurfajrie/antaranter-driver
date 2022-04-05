@@ -20,7 +20,7 @@ class PageProfile extends GetView<ControllerProfile> {
     return PageDecorationTop(
       title: 'INTAKE',
       enableBack: false,
-      toolbarColor: AppColor.primaryColor,
+      toolbarColor: AppColor.greyColorLight,
       center: AppLogos.logoApp(AppLogos.logoHorizontal),
       padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
