@@ -37,12 +37,14 @@ class ControllerNebengPostingDetail extends GetxController
   var idNebengRider = 0.obs;
   var isPosting = true;
   var isEmpty = false;
-  var statusNebeng = 0.obs;
+  var statusNebeng = 2.obs;
   var balance = 0.obs;
 
   var txtTimeDept = TextEditingController();
   var txtTimeArrv = TextEditingController();
   var txtNote = TextEditingController();
+  var dateTimeStart = DateTime.now().obs;
+  var dateTimeFinish = DateTime.now().obs;
 
   final listUserNebeng = List<NebengOrder>.empty().obs;
 
@@ -273,6 +275,7 @@ class ControllerNebengPostingDetail extends GetxController
         var result = updateResult["data"];
         log("result : " + result.toString());
         controllerPostingan.postingan.value.nebengPosting?.status = 4;
+        controllerPostingan.postingan.value.nebengRider?.statusNebeng = 2;
         controllerPostingan.postingan.value = NebengPostingResponse();
         controllerRiderInfo.setRiderHasActivePost(false);
         isEmpty = true;
@@ -291,7 +294,7 @@ class ControllerNebengPostingDetail extends GetxController
     try {
       var updateResult = await api.changeStatus(
         status: status,
-        riderId: controllerRiderInfo.rider.value.id,
+        riderId: controllerPostingan.postingan.value.mainRider?.id,
       );
       if (updateResult["success"] == true) {
         var result = updateResult["data"]["nebeng_post"];
@@ -303,7 +306,7 @@ class ControllerNebengPostingDetail extends GetxController
         controllerPostingan.postingan.refresh();
         var statusUpdate = controllerPostingan.postingan.value.nebengPosting;
         if (statusUpdate?.status == 3) {
-          updateStatusDone();
+          await updateStatusDone();
           controllerPostingan.postingan.value = NebengPostingResponse();
           controllerRiderInfo.setRiderHasActivePost(false);
           await Api2().removePosting();
@@ -330,6 +333,7 @@ class ControllerNebengPostingDetail extends GetxController
     try {
       var r = await api.updateBalance(
           nebengPostId: controllerPostingan.postingan.value.nebengPosting?.id);
+      log("nebeng post id : " + r.toString());
       if (r["success"] == true) {
         var updateBalance = r["data"]["currBalance"]["curr_balance"];
         balance.value = updateBalance;

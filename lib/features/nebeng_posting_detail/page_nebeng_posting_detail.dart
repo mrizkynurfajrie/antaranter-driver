@@ -14,6 +14,7 @@ import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_rider/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
+import 'package:lottie/lottie.dart';
 
 class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
   const PageNebengPostingDetail({
@@ -400,7 +401,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                       ),
                                     ),
                                   ),
-                                  verticalSpace(5.h),
+                                  verticalSpace(15.h),
                                   Container(
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 10.w),
@@ -415,10 +416,19 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                               controller.dialogUbah();
                                             },
                                             label: 'Ubah Waktu Perjalanan',
+                                            enable: (controller
+                                                        .statusNebeng.value ==
+                                                    1)
+                                                ? true
+                                                : false,
                                             color: AppColor.whiteColor,
                                             labelStyle:
                                                 TextStyles.inter.copyWith(
-                                              color: AppColor.primaryColor,
+                                              color: (controller
+                                                          .statusNebeng.value ==
+                                                      1)
+                                                  ? AppColor.primaryColor
+                                                  : AppColor.whiteColor,
                                               fontSize: FontSizes.s14,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -430,24 +440,26 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                         verticalSpace(10.h),
                                         Expanded(
                                           child: ButtonPrimary(
-                                              onPressed: () {
-                                                controller.dialogBatal();
-                                              },
-                                              enable: (controller
-                                                          .statusNebeng.value ==
-                                                      1)
-                                                  ? true
-                                                  : false,
-                                              label: 'Batalkan Perjalanan',
+                                            onPressed: () {
+                                              controller.dialogBatal();
+                                            },
+                                            enable: (controller
+                                                        .statusNebeng.value ==
+                                                    1)
+                                                ? true
+                                                : false,
+                                            label: 'Batalkan Perjalanan',
+                                            color: AppColor.whiteColor,
+                                            labelStyle:
+                                                TextStyles.inter.copyWith(
                                               color: AppColor.errorColor,
-                                              labelStyle:
-                                                  TextStyles.inter.copyWith(
-                                                color: AppColor.whiteColor,
-                                                fontSize: FontSizes.s14,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                              height: Get.height * 0.08,
-                                              cornerRadius: 4),
+                                              fontSize: FontSizes.s14,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                            height: Get.height * 0.08,
+                                            cornerRadius: 4,
+                                            borderColor: AppColor.errorColor,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -503,9 +515,22 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                               borderType: BorderType.RRect,
                                               radius: const Radius.circular(4),
                                               child: ButtonPrimary(
-                                                onPressed: () {
-                                                  controller.ubahStatus(2);
-                                                },
+                                                onPressed: controller
+                                                        .listUserNebeng
+                                                        .isNotEmpty
+                                                    ? () {
+                                                        controller
+                                                            .ubahStatus(2);
+                                                      }
+                                                    : () {
+                                                        Get.snackbar(
+                                                          "Perjalanan",
+                                                          "Anda belum bisa memulai perjalanan, karena tidak ada pelanggan yang nebeng dengan anda",
+                                                          snackPosition:
+                                                              SnackPosition
+                                                                  .BOTTOM,
+                                                        );
+                                                      },
                                                 enable: (controller.statusNebeng
                                                             .value ==
                                                         1)
@@ -542,7 +567,11 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      
+                      Lottie.asset(
+                        AppLotties.empty,
+                        width: Get.width * 0.4,
+                      ),
+                      verticalSpace(10.h),
                       Text(
                         "Anda belum membagikan perjalanan anda",
                         style: TextStyles.inter.copyWith(
@@ -572,7 +601,7 @@ class UserNebeng extends GetView<ControllerNebengPostingDetail> {
   Widget build(BuildContext context) {
     return CardRounded(
       width: Get.width,
-      margin: EdgeInsets.symmetric(horizontal: 1.w),
+      margin: EdgeInsets.symmetric(horizontal: 1.w, vertical: 5.h),
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -42,6 +42,7 @@ class ControllerNebengPosting extends GetxController {
   var idRider = 0.obs;
   var idNebengRider = 0.obs;
   var loading = false;
+  var statusNebeng = 0.obs;
 
   var maskFormatter = MaskTextInputFormatter(
     mask: '###.###',
