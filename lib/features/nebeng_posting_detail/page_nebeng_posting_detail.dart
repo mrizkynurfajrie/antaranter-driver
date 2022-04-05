@@ -179,10 +179,11 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                             ),
                             verticalSpace(15.h),
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Row(
+                                 crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Icon(
                                       Icons.my_location,
@@ -246,10 +247,11 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                             ),
                             verticalSpace(5.h),
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Icon(
                                       Icons.my_location,
@@ -359,66 +361,111 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                         ),
                       ),
                       verticalSpace(10.h),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10.w),
-                        height: Get.height * 0.07.h,
-                        child: controller.controllerPostingan.postingan.value
-                                    .nebengPosting?.status ==
-                                1
-                            ? DottedBorder(
-                                dashPattern: const [12, 4],
-                                strokeWidth: 1,
-                                strokeCap: StrokeCap.round,
-                                color: AppColor.greyColorLight,
-                                borderType: BorderType.RRect,
-                                radius: const Radius.circular(4),
-                                child: ButtonPrimary(
-                                  onPressed: () {
-                                    controller.ubahStatus(2);
-                                  },
-                                  label: 'Mulai Perjalanan',
-                                  color: AppColor.primaryColor,
-                                  labelStyle: TextStyles.inter.copyWith(
-                                    color: AppColor.whiteColor,
-                                    fontSize: FontSizes.s14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  height: Get.height * 0.08,
-                                  cornerRadius: 4,
-                                ),
-                              )
-                            : const SizedBox(),
-                      ),
-                      verticalSpace(10.h),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10.w),
-                        height: Get.height * 0.07.h,
-                        child: controller.controllerPostingan.postingan.value
-                                    .nebengPosting?.status ==
-                                2
-                            ? DottedBorder(
-                                dashPattern: const [12, 4],
-                                strokeWidth: 1,
-                                strokeCap: StrokeCap.round,
-                                color: AppColor.greyColorLight,
-                                borderType: BorderType.RRect,
-                                radius: const Radius.circular(4),
-                                child: ButtonPrimary(
-                                  onPressed: () {
-                                    controller.ubahStatus(3);
-                                  },
-                                  label: 'Perjalanan Selesai',
-                                  color: AppColor.errorColor,
-                                  labelStyle: TextStyles.inter.copyWith(
-                                    color: AppColor.whiteColor,
-                                    fontSize: FontSizes.s14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  height: Get.height * 0.08,
-                                  cornerRadius: 4,
-                                ),
-                              )
-                            : const SizedBox(),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                                height: Get.height * 0.07.h,
+                                child: controller.controllerPostingan.postingan
+                                            .value.nebengPosting?.status ==
+                                        2
+                                    ? DottedBorder(
+                                        dashPattern: const [12, 4],
+                                        strokeWidth: 1,
+                                        strokeCap: StrokeCap.round,
+                                        color: AppColor.greyColorLight,
+                                        borderType: BorderType.RRect,
+                                        radius: const Radius.circular(4),
+                                        child: ButtonPrimary(
+                                          onPressed: () {
+                                            controller.ubahStatus(3);
+                                          },
+                                          label: 'Perjalanan Selesai',
+                                          color: AppColor.primaryColor,
+                                          labelStyle: TextStyles.inter.copyWith(
+                                            color: AppColor.whiteColor,
+                                            fontSize: FontSizes.s14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          height: Get.height * 0.08.h,
+                                          cornerRadius: 4,
+                                        ),
+                                      )
+                                    : DottedBorder(
+                                        dashPattern: const [12, 4],
+                                        strokeWidth: 1,
+                                        strokeCap: StrokeCap.round,
+                                        color: AppColor.greyColorLight,
+                                        borderType: BorderType.RRect,
+                                        radius: const Radius.circular(4),
+                                        child: ButtonPrimary(
+                                          onPressed: () {},
+                                          enable: false,
+                                          label: 'Perjalanan Selesai',
+                                          color: AppColor.greyColor,
+                                          labelStyle: TextStyles.inter.copyWith(
+                                            color: AppColor.whiteColor,
+                                            fontSize: FontSizes.s14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          height: Get.height * 0.08.h,
+                                          cornerRadius: 4,
+                                        ),
+                                      )),
+                          ),
+                          Expanded(
+                            child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                                height: Get.height * 0.07.h,
+                                child: controller.controllerPostingan.postingan
+                                            .value.nebengPosting?.status ==
+                                        1
+                                    ? DottedBorder(
+                                        dashPattern: const [12, 4],
+                                        strokeWidth: 1,
+                                        strokeCap: StrokeCap.round,
+                                        color: AppColor.greyColorLight,
+                                        borderType: BorderType.RRect,
+                                        radius: const Radius.circular(4),
+                                        child: ButtonPrimary(
+                                          onPressed: () {
+                                            controller.ubahStatus(2);
+                                          },
+                                          label: 'Mulai Perjalanan',
+                                          color: AppColor.successColor,
+                                          labelStyle: TextStyles.inter.copyWith(
+                                            color: AppColor.whiteColor,
+                                            fontSize: FontSizes.s14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          height: Get.height * 0.08.h,
+                                          cornerRadius: 4,
+                                        ),
+                                      )
+                                    : DottedBorder(
+                                        dashPattern: const [12, 4],
+                                        strokeWidth: 1,
+                                        strokeCap: StrokeCap.round,
+                                        color: AppColor.greyColorLight,
+                                        borderType: BorderType.RRect,
+                                        radius: const Radius.circular(4),
+                                        child: ButtonPrimary(
+                                          onPressed: () {},
+                                          enable: false,
+                                          label: 'Mulai Perjalanan',
+                                          color: AppColor.greyColor,
+                                          labelStyle: TextStyles.inter.copyWith(
+                                            color: AppColor.whiteColor,
+                                            fontSize: FontSizes.s14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          height: Get.height * 0.08.h,
+                                          cornerRadius: 4,
+                                        ),
+                                      )),
+                          ),
+                        ],
                       ),
                       verticalSpace(Insets.xl),
                       Container(

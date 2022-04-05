@@ -12,6 +12,7 @@ class ButtonPrimary extends StatelessWidget {
     this.labelStyle,
     this.height,
     this.margin,
+    this.padding,
     this.enable = true,
     this.icon,
     this.iconColor,
@@ -28,6 +29,7 @@ class ButtonPrimary extends StatelessWidget {
   final String label;
   final TextStyle? labelStyle;
   final EdgeInsets? margin;
+  final EdgeInsets? padding;
   final double? size;
   final double? cornerRadius;
   final Color? borderColor;
@@ -36,6 +38,7 @@ class ButtonPrimary extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         margin: margin ?? EdgeInsets.zero,
+        padding: padding ?? EdgeInsets.zero,
         height: height ?? IconSizes.xxl - 6,
         width: size ?? double.infinity,
         child: ElevatedButton(
