@@ -20,8 +20,11 @@ class PageProfile extends GetView<ControllerProfile> {
     return PageDecorationTop(
       title: 'INTAKE',
       enableBack: false,
-      toolbarColor: AppColor.greyColorLight,
-      center: AppLogos.logoApp(AppLogos.logoHorizontal),
+      toolbarColor: AppColor.primaryColor.shade200,
+      center: Align(
+        child: AppLogosMed.logoApp(AppLogosMed.nameOnly),
+        alignment: Alignment.centerRight,
+      ),
       padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
       child: SingleChildScrollView(
@@ -75,7 +78,8 @@ class PageProfile extends GetView<ControllerProfile> {
                         ),
                         verticalSpace(5.h),
                         Text(
-                          controller.controllerRiderInfo.rider.value.phone ?? "-",
+                          controller.controllerRiderInfo.rider.value.phone ??
+                              "-",
                           style: TextStyles.inter.copyWith(
                               fontSize: FontSizes.s12,
                               fontWeight: FontWeight.w500,

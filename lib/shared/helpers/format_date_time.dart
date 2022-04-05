@@ -39,6 +39,14 @@ class FormatDateTime {
       return dateFormat.format(value);
     }
   }
+  static String formatDateyyyy(dynamic value) {
+    final dateFormat = DateFormat('yyyy-MM-dd');
+    if (value == null) {
+      return '-';
+    } else {
+      return dateFormat.format(value);
+    }
+  }
 
   static String getDay(dynamic value) {
     final dateFormat = DateFormat('dd');

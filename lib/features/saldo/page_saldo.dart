@@ -38,12 +38,15 @@ class PageSaldo extends GetView<ControllerSaldo> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              CardPrimary(
-                height: Get.height * 0.25.h,
+              CardRoundedBorder(
+                height: Get.height * 0.26.h,
                 width: Get.width * 0.87.w,
-                color: AppColor.greyColor,
+                color: AppColor.whiteColor,
                 padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
-                radius: 19,
+                borderRadius: 9,
+                borderColor: AppColor.greyColorLight,
+                borderWidth: 4,
+                // radius: 19,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +71,9 @@ class PageSaldo extends GetView<ControllerSaldo> {
                             Text(
                               controller.controllerRiderInfo.rider.value.name ??
                                   "-",
-                              style: TextStyles.textTitle,
+                              style: TextStyles.inter.copyWith(
+                                fontSize: FontSizes.s14,
+                                color: AppColor.primaryColor, fontWeight: FontWeight.w500),
                             ),
                             Text(
                               controller
@@ -76,7 +81,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
                                   "-",
                               style: TextStyles.inter.copyWith(
                                 fontSize: FontSizes.s14,
-                                color: AppColor.whiteColor,
+                                color: AppColor.primaryColor,
                               ),
                             )
                           ],
@@ -86,7 +91,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
                     verticalSpace(20.h),
                     Obx(
                       () => Shimmer.fromColors(
-                        baseColor: Colors.grey.shade300,
+                        baseColor: AppColor.primaryColor,
                         highlightColor: Colors.grey.shade50,
                         enabled: controller.loading.isTrue,
                         child: controller.loading.isTrue
@@ -135,7 +140,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
               verticalSpace(15.h),
               CardPrimary(
                 width: Get.width * 0.9.h,
-                height: Get.height * 0.45.h,
+                height: Get.height * 0.40.h,
                 color: AppColor.whiteColor,
                 child: controller.obx(
                   (state) => Scrollbar(

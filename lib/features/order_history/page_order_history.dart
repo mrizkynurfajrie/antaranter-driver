@@ -66,11 +66,14 @@ class PageOrderHistory extends GetView<ControllerOrderHistory> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        Text(
-                                          "${controller.listHistory[index].cityOrigin} - ${controller.listHistory[index].cityDestination}",
-                                          style: TextStyles.inter.copyWith(
-                                            fontSize: FontSizes.s16,
-                                            fontWeight: FontWeight.bold,
+                                        SizedBox(
+                                          width:  Get.width * 0.60.w,
+                                          child: Text(
+                                            "${controller.listHistory[index].cityOrigin} - ${controller.listHistory[index].cityDestination}",
+                                            style: TextStyles.inter.copyWith(
+                                              fontSize: FontSizes.s14,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                         ),
                                         verticalSpace(2),
@@ -92,15 +95,18 @@ class PageOrderHistory extends GetView<ControllerOrderHistory> {
                                         ),
                                         verticalSpace(2),
                                         Text(
+                                          controller.listHistory[index].status == 3 ?
                                           FormatDateTime.formatDateWithoutHour(
                                             value: controller.listHistory[index]
                                                 .datetimeFinish!,
-                                          ),
+                                          ) :
+                                          '-',
                                           style: TextStyles.inter.copyWith(
                                             fontSize: FontSizes.s12,
                                             fontWeight: FontWeight.w400,
                                             color: AppColor.greyColorLight,
                                           ),
+
                                         ),
                                       ],
                                     ),

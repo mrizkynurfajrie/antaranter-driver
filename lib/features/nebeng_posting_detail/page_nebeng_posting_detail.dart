@@ -29,16 +29,16 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
       toolbarColor: AppColor.bgPageColor,
       backgroundColor: AppColor.bgPageColor,
       enableBack: false,
-      center: AppLogos.logoApp(AppLogos.logoHorizontal),
+      center: AppLogosMed.logoApp(AppLogosMed.nameOnly),
       child: Obx(
-        () => controller.statusNebeng.value == 1 ||
-                controller.statusNebeng.value == 2
+        () => controller.loading.isFalse
             ? RefreshIndicator(
                 onRefresh: () async {
                   controller.onRefresh();
                 },
                 child: SizedBox(
-                  child: controller.loading.isFalse
+                  child: controller.controllerRiderInfo.hasActivePost.value ==
+                          true
                       ? SingleChildScrollView(
                           child: SafeArea(
                             child: Padding(
@@ -556,34 +556,34 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                             ),
                           ),
                         )
-                      : loadingIndicator(context),
+                      : SizedBox(
+                          width: Get.width.w,
+                          height: Get.height.h,
+                          child: Center(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Lottie.asset(
+                                  AppLotties.empty,
+                                  width: Get.width * 0.4,
+                                ),
+                                verticalSpace(10.h),
+                                Text(
+                                  "Anda belum membagikan perjalanan anda",
+                                  style: TextStyles.inter.copyWith(
+                                    fontSize: FontSizes.s14,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColor.neutral,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                 ),
               )
-            : SizedBox(
-                width: Get.width.w,
-                height: Get.height.h,
-                child: Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Lottie.asset(
-                        AppLotties.empty,
-                        width: Get.width * 0.4,
-                      ),
-                      verticalSpace(10.h),
-                      Text(
-                        "Anda belum membagikan perjalanan anda",
-                        style: TextStyles.inter.copyWith(
-                          fontSize: FontSizes.s14,
-                          fontWeight: FontWeight.bold,
-                          color: AppColor.neutral,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            : loadingIndicator(context),
       ),
     );
   }

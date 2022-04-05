@@ -87,6 +87,7 @@ class Sizes {
 class IconSizes {
   static double get sm => 16.w;
   static double get med => 24.w;
+  static double get medx => 28.w;
   static double get lg => 32.w;
   static double get xl => 48.w;
   static double get xxl => 60.w;

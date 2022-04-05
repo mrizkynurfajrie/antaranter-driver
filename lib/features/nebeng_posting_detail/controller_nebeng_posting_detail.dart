@@ -16,6 +16,7 @@ import 'package:intake_rider/shared/controller/controller_postingan.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
 import 'package:intake_rider/shared/controller/controller_users.dart';
 import 'package:intake_rider/shared/controller/controller_vehicle_info.dart';
+import 'package:intake_rider/shared/helpers/format_date_time.dart';
 import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_rider/shared/widgets/cards/card_primary.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
@@ -43,8 +44,8 @@ class ControllerNebengPostingDetail extends GetxController
   var txtTimeDept = TextEditingController();
   var txtTimeArrv = TextEditingController();
   var txtNote = TextEditingController();
-  var dateTimeStart = DateTime.now().obs;
-  var dateTimeFinish = DateTime.now().obs;
+  var dateTimeStart = DateTime.now();
+  var dateTimeFinish = DateTime.now();
 
   final listUserNebeng = List<NebengOrder>.empty().obs;
 
@@ -275,7 +276,6 @@ class ControllerNebengPostingDetail extends GetxController
         var result = updateResult["data"];
         log("result : " + result.toString());
         controllerPostingan.postingan.value.nebengPosting?.status = 4;
-        controllerPostingan.postingan.value.nebengRider?.statusNebeng = 2;
         controllerPostingan.postingan.value = NebengPostingResponse();
         controllerRiderInfo.setRiderHasActivePost(false);
         isEmpty = true;
@@ -294,8 +294,10 @@ class ControllerNebengPostingDetail extends GetxController
     try {
       var updateResult = await api.changeStatus(
         status: status,
-        riderId: controllerPostingan.postingan.value.mainRider?.id,
+        nebengPostId: controllerPostingan.postingan.value.nebengPosting!.id,
+        dateTimeStart: FormatDateTime.formatDateyyyy(dateTimeStart),
       );
+      log("data update status : " + updateResult.toString());
       if (updateResult["success"] == true) {
         var result = updateResult["data"]["nebeng_post"];
         log("result : " + result.toString());
@@ -332,7 +334,9 @@ class ControllerNebengPostingDetail extends GetxController
   updateStatusDone() async {
     try {
       var r = await api.updateBalance(
-          nebengPostId: controllerPostingan.postingan.value.nebengPosting?.id);
+          nebengPostId: controllerPostingan.postingan.value.nebengPosting?.id,
+          datetimeFinish: FormatDateTime.formatDateyyyy(dateTimeFinish),
+          );
       log("nebeng post id : " + r.toString());
       if (r["success"] == true) {
         var updateBalance = r["data"]["currBalance"]["curr_balance"];

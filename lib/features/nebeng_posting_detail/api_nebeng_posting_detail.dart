@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:intake_rider/framework/api1.dart';
 
 class ApiNebengPostingDetail {
@@ -38,18 +40,31 @@ class ApiNebengPostingDetail {
 
   Future<dynamic> changeStatus({
     required var status,
-    required var riderId,
+    required var nebengPostId,
+    required var dateTimeStart,
   }) async {
-    final body = {"status": status, "rider_id": riderId};
+    final body = {
+      "status": status,
+      "nebeng_post_id": nebengPostId,
+      "datetimeStart": dateTimeStart,
+    };
+    log("log body update status : " + body.toString());
     var responHapus =
         await Api1().apiJSONPostWithToken('nebengposts/updatestatus', body);
 
     return responHapus;
   }
 
-  Future<dynamic> updateBalance({required var nebengPostId}) async {
-    final body = {"nebeng_posting_id" : nebengPostId};
-    var responUpdateBalance = await Api1().apiJSONPostWithToken("nebengorders/statusdone", body);
+  Future<dynamic> updateBalance({
+    required var nebengPostId,
+    required var datetimeFinish,
+  }) async {
+    final body = {
+      "nebeng_posting_id": nebengPostId,
+      "datetimeFinish": datetimeFinish,
+    };
+    var responUpdateBalance =
+        await Api1().apiJSONPostWithToken("nebengorders/statusdone", body);
 
     return responUpdateBalance;
   }

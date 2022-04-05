@@ -47,6 +47,19 @@ class AppLogos {
     );
   }
 }
+class AppLogosMed {
+  static const logoOnly = 'assets/logo/logo_only.png';
+  static const nameOnly = 'assets/logo/name_only.png';
+  static const logoHorizontal = 'assets/logo/logo_horizontal.png';
+  static const logoVertical = 'assets/logo/logo_vertical.png';
+
+  static Widget logoApp(String asset) {
+    return Image.asset(
+      asset,
+      height: IconSizes.medx,
+    );
+  }
+}
 
 class AppLotties {
   static const loadingProcess = 'assets/lottie/loading-orange.json';

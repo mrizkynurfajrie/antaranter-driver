@@ -9,7 +9,7 @@ import 'package:intake_rider/features/nebeng_posting/page_nebeng_posting.dart';
 import 'package:intake_rider/features/nebeng_posting_detail/binding_nebeng_posting_detail.dart';
 import 'package:intake_rider/features/nebeng_posting_detail/page_nebeng_posting_detail.dart';
 import 'package:intake_rider/features/order_history/binding_order_history.dart';
-import 'package:intake_rider/features/order_history/page_actHistory.dart';
+import 'package:intake_rider/features/order_history/page_order_history.dart';
 import 'package:intake_rider/features/profile/binding_profile.dart';
 import 'package:intake_rider/features/profile/page_profile.dart';
 import 'package:intake_rider/features/register/binding_register.dart';

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:intake_rider/features/home/api_home.dart';
 import 'package:intake_rider/response/home_response.dart';

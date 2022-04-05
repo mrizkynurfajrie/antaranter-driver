@@ -23,10 +23,13 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
     return PageDecorationTop(
       title: 'IN-TAKE',
       padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 15.h),
-      toolbarColor: AppColor.bgPageColor,
+      toolbarColor: AppColor.primaryColor.shade200,
       backgroundColor: AppColor.bgPageColor,
       enableBack: false,
-      center: AppLogos.logoApp(AppLogos.logoHorizontal),
+      center: Align(
+        child: AppLogosMed.logoApp(AppLogosMed.nameOnly),
+        alignment: Alignment.centerRight,
+      ),
       child: SafeArea(
         child: SingleChildScrollView(
           child: Obx(
@@ -402,7 +405,6 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                     keyboardType: TextInputType.number,
                     controller: controller.txtPrice,
                   ),
-                  
                 ),
                 verticalSpace(Insets.med),
                 ButtonPrimary(
