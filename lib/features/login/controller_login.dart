@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:intake_rider/features/login/api_login.dart';
 import 'package:intake_rider/framework/api2.dart';
 import 'package:intake_rider/response/main_rider.dart';
-import 'package:intake_rider/response/rider.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
 import 'package:intake_rider/shared/helpers/utils.dart';
 import 'package:intake_rider/routes/app_routes.dart';
