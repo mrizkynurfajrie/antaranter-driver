@@ -21,7 +21,7 @@ class PageProfile extends GetView<ControllerProfile> {
       title: 'INTAKE',
       enableBack: false,
       toolbarColor: AppColor.primaryColor,
-      center: AppLogos.logoApp(AppLogos.logoUncoloured),
+      center: AppLogos.logoApp(AppLogos.logoHorizontal),
       padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
       child: SingleChildScrollView(

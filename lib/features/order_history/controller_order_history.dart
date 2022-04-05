@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 import 'package:intake_rider/response/post.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
 
-import 'api_actHistory.dart';
+import 'api_order_history.dart';
 
-class ControllerActivityHistory extends GetxController
+class ControllerOrderHistory extends GetxController
     with StateMixin<List<Post>> {
-  final ApiActivityHistory api;
-  ControllerActivityHistory({required this.api});
+  final ApiOrderHistory api;
+  ControllerOrderHistory({required this.api});
 
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
 

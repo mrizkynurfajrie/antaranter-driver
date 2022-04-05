@@ -1,6 +1,6 @@
 import 'package:intake_rider/framework/api1.dart';
 
-class ApiActivityHistory {
+class ApiOrderHistory {
   Future<dynamic> getHistoryPosting({
     required int id,
   }) async {

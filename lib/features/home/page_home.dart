@@ -26,7 +26,7 @@ class PageHome extends GetView<ControllerHome> {
       enableBack: false,
       center: Align(
         alignment: Alignment.center,
-        child: AppLogos.logoApp(AppLogos.logoColoured),
+        child: AppLogos.logoApp(AppLogos.logoHorizontal),
       ),
       child: RefreshIndicator(
         color: AppColor.primaryColor,

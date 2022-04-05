@@ -8,7 +8,6 @@ import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded.dart';
-import 'package:intake_rider/shared/widgets/input_format/input_format_money.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_date.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
 import 'package:intake_rider/shared/widgets/inputs/input_selection.dart';
@@ -27,7 +26,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
       toolbarColor: AppColor.bgPageColor,
       backgroundColor: AppColor.bgPageColor,
       enableBack: false,
-      center: AppLogos.logoApp(AppLogos.logoColoured),
+      center: AppLogos.logoApp(AppLogos.logoHorizontal),
       child: SafeArea(
         child: SingleChildScrollView(
           child: Obx(

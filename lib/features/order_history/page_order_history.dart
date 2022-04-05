@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/features/activity_history/controller_actHistory.dart';
+import 'package:intake_rider/features/order_history/controller_order_history.dart';
 import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
@@ -9,10 +9,11 @@ import 'package:intake_rider/shared/helpers/format_date_time.dart';
 import 'package:intake_rider/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 
-class PageActivityHistory extends GetView<ControllerActivityHistory> {
+class PageOrderHistory extends GetView<ControllerOrderHistory> {
+  
   bool isHistory = true;
 
-  PageActivityHistory({Key? key}) : super(key: key);
+  PageOrderHistory({Key? key}) : super(key: key);
 
   _containHistory() {
     return Center(

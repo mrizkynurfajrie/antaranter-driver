@@ -22,7 +22,7 @@ class PageTerms extends GetView<ControllerRegister> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Image.asset(
-              AppLogos.logoColoured,
+              AppLogos.logoHorizontal,
               width: size.width * 0.35,
             ),
             SizedBox(height: size.height * 0.025),

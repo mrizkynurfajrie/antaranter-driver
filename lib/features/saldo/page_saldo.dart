@@ -9,7 +9,6 @@ import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intake_rider/shared/helpers/currency_formatter.dart';
 import 'package:intake_rider/shared/helpers/format_date_time.dart';
 import 'package:intake_rider/shared/widgets/cards/card_primary.dart';
-import 'package:intake_rider/shared/widgets/cards/card_rounded.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
 import 'package:intake_rider/shared/widgets/others/loading_indicator.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
@@ -53,7 +52,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
                       children: <Widget>[
                         SizedBox(
                           width: Get.width * 0.30.w,
-                          child: AppLogos.logoApp(AppLogos.logoUncoloured),
+                          child: AppLogos.logoApp(AppLogos.logoHorizontal),
                         ),
                       ],
                     ),

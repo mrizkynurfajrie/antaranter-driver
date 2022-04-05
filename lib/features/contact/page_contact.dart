@@ -5,7 +5,6 @@ import 'package:intake_rider/features/contact/controller_contact.dart';
 import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
-import 'package:intake_rider/shared/widgets/cards/card_primary.dart';
 import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
 import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
 
@@ -18,7 +17,7 @@ class PageContact extends GetView<ControllerContact> {
       title: 'INTAKE',
       backgroundColor: AppColor.bgPageColor,
       toolbarColor: AppColor.primaryColor,
-      center: Center(child: AppLogos.logoApp(AppLogos.logoUncoloured)),
+      center: Center(child: AppLogos.logoApp(AppLogos.logoHorizontal)),
       enableBack: true,
       child: SafeArea(
         child: SingleChildScrollView(

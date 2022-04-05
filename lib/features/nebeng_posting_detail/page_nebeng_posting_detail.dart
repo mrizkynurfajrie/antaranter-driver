@@ -29,7 +29,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
       toolbarColor: AppColor.bgPageColor,
       backgroundColor: AppColor.bgPageColor,
       enableBack: false,
-      center: AppLogos.logoApp(AppLogos.logoColoured),
+      center: AppLogos.logoApp(AppLogos.logoHorizontal),
       child: Obx(
         () => controller.statusNebeng.value == 1 ||
                 controller.statusNebeng.value == 2

@@ -35,8 +35,10 @@ class AppIcons {
 }
 
 class AppLogos {
-  static const logoColoured = 'assets/logo/logo-besar.png';
-  static const logoUncoloured = 'assets/logo/logo-besar-white.png';
+  static const logoOnly = 'assets/logo/logo_only.png';
+  static const nameOnly = 'assets/logo/name_only.png';
+  static const logoHorizontal = 'assets/logo/logo_horizontal.png';
+  static const logoVertical = 'assets/logo/logo_vertical.png';
 
   static Widget logoApp(String asset) {
     return Image.asset(

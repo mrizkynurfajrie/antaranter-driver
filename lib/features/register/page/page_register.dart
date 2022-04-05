@@ -24,7 +24,7 @@ class PageRegister extends GetView<ControllerRegister> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              AppLogos.logoApp(AppLogos.logoColoured),
+              AppLogos.logoApp(AppLogos.logoHorizontal),
               verticalSpace(25.h),
               Text(
                 "Silakan daftarkan sebuah akun untuk anda",
