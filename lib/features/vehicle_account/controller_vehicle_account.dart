@@ -66,8 +66,7 @@ class ControllerVehicleAccount extends GetxController {
     txtVehicleCol.text = controllerVehicleInfo.vehicle.value.vehicleColor ?? '';
     txtVehicleVar.text =
         controllerVehicleInfo.vehicle.value.vehicleVariant ?? '';
-    controllerRiderInfo.rider.value.status = 1;
-    statusUpdate.value = controllerRiderInfo.rider.value.status!;
+   
 
     super.onInit();
   }
@@ -210,15 +209,16 @@ class ControllerVehicleAccount extends GetxController {
       await uploadStnkPict();
 
       var updateResult = await api.updateVehicleAccount(
-          simNum: txtSimNum.text,
-          simExp: txtSimExp.text,
-          simPict: uploadSim,
-          platNum: txtPlatNum.text,
-          vehicleVar: txtVehicleVar.text,
-          vehicleCol: txtVehicleCol.text,
-          stnkPict: uploadStnk,
-          idRiderNebeng: idNebengRider.value,
-          idRider: idRider.value);
+        simNum: txtSimNum.text,
+        simExp: txtSimExp.text,
+        simPict: uploadSim,
+        platNum: txtPlatNum.text,
+        vehicleVar: txtVehicleVar.text,
+        vehicleCol: txtVehicleCol.text,
+        stnkPict: uploadStnk,
+        idRiderNebeng: idNebengRider.value,
+        idRider: idRider.value,
+      );
 
       log(updateResult.toString());
       if (updateResult['success'] == true) {

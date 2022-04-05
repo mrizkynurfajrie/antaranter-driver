@@ -46,4 +46,11 @@ class ApiNebengPostingDetail {
 
     return responHapus;
   }
+
+  Future<dynamic> updateBalance({required var nebengPostId}) async {
+    final body = {"nebeng_posting_id" : nebengPostId};
+    var responUpdateBalance = await Api1().apiJSONPostWithToken("nebengorders/statusdone", body);
+
+    return responUpdateBalance;
+  }
 }

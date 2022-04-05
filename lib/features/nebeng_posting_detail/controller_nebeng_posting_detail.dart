@@ -36,7 +36,9 @@ class ControllerNebengPostingDetail extends GetxController
   var loading = false.obs;
   var idNebengRider = 0.obs;
   var isPosting = true;
-  var isEmpty = true;
+  var isEmpty = false;
+  var statusNebeng = 0.obs;
+  var balance = 0.obs;
 
   var txtTimeDept = TextEditingController();
   var txtTimeArrv = TextEditingController();
@@ -85,8 +87,10 @@ class ControllerNebengPostingDetail extends GetxController
       if (r["success"] == true) {
         idNebengRider.value = r["data"]["nebeng_rider"]["id"];
         var nebengPostingRes = NebengPostingResponse.fromJson(r["data"]);
+        statusNebeng.value = nebengPostingRes.nebengPosting!.status!;
+        log("status nebeng value : " + statusNebeng.toString());
         controllerPostingan.postingan.value = nebengPostingRes;
-        log('disini aja');
+        listUserNebeng.clear();
         if (nebengPostingRes.nebengOrder != null) {
           listUserNebeng.addAll(nebengPostingRes.nebengOrder!);
         }
@@ -240,10 +244,10 @@ class ControllerNebengPostingDetail extends GetxController
   Future<bool> ubahWaktu() async {
     try {
       var updateResult = await api.updateSchedule(
-        postingId: controllerPostingan.postingan.value.nebengPosting?.id,
-        timeDep: txtTimeDept.text,
-        timeArrv: txtTimeArrv.text,
-      );
+          postingId: controllerPostingan.postingan.value.nebengPosting?.id,
+          timeDep: txtTimeDept.text,
+          timeArrv: txtTimeArrv.text);
+      log("update waktu : " + updateResult.toString());
       if (updateResult["success"] == true) {
         var result = updateResult["data"]["nebeng_post"];
         log("result : " + result.toString());
@@ -268,8 +272,10 @@ class ControllerNebengPostingDetail extends GetxController
       if (updateResult["success"] == true) {
         var result = updateResult["data"];
         log("result : " + result.toString());
+        controllerPostingan.postingan.value.nebengPosting?.status = 4;
         controllerPostingan.postingan.value = NebengPostingResponse();
         controllerRiderInfo.setRiderHasActivePost(false);
+        isEmpty = true;
         await Api2().removePosting();
         await Api2().removeActivePost();
         return true;
@@ -292,8 +298,20 @@ class ControllerNebengPostingDetail extends GetxController
         log("result : " + result.toString());
         controllerPostingan.postingan.value.nebengPosting =
             NebengPosting.fromJson(result);
+        statusNebeng.value =
+            controllerPostingan.postingan.value.nebengPosting!.status!;
         controllerPostingan.postingan.refresh();
-        isEmpty = false;
+        var statusUpdate = controllerPostingan.postingan.value.nebengPosting;
+        if (statusUpdate?.status == 3) {
+          updateStatusDone();
+          controllerPostingan.postingan.value = NebengPostingResponse();
+          controllerRiderInfo.setRiderHasActivePost(false);
+          await Api2().removePosting();
+          await Api2().removeActivePost();
+          isEmpty = false;
+          controllerPostingan.postingan.refresh();
+          return true;
+        }
         return true;
       } else {
         throw "Gagal mengubah status";
@@ -301,5 +319,21 @@ class ControllerNebengPostingDetail extends GetxController
     } catch (e) {
       return false;
     }
+  }
+
+  onRefresh() async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+    getDataPosting();
+  }
+
+  updateStatusDone() async {
+    try {
+      var r = await api.updateBalance(
+          nebengPostId: controllerPostingan.postingan.value.nebengPosting?.id);
+      if (r["success"] == true) {
+        var updateBalance = r["data"]["currBalance"]["curr_balance"];
+        balance.value = updateBalance;
+      }
+    } catch (e) {}
   }
 }

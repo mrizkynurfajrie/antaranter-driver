@@ -49,7 +49,7 @@ class _InputDateState extends State<InputDate> {
     var datePicked = await DatePicker.showSimpleDatePicker(context,
         initialDate: widget.initialDate ?? DateTime.now(),
         firstDate: widget.firstDate ?? DateTime(1900),
-        lastDate: widget.lastDate ?? DateTime(2023),
+        lastDate: widget.lastDate ?? DateTime(2030),
         dateFormat: "dd-MMMM-yyyy",
         locale: DateTimePickerLocale.id,
         looping: false,

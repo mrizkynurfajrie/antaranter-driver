@@ -196,7 +196,7 @@ class ControllerNebengPosting extends GetxController {
         var result = updateResult["data"];
         var postResponse = Post.fromJson(result);
         controllerRiderInfo.setActivePost(postResponse.id!);
-
+        
         Get.snackbar(
           "Nebeng",
           "Anda telah berhasil membagikan perjalanan anda",

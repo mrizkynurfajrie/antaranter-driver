@@ -44,6 +44,7 @@ class ControllerUserAccount extends GetxController {
   var isValidProvince = false.obs;
   var isValidForm = false.obs;
   var loadingForm = false.obs;
+  var statusUpdate = 0.obs;
 
   var itemProvince = 'Provinsi'.obs;
   var itemCities = 'Kota'.obs;
@@ -76,7 +77,8 @@ class ControllerUserAccount extends GetxController {
     txtAddress.text = controllerRiderInfo.rider.value.address ?? '';
     txtPhone.text = controllerRiderInfo.rider.value.phone ?? '';
     itemCities.value = itemCities.value;
-
+    controllerRiderInfo.rider.value.status = 1;
+    statusUpdate.value = controllerRiderInfo.rider.value.status!;
     txtCity.text = controllerRiderInfo.rider.value.cityLocation ?? '';
     await getProvinces();
 
@@ -333,6 +335,7 @@ class ControllerUserAccount extends GetxController {
         phone: txtPhone.text,
         city: itemCities.value,
         idRider: idRider.value,
+        status: statusUpdate.value,
       );
       log(updateResult.toString());
       if (updateResult['success'] == true) {

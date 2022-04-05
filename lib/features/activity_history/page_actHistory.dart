@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -93,10 +91,9 @@ class PageActivityHistory extends GetView<ControllerActivityHistory> {
                                         ),
                                         verticalSpace(2),
                                         Text(
-                                          FormatDateTime.formatDateLocale(
-                                            controller.listHistory[index]
-                                                .datetimeFinish
-                                                .toString(),
+                                          FormatDateTime.formatDateWithoutHour(
+                                            value: controller.listHistory[index]
+                                                .datetimeFinish!,
                                           ),
                                           style: TextStyles.inter.copyWith(
                                             fontSize: FontSizes.s12,
@@ -150,6 +147,7 @@ class PageActivityHistory extends GetView<ControllerActivityHistory> {
       ),
     );
   }
+
   _onErrorHistory(String e) {
     return Center(
       child: Column(
@@ -190,7 +188,7 @@ class PageActivityHistory extends GetView<ControllerActivityHistory> {
         (state) => _containHistory(),
         onEmpty: _notContainHistory(),
         onLoading: loadingIndicator(context),
-        onError: (e)=>_onErrorHistory(e.toString()),
+        onError: (e) => _onErrorHistory(e.toString()),
       ),
     );
   }

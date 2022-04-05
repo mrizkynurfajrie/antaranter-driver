@@ -14,6 +14,7 @@ class ApiUserAccount {
     required var phone,
     required var city,
     required var idRider,
+    required var status,
   }) async {
     final inputBody = {
       "name": name,
@@ -25,6 +26,7 @@ class ApiUserAccount {
       "address": address,
       "phone": phone,
       "cityLocation": city,
+      "status": status,
     };
 
     var apiUserAccountRespons = await Api1()
