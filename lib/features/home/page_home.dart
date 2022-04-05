@@ -134,13 +134,11 @@ class PageHome extends GetView<ControllerHome> {
                           width: Get.width * 0.85.w,
                           child: Container(
                             margin: EdgeInsets.symmetric(
-                                horizontal: Insets.xs.w,
-                                vertical: Insets.xs.h),
+                                horizontal: Insets.xs.w, vertical: Insets.xs.h),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15)),
                             child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Icon(
@@ -153,8 +151,7 @@ class PageHome extends GetView<ControllerHome> {
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
                                         controller.controllerRiderInfo.rider
@@ -178,8 +175,8 @@ class PageHome extends GetView<ControllerHome> {
                                         onPressed: () {
                                           Get.toNamed(Routes.userAccount);
                                         },
-                                        child: const Icon(
-                                            Icons.arrow_forward_ios),
+                                        child:
+                                            const Icon(Icons.arrow_forward_ios),
                                         style: OutlinedButton.styleFrom(
                                           shape: const CircleBorder(),
                                           primary: AppColor.primaryColor,
@@ -238,7 +235,18 @@ class PageHome extends GetView<ControllerHome> {
                             hintText: 'tentukan perjalanan mu',
                             keyboardType: TextInputType.none,
                             onTap: () {
-                              Get.toNamed(Routes.posting);
+                              if (controller
+                                      .controllerRiderInfo.rider.value.status ==
+                                  2) {
+                                Get.toNamed(Routes.posting);
+                              } else {
+                                var message = controller.controllerRiderInfo
+                                            .rider.value.status ==
+                                        0
+                                    ? "Lengkapi data diri & kendaraan anda untuk mulai menggunakan layanan kami"
+                                    : "Admin sedang memverifikasi data anda, mohon tunggu 1x24 jam";
+                                Get.snackbar("Pemberitahuan", message);
+                              }
                             },
                             padding: EdgeInsets.only(top: 10.h),
                           ),
