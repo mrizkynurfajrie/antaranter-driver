@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.intake_rider">
+    package="com.antaranter.driver_app">
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET" />
@@ -64,7 +64,7 @@
             android:name="flutterEmbedding"
             android:value="2" />
         <service
-            android:name="com.intake_rider.ForegroundService"        
+            android:name="com.antaranter.driver_app.ForegroundService"        
             android:exported="false"
             android:stopWithTask="false"/>
     </application>

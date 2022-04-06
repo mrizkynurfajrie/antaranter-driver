@@ -7,6 +7,7 @@ class CurrencyPtBrFormatter extends TextInputFormatter {
   CurrencyPtBrFormatter({required this.maxDigits});
   final int maxDigits;
   dynamic _uMaskValue;
+  @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     if (newValue.selection.baseOffset == 0) {

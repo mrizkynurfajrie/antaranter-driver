@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
@@ -42,7 +41,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     children: <Widget>[
                       GestureDetector(
                         onTap: () => controller.imgSourceSelector(context),
-                        child: (controller.imgPreview != "")
+                        child: (controller.imgPreview !=  "")
                             ? DottedBorder(
                                 dashPattern: const [12, 4],
                                 strokeWidth: 1,

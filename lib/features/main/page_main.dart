@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intake_rider/features/main/controller_main.dart';
-import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/widgets/buttons/custom_bottom_navbar.dart';
 
 class PageMain extends GetView<ControllerMain> {

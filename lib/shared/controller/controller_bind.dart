@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 import 'package:intake_rider/features/login/api_login.dart';
 import 'package:intake_rider/features/login/controller_login.dart';
-import 'package:intake_rider/features/nebeng_posting/api_nebeng_posting.dart';
-import 'package:intake_rider/features/nebeng_posting/controller_nebeng_posting.dart';
 import 'package:intake_rider/shared/controller/controller_notification.dart';
 import 'package:intake_rider/shared/controller/controller_postingan.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';

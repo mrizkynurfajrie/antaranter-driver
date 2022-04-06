@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/response/Balance.dart';
+import 'package:intake_rider/response/balance.dart';
 import 'package:intake_rider/response/Transaction.dart';
 import 'package:intake_rider/response/error_response.dart';
 import 'package:intake_rider/shared/controller/controller_rider_info.dart';
@@ -26,7 +26,6 @@ class ControllerSaldo extends GetxController
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     scrollController = ScrollController();
     getDataBalance();
@@ -45,7 +44,7 @@ class ControllerSaldo extends GetxController
       var res = await api.getBalance(
         id: controllerRiderInfo.rider.value.id ?? 0,
       );
-      print(res);
+      // print(res);
       if (res['success'] == true) {
         balance.value = Balance.fromJson(res['data']);
         loading.value = false;
@@ -98,6 +97,4 @@ class ControllerSaldo extends GetxController
       Get.snackbar("Terjadi kesalahan", e.toString());
     }
   }
-
-  
 }

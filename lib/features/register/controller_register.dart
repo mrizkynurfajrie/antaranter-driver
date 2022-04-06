@@ -91,16 +91,16 @@ class ControllerRegister extends GetxController {
         };
       },
       onError: (error) {
-        print(error.toString());
+        // print(error.toString());
       },
       onPageError: (page, error) {
-        print('$page: ${error.toString()}}');
+        // print('$page: ${error.toString()}}');
       },
       onViewCreated: (PDFViewController pdfViewController){
         _controller.complete(pdfViewController);
       },
       onPageChanged: (int? page, int? total){
-        print('page change : $page/$total');
+        // print('page change : $page/$total');
       },
     );
   }

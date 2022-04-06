@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
@@ -293,8 +292,8 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                             InputDate(
                               hintText: 'Pilih Tanggal Berangkat',
                               controller: controller.txtDateDept,
-                              selectedDate: (Value) {},
-                              isValid: (Value) {},
+                              selectedDate: (value) {},
+                              isValid: (value) {},
                               prefixIcon: const Icon(
                                 Icons.date_range,
                                 color: AppColor.greyColor,
@@ -306,8 +305,8 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                             InputTime(
                               hintText: 'Pilih Waktu Berangkat',
                               controller: controller.txtTimeDept,
-                              selectedTime: (Value) {},
-                              isValid: (Value) {},
+                              selectedTime: (value) {},
+                              isValid: (value) {},
                               prefixIcon: const Icon(
                                 Icons.watch,
                                 size: 20,
@@ -371,8 +370,8 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                             InputDate(
                               hintText: 'Pilih Tanggal Tiba',
                               controller: controller.txtDateArrv,
-                              selectedDate: (Value) {},
-                              isValid: (Value) {},
+                              selectedDate: (value) {},
+                              isValid: (value) {},
                               prefixIcon: const Icon(
                                 Icons.date_range,
                                 color: AppColor.primaryColor,
@@ -384,8 +383,8 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                             InputTime(
                               hintText: 'Pilih Waktu Tiba',
                               controller: controller.txtTimeArrv,
-                              selectedTime: (Value) {},
-                              isValid: (Value) {},
+                              selectedTime: (value) {},
+                              isValid: (value) {},
                               prefixIcon: const Icon(
                                 Icons.watch,
                                 size: 20,

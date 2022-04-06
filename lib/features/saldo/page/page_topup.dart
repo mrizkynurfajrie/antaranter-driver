@@ -20,7 +20,6 @@ class PageTopUp extends GetView<ControllerSaldo> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return PageDecorationTop(
       title: 'Top Up Saldo',
       toolbarTitleColor: AppColor.whiteColor,
@@ -261,7 +260,7 @@ class PageTopUp extends GetView<ControllerSaldo> {
                                 vertical: Insets.xs,
                               ),
                               child: Column(
-                                children: [
+                                children: const [
                                   ItemInstruction(
                                     numberOrder: "1",
                                     description: Text(
@@ -336,7 +335,7 @@ class PageTopUp extends GetView<ControllerSaldo> {
                                 vertical: Insets.xs,
                               ),
                               child: Column(
-                                children: [
+                                children: const [
                                   ItemInstruction(
                                     numberOrder: "1",
                                     description: Text(

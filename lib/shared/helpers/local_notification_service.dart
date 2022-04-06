@@ -45,7 +45,7 @@ class LocalNotificationService {
         payload: 'item x',
       );
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
   }
 }

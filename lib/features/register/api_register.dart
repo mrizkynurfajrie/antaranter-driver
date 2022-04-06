@@ -1,6 +1,4 @@
-import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:intake_rider/framework/api1.dart';
-import 'package:intake_rider/shared/helpers/get_device_info.dart';
 
 class ApiRegister {
   //contoh
