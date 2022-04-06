@@ -187,7 +187,7 @@ class PageHome extends GetView<ControllerHome> {
                                         0
                                     ? OutlinedButton(
                                         onPressed: () {
-                                          Get.toNamed(Routes.userAccount);
+                                          Get.toNamed(Routes.profile);
                                         },
                                         child:
                                             const Icon(Icons.arrow_forward_ios),
