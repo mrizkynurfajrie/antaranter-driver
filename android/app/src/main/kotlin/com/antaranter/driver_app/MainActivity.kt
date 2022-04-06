@@ -1,4 +1,4 @@
-package com.intake_rider
+package com.antaranter.driver_app
 
 import io.flutter.embedding.android.FlutterActivity
 

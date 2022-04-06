@@ -29,7 +29,7 @@
   </intent>
 </queries>
    <application
-        android:label="intake_rider"
+        android:label="AntarAnter Driver"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
