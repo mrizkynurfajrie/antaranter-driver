@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:intake_rider/framework/api2.dart';
-import 'package:intake_rider/response/nebeng_rider.dart';
+import 'package:antaranter_driverapp/framework/api2.dart';
+import 'package:antaranter_driverapp/response/nebeng_rider.dart';
 
 class ControllerVehicleInfo extends GetxController {
   var vehicle = NebengRider().obs;

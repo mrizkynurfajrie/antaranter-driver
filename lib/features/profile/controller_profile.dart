@@ -1,13 +1,13 @@
 import 'dart:developer';
 import 'package:get/get.dart';
-import 'package:intake_rider/framework/api2.dart';
-import 'package:intake_rider/response/main_rider.dart';
-import 'package:intake_rider/response/nebeng_posting_response.dart';
-import 'package:intake_rider/response/nebeng_rider.dart';
-import 'package:intake_rider/routes/app_routes.dart';
-import 'package:intake_rider/shared/controller/controller_postingan.dart';
-import 'package:intake_rider/shared/controller/controller_rider_info.dart';
-import 'package:intake_rider/shared/controller/controller_vehicle_info.dart';
+import 'package:antaranter_driverapp/framework/api2.dart';
+import 'package:antaranter_driverapp/response/main_rider.dart';
+import 'package:antaranter_driverapp/response/nebeng_posting_response.dart';
+import 'package:antaranter_driverapp/response/nebeng_rider.dart';
+import 'package:antaranter_driverapp/routes/app_routes.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_postingan.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_vehicle_info.dart';
 import 'api_profile.dart';
 
 class ControllerProfile extends GetxController {

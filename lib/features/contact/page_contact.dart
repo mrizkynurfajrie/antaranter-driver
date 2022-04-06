@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/features/contact/controller_contact.dart';
-import 'package:intake_rider/shared/constants/assets.dart';
-import 'package:intake_rider/shared/constants/colors.dart';
-import 'package:intake_rider/shared/constants/styles.dart';
-import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
-import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
+import 'package:antaranter_driverapp/features/contact/controller_contact.dart';
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_border.dart';
+import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
 
 class PageContact extends GetView<ControllerContact> {
   const PageContact({Key? key}) : super(key: key);

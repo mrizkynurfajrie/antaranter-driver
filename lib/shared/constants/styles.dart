@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intake_rider/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
 
 class BorderStyles {
   static Border borderGrey =

@@ -3,17 +3,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/features/nebeng_posting_detail/controller_nebeng_posting_detail.dart';
-import 'package:intake_rider/response/nebeng_order.dart';
-import 'package:intake_rider/shared/constants/assets.dart';
-import 'package:intake_rider/shared/constants/colors.dart';
-import 'package:intake_rider/shared/constants/styles.dart';
-import 'package:intake_rider/shared/helpers/currency_formatter.dart';
-import 'package:intake_rider/shared/helpers/format_date_time.dart';
-import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
-import 'package:intake_rider/shared/widgets/cards/card_rounded.dart';
-import 'package:intake_rider/shared/widgets/others/loading_indicator.dart';
-import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
+import 'package:antaranter_driverapp/features/nebeng_posting_detail/controller_nebeng_posting_detail.dart';
+import 'package:antaranter_driverapp/response/nebeng_order.dart';
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/helpers/currency_formatter.dart';
+import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
+import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/loading_indicator.dart';
+import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
 import 'package:lottie/lottie.dart';
 
 class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {

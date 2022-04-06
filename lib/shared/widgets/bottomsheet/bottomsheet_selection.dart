@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/shared/constants/styles.dart';
-import 'package:intake_rider/shared/widgets/bottomsheet/bottomsheet_custom.dart';
-import 'package:intake_rider/shared/widgets/buttons/button_bottom.dart';
-import 'package:intake_rider/shared/widgets/inputs/input_search.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/widgets/bottomsheet/bottomsheet_custom.dart';
+import 'package:antaranter_driverapp/shared/widgets/buttons/button_bottom.dart';
+import 'package:antaranter_driverapp/shared/widgets/inputs/input_search.dart';
 
 class BottomsheetSelection {
   BottomsheetSelection({

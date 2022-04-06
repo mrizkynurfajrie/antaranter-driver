@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intake_rider/shared/constants/colors.dart';
-import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
 
 class CheckboxLabel extends StatefulWidget {
   final Function(bool) onChange;

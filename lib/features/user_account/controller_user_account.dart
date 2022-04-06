@@ -3,13 +3,13 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intake_rider/features/user_account/api_user_account.dart';
-import 'package:intake_rider/framework/api2.dart';
-import 'package:intake_rider/response/main_rider.dart';
-import 'package:intake_rider/shared/controller/controller_rider_info.dart';
-import 'package:intake_rider/shared/helpers/format_date_time.dart';
-import 'package:intake_rider/shared/widgets/bottomsheet/bottomsheet_selection.dart';
-import 'package:intake_rider/shared/widgets/cards/card_item_profile.dart';
+import 'package:antaranter_driverapp/features/user_account/api_user_account.dart';
+import 'package:antaranter_driverapp/framework/api2.dart';
+import 'package:antaranter_driverapp/response/main_rider.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
+import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
+import 'package:antaranter_driverapp/shared/widgets/bottomsheet/bottomsheet_selection.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_item_profile.dart';
 
 class ControllerUserAccount extends GetxController {
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();

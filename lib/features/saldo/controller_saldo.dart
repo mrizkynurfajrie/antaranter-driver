@@ -2,10 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/response/balance.dart';
-import 'package:intake_rider/response/Transaction.dart';
-import 'package:intake_rider/response/error_response.dart';
-import 'package:intake_rider/shared/controller/controller_rider_info.dart';
+import 'package:antaranter_driverapp/response/balance.dart';
+import 'package:antaranter_driverapp/response/transaction.dart';
+import 'package:antaranter_driverapp/response/error_response.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
 
 import 'api_saldo.dart';
 

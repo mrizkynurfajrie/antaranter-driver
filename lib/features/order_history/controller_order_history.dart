@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
-import 'package:intake_rider/response/post.dart';
-import 'package:intake_rider/shared/controller/controller_rider_info.dart';
+import 'package:antaranter_driverapp/response/post.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
 
 import 'api_order_history.dart';
 

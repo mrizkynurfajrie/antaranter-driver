@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/shared/constants/colors.dart';
-import 'package:intake_rider/shared/constants/styles.dart';
-import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_border.dart';
 
 class CardBottomsheet extends StatelessWidget {
   const CardBottomsheet({Key? key, required this.child, this.padding})

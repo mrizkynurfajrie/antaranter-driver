@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intake_rider/shared/constants/assets.dart';
-import 'package:intake_rider/shared/constants/colors.dart';
-import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class PageRegsuccess extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:intake_rider/response/users.dart';
+import 'package:antaranter_driverapp/response/users.dart';
 
 NebengOrder nebengOrderFromJson(String str) =>
     NebengOrder.fromJson(json.decode(str));

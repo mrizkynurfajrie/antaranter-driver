@@ -1,5 +1,5 @@
 
-import 'package:intake_rider/framework/api1.dart';
+import 'package:antaranter_driverapp/framework/api1.dart';
 
 class ApiUserAccount {
   Future<dynamic> updateUserAccount({

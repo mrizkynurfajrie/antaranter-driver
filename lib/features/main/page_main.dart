@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/features/main/controller_main.dart';
-import 'package:intake_rider/shared/widgets/buttons/custom_bottom_navbar.dart';
+import 'package:antaranter_driverapp/features/main/controller_main.dart';
+import 'package:antaranter_driverapp/shared/widgets/buttons/custom_bottom_navbar.dart';
 
 class PageMain extends GetView<ControllerMain> {
   const PageMain({Key? key}) : super(key: key);

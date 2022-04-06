@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
 
 class CardPrimary extends StatelessWidget {
   final double height;

@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
-import 'package:intake_rider/features/login/api_login.dart';
-import 'package:intake_rider/features/login/controller_login.dart';
-import 'package:intake_rider/shared/controller/controller_notification.dart';
-import 'package:intake_rider/shared/controller/controller_postingan.dart';
-import 'package:intake_rider/shared/controller/controller_rider_info.dart';
-import 'package:intake_rider/shared/controller/controller_users.dart';
-import 'package:intake_rider/shared/controller/controller_vehicle_info.dart';
-// import 'package:intake_rider/shared/controller/controller_vehicle_info.dart';
+import 'package:antaranter_driverapp/features/login/api_login.dart';
+import 'package:antaranter_driverapp/features/login/controller_login.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_notification.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_postingan.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_users.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_vehicle_info.dart';
+// import 'package:antaranter_driverapp/shared/controller/controller_vehicle_info.dart';
 
 class ControllerBind extends Bindings {
   @override

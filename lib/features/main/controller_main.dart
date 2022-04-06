@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/features/home/page_home.dart';
-import 'package:intake_rider/features/nebeng_posting_detail/page_nebeng_posting_detail.dart';
-import 'package:intake_rider/features/profile/page_profile.dart';
+import 'package:antaranter_driverapp/features/home/page_home.dart';
+import 'package:antaranter_driverapp/features/nebeng_posting_detail/page_nebeng_posting_detail.dart';
+import 'package:antaranter_driverapp/features/profile/page_profile.dart';
 
 class ControllerMain extends GetxController {
   var currentPage = 0.obs;

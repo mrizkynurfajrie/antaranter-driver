@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:intake_rider/framework/api1.dart';
+import 'package:antaranter_driverapp/framework/api1.dart';
 
 class ApiVehicleAccount {
   Future<dynamic> updateVehicleAccount({

@@ -7,12 +7,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:intake_rider/routes/app_pages.dart';
-import 'package:intake_rider/routes/app_routes.dart';
-import 'package:intake_rider/shared/constants/colors.dart';
-import 'package:intake_rider/shared/controller/controller_bind.dart';
-import 'package:intake_rider/shared/helpers/local_notification_service.dart';
-import 'package:intake_rider/shared/helpers/utils.dart';
+import 'package:antaranter_driverapp/routes/app_pages.dart';
+import 'package:antaranter_driverapp/routes/app_routes.dart';
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_bind.dart';
+import 'package:antaranter_driverapp/shared/helpers/local_notification_service.dart';
+import 'package:antaranter_driverapp/shared/helpers/utils.dart';
 import 'shared/widgets/others/page_info.dart';
 
 void main() async {

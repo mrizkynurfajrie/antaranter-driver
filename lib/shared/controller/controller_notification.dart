@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/shared/helpers/local_notification_service.dart';
+import 'package:antaranter_driverapp/shared/helpers/local_notification_service.dart';
 
 class ControllerNotification extends GetxController {
 

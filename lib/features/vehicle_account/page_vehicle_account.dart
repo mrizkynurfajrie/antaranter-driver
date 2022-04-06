@@ -5,15 +5,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:intake_rider/features/vehicle_account/controller_vehicle_account.dart';
-import 'package:intake_rider/framework/api1.dart';
-import 'package:intake_rider/shared/constants/colors.dart';
-import 'package:intake_rider/shared/constants/styles.dart';
-import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
-import 'package:intake_rider/shared/widgets/inputs/input_date.dart';
-import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
-import 'package:intake_rider/shared/widgets/others/loading_indicator.dart';
-import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
+import 'package:antaranter_driverapp/features/vehicle_account/controller_vehicle_account.dart';
+import 'package:antaranter_driverapp/framework/api1.dart';
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
+import 'package:antaranter_driverapp/shared/widgets/inputs/input_date.dart';
+import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/loading_indicator.dart';
+import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
 
 class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
   const PageVehicleAccount({Key? key}) : super(key: key);

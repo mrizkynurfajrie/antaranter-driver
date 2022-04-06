@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
 
 Widget loadingIndicator(BuildContext context, {Color? color}) {
   return SpinKitFadingCircle(

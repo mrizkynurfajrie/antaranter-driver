@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:intake_rider/response/main_rider.dart';
-import 'package:intake_rider/response/nebeng_order.dart';
-import 'package:intake_rider/response/nebeng_posting.dart';
-import 'package:intake_rider/response/nebeng_rider.dart';
+import 'package:antaranter_driverapp/response/main_rider.dart';
+import 'package:antaranter_driverapp/response/nebeng_order.dart';
+import 'package:antaranter_driverapp/response/nebeng_posting.dart';
+import 'package:antaranter_driverapp/response/nebeng_rider.dart';
 
 NebengPostingResponse nebengPostingResponseFromJson(String str) =>
     NebengPostingResponse.fromJson(json.decode(str));

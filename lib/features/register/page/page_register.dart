@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:intake_rider/features/register/controller_register.dart';
-import 'package:intake_rider/shared/constants/assets.dart';
-import 'package:intake_rider/shared/constants/colors.dart';
-import 'package:intake_rider/shared/constants/styles.dart';
-import 'package:intake_rider/shared/widgets/buttons/button_primary.dart';
-import 'package:intake_rider/shared/widgets/inputs/input_password.dart';
-import 'package:intake_rider/shared/widgets/inputs/input_phone.dart';
+import 'package:antaranter_driverapp/features/register/controller_register.dart';
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
+import 'package:antaranter_driverapp/shared/widgets/inputs/input_password.dart';
+import 'package:antaranter_driverapp/shared/widgets/inputs/input_phone.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
-import 'package:intake_rider/shared/widgets/others/loading_indicator.dart';
-import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
+import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/loading_indicator.dart';
+import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
 
 class PageRegister extends GetView<ControllerRegister> {
   const PageRegister({Key? key}) : super(key: key);

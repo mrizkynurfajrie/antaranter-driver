@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intake_rider/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
 
 class CardRounded extends StatelessWidget {
   final Widget child;

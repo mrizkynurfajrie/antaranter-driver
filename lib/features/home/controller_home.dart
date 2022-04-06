@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:intake_rider/features/home/api_home.dart';
-import 'package:intake_rider/response/home_response.dart';
-import 'package:intake_rider/shared/controller/controller_rider_info.dart';
-import 'package:intake_rider/shared/controller/controller_vehicle_info.dart';
+import 'package:antaranter_driverapp/features/home/api_home.dart';
+import 'package:antaranter_driverapp/response/home_response.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_vehicle_info.dart';
 
 class ControllerHome extends GetxController {
   final ApiHome api;

@@ -2,14 +2,14 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/features/nebeng_posting/api_nebeng_posting.dart';
-import 'package:intake_rider/response/nebeng_rider.dart';
-import 'package:intake_rider/response/post.dart';
-import 'package:intake_rider/routes/app_routes.dart';
-import 'package:intake_rider/shared/controller/controller_rider_info.dart';
-import 'package:intake_rider/shared/controller/controller_vehicle_info.dart';
-import 'package:intake_rider/shared/widgets/bottomsheet/bottomsheet_selection.dart';
-import 'package:intake_rider/shared/widgets/cards/card_item.dart';
+import 'package:antaranter_driverapp/features/nebeng_posting/api_nebeng_posting.dart';
+import 'package:antaranter_driverapp/response/nebeng_rider.dart';
+import 'package:antaranter_driverapp/response/post.dart';
+import 'package:antaranter_driverapp/routes/app_routes.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_vehicle_info.dart';
+import 'package:antaranter_driverapp/shared/widgets/bottomsheet/bottomsheet_selection.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_item.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class ControllerNebengPosting extends GetxController {

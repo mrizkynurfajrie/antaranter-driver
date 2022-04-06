@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:intake_rider/framework/api2.dart';
-import 'package:intake_rider/response/main_rider.dart';
+import 'package:antaranter_driverapp/framework/api2.dart';
+import 'package:antaranter_driverapp/response/main_rider.dart';
 
 class ControllerRiderInfo extends GetxController {
   var hasActivePost = false.obs;

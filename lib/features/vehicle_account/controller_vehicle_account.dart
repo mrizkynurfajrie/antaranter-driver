@@ -3,12 +3,12 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intake_rider/features/vehicle_account/api_vehicle_account.dart';
-import 'package:intake_rider/framework/api2.dart';
-import 'package:intake_rider/response/nebeng_rider.dart';
-import 'package:intake_rider/shared/controller/controller_rider_info.dart';
-import 'package:intake_rider/shared/controller/controller_vehicle_info.dart';
-import 'package:intake_rider/shared/helpers/format_date_time.dart';
+import 'package:antaranter_driverapp/features/vehicle_account/api_vehicle_account.dart';
+import 'package:antaranter_driverapp/framework/api2.dart';
+import 'package:antaranter_driverapp/response/nebeng_rider.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_vehicle_info.dart';
+import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class ControllerVehicleAccount extends GetxController {

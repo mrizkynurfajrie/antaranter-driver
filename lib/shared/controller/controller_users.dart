@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:intake_rider/framework/api2.dart';
-import 'package:intake_rider/response/users.dart';
+import 'package:antaranter_driverapp/framework/api2.dart';
+import 'package:antaranter_driverapp/response/users.dart';
 
 class ControllerUsers extends GetxController{
   var users = Users().obs;

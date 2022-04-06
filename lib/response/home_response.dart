@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:intake_rider/response/main_rider.dart';
+import 'package:antaranter_driverapp/response/main_rider.dart';
 
 HomeResponse homeResponseFromJson(String str) =>
     HomeResponse.fromJson(json.decode(str));

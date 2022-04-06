@@ -3,10 +3,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/features/register/api_register.dart';
-import 'package:intake_rider/framework/api2.dart';
-import 'package:intake_rider/routes/app_routes.dart';
-import 'package:intake_rider/shared/helpers/utils.dart';
+import 'package:antaranter_driverapp/features/register/api_register.dart';
+import 'package:antaranter_driverapp/framework/api2.dart';
+import 'package:antaranter_driverapp/routes/app_routes.dart';
+import 'package:antaranter_driverapp/shared/helpers/utils.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 
 class ControllerRegister extends GetxController {

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intake_rider/routes/app_routes.dart';
-import 'package:intake_rider/shared/constants/assets.dart';
-import 'package:intake_rider/shared/constants/colors.dart';
-import 'package:intake_rider/shared/constants/styles.dart';
-import 'package:intake_rider/shared/widgets/buttons/button_icon.dart';
-import 'package:intake_rider/shared/widgets/buttons/button_text.dart';
-import 'package:intake_rider/shared/widgets/cards/card_primary.dart';
-import 'package:intake_rider/shared/widgets/cards/card_rounded_border.dart';
-import 'package:intake_rider/features/home/controller_home.dart';
-import 'package:intake_rider/shared/widgets/inputs/input_primary.dart';
-import 'package:intake_rider/shared/widgets/pages/page_decoration_top.dart';
+import 'package:antaranter_driverapp/routes/app_routes.dart';
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/widgets/buttons/button_icon.dart';
+import 'package:antaranter_driverapp/shared/widgets/buttons/button_text.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_primary.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_border.dart';
+import 'package:antaranter_driverapp/features/home/controller_home.dart';
+import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
+import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PageHome extends GetView<ControllerHome> {

@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:intake_rider/response/main_rider.dart';
+import 'package:antaranter_driverapp/response/main_rider.dart';
 
 NebengRider vehicleFromJson(String str) =>
     NebengRider.fromJson(json.decode(str));
