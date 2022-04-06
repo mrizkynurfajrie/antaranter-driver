@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,29 +19,30 @@ class ControllerNebengPosting extends GetxController {
   final ApiNebengPosting api;
   ControllerNebengPosting({required this.api});
 
+  List dropDownList = ['1', '2', '3', '4', '5'];
+
   var txtSeatAvail = TextEditingController();
   var txtPrice = TextEditingController();
   var txtDateDept = TextEditingController();
   var txtDateArrv = TextEditingController();
   var txtTimeDept = TextEditingController();
   var txtTimeArrv = TextEditingController();
+  var isValidForm = false.obs;
+  var isValidPrice = false.obs;
   var itemProvinceDept = 'Provinsi'.obs;
   var itemCitiesDept = 'Kota'.obs;
   var itemProvinceArrv = 'Provinsi'.obs;
   var itemCitiesArrv = 'Kota'.obs;
-
-  List dropDownList = ['1', '2', '3', '4', '5'];
-
   var dropDownValue = '1'.obs;
   var search = ''.obs;
   var idProvince = 0.obs;
   var idCities = 0.obs;
-  var provinces = <ModelBottomsheet>[].obs;
-  var cities = <ModelBottomsheet>[].obs;
   var idRider = 0.obs;
   var idNebengRider = 0.obs;
-  var loading = false;
   var statusNebeng = 0.obs;
+  var provinces = <ModelBottomsheet>[].obs;
+  var cities = <ModelBottomsheet>[].obs;
+  var loading = false;
 
   var maskFormatter = MaskTextInputFormatter(
     mask: '###.###',
@@ -52,10 +52,28 @@ class ControllerNebengPosting extends GetxController {
 
   @override
   void onInit() async {
+    formValidationListener();
     await getVehicle();
     await getProvinces();
 
     super.onInit();
+  }
+
+  @override
+  onClose() {
+    super.onClose();
+    txtPrice.dispose();
+  }
+
+  formValidationListener() {
+    txtPrice.addListener(() {
+      isValidPrice.value = txtPrice.text.isNotEmpty;
+      validateForm();
+    });
+  }
+
+  validateForm() {
+    isValidForm.value = isValidPrice.value;
   }
 
   getVehicle() async {
@@ -197,7 +215,7 @@ class ControllerNebengPosting extends GetxController {
         var result = updateResult["data"];
         var postResponse = Post.fromJson(result);
         controllerRiderInfo.setActivePost(postResponse.id!);
-        
+
         Get.snackbar(
           "Nebeng",
           "Anda telah berhasil membagikan perjalanan anda",

@@ -19,6 +19,7 @@ class PageDecorationTop extends StatelessWidget {
   final Color? backgroundColor;
   final Function()? onBackPressed;
   final Widget? center;
+  final bool? resizeAvoidBottom;
 
   const PageDecorationTop({
     Key? key,
@@ -36,12 +37,13 @@ class PageDecorationTop extends StatelessWidget {
     this.backgroundColor,
     this.onBackPressed,
     this.center,
+    this.resizeAvoidBottom,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: resizeAvoidBottom ?? true,
         backgroundColor: backgroundColor ?? AppColor.whiteColor,
         appBar: CustomAppBar(
           title: title,

@@ -51,9 +51,8 @@ class Body extends StatelessWidget {
               width: size.width * 0.40,
             ),
           ),
-
           Text(
-            "In-Take App",
+            "AntarAnter App",
             style: TextStyle(
               fontFamily: 'Poppins',
               fontSize: FontSizes.s20,
@@ -82,7 +81,7 @@ class BackgroundSplash extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          Container(color: AppColor.whiteColor),
+          Container(color: AppColor.bgPageColor),
           child!,
         ],
       ),

@@ -16,10 +16,18 @@ class PageContact extends GetView<ControllerContact> {
     return PageDecorationTop(
       title: 'INTAKE',
       backgroundColor: AppColor.bgPageColor,
-      toolbarColor: AppColor.primaryColor.shade200,
-      toolbarTitleColor: AppColor.neutral,
+      toolbarColor: AppColor.primaryColor,
+
       center: Align(
-        child: AppLogosMed.logoApp(AppLogosMed.nameOnly),
+        child: Text(
+          "AntarAnter",
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: FontSizes.s16,
+            fontWeight: FontWeight.w500,
+            color: AppColor.whiteColor,
+          ),
+        ),
         alignment: Alignment.centerRight,
       ),
       enableBack: true,

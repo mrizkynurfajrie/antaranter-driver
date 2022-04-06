@@ -24,12 +24,23 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
   @override
   Widget build(BuildContext context) {
     return PageDecorationTop(
-      title: 'IN-TAKE',
+      title: '',
       padding: EdgeInsets.zero,
-      toolbarColor: AppColor.bgPageColor,
+      toolbarColor: AppColor.primaryColor,
       backgroundColor: AppColor.bgPageColor,
       enableBack: false,
-      center: AppLogosMed.logoApp(AppLogosMed.nameOnly),
+      center: Align(
+        child: Text(
+          "AntarAnter",
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: FontSizes.s16,
+            fontWeight: FontWeight.w500,
+            color: AppColor.whiteColor,
+          ),
+        ),
+        alignment: Alignment.centerRight,
+      ),
       child: Obx(
         () => controller.loading.isFalse
             ? RefreshIndicator(
@@ -384,7 +395,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                       ],
                                     ),
                                   ),
-                                  verticalSpace(15.h),
+                                  verticalSpace(10.h),
                                   Container(
                                     height: Get.height * 0.315.h,
                                     width: Get.width,

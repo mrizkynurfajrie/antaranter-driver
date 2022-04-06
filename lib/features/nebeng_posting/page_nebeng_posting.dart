@@ -21,13 +21,22 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
   @override
   Widget build(BuildContext context) {
     return PageDecorationTop(
-      title: 'IN-TAKE',
+      title: '',
       padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 15.h),
-      toolbarColor: AppColor.primaryColor.shade200,
+      toolbarColor: AppColor.primaryColor,
       backgroundColor: AppColor.bgPageColor,
-      enableBack: false,
+      enableBack: true,
+      toolbarTitleColor: AppColor.bgPageColor,
       center: Align(
-        child: AppLogosMed.logoApp(AppLogosMed.nameOnly),
+        child: Text(
+          "AntarAnter",
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: FontSizes.s16,
+            fontWeight: FontWeight.w500,
+            color: AppColor.whiteColor,
+          ),
+        ),
         alignment: Alignment.centerRight,
       ),
       child: SafeArea(
@@ -408,12 +417,17 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                 ),
                 verticalSpace(Insets.med),
                 ButtonPrimary(
-                  onPressed: () async {
-                    await controller.createNebengPosting();
+                  enable: controller.isValidForm.value,
+                  onPressed: () {
+                    controller.validateForm();
+                    if (controller.isValidForm.value) {
+                      controller.createNebengPosting();
+                    }
                   },
                   label: 'Bagikan',
                   color: AppColor.primaryColor,
-                  size: 345,
+                  size: 340.w,
+                  cornerRadius: 9,
                 ),
               ],
             ),

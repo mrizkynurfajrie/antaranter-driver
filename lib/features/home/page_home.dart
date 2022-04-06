@@ -19,14 +19,26 @@ class PageHome extends GetView<ControllerHome> {
   @override
   Widget build(BuildContext context) {
     return PageDecorationTop(
-      title: 'IN-TAKE RIDER',
+      title: '',
       padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
       toolbarColor: AppColor.bgPageColor,
       enableBack: false,
-      center: Align(
-        alignment: Alignment.center,
-        child: AppLogos.logoApp(AppLogos.logoHorizontal),
+      center: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          AppLogosMed.logoApp(AppLogosMed.logoOnly),
+          horizontalSpace(5.w),
+          Text(
+            "AntarAnter",
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: FontSizes.s14,
+              fontWeight: FontWeight.w500,
+              color: AppColor.primaryColor,
+            ),
+          )
+        ],
       ),
       child: RefreshIndicator(
         color: AppColor.primaryColor,
@@ -40,6 +52,8 @@ class PageHome extends GetView<ControllerHome> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 CardRoundedBorder(
+                  borderColor: AppColor.greyColor,
+                  borderWidth: 2,
                   height: Get.height * 0.14.h,
                   color: AppColor.primaryColor,
                   borderRadius: 30,

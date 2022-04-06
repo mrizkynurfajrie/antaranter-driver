@@ -75,6 +75,7 @@ class _InputPhoneState extends State<InputPhone> {
               : verticalSpace(0),
           SizedBox(
             width: Get.width * 0.88.w,
+          
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,8 +88,8 @@ class _InputPhoneState extends State<InputPhone> {
                             prefixIcon: InkWell(
                               onTap: _showListCountry,
                               child: Padding(
-                                padding:
-                                    EdgeInsets.symmetric(horizontal: Insets.med),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: Insets.med),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -113,7 +114,7 @@ class _InputPhoneState extends State<InputPhone> {
                     : Container(),
                 widget.setContryCode ? horizontalSpace(7) : Container(),
                 SizedBox(
-                  width: Get.width * 0.60.w,
+                  width: Get.width * 0.58.w,
                   child: TextFormField(
                     enableInteractiveSelection: true,
                     cursorColor: Theme.of(context).primaryColor,

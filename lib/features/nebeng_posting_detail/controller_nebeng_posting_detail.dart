@@ -88,14 +88,18 @@ class ControllerNebengPostingDetail extends GetxController
           riderId: controllerRiderInfo.rider.value.id);
       log('data nebeng' + r.toString());
       if (r["success"] == true) {
-        idNebengRider.value = r["data"]["nebeng_rider"]["id"];
-        var nebengPostingRes = NebengPostingResponse.fromJson(r["data"]);
-        statusNebeng.value = nebengPostingRes.nebengPosting!.status!;
-        log("status nebeng value : " + statusNebeng.toString());
-        controllerPostingan.postingan.value = nebengPostingRes;
-        listUserNebeng.clear();
-        if (nebengPostingRes.nebengOrder != null) {
-          listUserNebeng.addAll(nebengPostingRes.nebengOrder!);
+        try {
+          idNebengRider.value = r["data"]["nebeng_rider"]["id"];
+          var nebengPostingRes = NebengPostingResponse.fromJson(r["data"]);
+          statusNebeng.value = nebengPostingRes.nebengPosting!.status!;
+          log("status nebeng value : " + statusNebeng.toString());
+          controllerPostingan.postingan.value = nebengPostingRes;
+          listUserNebeng.clear();
+          if (nebengPostingRes.nebengOrder != null) {
+            listUserNebeng.addAll(nebengPostingRes.nebengOrder!);
+          }
+        } catch (e) {
+          controllerRiderInfo.hasActivePost.value = false;
         }
 
         change(listUserNebeng, status: RxStatus.success());
@@ -272,6 +276,7 @@ class ControllerNebengPostingDetail extends GetxController
         nebengPostingId: controllerPostingan.postingan.value.nebengPosting?.id,
         note: txtNote.text,
       );
+      log('hapus posting :' + updateResult.toString());
       if (updateResult["success"] == true) {
         var result = updateResult["data"];
         log("result : " + result.toString());
@@ -334,9 +339,9 @@ class ControllerNebengPostingDetail extends GetxController
   updateStatusDone() async {
     try {
       var r = await api.updateBalance(
-          nebengPostId: controllerPostingan.postingan.value.nebengPosting?.id,
-          datetimeFinish: FormatDateTime.formatDateyyyy(dateTimeFinish),
-          );
+        nebengPostId: controllerPostingan.postingan.value.nebengPosting?.id,
+        datetimeFinish: FormatDateTime.formatDateyyyy(dateTimeFinish),
+      );
       log("nebeng post id : " + r.toString());
       if (r["success"] == true) {
         var updateBalance = r["data"]["currBalance"]["curr_balance"];

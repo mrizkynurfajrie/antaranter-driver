@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -6,12 +7,16 @@ import 'package:intake_rider/features/register/api_register.dart';
 import 'package:intake_rider/framework/api2.dart';
 import 'package:intake_rider/routes/app_routes.dart';
 import 'package:intake_rider/shared/helpers/utils.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 
 class ControllerRegister extends GetxController {
   final ApiRegister api;
   ControllerRegister({required this.api});
 
   var statusAgreementTerm = false.obs;
+
+  final Completer<PDFViewController> _controller =
+      Completer<PDFViewController>();
 
   var cName = TextEditingController();
   var cPhoneNumber = TextEditingController();
@@ -30,11 +35,14 @@ class ControllerRegister extends GetxController {
   var platNum = "kt".obs;
   var vehicleCol = "warna".obs;
   var idRider = 0.obs;
+  bool isReady = false;
+  int? pages = 0;
 
   var loading = false.obs;
 
   @override
   void onInit() async {
+    showPdf();
     formValidationListener();
     var rider = await Api2().getRider();
     idRider.value = rider["id"] ?? 0;
@@ -67,6 +75,34 @@ class ControllerRegister extends GetxController {
   validateForm() {
     isValidForm.value =
         isValidPhoneNumber.value && isValidPassword.value && isValidName.value;
+  }
+
+  showPdf() {
+    return PDFView(
+      filePath: "assets/pdf/loremipsum.pdf",
+      enableSwipe: true,
+      swipeHorizontal: true,
+      autoSpacing: false,
+      pageFling: false,
+      onRender: (_pages) {
+        () {
+          pages = _pages;
+          isReady = true;
+        };
+      },
+      onError: (error) {
+        print(error.toString());
+      },
+      onPageError: (page, error) {
+        print('$page: ${error.toString()}}');
+      },
+      onViewCreated: (PDFViewController pdfViewController){
+        _controller.complete(pdfViewController);
+      },
+      onPageChanged: (int? page, int? total){
+        print('page change : $page/$total');
+      },
+    );
   }
 
   register() async {

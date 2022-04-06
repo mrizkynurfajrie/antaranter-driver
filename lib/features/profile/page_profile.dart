@@ -20,9 +20,17 @@ class PageProfile extends GetView<ControllerProfile> {
     return PageDecorationTop(
       title: 'INTAKE',
       enableBack: false,
-      toolbarColor: AppColor.primaryColor.shade200,
+      toolbarColor: AppColor.primaryColor,
       center: Align(
-        child: AppLogosMed.logoApp(AppLogosMed.nameOnly),
+        child: Text(
+          "AntarAnter",
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: FontSizes.s16,
+            fontWeight: FontWeight.w500,
+            color: AppColor.whiteColor,
+          ),
+        ),
         alignment: Alignment.centerRight,
       ),
       padding: EdgeInsets.zero,

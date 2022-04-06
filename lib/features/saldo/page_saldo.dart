@@ -22,7 +22,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
   Widget build(BuildContext context) {
     return PageDecorationTop(
       title: 'SALDO',
-      toolbarTitleColor: AppColor.whiteColor,
+      toolbarTitleColor: AppColor.bgPageColor,
       padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
       toolbarColor: AppColor.primaryColor,
@@ -44,7 +44,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
                 color: AppColor.whiteColor,
                 padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
                 borderRadius: 9,
-                borderColor: AppColor.greyColorLight,
+                borderColor: AppColor.primaryColor,
                 borderWidth: 4,
                 // radius: 19,
                 child: Column(
@@ -52,11 +52,18 @@ class PageSaldo extends GetView<ControllerSaldo> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Row(
-                      children: <Widget>[
-                        SizedBox(
-                          width: Get.width * 0.30.w,
-                          child: AppLogos.logoApp(AppLogos.logoHorizontal),
-                        ),
+                      children: [
+                        AppLogos.logoApp(AppLogos.logoOnly),
+                        horizontalSpace(5.w),
+                        Text(
+                          "AntarAnter",
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: FontSizes.s14,
+                            fontWeight: FontWeight.w500,
+                            color: AppColor.neutral,
+                          ),
+                        )
                       ],
                     ),
                     verticalSpace(15.h),
@@ -72,8 +79,9 @@ class PageSaldo extends GetView<ControllerSaldo> {
                               controller.controllerRiderInfo.rider.value.name ??
                                   "-",
                               style: TextStyles.inter.copyWith(
-                                fontSize: FontSizes.s14,
-                                color: AppColor.primaryColor, fontWeight: FontWeight.w500),
+                                  fontSize: FontSizes.s14,
+                                  color: AppColor.neutral,
+                                  fontWeight: FontWeight.w500),
                             ),
                             Text(
                               controller
@@ -81,7 +89,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
                                   "-",
                               style: TextStyles.inter.copyWith(
                                 fontSize: FontSizes.s14,
-                                color: AppColor.primaryColor,
+                                color: AppColor.neutral,
                               ),
                             )
                           ],
@@ -91,7 +99,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
                     verticalSpace(20.h),
                     Obx(
                       () => Shimmer.fromColors(
-                        baseColor: AppColor.primaryColor,
+                        baseColor: AppColor.neutral,
                         highlightColor: Colors.grey.shade50,
                         enabled: controller.loading.isTrue,
                         child: controller.loading.isTrue

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intake_rider/shared/constants/assets.dart';
 import 'package:intake_rider/shared/constants/colors.dart';
 import 'package:intake_rider/shared/constants/styles.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -20,10 +22,21 @@ class PageRegsuccess extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Image.asset(
-                  "assets/logo/logo_horizontal.png",
-                  width: size.width * 0.65,
-                ),
+                Column(
+              children: [
+                AppLogos.logoApp(AppLogos.logoOnly),
+                verticalSpace(5.w),
+                Text(
+                  "AntarAnter",
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: FontSizes.s16,
+                    fontWeight: FontWeight.w500,
+                    color: AppColor.primaryColor,
+                  ),
+                )
+              ],
+            ),
                 SizedBox(height: size.height * 0.30),
                 Text(
                   "Selamat!",

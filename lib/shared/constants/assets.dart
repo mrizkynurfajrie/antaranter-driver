@@ -39,6 +39,8 @@ class AppLogos {
   static const nameOnly = 'assets/logo/name_only.png';
   static const logoHorizontal = 'assets/logo/logo_horizontal.png';
   static const logoVertical = 'assets/logo/logo_vertical.png';
+  static const colouredLogo = 'assets/logo/color-logo.png';
+  static const uncolouredLogo = 'assets/logo/white-logo.png';
 
   static Widget logoApp(String asset) {
     return Image.asset(
@@ -52,6 +54,8 @@ class AppLogosMed {
   static const nameOnly = 'assets/logo/name_only.png';
   static const logoHorizontal = 'assets/logo/logo_horizontal.png';
   static const logoVertical = 'assets/logo/logo_vertical.png';
+  static const colouredLogo = 'assets/logo/color-logo.png';
+  static const uncolouredLogo = 'assets/logo/white-logo.png';
 
   static Widget logoApp(String asset) {
     return Image.asset(
