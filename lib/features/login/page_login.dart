@@ -49,6 +49,8 @@ class PageLogin extends GetView<ControllerLogin> {
             InputPhone(
               controller: controller.cPhoneNumber,
               phoneNumber: (value) {},
+              boxwidth: Get.width * 0.86.w,
+              inputWidth: Get.width * 0.58.w,
             ),
             InputPassword(
               onChange: (value) {},

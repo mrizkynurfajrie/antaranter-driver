@@ -19,6 +19,10 @@ class InputPhone extends StatefulWidget {
   final Function()? onEditingComplete;
   final bool setContryCode;
   final String? contryCode;
+  final double? boxwidth;
+  final double? boxheight;
+  final double? inputWidth;
+  final double? inputHeight;
 
   const InputPhone({
     Key? key,
@@ -34,6 +38,10 @@ class InputPhone extends StatefulWidget {
     this.onEditingComplete,
     this.setContryCode = true,
     this.contryCode,
+    this.boxheight,
+    this.boxwidth,
+    this.inputHeight,
+    this.inputWidth,
   }) : super(key: key);
 
   @override
@@ -74,8 +82,8 @@ class _InputPhoneState extends State<InputPhone> {
                 )
               : verticalSpace(0),
           SizedBox(
-            width: Get.width * 0.88.w,
-          
+            width: widget.boxwidth,
+            height: widget.boxheight,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,7 +122,7 @@ class _InputPhoneState extends State<InputPhone> {
                     : Container(),
                 widget.setContryCode ? horizontalSpace(7) : Container(),
                 SizedBox(
-                  width: Get.width * 0.58.w,
+                  width: widget.inputWidth,
                   child: TextFormField(
                     enableInteractiveSelection: true,
                     cursorColor: Theme.of(context).primaryColor,

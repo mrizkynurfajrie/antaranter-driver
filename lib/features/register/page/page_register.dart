@@ -63,7 +63,8 @@ class PageRegister extends GetView<ControllerRegister> {
             InputPhone(
               controller: controller.cPhoneNumber,
               phoneNumber: (value) {},
-              
+              boxwidth: Get.width * 0.78.w,
+              inputWidth: Get.width * 0.51.w,
             ),
             InputPassword(
               onChange: (value) {},
