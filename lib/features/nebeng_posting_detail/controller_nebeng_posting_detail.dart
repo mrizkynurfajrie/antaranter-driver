@@ -16,7 +16,6 @@ import 'package:antaranter_driverapp/shared/controller/controller_postingan.dart
 import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_users.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_vehicle_info.dart';
-import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
@@ -56,9 +55,10 @@ class ControllerNebengPostingDetail extends GetxController
   }
 
   ourWa(String? phoneNum) async {
-    var whatsapp = phoneNum;
+    var editedPhone = phoneNum!.replaceFirst(RegExp(r'^0+'), "");
+    var whatsapp = "+62$editedPhone";
     var whatsappURlAndroid =
-        "https://wa.me/$whatsapp?text=${Uri.parse("halo driver saya telah memesan nebeng anda")}";
+        "https://wa.me/$whatsapp?text=${Uri.parse("halo, saya driver yang akan mengantarkan anda sampai ke tujuan")}";
     var whatappURLIos = "https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
 
     if (Platform.isIOS) {
@@ -299,7 +299,7 @@ class ControllerNebengPostingDetail extends GetxController
       var updateResult = await api.changeStatus(
         status: status,
         nebengPostId: controllerPostingan.postingan.value.nebengPosting!.id,
-        dateTimeStart: dateTimeStart,
+        dateTimeStart: dateTimeStart.toString(),
       );
       log("data update status : " + updateResult.toString());
       if (updateResult["success"] == true) {
