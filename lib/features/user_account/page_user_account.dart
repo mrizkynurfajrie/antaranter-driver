@@ -41,7 +41,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     children: <Widget>[
                       GestureDetector(
                         onTap: () => controller.imgSourceSelector(context),
-                        child: (controller.imgPreview !=  "")
+                        child: (controller.imgPreview != "")
                             ? DottedBorder(
                                 dashPattern: const [12, 4],
                                 strokeWidth: 1,
@@ -297,8 +297,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     label: 'Tanggal Lahir',
                   ),
                   Container(
-                    width: Get.width,
-                    margin: EdgeInsets.symmetric(horizontal: 4.w),
+                    width: Get.width * 0.88.w,
+                    margin: EdgeInsets.symmetric(horizontal: 6.w),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -320,7 +320,9 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                           },
                           padding: EdgeInsets.all(Insets.sm),
                           width: Get.width * 0.88.w,
-                          margin: EdgeInsets.only(bottom: 5.h),
+                          margin: EdgeInsets.only(
+                            bottom: 5.h,
+                          ),
                         ),
                         InputSelection(
                           valueText: controller.itemCities.value,
@@ -347,13 +349,14 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     label: 'Alamat',
                   ),
                   verticalSpace(5.h),
-                  controller.loadingForm.isFalse?
-                  ButtonPrimary(
-                    onPressed: () async {
-                      await controller.updateUserAccount();
-                    },
-                    label: 'Simpan',
-                  ):loadingIndicator(context),
+                  controller.loadingForm.isFalse
+                      ? ButtonPrimary(
+                          onPressed: () async {
+                            await controller.updateUserAccount();
+                          },
+                          label: 'Simpan',
+                        )
+                      : loadingIndicator(context),
                 ],
               ),
             ),

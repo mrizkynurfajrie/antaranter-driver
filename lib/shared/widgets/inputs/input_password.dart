@@ -16,6 +16,8 @@ class InputPassword extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final TextCapitalization textCapitalization;
   final double? boxWidth;
+  final EdgeInsets? padding;
+  final EdgeInsets? margin;
 
   const InputPassword({
     Key? key,
@@ -30,6 +32,8 @@ class InputPassword extends StatefulWidget {
     this.inputFormatters,
     this.textCapitalization = TextCapitalization.none,
     this.boxWidth,
+    this.padding,
+    this.margin,
   }) : super(key: key);
 
   @override
@@ -56,7 +60,9 @@ class _InputPasswordState extends State<InputPassword> {
                   ),
                 )
               : verticalSpace(0),
-          SizedBox(
+          Container(
+            padding: widget.padding ?? EdgeInsets.zero,
+            margin: widget.margin ?? EdgeInsets.zero,
             width: widget.boxWidth,
             child: TextFormField(
               enableInteractiveSelection: true,

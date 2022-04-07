@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
@@ -54,7 +56,7 @@ class PageHome extends GetView<ControllerHome> {
                 CardRoundedBorder(
                   borderColor: AppColor.greyColor,
                   borderWidth: 2,
-                  height: Get.height * 0.14.h,
+                  height: Get.height * 0.18.h,
                   color: AppColor.primaryColor,
                   borderRadius: 30,
                   margin: EdgeInsets.symmetric(vertical: 15.h, horizontal: 5.w),
@@ -92,8 +94,8 @@ class PageHome extends GetView<ControllerHome> {
                                     iconColor: AppColor.whiteColor,
                                     iconHeight: 25.h,
                                     iconWidth: 25.w,
-                                    iconPadding:
-                                        EdgeInsets.only(bottom: 3.h, top: 5.h),
+                                    iconPadding: EdgeInsets.only(
+                                        bottom: 3.h, top: 5.h),
                                   ),
                                 ],
                               ),
@@ -111,7 +113,7 @@ class PageHome extends GetView<ControllerHome> {
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(
-                                          'hai, ' +
+                                          'hai,\n' +
                                               controller.controllerRiderInfo
                                                   .rider.value.name
                                                   .toString(),
@@ -144,7 +146,7 @@ class PageHome extends GetView<ControllerHome> {
                 Obx(
                   () => controller.controllerRiderInfo.rider.value.status != 2
                       ? CardPrimary(
-                          height: Get.height * 0.10.h,
+                          height: Get.height * 0.15.h,
                           width: Get.width * 0.85.w,
                           child: Container(
                             margin: EdgeInsets.symmetric(
@@ -205,7 +207,7 @@ class PageHome extends GetView<ControllerHome> {
                 ),
                 verticalSpace(10.h),
                 CardPrimary(
-                  height: Get.height * 0.20.h,
+                  height: Get.height * 0.25.h,
                   width: Get.width * 0.85.w,
                   padding: EdgeInsets.symmetric(vertical: 10.h),
                   child: Column(
@@ -219,11 +221,18 @@ class PageHome extends GetView<ControllerHome> {
                             '•',
                             style: TextStyles.textTableOrange,
                           ),
-                          Image.asset(
-                            AppIcons.carLocation,
-                            height: 55.h,
-                            width: 55.w,
+                          // SvgPicture.asset(
+                          //   AppIcons.carLocation,
+                          //   height: 55.h,
+                          //   width: 55.w,
+                          // ),
+                          horizontalSpace(5.w),
+                          Icon(
+                            CupertinoIcons.car_detailed,
+                            color: AppColor.primaryColor,
+                            size: 30.w,
                           ),
+                          horizontalSpace(5.w),
                           Text(
                             '•',
                             style: TextStyles.textTableOrange,
@@ -241,7 +250,7 @@ class PageHome extends GetView<ControllerHome> {
                             ),
                           ),
                           InputPrimary(
-                            boxWidth: 300,
+                            boxWidth: 300.w,
                             prefixIcon: const Icon(
                               Icons.streetview_outlined,
                               color: AppColor.primaryColor,
@@ -262,7 +271,8 @@ class PageHome extends GetView<ControllerHome> {
                                 Get.snackbar("Pemberitahuan", message);
                               }
                             },
-                            padding: EdgeInsets.only(top: 10.h),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10.w, vertical: 10.h),
                           ),
                         ],
                       ),
@@ -271,9 +281,10 @@ class PageHome extends GetView<ControllerHome> {
                 ),
                 verticalSpace(10.h),
                 CardPrimary(
-                  height: Get.height * 0.17.h,
+                  height: Get.height * 0.19.h,
                   width: Get.width * 0.85.w,
-                  padding: EdgeInsets.symmetric(vertical: 2.h),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 2.h, horizontal: 10.w),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -285,11 +296,18 @@ class PageHome extends GetView<ControllerHome> {
                             '•',
                             style: TextStyles.textTableOrange,
                           ),
-                          Image.asset(
-                            AppIcons.custService,
-                            height: 40.h,
-                            width: 40.w,
+                          horizontalSpace(5.w),
+                          // SvgPicture.asset(
+                          //   AppIcons.custService,
+                          //   height: 40.h,
+                          //   width: 40.w,
+                          // ),
+                          Icon(
+                            CupertinoIcons.phone,
+                            color: AppColor.primaryColor,
+                            size: 30.w,
                           ),
+                          horizontalSpace(5.w),
                           Text(
                             '•',
                             style: TextStyles.textTableOrange,

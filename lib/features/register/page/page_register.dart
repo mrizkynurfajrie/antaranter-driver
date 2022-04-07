@@ -23,6 +23,7 @@ class PageRegister extends GetView<ControllerRegister> {
       resizeAvoidBottom: false,
       toolbarColor: AppColor.bgPageColor,
       backgroundColor: AppColor.bgPageColor,
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       child: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -57,14 +58,17 @@ class PageRegister extends GetView<ControllerRegister> {
               hintText: "Nama Lengkap",
               onTap: () {},
               prefixIcon: null,
+              padding: EdgeInsets.symmetric(horizontal: 14.w)
             ),
             InputPhone(
               controller: controller.cPhoneNumber,
               phoneNumber: (value) {},
+              
             ),
             InputPassword(
               onChange: (value) {},
               controller: controller.cPassword,
+              padding: EdgeInsets.symmetric(horizontal: 14.w),
             ),
             verticalSpace(20.h),
             Obx(

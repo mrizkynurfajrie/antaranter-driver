@@ -56,7 +56,7 @@ class PageContact extends GetView<ControllerContact> {
               verticalSpace(5.h),
               ButtonContact(
                 ontap: () {},
-                icon: AppIcons.contInstagram,
+                icon: AppIcons.iconApp(AppIcons.contInstagram),
                 title: 'Instagram',
                 buttonHeight: Get.height * 0.07.h,
                 buttonWidth: Get.width * 0.88.w,
@@ -64,7 +64,7 @@ class PageContact extends GetView<ControllerContact> {
               verticalSpace(5.h),
               ButtonContact(
                 ontap: () {},
-                icon: AppIcons.contFacebook,
+                icon: AppIcons.iconApp(AppIcons.contFacebook),
                 title: 'Facebook',
                 buttonHeight: Get.height * 0.07.h,
                 buttonWidth: Get.width * 0.88.w,
@@ -72,7 +72,7 @@ class PageContact extends GetView<ControllerContact> {
               verticalSpace(5.h),
               ButtonContact(
                 ontap: () {},
-                icon: AppIcons.contEmail,
+                icon: AppIcons.iconApp(AppIcons.contEmail),
                 title: 'Email',
                 buttonHeight: Get.height * 0.07.h,
                 buttonWidth: Get.width * 0.88.w,
@@ -80,7 +80,7 @@ class PageContact extends GetView<ControllerContact> {
               verticalSpace(5.h),
               ButtonContact(
                 ontap: () {},
-                icon: AppIcons.contWebsite,
+                icon: AppIcons.iconApp(AppIcons.contWebsite),
                 title: 'Website',
                 buttonHeight: Get.height * 0.07.h,
                 buttonWidth: Get.width * 0.88.w,
@@ -95,7 +95,7 @@ class PageContact extends GetView<ControllerContact> {
 
 class ButtonContact extends StatelessWidget {
   final Function() ontap;
-  final String icon;
+  final Widget icon;
   final String title;
   final double? buttonHeight;
   final double? buttonWidth;
@@ -125,10 +125,7 @@ class ButtonContact extends StatelessWidget {
               width: 25.w,
               height: 25.h,
               color: AppColor.whiteColor,
-              child: Image.asset(
-                icon,
-                fit: BoxFit.contain,
-              ),
+              child: icon,
             ),
             horizontalSpace(7.h),
             Text(

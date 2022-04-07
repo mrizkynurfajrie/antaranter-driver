@@ -54,7 +54,8 @@ class PageLogin extends GetView<ControllerLogin> {
               onChange: (value) {},
               controller: controller.cPassword,
               label: 'Kata Sandi',
-              boxWidth: Get.width * 0.88.w,
+              boxWidth: Get.width * 0.86.w,
+              padding: EdgeInsets.only(right: 4.w),
             ),
             verticalSpace(15.h),
             Obx(

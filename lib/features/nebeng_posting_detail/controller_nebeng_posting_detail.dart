@@ -45,7 +45,6 @@ class ControllerNebengPostingDetail extends GetxController
   var txtTimeArrv = TextEditingController();
   var txtNote = TextEditingController();
   var dateTimeStart = DateTime.now();
-  var dateTimeFinish = DateTime.now();
 
   final listUserNebeng = List<NebengOrder>.empty().obs;
 
@@ -300,7 +299,7 @@ class ControllerNebengPostingDetail extends GetxController
       var updateResult = await api.changeStatus(
         status: status,
         nebengPostId: controllerPostingan.postingan.value.nebengPosting!.id,
-        dateTimeStart: FormatDateTime.formatDateyyyy(dateTimeStart),
+        dateTimeStart: dateTimeStart,
       );
       log("data update status : " + updateResult.toString());
       if (updateResult["success"] == true) {
@@ -337,10 +336,11 @@ class ControllerNebengPostingDetail extends GetxController
   }
 
   updateStatusDone() async {
+    var dateTimeFinish = DateTime.now();
     try {
       var r = await api.updateBalance(
         nebengPostId: controllerPostingan.postingan.value.nebengPosting?.id,
-        datetimeFinish: FormatDateTime.formatDateyyyy(dateTimeFinish),
+        datetimeFinish: dateTimeFinish.toString(),
       );
       log("nebeng post id : " + r.toString());
       if (r["success"] == true) {

@@ -15,6 +15,7 @@ class InputSelection extends StatefulWidget {
   final EdgeInsets? padding;
   final EdgeInsets? margin;
   final double? width;
+  final double? height;
 
   const InputSelection({
     Key? key,
@@ -28,6 +29,7 @@ class InputSelection extends StatefulWidget {
     this.padding,
     this.margin,
     this.width,
+    this.height,
   }) : super(key: key);
 
   @override
@@ -70,7 +72,7 @@ class _InputSelectionState extends State<InputSelection> {
             },
             child: Container(
               width: widget.width,
-              height: Get.height * 0.05.h,
+              height: widget.height,
               padding: widget.padding,
               margin: widget.margin,
               decoration: BoxDecoration(

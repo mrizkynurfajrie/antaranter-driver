@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/profile/controller_profile.dart';
 import 'package:antaranter_driverapp/routes/app_routes.dart';
@@ -42,7 +43,7 @@ class PageProfile extends GetView<ControllerProfile> {
           children: <Widget>[
             Container(
               padding: EdgeInsets.symmetric(vertical: 10.h),
-              height: Get.height * 0.17.h,
+              height: Get.height * 0.25.h,
               width: Get.width.w,
               child: Obx(
                 () => Column(
@@ -64,8 +65,8 @@ class PageProfile extends GetView<ControllerProfile> {
                               color: AppColor.whiteColor,
                             ),
                           ),
-                          errorWidget: (context, url, error) => Image.asset(
-                            'assets/images/avatar_dummy.png',
+                          errorWidget: (context, url, error) => SvgPicture.asset(
+                            'assets/images/avatar_dummy.svg',
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -118,30 +119,30 @@ class PageProfile extends GetView<ControllerProfile> {
               ontap: () {
                 Get.toNamed(Routes.userAccount);
               },
-              icon: AppIcons.profUser,
+              icon: AppIcons.iconApp(AppIcons.profUser),
               title: 'Profil Pengguna',
-              buttonHeight: Get.height * 0.07,
-              buttonWidth: Get.width * 0.9,
+              buttonHeight: Get.height * 0.08.h,
+              buttonWidth: Get.width * 0.9.w,
             ),
             verticalSpace(5.h),
             ButtonProfil(
               ontap: () {
                 Get.toNamed(Routes.vehicleAccount);
               },
-              icon: AppIcons.profCar,
+              icon: AppIcons.iconApp(AppIcons.profCar),
               title: 'Profil Kendaraan',
-              buttonHeight: Get.height * 0.07,
-              buttonWidth: Get.width * 0.9,
+              buttonHeight: Get.height * 0.08.h,
+              buttonWidth: Get.width * 0.9.w,
             ),
             verticalSpace(5.h),
             ButtonProfil(
               ontap: () {
                 Get.toNamed(Routes.contact);
               },
-              icon: AppIcons.profCallus,
+              icon: AppIcons.iconApp(AppIcons.profCallus),
               title: 'Hubungi Kami',
-              buttonHeight: Get.height * 0.07,
-              buttonWidth: Get.width * 0.9,
+              buttonHeight: Get.height * 0.08.h,
+              buttonWidth: Get.width * 0.9.w,
             ),
             verticalSpace(15.h),
             Align(
@@ -160,36 +161,36 @@ class PageProfile extends GetView<ControllerProfile> {
             verticalSpace(5.h),
             ButtonProfil(
               ontap: () {},
-              icon: AppIcons.profTnc,
+              icon: AppIcons.iconApp(AppIcons.profTnc),
               title: 'Syarat & Ketentuan',
-              buttonHeight: Get.height * 0.07,
-              buttonWidth: Get.width * 0.9,
+              buttonHeight: Get.height * 0.08.h,
+              buttonWidth: Get.width * 0.9.w,
             ),
             verticalSpace(5.h),
             ButtonProfil(
               ontap: () {},
-              icon: AppIcons.profPrivacy,
+              icon: AppIcons.iconApp(AppIcons.profPrivacy),
               title: 'Kebijakan Privasi',
-              buttonHeight: Get.height * 0.07,
-              buttonWidth: Get.width * 0.9,
+              buttonHeight: Get.height * 0.08.h,
+              buttonWidth: Get.width * 0.9.w,
             ),
             verticalSpace(5.h),
             ButtonProfil(
               ontap: () {},
-              icon: AppIcons.profRating,
+              icon: AppIcons.iconApp(AppIcons.profRating),
               title: 'Beri Penilaian Aplikasi',
-              buttonHeight: Get.height * 0.07,
-              buttonWidth: Get.width * 0.9,
+              buttonHeight: Get.height * 0.08.h,
+              buttonWidth: Get.width * 0.9.w,
             ),
             verticalSpace(5.h),
             ButtonProfil(
               ontap: () {
                 controller.logout();
               },
-              icon: AppIcons.profLogout,
+              icon: AppIcons.iconApp(AppIcons.profLogout),
               title: 'Keluar',
-              buttonHeight: Get.height * 0.07,
-              buttonWidth: Get.width * 0.9,
+              buttonHeight: Get.height * 0.08.h,
+              buttonWidth: Get.width * 0.9.w,
             ),
             verticalSpace(25.h),
             Container(
@@ -211,7 +212,7 @@ class PageProfile extends GetView<ControllerProfile> {
 
 class ButtonProfil extends StatelessWidget {
   final Function() ontap;
-  final String icon;
+  final Widget? icon;
   final String title;
   final double? buttonHeight;
   final double? buttonWidth;
@@ -241,10 +242,9 @@ class ButtonProfil extends StatelessWidget {
               width: 25.w,
               height: 25.h,
               color: AppColor.whiteColor,
-              child: Image.asset(
-                icon,
-                fit: BoxFit.contain,
-              ),
+              child: icon,
+              
+              
             ),
             horizontalSpace(7.h),
             Text(
