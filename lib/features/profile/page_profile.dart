@@ -65,7 +65,8 @@ class PageProfile extends GetView<ControllerProfile> {
                               color: AppColor.whiteColor,
                             ),
                           ),
-                          errorWidget: (context, url, error) => SvgPicture.asset(
+                          errorWidget: (context, url, error) =>
+                              SvgPicture.asset(
                             'assets/images/avatar_dummy.svg',
                             fit: BoxFit.cover,
                           ),
@@ -192,17 +193,6 @@ class PageProfile extends GetView<ControllerProfile> {
               buttonHeight: Get.height * 0.08.h,
               buttonWidth: Get.width * 0.9.w,
             ),
-            verticalSpace(25.h),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 20.h),
-              child: Text(
-                'ver. 0.1',
-                style: TextStyles.inter.copyWith(
-                  fontSize: FontSizes.s14,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            )
           ],
         ),
       ),
@@ -243,8 +233,6 @@ class ButtonProfil extends StatelessWidget {
               height: 25.h,
               color: AppColor.whiteColor,
               child: icon,
-              
-              
             ),
             horizontalSpace(7.h),
             Text(
