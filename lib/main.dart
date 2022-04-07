@@ -104,6 +104,7 @@ class _AppViewState extends State<AppView> with WidgetsBindingObserver {
     return ScreenUtilInit(
       designSize: const Size(375, 779),
       builder: () => GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         navigatorKey: Get.key,
         title: 'INTAKE-RIDER',
         theme: ThemeData(
