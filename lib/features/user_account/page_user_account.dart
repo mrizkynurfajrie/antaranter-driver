@@ -355,6 +355,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                             await controller.updateUserAccount();
                           },
                           label: 'Simpan',
+                          size: 345.w,
+                          cornerRadius: 9,
                         )
                       : loadingIndicator(context),
                 ],
