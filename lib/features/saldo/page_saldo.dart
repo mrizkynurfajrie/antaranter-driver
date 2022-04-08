@@ -39,14 +39,13 @@ class PageSaldo extends GetView<ControllerSaldo> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               CardRoundedBorder(
-                height: Get.height * 0.26.h,
-                width: Get.width * 0.87.w,
+                height: Get.height * 0.36.h,
+                width: Get.width * 0.88.w,
                 color: AppColor.whiteColor,
                 padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
                 borderRadius: 9,
                 borderColor: AppColor.primaryColor,
                 borderWidth: 4,
-                // radius: 19,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,7 +116,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
                                   2,
                                 ),
                                 style: TextStyles.inter.copyWith(
-                                    fontSize: FontSizes.s32,
+                                    fontSize: FontSizes.s26,
                                     fontWeight: FontWeight.bold,
                                     color: AppColor.whiteColor),
                               ),
@@ -147,7 +146,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
               ),
               verticalSpace(15.h),
               CardPrimary(
-                width: Get.width * 0.9.h,
+                width: Get.width * 0.88.w,
                 height: Get.height * 0.40.h,
                 color: AppColor.whiteColor,
                 child: controller.obx(

@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,8 @@ class InputPhone extends StatefulWidget {
   final double? boxheight;
   final double? inputWidth;
   final double? inputHeight;
+  final EdgeInsets? padding;
+  final EdgeInsets? margin;
 
   const InputPhone({
     Key? key,
@@ -42,6 +45,8 @@ class InputPhone extends StatefulWidget {
     this.boxwidth,
     this.inputHeight,
     this.inputWidth,
+    this.padding,
+    this.margin,
   }) : super(key: key);
 
   @override
@@ -75,13 +80,18 @@ class _InputPhoneState extends State<InputPhone> {
                   margin: EdgeInsets.only(
                     bottom: Insets.sm,
                   ),
-                  child: Text(
-                    widget.label,
-                    style: TextStyles.small1,
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: Text(
+                      widget.label,
+                      style: TextStyles.small1,
+                    ),
                   ),
                 )
               : verticalSpace(0),
-          SizedBox(
+          Container(
+            margin: widget.margin ?? EdgeInsets.zero,
+            padding: widget.padding ?? EdgeInsets.zero,
             width: widget.boxwidth,
             height: widget.boxheight,
             child: Row(

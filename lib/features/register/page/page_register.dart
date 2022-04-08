@@ -53,23 +53,35 @@ class PageRegister extends GetView<ControllerRegister> {
               textAlign: TextAlign.center,
             ),
             verticalSpace(20.h),
-            InputPrimary(
-              controller: controller.cName,
-              hintText: "Nama Lengkap",
-              onTap: () {},
-              prefixIcon: null,
-              padding: EdgeInsets.symmetric(horizontal: 14.w)
-            ),
-            InputPhone(
-              controller: controller.cPhoneNumber,
-              phoneNumber: (value) {},
-              boxwidth: Get.width * 0.78.w,
-              inputWidth: Get.width * 0.51.w,
-            ),
-            InputPassword(
-              onChange: (value) {},
-              controller: controller.cPassword,
-              padding: EdgeInsets.symmetric(horizontal: 14.w),
+            SizedBox(
+              height: Get.height * 0.42.h,
+              width: Get.width * 0.88.w,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  InputPrimary(
+                    controller: controller.cName,
+                    hintText: "Nama Lengkap",
+                    onTap: () {},
+                    prefixIcon: null,
+                    padding: EdgeInsets.symmetric(horizontal: 14.w),
+                    margin: EdgeInsets.only(bottom: 5.h),
+                  ),
+                  InputPhone(
+                    controller: controller.cPhoneNumber,
+                    phoneNumber: (value) {},
+                    // boxwidth: Get.width * 0.80.w,
+                    margin: EdgeInsets.symmetric(horizontal: 12.w),
+                    padding: EdgeInsets.only(bottom: 5.h),
+                    inputWidth: Get.width * 0.52.w,
+                  ),
+                  InputPassword(
+                    onChange: (value) {},
+                    controller: controller.cPassword,
+                    padding: EdgeInsets.symmetric(horizontal: 14.w),
+                  ),
+                ],
+              ),
             ),
             verticalSpace(20.h),
             Obx(

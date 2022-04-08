@@ -22,6 +22,7 @@ class InputPrimary extends StatefulWidget {
   final String? initialValue;
   final double? boxWidth;
   final EdgeInsets? padding;
+  final EdgeInsets? margin;
 
   const InputPrimary({
     Key? key,
@@ -42,6 +43,7 @@ class InputPrimary extends StatefulWidget {
     this.initialValue,
     this.boxWidth,
     this.padding,
+    this.margin,
   }) : super(key: key);
 
   @override
@@ -69,6 +71,7 @@ class _InputPrimaryState extends State<InputPrimary> {
             : verticalSpace(0),
         Container(
           padding: widget.padding,
+          margin: widget.margin,
           width: widget.boxWidth,
           child: TextFormField(
             initialValue: widget.initialValue,

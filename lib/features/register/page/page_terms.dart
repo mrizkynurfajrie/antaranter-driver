@@ -50,7 +50,7 @@ class PageTerms extends GetView<ControllerRegister> {
             SizedBox(
               width: Get.width * 0.88.w,
               child: Text(
-                "Mohon perhatikan dan pahami ketentuan berikut untuk dapat menjadi mitra `Lorem Ipsum` Driver",
+                "Mohon perhatikan dan pahami ketentuan berikut untuk dapat menjadi mitra AntarAnter Driver",
                 style: TextStyles.textStd,
                 textAlign: TextAlign.center,
                 maxLines: 3,

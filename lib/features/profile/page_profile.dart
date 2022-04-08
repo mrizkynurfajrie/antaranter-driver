@@ -36,164 +36,171 @@ class PageProfile extends GetView<ControllerProfile> {
       ),
       padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 10.h),
-              height: Get.height * 0.25.h,
-              width: Get.width.w,
-              child: Obx(
-                () => Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(90),
-                      child: SizedBox(
-                        height: IconSizes.xxl,
-                        width: IconSizes.xxl,
-                        child: CachedNetworkImage(
-                          fit: BoxFit.cover,
-                          imageUrl:
-                              "${Api1().baseUrl}images/${controller.controllerRiderInfo.rider.value.image}",
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) => Shimmer(
-                            gradient: AppColor.shimmerGradient,
-                            child: Container(
-                              color: AppColor.whiteColor,
-                            ),
-                          ),
-                          errorWidget: (context, url, error) =>
-                              SvgPicture.asset(
-                            'assets/images/avatar_dummy.svg',
+      child: RefreshIndicator(
+        color: AppColor.primaryColor,
+        onRefresh: () async {
+          controller.onInit();
+          await Future.delayed(const Duration(seconds: 3));
+        },
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10.h),
+                width: Get.width.w,
+                child: Obx(
+                  () => Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(90),
+                        child: SizedBox(
+                          height: IconSizes.xxl,
+                          width: IconSizes.xxl,
+                          child: CachedNetworkImage(
                             fit: BoxFit.cover,
+                            imageUrl:
+                                "${Api1().baseUrl}images/${controller.controllerRiderInfo.rider.value.image}",
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) => Shimmer(
+                              gradient: AppColor.shimmerGradient,
+                              child: Container(
+                                color: AppColor.whiteColor,
+                              ),
+                            ),
+                            errorWidget: (context, url, error) =>
+                                SvgPicture.asset(
+                              'assets/images/avatar_dummy.svg',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    verticalSpace(5.h),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          controller.controllerRiderInfo.rider.value.name ??
-                              "-",
-                          style: TextStyles.inter.copyWith(
-                            fontSize: FontSizes.s14,
-                            fontWeight: FontWeight.w500,
-                            color: AppColor.primaryColor,
-                          ),
-                        ),
-                        verticalSpace(5.h),
-                        Text(
-                          controller.controllerRiderInfo.rider.value.phone ??
-                              "-",
-                          style: TextStyles.inter.copyWith(
-                              fontSize: FontSizes.s12,
+                      verticalSpace(8.h),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            controller.controllerRiderInfo.rider.value.name ??
+                                "-",
+                            style: TextStyles.inter.copyWith(
+                              fontSize: FontSizes.s14,
                               fontWeight: FontWeight.w500,
-                              color: AppColor.neutral),
-                        ),
-                      ],
+                              color: AppColor.primaryColor,
+                            ),
+                          ),
+                          verticalSpace(8.h),
+                          Text(
+                            controller.controllerRiderInfo.rider.value.phone ??
+                                "-",
+                            style: TextStyles.inter.copyWith(
+                                fontSize: FontSizes.s12,
+                                fontWeight: FontWeight.w500,
+                                color: AppColor.neutral),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              verticalSpace(10.h),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15.w),
+                  child: Text(
+                    'Informasi Akun',
+                    style: TextStyles.inter.copyWith(
+                      fontSize: FontSizes.s16,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
-              ),
-            ),
-            verticalSpace(10.h),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 15.w),
-                child: Text(
-                  'Informasi Akun',
-                  style: TextStyles.inter.copyWith(
-                    fontSize: FontSizes.s16,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-            ),
-            verticalSpace(5.h),
-            ButtonProfil(
-              ontap: () {
-                Get.toNamed(Routes.userAccount);
-              },
-              icon: AppIcons.iconApp(AppIcons.profUser),
-              title: 'Profil Pengguna',
-              buttonHeight: Get.height * 0.08.h,
-              buttonWidth: Get.width * 0.9.w,
-            ),
-            verticalSpace(5.h),
-            ButtonProfil(
-              ontap: () {
-                Get.toNamed(Routes.vehicleAccount);
-              },
-              icon: AppIcons.iconApp(AppIcons.profCar),
-              title: 'Profil Kendaraan',
-              buttonHeight: Get.height * 0.08.h,
-              buttonWidth: Get.width * 0.9.w,
-            ),
-            verticalSpace(5.h),
-            ButtonProfil(
-              ontap: () {
-                Get.toNamed(Routes.contact);
-              },
-              icon: AppIcons.iconApp(AppIcons.profCallus),
-              title: 'Hubungi Kami',
-              buttonHeight: Get.height * 0.08.h,
-              buttonWidth: Get.width * 0.9.w,
-            ),
-            verticalSpace(15.h),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 15.w),
-                child: Text(
-                  'Lainnya',
-                  style: TextStyles.inter.copyWith(
-                    fontSize: FontSizes.s16,
-                    fontWeight: FontWeight.bold,
+              verticalSpace(8.h),
+              ButtonProfil(
+                ontap: () {
+                  Get.toNamed(Routes.userAccount);
+                },
+                icon: AppIcons.iconApp(AppIcons.profUser),
+                title: 'Profil Pengguna',
+                buttonHeight: Get.height * 0.08.h,
+                buttonWidth: Get.width * 0.9.w,
+              ),
+              verticalSpace(8.h),
+              ButtonProfil(
+                ontap: () {
+                  Get.toNamed(Routes.vehicleAccount);
+                },
+                icon: AppIcons.iconApp(AppIcons.profCar),
+                title: 'Profil Kendaraan',
+                buttonHeight: Get.height * 0.08.h,
+                buttonWidth: Get.width * 0.9.w,
+              ),
+              verticalSpace(8.h),
+              ButtonProfil(
+                ontap: () {
+                  Get.toNamed(Routes.contact);
+                },
+                icon: AppIcons.iconApp(AppIcons.profCallus),
+                title: 'Hubungi Kami',
+                buttonHeight: Get.height * 0.08.h,
+                buttonWidth: Get.width * 0.9.w,
+              ),
+              verticalSpace(15.h),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15.w),
+                  child: Text(
+                    'Lainnya',
+                    style: TextStyles.inter.copyWith(
+                      fontSize: FontSizes.s16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
-            ),
-            verticalSpace(5.h),
-            ButtonProfil(
-              ontap: () {},
-              icon: AppIcons.iconApp(AppIcons.profTnc),
-              title: 'Syarat & Ketentuan',
-              buttonHeight: Get.height * 0.08.h,
-              buttonWidth: Get.width * 0.9.w,
-            ),
-            verticalSpace(5.h),
-            ButtonProfil(
-              ontap: () {},
-              icon: AppIcons.iconApp(AppIcons.profPrivacy),
-              title: 'Kebijakan Privasi',
-              buttonHeight: Get.height * 0.08.h,
-              buttonWidth: Get.width * 0.9.w,
-            ),
-            verticalSpace(5.h),
-            ButtonProfil(
-              ontap: () {},
-              icon: AppIcons.iconApp(AppIcons.profRating),
-              title: 'Beri Penilaian Aplikasi',
-              buttonHeight: Get.height * 0.08.h,
-              buttonWidth: Get.width * 0.9.w,
-            ),
-            verticalSpace(5.h),
-            ButtonProfil(
-              ontap: () {
-                controller.logout();
-              },
-              icon: AppIcons.iconApp(AppIcons.profLogout),
-              title: 'Keluar',
-              buttonHeight: Get.height * 0.08.h,
-              buttonWidth: Get.width * 0.9.w,
-            ),
-          ],
+              verticalSpace(8.h),
+              ButtonProfil(
+                ontap: () {},
+                icon: AppIcons.iconApp(AppIcons.profTnc),
+                title: 'Syarat & Ketentuan',
+                buttonHeight: Get.height * 0.08.h,
+                buttonWidth: Get.width * 0.9.w,
+              ),
+              verticalSpace(8.h),
+              ButtonProfil(
+                ontap: () {},
+                icon: AppIcons.iconApp(AppIcons.profPrivacy),
+                title: 'Kebijakan Privasi',
+                buttonHeight: Get.height * 0.08.h,
+                buttonWidth: Get.width * 0.9.w,
+              ),
+              verticalSpace(8.h),
+              ButtonProfil(
+                ontap: () {},
+                icon: AppIcons.iconApp(AppIcons.profRating),
+                title: 'Beri Penilaian Aplikasi',
+                buttonHeight: Get.height * 0.08.h,
+                buttonWidth: Get.width * 0.9.w,
+              ),
+              verticalSpace(8.h),
+              ButtonProfil(
+                ontap: () {
+                  controller.logout();
+                },
+                icon: AppIcons.iconApp(AppIcons.profLogout),
+                title: 'Keluar',
+                buttonHeight: Get.height * 0.08.h,
+                buttonWidth: Get.width * 0.9.w,
+              ),
+              verticalSpace(15.h)
+            ],
+          ),
         ),
       ),
     );

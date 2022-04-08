@@ -46,18 +46,26 @@ class PageLogin extends GetView<ControllerLogin> {
             ),
             //-----//
             verticalSpace(40.h),
-            InputPhone(
-              controller: controller.cPhoneNumber,
-              phoneNumber: (value) {},
-              boxwidth: Get.width * 0.86.w,
-              inputWidth: Get.width * 0.58.w,
-            ),
-            InputPassword(
-              onChange: (value) {},
-              controller: controller.cPassword,
-              label: 'Kata Sandi',
-              boxWidth: Get.width * 0.86.w,
-              padding: EdgeInsets.only(right: 4.w),
+            SizedBox(
+              height: Get.height * 0.35.h,
+              width: Get.width * 0.88.w,
+              child: Column(
+                children: [
+                  InputPhone(
+                    controller: controller.cPhoneNumber,
+                    phoneNumber: (value) {},
+                    margin: EdgeInsets.symmetric(horizontal: 12.w),
+                    padding: EdgeInsets.only(bottom: 5.h),
+                    inputWidth: Get.width * 0.52.w,
+                  ),
+                  InputPassword(
+                    onChange: (value) {},
+                    controller: controller.cPassword,
+                    label: 'Kata Sandi',
+                    padding: EdgeInsets.symmetric(horizontal: 14.w),
+                  ),
+                ],
+              ),
             ),
             verticalSpace(15.h),
             Obx(

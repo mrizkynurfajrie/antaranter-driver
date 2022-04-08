@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InputPassword extends StatefulWidget {
   final String hintText;
@@ -53,6 +54,7 @@ class _InputPasswordState extends State<InputPassword> {
               ? Container(
                   margin: EdgeInsets.only(
                     bottom: Insets.xs,
+                    left: 16.w,
                   ),
                   child: Text(
                     widget.label,
