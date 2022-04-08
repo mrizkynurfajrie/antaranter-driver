@@ -39,10 +39,9 @@ class PageSaldo extends GetView<ControllerSaldo> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               CardRoundedBorder(
-                height: Get.height * 0.36.h,
                 width: Get.width * 0.88.w,
                 color: AppColor.whiteColor,
-                padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
+                padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 15.w),
                 borderRadius: 9,
                 borderColor: AppColor.primaryColor,
                 borderWidth: 4,
@@ -95,7 +94,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
                         ),
                       ),
                     ),
-                    verticalSpace(20.h),
+                    verticalSpace(30.h),
                     Obx(
                       () => Shimmer.fromColors(
                         baseColor: AppColor.neutral,

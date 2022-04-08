@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -120,9 +121,8 @@ class ControllerNebengPostingDetail extends GetxController
         backgroundColor: AppColor.whiteColor,
         radius: 10,
         barrierDismissible: false,
-        content: CardPrimary(
+        content: CardRounded(
           width: Get.width,
-          height: Get.height * 0.28,
           color: AppColor.bgPageColor,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -199,9 +199,8 @@ class ControllerNebengPostingDetail extends GetxController
       titlePadding: EdgeInsets.only(bottom: 15.h, top: 20.h),
       backgroundColor: AppColor.whiteColor,
       radius: 10,
-      content: CardPrimary(
+      content: CardRounded(
         width: Get.width,
-        height: Get.height * 0.22,
         color: AppColor.bgPageColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

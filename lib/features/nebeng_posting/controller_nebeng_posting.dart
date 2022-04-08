@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class ControllerNebengPosting extends GetxController {
   var loading = false;
 
   var maskFormatter = MaskTextInputFormatter(
-    mask: '###.###',
+    mask: '##.####' '###.###',
     filter: {"#": RegExp(r'[0-9]')},
     type: MaskAutoCompletionType.lazy,
   );
@@ -197,7 +198,7 @@ class ControllerNebengPosting extends GetxController {
   createNebengPosting() async {
     try {
       loading = true;
-      var priceformatted = maskFormatter.getUnmaskedText();
+      var priceformatted = txtPrice.text.replaceAll(RegExp('[^A-Za-z0-9]'), '');
       var updateResult = await api.postingNebeng(
         idRider: controllerRiderInfo.rider.value.id,
         cityOrigin: itemCitiesDept.value,
@@ -215,7 +216,6 @@ class ControllerNebengPosting extends GetxController {
         var result = updateResult["data"];
         var postResponse = Post.fromJson(result);
         controllerRiderInfo.setActivePost(postResponse.id!);
-
         Get.snackbar(
           "Nebeng",
           "Anda telah berhasil membagikan perjalanan anda",
@@ -223,6 +223,14 @@ class ControllerNebengPosting extends GetxController {
         );
         await Future.delayed(const Duration(seconds: 2));
         Get.offAllNamed(Routes.main, arguments: 1);
+      } else {
+        Get.snackbar(
+          "Gagal Membagikan Perjalanan",
+          "Anda sedang memiliki pesanan aktif",
+          snackPosition: SnackPosition.BOTTOM,
+        );
+        await Future.delayed(const Duration(seconds: 3));
+        Get.offAllNamed(Routes.main);
       }
       loading = false;
     } catch (e) {

@@ -17,7 +17,6 @@ class ControllerOrderHistory extends GetxController
 
   @override
   void onInit() {
-   
     getData();
     super.onInit();
   }

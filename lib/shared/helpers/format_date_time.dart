@@ -29,6 +29,14 @@ class FormatDateTime {
       return dateFormat.format(DateTime.now());
     }
   }
+  static String formatDateWithoutHouryyyy({required DateTime value}) {
+    final dateFormat = DateFormat('yyyy-MM-dd');
+    try {
+      return dateFormat.format(value);
+    } catch (e) {
+      return dateFormat.format(DateTime.now());
+    }
+  }
 
   static String formatDateNumeric(dynamic value) {
     final dateFormat = DateFormat('yyy-MM-dd');

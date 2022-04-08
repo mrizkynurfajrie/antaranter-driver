@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/shared/widgets/input_format/input_format_money.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -308,7 +309,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                               selectedTime: (value) {},
                               isValid: (value) {},
                               prefixIcon: const Icon(
-                                Icons.watch,
+                                Icons.access_time_outlined,
                                 size: 20,
                                 color: AppColor.greyColor,
                               ),
@@ -347,17 +348,6 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             InputSelection(
-                              valueText: controller.itemProvinceArrv.value,
-                              hintText: 'select_province'.tr,
-                              onTap: () {
-                                controller.buildProvinceArrv(context);
-                                controller.cities.clear();
-                              },
-                              padding: EdgeInsets.all(Insets.sm),
-                              width: Get.width * 0.65.w,
-                              margin: EdgeInsets.only(bottom: 5.h),
-                            ),
-                            InputSelection(
                               valueText: controller.itemCitiesArrv.value,
                               hintText: 'select_cities'.tr,
                               onTap: () {
@@ -386,7 +376,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                               selectedTime: (value) {},
                               isValid: (value) {},
                               prefixIcon: const Icon(
-                                Icons.watch,
+                                Icons.access_time,
                                 size: 20,
                                 color: AppColor.primaryColor,
                               ),
@@ -407,8 +397,9 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                     onTap: () {},
                     prefixIcon: const Icon(Icons.confirmation_number),
                     inputFormatters: [
-                      controller.maskFormatter,
-                      LengthLimitingTextInputFormatter(7)
+                      // controller.maskFormatter,
+                      LengthLimitingTextInputFormatter(7),
+                      ThousandsSeparatorInputFormatter(),
                     ],
                     keyboardType: TextInputType.number,
                     controller: controller.txtPrice,

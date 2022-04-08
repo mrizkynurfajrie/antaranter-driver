@@ -1,6 +1,12 @@
 import 'dart:developer';
 
+import 'package:antaranter_driverapp/routes/app_routes.dart';
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:antaranter_driverapp/features/user_account/api_user_account.dart';
@@ -72,14 +78,15 @@ class ControllerUserAccount extends GetxController {
     txtNik.text = controllerRiderInfo.rider.value.nik ?? '';
     txtDate.text = controllerRiderInfo.rider.value.birth == null
         ? ''
-        : FormatDateTime.formatDateWithoutHour(
+        : FormatDateTime.formatDateWithoutHouryyyy(
             value: controllerRiderInfo.rider.value.birth!);
     txtAddress.text = controllerRiderInfo.rider.value.address ?? '';
     txtPhone.text = controllerRiderInfo.rider.value.phone ?? '';
     itemCities.value = itemCities.value;
-    controllerRiderInfo.rider.value.status = 1;
-    statusUpdate.value = controllerRiderInfo.rider.value.status!;
     txtCity.text = controllerRiderInfo.rider.value.cityLocation ?? '';
+    // controllerRiderInfo.rider.value.status = 1;
+    statusUpdate.value = controllerRiderInfo.rider.value.status!;
+
     await getProvinces();
 
     super.onInit();
@@ -309,8 +316,69 @@ class ControllerUserAccount extends GetxController {
         }).showSelection();
   }
 
+  dialogUbahProfil() {
+    return Get.defaultDialog(
+        title: 'Ubah Profil Pengguna',
+        barrierDismissible: false,
+        titleStyle: TextStyles.inter.copyWith(
+            color: AppColor.primaryColor, fontWeight: FontWeight.w500),
+        titlePadding: EdgeInsets.only(bottom: 10.h, top: 20.h),
+        backgroundColor: AppColor.whiteColor,
+        radius: 10,
+        content: CardRounded(
+          padding: EdgeInsets.symmetric(
+              horizontal: Insets.med, vertical: Insets.med),
+          child: Text(
+            "Apakah anda yakin ingin merubah profil pengguna anda? Karena setelah anda berhasil mengubah profil pengguna anda, maka status aplikasi anda akan kembali menunggu verifikasi admin selama 1x24 jam",
+            style: TextStyles.inter
+                .copyWith(fontSize: FontSizes.s14, fontWeight: FontWeight.w400),
+            textAlign: TextAlign.justify,
+          ),
+        ),
+        confirm: ButtonPrimary(
+          onPressed: () async {
+            await updateUserAccount();
+            Get.snackbar(
+              "Ubah Profil Pengguna",
+              "Berhasil mengubah profil pengguna, silakan tunggu verifikasi admin selama 1x24 jam",
+              snackPosition: SnackPosition.BOTTOM,
+            );
+            await Future.delayed(const Duration(seconds: 2));
+            Get.back();
+            Get.offAllNamed(Routes.main);
+            // } else {
+            //   Get.snackbar(
+            //     "Ubah Profil Pengguna",
+            //     "Gagal mengubah profil pengguna",
+            //     snackPosition: SnackPosition.BOTTOM,
+            //   );
+          },
+          label: 'Iya',
+          cornerRadius: 4,
+          size: 300,
+          height: Get.height * 0.06.h,
+          labelStyle: TextStyles.inter.copyWith(color: AppColor.whiteColor),
+        ),
+        cancel: ButtonPrimary(
+          onPressed: () {
+            Get.back();
+          },
+          label: 'Kembali',
+          cornerRadius: 4,
+          size: 300,
+          height: Get.height * 0.06.h,
+          color: AppColor.whiteColor,
+          labelStyle: TextStyles.inter.copyWith(color: AppColor.errorColor),
+          borderColor: AppColor.errorColor,
+        ));
+  }
+
   updateUserAccount() async {
     loadingForm.value = true;
+    var hasilstatus = controllerRiderInfo.rider.value.status == 0 ||
+            controllerRiderInfo.rider.value.status == 2
+        ? controllerRiderInfo.rider.value.status = 1
+        : controllerRiderInfo.rider.value.status = 2;
     try {
       await uploadImgRider();
       await uploadKtpRider();
@@ -335,7 +403,8 @@ class ControllerUserAccount extends GetxController {
         phone: txtPhone.text,
         city: itemCities.value,
         idRider: idRider.value,
-        status: statusUpdate.value,
+        // status: statusUpdate.value,
+        status: hasilstatus,
       );
       log(updateResult.toString());
       if (updateResult['success'] == true) {
@@ -343,11 +412,6 @@ class ControllerUserAccount extends GetxController {
         await Api2().setRider(rider: result);
         var rider = MainRider.fromJson(result);
         Get.find<ControllerRiderInfo>().rider.value = rider;
-        Get.snackbar(
-          'Update Profile Pengguna',
-          'Akun Pengguna anda berhasil diperbarui',
-          snackPosition: SnackPosition.BOTTOM,
-        );
       } else {
         throw "Gagal memperbarui akun";
       }

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -66,7 +67,6 @@ class ControllerVehicleAccount extends GetxController {
     txtVehicleCol.text = controllerVehicleInfo.vehicle.value.vehicleColor ?? '';
     txtVehicleVar.text =
         controllerVehicleInfo.vehicle.value.vehicleVariant ?? '';
-   
 
     super.onInit();
   }
@@ -231,6 +231,8 @@ class ControllerVehicleAccount extends GetxController {
           'Profil Kendaraan anda berhasil diperbarui',
           snackPosition: SnackPosition.BOTTOM,
         );
+        await Future.delayed(const Duration(seconds: 3));
+        Get.offNamed(Routes.main);
       } else {
         throw "Gagal memperbarui akun";
       }

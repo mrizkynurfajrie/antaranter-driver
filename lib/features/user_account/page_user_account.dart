@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -352,7 +353,20 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                   controller.loadingForm.isFalse
                       ? ButtonPrimary(
                           onPressed: () async {
-                            await controller.updateUserAccount();
+                            if (controller
+                                    .controllerRiderInfo.rider.value.status ==
+                                0) {
+                              await controller.updateUserAccount();
+                              Get.snackbar(
+                                "Berhasil",
+                                "Anda berhasil mengubah profil pengguna. Admin akan memverifikasi data anda 1x24 jam.",
+                                snackPosition: SnackPosition.BOTTOM,
+                              );
+                              await Future.delayed(const Duration(seconds: 3));
+                              Get.offNamed(Routes.main);
+                            } else {
+                              await controller.dialogUbahProfil();
+                            }
                           },
                           label: 'Simpan',
                           size: 345.w,

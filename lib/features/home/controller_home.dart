@@ -1,3 +1,7 @@
+import 'dart:developer';
+
+import 'package:antaranter_driverapp/response/nebeng_posting_response.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_postingan.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/home/api_home.dart';
 import 'package:antaranter_driverapp/response/home_response.dart';
@@ -10,18 +14,21 @@ class ControllerHome extends GetxController {
 
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
   var controllerVehicleInfo = Get.find<ControllerVehicleInfo>();
+  var controllerPosting = Get.find<ControllerPostingan>();
 
   var loading = false.obs;
   var homeResponse = HomeResponse().obs;
+  var idNebengRider = 0.obs;
+  var statusPost = 0.obs;
 
   @override
-  void onInit() {
-    getData();
+  onInit() async {
+    await getData();
+    // await getDataPosting();
     super.onInit();
   }
 
-
-  void getData() async {
+  getData() async {
     try {
       var res = await api.riderHome(controllerRiderInfo.rider.value.id ?? 0);
       if (res["success"] == true) {
@@ -37,4 +44,20 @@ class ControllerHome extends GetxController {
       Get.snackbar("Kesalahan", "Terjadi Kesalahan");
     }
   }
+
+  // getDataPosting() async {
+  //   var idRider = controllerRiderInfo.rider.value.id;
+  //   try {
+  //     var r = await api.detailNebengPosting(
+  //         riderId: idRider);
+  //     log("data r : " + r.toString());
+  //     if (r["success"] == true) {
+  //       idNebengRider.value = r["data"]["nebeng_rider"]["id"];
+  //       var nebengPostingRes = NebengPostingResponse.fromJson(r["data"]);
+  //       statusPost.value = nebengPostingRes.nebengPosting!.status!;
+  //       log("status nebeng value : " + statusPost.toString());
+  //       controllerPosting.postingan.value = nebengPostingRes;
+  //     }
+  //   } catch (e) {}
+  // }
 }

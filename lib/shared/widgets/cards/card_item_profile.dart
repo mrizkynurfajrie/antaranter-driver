@@ -32,7 +32,7 @@ class _CardItemProfileState extends State<CardItemProfile> {
                 ? BorderSide(
                     width: 1.5,
                     color: controllerUserAccount.search.value ==
-                            widget.data['name']
+                            widget.data['id']
                         ? AppColor.successColor
                         : AppColor.weakColor)
                 : BorderSide(
@@ -56,7 +56,7 @@ class _CardItemProfileState extends State<CardItemProfile> {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyles.textBase.copyWith(
                             color: controllerUserAccount.search.value ==
-                                    widget.data['name']
+                                    widget.data['id']
                                 ? AppColor.successColor
                                 : AppColor.neutral),
                       )
@@ -65,7 +65,7 @@ class _CardItemProfileState extends State<CardItemProfile> {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyles.body1.copyWith(
                             color: controllerUserAccount.search.value ==
-                                    widget.data['name']
+                                    widget.data
                                 ? AppColor.successColor
                                 : AppColor.neutral),
                       ),

@@ -6,4 +6,12 @@ class ApiHome {
 
     return response;
   }
+
+  Future<dynamic> detailNebengPosting({required var riderId}) async {
+    final bodyNebengPosting = {"rider_id": riderId};
+    var responseNebengPosting = await Api1()
+        .apiJSONPostWithToken('nebengposts/findbyrider', bodyNebengPosting);
+
+    return responseNebengPosting;
+  }
 }

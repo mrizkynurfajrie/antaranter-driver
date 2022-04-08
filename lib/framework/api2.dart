@@ -85,6 +85,7 @@ class Api2 {
     await box.remove(CACHE_POSTING);
     await box.remove(CACHE_ACTIVE_POST);
     await box.remove(CACHE_USER);
+    await box.remove(STATUS_ACTIVE_POST);
   }
 
   Future removePosting() async {
