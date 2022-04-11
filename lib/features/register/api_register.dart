@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:antaranter_driverapp/framework/api1.dart';
 
 class ApiRegister {
@@ -17,7 +19,7 @@ class ApiRegister {
     return r;
   }
 
- Future<dynamic> createNebengRider({
+  Future<dynamic> createNebengRider({
     required int idRider,
   }) async {
     final payload = {
@@ -27,5 +29,12 @@ class ApiRegister {
     var r = await Api1().apiJSONPost('register-nebeng-rider', payload);
 
     return r;
+  }
+
+  Future<dynamic> termNebeng() async {
+    var response = await Api1().apiJSONGetWitToken("terms/4");
+    log('return data term = ' + response.toString());
+
+    return response;
   }
 }

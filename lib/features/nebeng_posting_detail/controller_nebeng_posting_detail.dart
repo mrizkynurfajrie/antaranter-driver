@@ -158,13 +158,13 @@ class ControllerNebengPostingDetail extends GetxController
               Get.snackbar(
                 "Ubah Waktu",
                 "Berhasil ubah waktu",
-                snackPosition: SnackPosition.BOTTOM,
+                snackPosition: SnackPosition.TOP,
               );
             } else {
               Get.snackbar(
                 "Gagal",
                 "Anda gagal mengubah waktu",
-                snackPosition: SnackPosition.BOTTOM,
+                snackPosition: SnackPosition.TOP,
               );
             }
           },
@@ -233,7 +233,7 @@ class ControllerNebengPostingDetail extends GetxController
             Get.snackbar(
               "Gagal",
               "Gagal membatalkan pesanan",
-              snackPosition: SnackPosition.BOTTOM,
+              snackPosition: SnackPosition.TOP,
             );
           }
         },

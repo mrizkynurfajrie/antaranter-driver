@@ -20,7 +20,7 @@ class AppIcons {
   static const profRating = 'assets/icons/thumb-up.svg';
   static const profLogout = 'assets/icons/logout.svg';
   static const profCar = 'assets/icons/vehicle.svg';
-  static const contWhatsapp = 'assets/icons/whatsapp.png';
+  static const contWhatsapp = 'assets/icons/whatsapp.svg';
   static const contFacebook = 'assets/icons/facebook.svg';
   static const contInstagram = 'assets/icons/instagram.svg';
   static const contEmail = 'assets/icons/mail.svg';

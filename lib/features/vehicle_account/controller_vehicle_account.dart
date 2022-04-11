@@ -229,7 +229,7 @@ class ControllerVehicleAccount extends GetxController {
         Get.snackbar(
           'Perbarui Profil Kendaraan ',
           'Profil Kendaraan anda berhasil diperbarui',
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.TOP,
         );
         await Future.delayed(const Duration(seconds: 3));
         Get.offNamed(Routes.main);

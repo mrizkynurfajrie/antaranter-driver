@@ -231,7 +231,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                                           width: Get.width.w,
                                           height: Get.height.h,
                                           child: Image.network(
-                                            "${Api1().baseUrl}images/${controller.controllerRiderInfo.rider.value.ktpPict}",
+                                            "${Api1().baseUrl}images/${controller.controllerVehicleInfo.vehicle.value.stnkPict}",
                                             fit: BoxFit.cover,
                                           ),
                                         ),

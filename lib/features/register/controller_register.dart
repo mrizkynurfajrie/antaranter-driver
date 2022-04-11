@@ -1,13 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
-
+import 'package:antaranter_driverapp/response/term_condition.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/register/api_register.dart';
 import 'package:antaranter_driverapp/framework/api2.dart';
 import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/helpers/utils.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
 
 class ControllerRegister extends GetxController {
   final ApiRegister api;
@@ -15,8 +14,7 @@ class ControllerRegister extends GetxController {
 
   var statusAgreementTerm = false.obs;
 
-  final Completer<PDFViewController> _controller =
-      Completer<PDFViewController>();
+  var termCondition = TermCondition().obs;
 
   var cName = TextEditingController();
   var cPhoneNumber = TextEditingController();
@@ -38,11 +36,11 @@ class ControllerRegister extends GetxController {
   bool isReady = false;
   int? pages = 0;
 
-  var loading = false.obs;
+  var loading = true.obs;
 
   @override
   void onInit() async {
-    showPdf();
+    getDataTerm();
     formValidationListener();
     var rider = await Api2().getRider();
     idRider.value = rider["id"] ?? 0;
@@ -55,6 +53,16 @@ class ControllerRegister extends GetxController {
     cName.dispose();
     cPhoneNumber.dispose();
     cPassword.dispose();
+  }
+
+  getDataTerm() async {
+    try {
+      var res = await api.termNebeng();
+      if (res["success"] == true) {
+        termCondition.value = TermCondition.fromJson(res['data']);
+        loading.value = false;
+      }
+    } catch (e) {}
   }
 
   formValidationListener() {
@@ -75,34 +83,6 @@ class ControllerRegister extends GetxController {
   validateForm() {
     isValidForm.value =
         isValidPhoneNumber.value && isValidPassword.value && isValidName.value;
-  }
-
-  showPdf() {
-    return PDFView(
-      filePath: "assets/pdf/loremipsum.pdf",
-      enableSwipe: true,
-      swipeHorizontal: true,
-      autoSpacing: false,
-      pageFling: false,
-      onRender: (_pages) {
-        () {
-          pages = _pages;
-          isReady = true;
-        };
-      },
-      onError: (error) {
-        // print(error.toString());
-      },
-      onPageError: (page, error) {
-        // print('$page: ${error.toString()}}');
-      },
-      onViewCreated: (PDFViewController pdfViewController){
-        _controller.complete(pdfViewController);
-      },
-      onPageChanged: (int? page, int? total){
-        // print('page change : $page/$total');
-      },
-    );
   }
 
   register() async {

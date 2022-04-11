@@ -219,7 +219,7 @@ class ControllerNebengPosting extends GetxController {
         Get.snackbar(
           "Nebeng",
           "Anda telah berhasil membagikan perjalanan anda",
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.TOP,
         );
         await Future.delayed(const Duration(seconds: 2));
         Get.offAllNamed(Routes.main, arguments: 1);
@@ -227,7 +227,7 @@ class ControllerNebengPosting extends GetxController {
         Get.snackbar(
           "Gagal Membagikan Perjalanan",
           "Anda sedang memiliki pesanan aktif",
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.TOP,
         );
         await Future.delayed(const Duration(seconds: 3));
         Get.offAllNamed(Routes.main);

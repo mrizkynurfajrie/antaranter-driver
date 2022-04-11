@@ -142,7 +142,18 @@ class PageHome extends GetView<ControllerHome> {
             SliverToBoxAdapter(
               child: Obx(
                 () => controller.controllerRiderInfo.rider.value.status != 2
-                    ? CardRounded(
+                    ? CardRoundedBorder(
+                      borderRadius: 9,
+                      borderWidth: 2,
+                      borderColor: controller.controllerRiderInfo.rider.value.status ==
+                                    0
+                                ? AppColor.errorColor
+                                :AppColor.transparentColor,
+                        color:
+                            controller.controllerRiderInfo.rider.value.status ==
+                                    0
+                                ? AppColor.whiteColor
+                                :AppColor.primary.shade200.withOpacity(0.7),
                         margin: EdgeInsets.symmetric(
                             horizontal: Insets.med.w, vertical: Insets.med.h),
                         child: Container(
@@ -153,10 +164,17 @@ class PageHome extends GetView<ControllerHome> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Icon(
-                                Icons.warning_amber_outlined,
-                                size: IconSizes.lg,
-                                color: AppColor.errorColor,
-                              ),
+                                  controller.controllerRiderInfo.rider.value
+                                              .status ==
+                                          0
+                                      ? Icons.warning_amber_rounded
+                                      : Icons.info_outline_rounded,
+                                  size: IconSizes.lg,
+                                  color: controller.controllerRiderInfo.rider
+                                              .value.status ==
+                                          0
+                                      ? AppColor.errorColor
+                                      : AppColor.primary),
                               horizontalSpace(Insets.med),
                               Expanded(
                                 child: Column(
@@ -171,6 +189,7 @@ class PageHome extends GetView<ControllerHome> {
                                           : "Admin sedang memverifikasi data anda, mohon tunggu 1x24 jam",
                                       style: TextStyles.inter.copyWith(
                                         fontSize: FontSizes.s12,
+                                        fontWeight: FontWeight.w500,
                                         color: AppColor.neutral,
                                       ),
                                     ),
@@ -183,7 +202,8 @@ class PageHome extends GetView<ControllerHome> {
                                       0
                                   ? OutlinedButton(
                                       onPressed: () {
-                                        Get.offAllNamed(Routes.main, arguments: 2);
+                                        Get.offAllNamed(Routes.main,
+                                            arguments: 2);
                                       },
                                       child:
                                           const Icon(Icons.arrow_forward_ios),
@@ -259,7 +279,7 @@ class PageHome extends GetView<ControllerHome> {
                             if (controller
                                     .controllerRiderInfo.rider.value.status ==
                                 2) {
-                                  Get.toNamed(Routes.posting);
+                              Get.toNamed(Routes.posting);
                               // if (controller.controllerPosting.postingan.value
                               //             .nebengPosting!.status ==
                               //         3 &&

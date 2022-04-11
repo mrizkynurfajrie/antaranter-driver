@@ -85,7 +85,7 @@ class AppColor {
     _primary,
     <int, Color>{
       50: Color(0xFFD9D9D9),
-      100: Color(0xFFEFF1FF),
+      100: Color(0xFFF5F5FF),
       200: Color(0xFFBEC4E0),
       300: Color(0xFFA8B0D5),
       400: Color(0xFF939DCB),

@@ -531,7 +531,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                       "Perjalanan",
                                                       "Anda belum bisa memulai perjalanan, karena tidak ada pelanggan yang nebeng dengan anda",
                                                       snackPosition:
-                                                          SnackPosition.BOTTOM,
+                                                          SnackPosition.TOP,
                                                     );
                                                   },
                                             enable: (controller

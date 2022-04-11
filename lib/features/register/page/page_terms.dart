@@ -1,4 +1,6 @@
+import 'package:antaranter_driverapp/shared/widgets/others/loading_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:antaranter_driverapp/features/register/controller_register.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
@@ -62,7 +64,19 @@ class PageTerms extends GetView<ControllerRegister> {
               borderColor: AppColor.greyColorLight,
               height: Get.height * 0.57.h,
               width: Get.width * 0.8.w,
-              child: const SizedBox(),
+              child: Obx(
+                () => controller.loading.isFalse
+                    ? Scrollbar(
+                        child: ListView(
+                          children: [
+                            Html(
+                              data: controller.termCondition.value.skDesc,
+                            )
+                          ],
+                        ),
+                      )
+                    : loadingIndicatorBottom(context),
+              ),
             ),
             verticalSpace(10.h),
             Padding(

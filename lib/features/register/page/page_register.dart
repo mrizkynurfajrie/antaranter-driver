@@ -54,7 +54,7 @@ class PageRegister extends GetView<ControllerRegister> {
             ),
             verticalSpace(20.h),
             SizedBox(
-              height: Get.height * 0.42.h,
+              height: Get.height * 0.35.h,
               width: Get.width * 0.88.w,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -83,7 +83,7 @@ class PageRegister extends GetView<ControllerRegister> {
                 ],
               ),
             ),
-            verticalSpace(20.h),
+            verticalSpace(5.h),
             Obx(
               () => controller.loading.isFalse
                   ? ButtonPrimary(
