@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:antaranter_driverapp/features/api_log/api_logger.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'api2.dart';
@@ -25,6 +26,7 @@ class Api1 {
     // log(r.body);
     var data = json.decode(r.body);
     // log(data);
+    logApi(url: url, res: r, method: "GET");
     return data;
   }
 
@@ -46,6 +48,7 @@ class Api1 {
     // log(r.body);
     var data = json.decode(r.body);
     // log(data);
+    logApi(url: url, res: r, method: "GET");
     return data;
   }
 
@@ -64,6 +67,7 @@ class Api1 {
     log("status codenya " + r.statusCode.toString());
 
     // log(data.toString());
+    logApi(url: url, res: r, method: "POST", payload: params);
     return data;
   }
 
@@ -86,6 +90,7 @@ class Api1 {
     var data = jsonDecode(r.body);
 
     // log(data);
+    logApi(url: url, res: r, method: "POST", payload: params);
     return data;
   }
 
@@ -111,7 +116,46 @@ class Api1 {
 
     // log('status code : ' + response.statusCode.toString());
     // log(responseCode.toString());
-
+    logApi(url: url, res: response, method: "POST", payload: {'image': image});
     return responseCode;
+  }
+
+  void logApi({
+    required dynamic res,
+    required String method,
+    required String url,
+    Map<String, dynamic>? payload,
+  }) {
+    var data = json.decode(res.body);
+    if (res.statusCode == 200) {
+      if (data['success'] == true) {
+        ApiLogger().log(
+          data: ModelApiLog(
+            url: url,
+            payload: payload?.toString() ?? 'empty',
+            response: res.body.toString(),
+            method: method,
+          ),
+        );
+      } else {
+        ApiLogger().log(
+          data: ModelApiLog(
+            url: url,
+            payload: payload?.toString() ?? 'empty',
+            error: res.body.toString(),
+            method: method,
+          ),
+        );
+      }
+    } else {
+      ApiLogger().log(
+        data: ModelApiLog(
+          url: url,
+          payload: payload?.toString() ?? 'empty',
+          error: res.body.toString(),
+          method: method,
+        ),
+      );
+    }
   }
 }
