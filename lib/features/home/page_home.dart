@@ -1,4 +1,3 @@
-import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,17 +29,7 @@ class PageHome extends GetView<ControllerHome> {
       center: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AppLogosMed.logoApp(AppLogosMed.logoOnly),
-          horizontalSpace(5.w),
-          Text(
-            "AntarAnter",
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              fontSize: FontSizes.s14,
-              fontWeight: FontWeight.w500,
-              color: AppColor.primaryColor,
-            ),
-          )
+          AppLogos.logoApp(AppLogos.logoHorizontal),
         ],
       ),
       child: RefreshIndicator(
@@ -143,17 +132,18 @@ class PageHome extends GetView<ControllerHome> {
               child: Obx(
                 () => controller.controllerRiderInfo.rider.value.status != 2
                     ? CardRoundedBorder(
-                      borderRadius: 9,
-                      borderWidth: 2,
-                      borderColor: controller.controllerRiderInfo.rider.value.status ==
+                        borderRadius: 9,
+                        borderWidth: 2,
+                        borderColor:
+                            controller.controllerRiderInfo.rider.value.status ==
                                     0
                                 ? AppColor.errorColor
-                                :AppColor.transparentColor,
+                                : AppColor.transparentColor,
                         color:
                             controller.controllerRiderInfo.rider.value.status ==
                                     0
                                 ? AppColor.whiteColor
-                                :AppColor.primary.shade200.withOpacity(0.7),
+                                : AppColor.primary.shade200.withOpacity(0.7),
                         margin: EdgeInsets.symmetric(
                             horizontal: Insets.med.w, vertical: Insets.med.h),
                         child: Container(

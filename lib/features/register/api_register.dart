@@ -32,7 +32,7 @@ class ApiRegister {
   }
 
   Future<dynamic> termNebeng() async {
-    var response = await Api1().apiJSONGetWitToken("terms/4");
+    var response = await Api1().apiJSONGetWitToken("terms/1");
     log('return data term = ' + response.toString());
 
     return response;

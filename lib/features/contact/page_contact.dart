@@ -14,22 +14,15 @@ class PageContact extends GetView<ControllerContact> {
   @override
   Widget build(BuildContext context) {
     return PageDecorationTop(
-      title: 'INTAKE',
+      title: '',
       backgroundColor: AppColor.bgPageColor,
-      toolbarColor: AppColor.primaryColor,
-
+      toolbarColor: AppColor.whiteColor,
+      toolbarTitleColor: AppColor.primaryColor,
       center: Align(
-        child: Text(
-          "AntarAnter",
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            fontSize: FontSizes.s16,
-            fontWeight: FontWeight.w500,
-            color: AppColor.whiteColor,
-          ),
-        ),
+        child: AppLogosMed.logoApp(AppLogosMed.nameOnly),
         alignment: Alignment.centerRight,
       ),
+      toolbarElevation: 2,
       enableBack: true,
       child: SafeArea(
         child: SingleChildScrollView(
@@ -55,7 +48,7 @@ class PageContact extends GetView<ControllerContact> {
               ),
               verticalSpace(5.h),
               ButtonContact(
-                ontap: () {},
+                ontap: () => controller.ourIg(),
                 icon: AppIcons.iconApp(AppIcons.contInstagram),
                 title: 'Instagram',
                 buttonHeight: Get.height * 0.09.h,
@@ -63,7 +56,7 @@ class PageContact extends GetView<ControllerContact> {
               ),
               verticalSpace(5.h),
               ButtonContact(
-                ontap: () {},
+                ontap: () => controller.ourFb(),
                 icon: AppIcons.iconApp(AppIcons.contFacebook),
                 title: 'Facebook',
                 buttonHeight: Get.height * 0.09.h,
@@ -71,7 +64,7 @@ class PageContact extends GetView<ControllerContact> {
               ),
               verticalSpace(5.h),
               ButtonContact(
-                ontap: () {},
+                ontap: () => controller.ourEmail(),
                 icon: AppIcons.iconApp(AppIcons.contEmail),
                 title: 'Email',
                 buttonHeight: Get.height * 0.09.h,
@@ -79,7 +72,7 @@ class PageContact extends GetView<ControllerContact> {
               ),
               verticalSpace(5.h),
               ButtonContact(
-                ontap: () {},
+                ontap: () => controller.ourWeb(),
                 icon: AppIcons.iconApp(AppIcons.contWebsite),
                 title: 'Website',
                 buttonHeight: Get.height * 0.09.h,
@@ -87,7 +80,11 @@ class PageContact extends GetView<ControllerContact> {
               ),
               verticalSpace(5.h),
               ButtonContact(
-                ontap: () {},
+                ontap: () async {
+                  Get.snackbar("Belum Tersedia", "Akan segera tersedia",
+                      snackPosition: SnackPosition.TOP);
+                  await Future.delayed(const Duration(seconds: 2));
+                },
                 icon: AppIcons.iconApp(AppIcons.contWhatsapp),
                 title: 'Whatsapp',
                 buttonHeight: Get.height * 0.09.h,

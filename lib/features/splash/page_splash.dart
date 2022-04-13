@@ -47,7 +47,7 @@ class Body extends StatelessWidget {
           SizedBox(
             height: Get.height * 0.5,
             child: Image.asset(
-              "assets/logo/logo_only.png",
+              "assets/logo/antaranter-logo-only.png",
               width: size.width * 0.40,
             ),
           ),

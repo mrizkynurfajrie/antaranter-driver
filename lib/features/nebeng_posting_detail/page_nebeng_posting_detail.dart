@@ -28,20 +28,13 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
     return PageDecorationTop(
       title: '',
       padding: EdgeInsets.zero,
-      toolbarColor: AppColor.primaryColor,
+      toolbarColor: AppColor.whiteColor,
+      toolbarElevation: 2,
       backgroundColor: AppColor.bgPageColor,
       enableBack: false,
       center: Align(
-        child: Text(
-          "AntarAnter",
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            fontSize: FontSizes.s16,
-            fontWeight: FontWeight.w500,
-            color: AppColor.whiteColor,
-          ),
-        ),
-        alignment: Alignment.centerRight,
+        child: AppLogos.logoApp(AppLogos.logoHorizontal),
+        alignment: Alignment.center,
       ),
       child: Obx(
         () => controller.loading.isFalse

@@ -30,7 +30,7 @@ class PageLogin extends GetView<ControllerLogin> {
             Column(
               children: [
                 Image.asset(
-                  "assets/logo/logo_only.png",
+                  "assets/logo/antaranter-logo-only.png",
                   width: Get.width * 0.25.w,
                 ),
                 verticalSpace(5.h),

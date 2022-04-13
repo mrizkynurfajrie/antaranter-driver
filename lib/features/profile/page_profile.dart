@@ -19,19 +19,12 @@ class PageProfile extends GetView<ControllerProfile> {
   @override
   Widget build(BuildContext context) {
     return PageDecorationTop(
-      title: 'INTAKE',
+      title: '',
       enableBack: false,
-      toolbarColor: AppColor.primaryColor,
+      toolbarColor: AppColor.whiteColor,
+      toolbarElevation: 2,
       center: Align(
-        child: Text(
-          "AntarAnter",
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            fontSize: FontSizes.s16,
-            fontWeight: FontWeight.w500,
-            color: AppColor.whiteColor,
-          ),
-        ),
+        child: AppLogosMed.logoApp(AppLogosMed.nameOnly),
         alignment: Alignment.centerRight,
       ),
       padding: EdgeInsets.zero,

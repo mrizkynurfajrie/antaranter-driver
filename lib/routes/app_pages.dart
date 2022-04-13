@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/features/contact/binding_contact.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/contact/page_contact.dart';
 import 'package:antaranter_driverapp/features/home/page_home.dart';
@@ -17,7 +18,7 @@ import 'package:antaranter_driverapp/features/register/page/page_register.dart';
 import 'package:antaranter_driverapp/features/register/page/page_terms.dart';
 import 'package:antaranter_driverapp/features/saldo/binding_saldo.dart';
 import 'package:antaranter_driverapp/features/saldo/page/page_topup.dart';
-import 'package:antaranter_driverapp/features/saldo/page_saldo.dart';
+import 'package:antaranter_driverapp/features/saldo/page/page_saldo.dart';
 import 'package:antaranter_driverapp/features/splash/page_splash.dart';
 import 'package:antaranter_driverapp/features/register/page/page_regsuccess.dart';
 import 'package:antaranter_driverapp/features/user_account/binding_user_account.dart';
@@ -97,6 +98,7 @@ class AppPages {
     GetPage(
       name: Routes.contact,
       page: () => const PageContact(),
+      binding: BindingContact(),
     ),
     GetPage(
       name: Routes.topup,

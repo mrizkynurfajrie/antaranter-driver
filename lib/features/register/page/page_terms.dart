@@ -25,7 +25,7 @@ class PageTerms extends GetView<ControllerRegister> {
       backgroundColor: AppColor.bgPageColor,
       center: Row(
         children: [
-          AppLogosMed.logoApp(AppLogosMed.logoOnly),
+          AppLogos.logoApp(AppLogos.logoOnly),
           horizontalSpace(5.w),
           Text(
             "AntarAnter",

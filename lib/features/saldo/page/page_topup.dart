@@ -21,7 +21,7 @@ class PageTopUp extends GetView<ControllerSaldo> {
   @override
   Widget build(BuildContext context) {
     return PageDecorationTop(
-      title: 'Top Up Saldo',
+      title: 'Isi Ulang Saldo',
       toolbarTitleColor: AppColor.whiteColor,
       padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
@@ -45,7 +45,7 @@ class PageTopUp extends GetView<ControllerSaldo> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Pilih nominal top up",
+                      "Pilih nominal isi ulang",
                       style: TextStyles.textStd,
                     ),
                     verticalSpace(Insets.med),
@@ -170,7 +170,7 @@ class PageTopUp extends GetView<ControllerSaldo> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "84254679452313213",
+                                  "*******************",
                                   style: TextStyles.textLg.copyWith(
                                     color: AppColor.primaryColor,
                                   ),
@@ -178,7 +178,7 @@ class PageTopUp extends GetView<ControllerSaldo> {
                                 ButtonText(
                                   onPressed: () async {
                                     await Clipboard.setData(const ClipboardData(
-                                        text: "84254679452313213"));
+                                        text: "*******************"));
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
                                         content: Text('Copied to clipboard'),
@@ -195,7 +195,7 @@ class PageTopUp extends GetView<ControllerSaldo> {
                               color: Colors.black,
                             ),
                             Text(
-                              "Jika sudah berhasil transfer,mohon untuk melakukan konfirmasi ke nomor WA 0811 xxx xxx xx",
+                              "Jika sudah berhasil transfer,mohon untuk melakukan konfirmasi ke nomor WA xxxx xxx xxx xx",
                               style: TextStyles.textXs.copyWith(
                                 color: Colors.green,
                               ),

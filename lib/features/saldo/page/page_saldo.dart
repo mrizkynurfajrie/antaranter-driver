@@ -51,17 +51,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
                   children: <Widget>[
                     Row(
                       children: [
-                        AppLogos.logoApp(AppLogos.logoOnly),
-                        horizontalSpace(5.w),
-                        Text(
-                          "AntarAnter",
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: FontSizes.s14,
-                            fontWeight: FontWeight.w500,
-                            color: AppColor.neutral,
-                          ),
-                        )
+                        AppLogos.logoApp(AppLogos.logoHorizontal),
                       ],
                     ),
                     verticalSpace(15.h),

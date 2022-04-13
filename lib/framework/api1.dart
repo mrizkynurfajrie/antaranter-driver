@@ -7,6 +7,7 @@ import 'api2.dart';
 class Api1 {
   // String baseUrl = 'https://api.intakekurir.com/';
   String baseUrl = 'https://api-prod.intakekurir.com/';
+   String webUrl = 'https://antaranter.indoteknokarya.com/';
 
   Future<dynamic> apiJSONGet(
     String url,
