@@ -4,6 +4,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/user_account/controller_user_account.dart';
 import 'package:antaranter_driverapp/framework/api1.dart';
@@ -106,8 +107,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             100),
-                                                    child: Image.asset(
-                                                      'assets/images/avatar_dummy.png',
+                                                    child: SvgPicture.asset(
+                                                      'assets/images/avatar_dummy.svg',
                                                     ),
                                                   ),
                                                 ),
@@ -360,7 +361,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                               Get.snackbar(
                                 "Berhasil",
                                 "Anda berhasil mengubah profil pengguna. Admin akan memverifikasi data anda 1x24 jam.",
-                                snackPosition: SnackPosition.BOTTOM,
+                                snackPosition: SnackPosition.TOP,
                               );
                               await Future.delayed(const Duration(seconds: 3));
                               Get.offNamed(Routes.main);

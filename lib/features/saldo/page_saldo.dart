@@ -206,7 +206,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
                       ),
                       verticalSpace(5.h),
                       SizedBox(
-                        width: Get.width * 0.7,
+                        width: Get.width * 0.7.w,
                         child: Text(
                             'Anda belum memiliki transaksi, silakan lakukan isi ulang saldo',
                             style: TextStyles.inter.copyWith(

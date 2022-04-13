@@ -341,7 +341,7 @@ class ControllerUserAccount extends GetxController {
             Get.snackbar(
               "Ubah Profil Pengguna",
               "Berhasil mengubah profil pengguna, silakan tunggu verifikasi admin selama 1x24 jam",
-              snackPosition: SnackPosition.BOTTOM,
+              snackPosition: SnackPosition.TOP,
             );
             await Future.delayed(const Duration(seconds: 2));
             Get.back();

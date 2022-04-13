@@ -3,6 +3,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/nebeng_posting_detail/controller_nebeng_posting_detail.dart';
 import 'package:antaranter_driverapp/response/nebeng_order.dart';
@@ -411,7 +412,6 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                 ),
                               ),
                             ),
-                           
                             SliverToBoxAdapter(
                               child: Container(
                                 padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -470,7 +470,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                 ),
                               ),
                             ),
-                             SliverToBoxAdapter(
+                            SliverToBoxAdapter(
                               child: verticalSpace(10.h),
                             ),
                             SliverToBoxAdapter(
@@ -636,7 +636,10 @@ class UserNebeng extends GetView<ControllerNebengPostingDetail> {
             onPressed: () {
               controller.ourWa(nebengOrder.users?.phone);
             },
-            icon: Image.asset(AppIcons.contWhatsapp),
+            icon: SvgPicture.asset(
+              AppIcons.contWhatsapp,
+              color: AppColor.successColor,
+            ),
             iconSize: IconSizes.sm,
           )
         ],

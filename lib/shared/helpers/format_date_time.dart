@@ -175,7 +175,7 @@ class FormatDateTime {
   }
 
   static String formatDateLocale(String value) {
-    DateFormat dateFormat = DateFormat("dd-MM-yyyy");
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     DateTime dateTime = dateFormat.parse(value);
     var month;
     var dateTimeConvert;
