@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/widgets/input_format/input_format_money.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,20 +24,13 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
     return PageDecorationTop(
       title: '',
       padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 15.h),
-      toolbarColor: AppColor.primaryColor,
+      toolbarColor: AppColor.whiteColor,
       backgroundColor: AppColor.bgPageColor,
+      toolbarElevation: 2,
       enableBack: true,
-      toolbarTitleColor: AppColor.bgPageColor,
+      toolbarTitleColor: AppColor.primaryColor,
       center: Align(
-        child: Text(
-          "AntarAnter",
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            fontSize: FontSizes.s16,
-            fontWeight: FontWeight.w500,
-            color: AppColor.whiteColor,
-          ),
-        ),
+        child: AppLogosMed.logoApp(AppLogosMed.nameOnly),
         alignment: Alignment.centerRight,
       ),
       child: SafeArea(

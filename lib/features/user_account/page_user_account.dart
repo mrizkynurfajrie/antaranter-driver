@@ -360,11 +360,11 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                               await controller.updateUserAccount();
                               Get.snackbar(
                                 "Berhasil",
-                                "Anda berhasil mengubah profil pengguna. Admin akan memverifikasi data anda 1x24 jam.",
+                                "Anda berhasil mengubah profil pengguna.",
                                 snackPosition: SnackPosition.TOP,
                               );
-                              await Future.delayed(const Duration(seconds: 3));
-                              Get.offNamed(Routes.main);
+                              await Future.delayed(const Duration(seconds: 2));
+                              controller.dialogProfilKendaraan();
                             } else {
                               await controller.dialogUbahProfil();
                             }

@@ -61,7 +61,7 @@ class ControllerVehicleAccount extends GetxController {
     txtSimNum.text = controllerVehicleInfo.vehicle.value.sim ?? '';
     txtSimExp.text = controllerVehicleInfo.vehicle.value.simExp == null
         ? ''
-        : FormatDateTime.formatDateWithoutHour(
+        : FormatDateTime.formatDateWithoutHouryyyy(
             value: controllerVehicleInfo.vehicle.value.simExp!);
     txtPlatNum.text = controllerVehicleInfo.vehicle.value.platNumber ?? '';
     txtVehicleCol.text = controllerVehicleInfo.vehicle.value.vehicleColor ?? '';

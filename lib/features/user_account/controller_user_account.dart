@@ -327,7 +327,7 @@ class ControllerUserAccount extends GetxController {
         radius: 10,
         content: CardRounded(
           padding: EdgeInsets.symmetric(
-              horizontal: Insets.med, vertical: Insets.med),
+              horizontal: Insets.med.w, vertical: Insets.med.h),
           child: Text(
             "Apakah anda yakin ingin merubah profil pengguna anda? Karena setelah anda berhasil mengubah profil pengguna anda, maka status aplikasi anda akan kembali menunggu verifikasi admin selama 1x24 jam",
             style: TextStyles.inter
@@ -371,6 +371,50 @@ class ControllerUserAccount extends GetxController {
           labelStyle: TextStyles.inter.copyWith(color: AppColor.errorColor),
           borderColor: AppColor.errorColor,
         ));
+  }
+
+  dialogProfilKendaraan() {
+    return Get.defaultDialog(
+      title: "Profil Pengguna & Kendaraan",
+      barrierDismissible: false,
+      titleStyle: TextStyles.inter
+          .copyWith(color: AppColor.primaryColor, fontWeight: FontWeight.w500),
+      titlePadding: EdgeInsets.only(bottom: 10.h, top: 20.h),
+      backgroundColor: AppColor.whiteColor,
+      radius: 10,
+      content: CardRounded(
+        padding: EdgeInsets.symmetric(
+            horizontal: Insets.med.w, vertical: Insets.med.h),
+        child: Text(
+          "Apakah anda ingin perbarui profil kendaraan anda juga?",
+          style: TextStyles.inter
+              .copyWith(fontSize: FontSizes.s14, fontWeight: FontWeight.w400),
+          textAlign: TextAlign.justify,
+        ),
+      ),
+      confirm: ButtonPrimary(
+        onPressed: () {
+          Get.toNamed(Routes.vehicleAccount);
+        },
+        label: 'Ya',
+        cornerRadius: 4,
+        size: 300,
+        height: Get.height * 0.06.h,
+        labelStyle: TextStyles.inter.copyWith(color: AppColor.whiteColor),
+      ),
+      cancel: ButtonPrimary(
+        onPressed: () {
+          Get.offNamed(Routes.profile);
+        },
+        label: 'Kembali',
+        cornerRadius: 4,
+        size: 300,
+        height: Get.height * 0.06.h,
+        color: AppColor.whiteColor,
+        labelStyle: TextStyles.inter.copyWith(color: AppColor.errorColor),
+        borderColor: AppColor.errorColor,
+      ),
+    );
   }
 
   updateUserAccount() async {

@@ -108,6 +108,8 @@ class _InputDateState extends State<InputDate> {
                 },
             style: TextStyles.inter.copyWith(
               fontSize: FontSizes.s12,
+              fontWeight: FontWeight.w400,
+              color: AppColor.neutral
             ),
             decoration: inputDecoration(
               hintText: widget.hintText,

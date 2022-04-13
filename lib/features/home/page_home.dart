@@ -136,12 +136,18 @@ class PageHome extends GetView<ControllerHome> {
                         borderWidth: 2,
                         borderColor:
                             controller.controllerRiderInfo.rider.value.status ==
-                                    0
+                                        0 &&
+                                    controller.controllerVehicleInfo.vehicle
+                                            .value.sim ==
+                                        null
                                 ? AppColor.errorColor
                                 : AppColor.transparentColor,
                         color:
                             controller.controllerRiderInfo.rider.value.status ==
-                                    0
+                                        0 &&
+                                    controller.controllerVehicleInfo.vehicle
+                                            .value.sim ==
+                                        null
                                 ? AppColor.whiteColor
                                 : AppColor.primary.shade200.withOpacity(0.7),
                         margin: EdgeInsets.symmetric(
@@ -155,14 +161,20 @@ class PageHome extends GetView<ControllerHome> {
                             children: [
                               Icon(
                                   controller.controllerRiderInfo.rider.value
-                                              .status ==
-                                          0
+                                                  .status ==
+                                              0 &&
+                                          controller.controllerVehicleInfo
+                                                  .vehicle.value.sim ==
+                                              null
                                       ? Icons.warning_amber_rounded
                                       : Icons.info_outline_rounded,
                                   size: IconSizes.lg,
                                   color: controller.controllerRiderInfo.rider
-                                              .value.status ==
-                                          0
+                                                  .value.status ==
+                                              0 &&
+                                          controller.controllerVehicleInfo
+                                                  .vehicle.value.sim ==
+                                              null
                                       ? AppColor.errorColor
                                       : AppColor.primary),
                               horizontalSpace(Insets.med),
@@ -173,15 +185,29 @@ class PageHome extends GetView<ControllerHome> {
                                   children: [
                                     Text(
                                       controller.controllerRiderInfo.rider.value
-                                                  .status ==
-                                              0
-                                          ? "Lengkapi data diri & kendaraan anda untuk mulai menggunakan layanan kami"
-                                          : "Admin sedang memverifikasi data anda, mohon tunggu 1x24 jam",
+                                                      .status ==
+                                                  0 &&
+                                              controller.controllerVehicleInfo
+                                                      .vehicle.value.sim ==
+                                                  null
+                                          ? controller.controllerRiderInfo.rider
+                                                          .value.status ==
+                                                      1 &&
+                                                  controller
+                                                          .controllerVehicleInfo
+                                                          .vehicle
+                                                          .value
+                                                          .sim ==
+                                                      null
+                                              ? "Anda belum melengkapi data kendaraan anda, silakan lengkapi terlebih dahulu"
+                                              : "Lengkapi data diri & kendaraan anda untuk mulai menggunakan layanan kami"
+                                          : "Admin sedang melakukan verifikasi data anda. Mohon tunggu 1x24 jam admin akan segera menghubungi anda.",
                                       style: TextStyles.inter.copyWith(
                                         fontSize: FontSizes.s12,
                                         fontWeight: FontWeight.w500,
                                         color: AppColor.neutral,
                                       ),
+                                      textAlign: TextAlign.justify,
                                     ),
                                   ],
                                 ),
@@ -189,7 +215,7 @@ class PageHome extends GetView<ControllerHome> {
                               horizontalSpace(Insets.xs),
                               controller.controllerRiderInfo.rider.value
                                           .status ==
-                                      0
+                                      0 && controller.controllerVehicleInfo.vehicle.value.sim == null
                                   ? OutlinedButton(
                                       onPressed: () {
                                         Get.offAllNamed(Routes.main,
@@ -283,10 +309,13 @@ class PageHome extends GetView<ControllerHome> {
                               // }
                             } else {
                               var message = controller.controllerRiderInfo.rider
-                                          .value.status ==
-                                      0
+                                              .value.status ==
+                                          0 &&
+                                      controller.controllerVehicleInfo.vehicle
+                                              .value.sim ==
+                                          null
                                   ? "Lengkapi data diri & kendaraan anda untuk mulai menggunakan layanan kami"
-                                  : "Admin sedang memverifikasi data anda, mohon tunggu 1x24 jam";
+                                  : "Admin sedang melakukan verifikasi data anda, mohon tunggu 1x24 jam";
                               Get.snackbar("Pemberitahuan", message);
                             }
                           },
