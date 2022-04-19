@@ -81,7 +81,9 @@ class _InputDateState extends State<InputDate> {
                 child: Text(
                   widget.label,
                   style: TextStyles.inter.copyWith(
-                        fontSize: FontSizes.s12, color: AppColor.neutral, fontWeight: FontWeight.w400),
+                      fontSize: FontSizes.s12,
+                      color: AppColor.neutral,
+                      fontWeight: FontWeight.w400),
                 ),
               )
             : verticalSpace(0),
@@ -107,10 +109,9 @@ class _InputDateState extends State<InputDate> {
                   return null;
                 },
             style: TextStyles.inter.copyWith(
-              fontSize: FontSizes.s12,
-              fontWeight: FontWeight.w400,
-              color: AppColor.neutral
-            ),
+                fontSize: FontSizes.s12,
+                fontWeight: FontWeight.w400,
+                color: AppColor.neutral),
             decoration: inputDecoration(
               hintText: widget.hintText,
               prefixIcon: widget.prefixIcon,

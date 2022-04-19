@@ -127,16 +127,18 @@ class BottomsheetSelection {
                 ),
               ),
               Positioned(
-                child: ButtonBottom(
-                  enable: isSelected,
-                  label: labelButton,
-                  onTap: isSelected
-                      ? onPressed ??
-                          () {
-                            Get.back();
-                          }
-                      : () {},
-                ),
+                child: labelButton == null
+                    ? ButtonBottom(
+                        enable: isSelected,
+                        label: labelButton,
+                        onTap: isSelected
+                            ? onPressed ??
+                                () {
+                                  Get.back();
+                                }
+                            : () {},
+                      )
+                    : const SizedBox(),
               ),
             ],
           );

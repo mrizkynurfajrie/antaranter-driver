@@ -44,7 +44,7 @@ class _CardItemState extends State<CardItem> {
         ),
         child: Padding(
           padding:
-              const EdgeInsets.only(top: 10.0, bottom: 10, left: 10, right: 0),
+              const EdgeInsets.only(top: 10.0, bottom: 15, left: 10, right: 0),
           child: Row(
             children: [
               // Padding(padding: const EdgeInsets.all(8.0), child: icon),

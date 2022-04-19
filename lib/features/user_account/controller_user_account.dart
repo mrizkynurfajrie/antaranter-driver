@@ -293,7 +293,8 @@ class ControllerUserAccount extends GetxController {
           if (value != null) {
             search('');
             idProvince(value);
-            await getCities();
+            getCities();
+            Navigator.pop(context);
           }
         },
         itemName: (value) {
@@ -309,8 +310,9 @@ class ControllerUserAccount extends GetxController {
         value: (value) async {
           if (value != null) {
             search('');
-            idCities(value);
-            search(value);
+            // idCities(value);
+            // search(value);
+            Navigator.pop(context);
           }
         },
         itemName: (value) {

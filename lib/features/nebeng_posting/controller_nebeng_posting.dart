@@ -4,6 +4,7 @@ import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/nebeng_posting/api_nebeng_posting.dart';
 import 'package:antaranter_driverapp/response/nebeng_rider.dart';
@@ -46,6 +47,7 @@ class ControllerNebengPosting extends GetxController {
   var provinces = <ModelBottomsheet>[].obs;
   var cities = <ModelBottomsheet>[].obs;
   var loading = false;
+  final now = DateTime.now();
 
   var maskFormatter = MaskTextInputFormatter(
     mask: '##.####' '###.###',
@@ -130,19 +132,22 @@ class ControllerNebengPosting extends GetxController {
 
   buildProvince(context) {
     BottomsheetSelection(
-        title: 'Pilih Provinsi',
-        context: context,
-        listWidget: provinces,
-        value: (value) async {
-          if (value != null) {
-            search('');
-            idProvince(value);
-            await getCities();
-          }
-        },
-        itemName: (value) {
-          itemProvinceDept(value);
-        }).showSelection();
+      title: 'Pilih Provinsi',
+      context: context,
+      labelButton: '',
+      listWidget: provinces,
+      value: (value) async {
+        if (value != null) {
+          search('');
+          idProvince(value);
+          Navigator.pop(context);
+          getCities();
+        }
+      },
+      itemName: (value) {
+        itemProvinceDept(value);
+      },
+    ).showSelection();
   }
 
   buildCities(context) {
@@ -153,8 +158,8 @@ class ControllerNebengPosting extends GetxController {
         value: (value) async {
           if (value != null) {
             search('');
-            idCities(value);
-            search(value);
+            // search(value);
+            Navigator.pop(context);
           }
         },
         itemName: (value) {
@@ -187,9 +192,9 @@ class ControllerNebengPosting extends GetxController {
         value: (value) async {
           if (value != null) {
             search('');
-            log(value.toString());
-            idCities(value);
-            search(value);
+            // idCities(value);
+            // search(value);
+            Navigator.pop(context);
           }
         },
         itemName: (value) {
