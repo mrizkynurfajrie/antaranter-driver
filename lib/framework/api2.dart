@@ -9,7 +9,7 @@ const String CACHE_ACTIVE_POST = "active_post";
 const String CACHE_VEHICLE = "vehicle";
 const String CACHE_POSTING = "posting";
 const String CACHE_USER = "user";
-
+const String CACHE_API_LOGGER = "api_logger";
 class Api2 {
   final box = GetStorage();
 
@@ -111,5 +111,14 @@ class Api2 {
   }
     Future removeActivePost() async {
     await box.remove(CACHE_ACTIVE_POST);
+  }
+
+  Future setApiLogger({dynamic value}) async{
+    value ??= "";
+    await box.write(CACHE_API_LOGGER, value);
+  }
+  
+  Future<dynamic> getApiLogger()async{
+    return box.read(CACHE_API_LOGGER);
   }
 }

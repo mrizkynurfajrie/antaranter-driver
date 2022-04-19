@@ -86,30 +86,31 @@ class PageSaldo extends GetView<ControllerSaldo> {
                     ),
                     verticalSpace(30.h),
                     Obx(
-                      () => Shimmer.fromColors(
-                        baseColor: AppColor.neutral,
-                        highlightColor: Colors.grey.shade50,
-                        enabled: controller.loading.isTrue,
-                        child: controller.loading.isTrue
-                            ? Container(
+                      () => controller.loading.isTrue
+                          ? Shimmer.fromColors(
+                              baseColor: AppColor.neutral.shade300,
+                              highlightColor: Colors.grey.shade100,
+                              enabled: controller.loading.isTrue,
+                              child: Container(
                                 width: 100.w,
                                 height: 40.w,
                                 decoration: BoxDecoration(
                                   borderRadius: Corners.lgBorder,
                                   color: Colors.white,
                                 ),
-                              )
-                            : Text(
-                                CurrencyFormat.convertToIdr(
-                                  controller.balance.value.currBalance,
-                                  2,
-                                ),
-                                style: TextStyles.inter.copyWith(
-                                    fontSize: FontSizes.s26,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColor.whiteColor),
                               ),
-                      ),
+                            )
+                          : Text(
+                              CurrencyFormat.convertToIdr(
+                                controller.balance.value.currBalance,
+                                2,
+                              ),
+                              style: TextStyles.inter.copyWith(
+                                fontSize: FontSizes.s26,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
                     )
                   ],
                 ),

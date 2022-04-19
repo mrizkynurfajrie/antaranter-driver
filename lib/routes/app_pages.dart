@@ -1,3 +1,5 @@
+import 'package:antaranter_driverapp/features/api_log/binding_api_log.dart';
+import 'package:antaranter_driverapp/features/api_log/page_api_log.dart';
 import 'package:antaranter_driverapp/features/contact/binding_contact.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/contact/page_contact.dart';
@@ -103,6 +105,11 @@ class AppPages {
     GetPage(
       name: Routes.topup,
       page: () => const PageTopUp(),
+    ),
+    GetPage(
+      name: Routes.apiLog,
+      page: () => const PageApiLog(),
+      binding: BindingApiLog(),
     ),
   ];
 }

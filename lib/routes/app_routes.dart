@@ -15,4 +15,5 @@ abstract class Routes {
   static const vehicleAccount = '/vehicleAccount_page';
   static const contact = '/contact_page';
   static const topup = '/topup_page';
+  static const apiLog = '/page_api_log';
 }
