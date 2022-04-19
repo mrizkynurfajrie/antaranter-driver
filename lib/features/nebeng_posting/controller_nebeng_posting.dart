@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -216,18 +218,17 @@ class ControllerNebengPosting extends GetxController {
         var result = updateResult["data"];
         var postResponse = Post.fromJson(result);
         controllerRiderInfo.setActivePost(postResponse.id!);
-        Get.snackbar(
-          "Nebeng",
-          "Anda telah berhasil membagikan perjalanan anda",
-          snackPosition: SnackPosition.TOP,
-        );
+        showPopUp(
+            title: 'Nebeng',
+            description: 'Anda telah berhasil membagikan perjalanan anda',
+            imageUri: PopUpIcons.success);
         await Future.delayed(const Duration(seconds: 2));
         Get.offAllNamed(Routes.main, arguments: 1);
       } else {
-        Get.snackbar(
-          "Gagal Membagikan Perjalanan",
-          "Anda sedang memiliki pesanan aktif",
-          snackPosition: SnackPosition.TOP,
+        showPopUp(
+          title: 'Gagal',
+          description: 'Anda gagal membagikan perjalanan anda',
+          imageUri: PopUpIcons.error,
         );
         await Future.delayed(const Duration(seconds: 3));
         Get.offAllNamed(Routes.main);

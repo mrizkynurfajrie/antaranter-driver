@@ -1,4 +1,5 @@
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -214,8 +215,11 @@ class PageHome extends GetView<ControllerHome> {
                               ),
                               horizontalSpace(Insets.xs),
                               controller.controllerRiderInfo.rider.value
-                                          .status ==
-                                      0 && controller.controllerVehicleInfo.vehicle.value.sim == null
+                                              .status ==
+                                          0 &&
+                                      controller.controllerVehicleInfo.vehicle
+                                              .value.sim ==
+                                          null
                                   ? OutlinedButton(
                                       onPressed: () {
                                         Get.offAllNamed(Routes.main,
@@ -315,8 +319,16 @@ class PageHome extends GetView<ControllerHome> {
                                               .value.sim ==
                                           null
                                   ? "Lengkapi data diri & kendaraan anda untuk mulai menggunakan layanan kami"
-                                  : "Admin sedang melakukan verifikasi data anda, mohon tunggu 1x24 jam";
-                              Get.snackbar("Pemberitahuan", message);
+                                  : "Admin sedang melakukan verifikasi data anda, mohon tunggu 1x24 jam admin akan segera menghubungi anda";
+                              showPopUp(
+                                title: 'Pemberitahuan',
+                                description: message,
+                                imageUri: PopUpIcons.information,
+                                dismissible: false,
+                                labelButton: 'OK',
+                                labelButtonColor: AppColor.primary,
+                                outlineButtonColor: AppColor.primary,
+                              );
                             }
                           },
                           padding: EdgeInsets.symmetric(

@@ -1,10 +1,12 @@
 import 'dart:developer';
 
 import 'package:antaranter_driverapp/routes/app_routes.dart';
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -338,20 +340,14 @@ class ControllerUserAccount extends GetxController {
         confirm: ButtonPrimary(
           onPressed: () async {
             await updateUserAccount();
-            Get.snackbar(
-              "Ubah Profil Pengguna",
-              "Berhasil mengubah profil pengguna, silakan tunggu verifikasi admin selama 1x24 jam",
-              snackPosition: SnackPosition.TOP,
+            showPopUp(
+              title: 'Berhasil',
+              description: 'Data profil pengguna berhasil diubah',
+              imageUri: PopUpIcons.success,
             );
-            await Future.delayed(const Duration(seconds: 2));
+            await Future.delayed(const Duration(seconds: 3));
             Get.back();
             Get.offAllNamed(Routes.main);
-            // } else {
-            //   Get.snackbar(
-            //     "Ubah Profil Pengguna",
-            //     "Gagal mengubah profil pengguna",
-            //     snackPosition: SnackPosition.BOTTOM,
-            //   );
           },
           label: 'Iya',
           cornerRadius: 4,
@@ -463,7 +459,8 @@ class ControllerUserAccount extends GetxController {
     } catch (e) {
       loadingForm.value = false;
       log(e.toString());
-      Get.snackbar("Terjadi kesalahan", e.toString());
+      showPopUpError(
+          errorTitle: 'Terjadi kesalahan', errorMessage: e.toString());
     }
   }
 }

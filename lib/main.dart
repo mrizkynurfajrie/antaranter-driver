@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,6 @@ import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_bind.dart';
 import 'package:antaranter_driverapp/shared/helpers/local_notification_service.dart';
 import 'package:antaranter_driverapp/shared/helpers/utils.dart';
-import 'shared/widgets/others/page_info.dart';
 
 void main() async {
   await GetStorage.init();

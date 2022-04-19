@@ -1,5 +1,6 @@
 import 'dart:io';
-import 'package:antaranter_driverapp/routes/app_routes.dart';
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -358,10 +359,12 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                     .controllerRiderInfo.rider.value.status ==
                                 0) {
                               await controller.updateUserAccount();
-                              Get.snackbar(
-                                "Berhasil",
-                                "Anda berhasil mengubah profil pengguna.",
-                                snackPosition: SnackPosition.TOP,
+                              showPopUp(
+                                title: 'Berhasil',
+                                description:
+                                    'Anda berhasil mengubah profil pengguna',
+                                imageUri: PopUpIcons.success,
+                                dismissible: false,
                               );
                               await Future.delayed(const Duration(seconds: 2));
                               controller.dialogProfilKendaraan();

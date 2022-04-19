@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:antaranter_driverapp/routes/app_routes.dart';
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -226,10 +228,10 @@ class ControllerVehicleAccount extends GetxController {
         await Api2().setVehicle(vehicle: result);
         var vehicle = NebengRider.fromJson(result);
         Get.find<ControllerVehicleInfo>().vehicle.value = vehicle;
-        Get.snackbar(
-          'Perbarui Profil Kendaraan ',
-          'Profil Kendaraan anda berhasil diperbarui',
-          snackPosition: SnackPosition.TOP,
+        showPopUp(
+          title: 'Perbarui Profil Kendaraan',
+          description: 'Profil Kendaraan anda berhasil diperbarui',
+          imageUri: PopUpIcons.success,
         );
         await Future.delayed(const Duration(seconds: 3));
         Get.offNamed(Routes.main);
@@ -240,7 +242,10 @@ class ControllerVehicleAccount extends GetxController {
     } catch (e) {
       loading.value = false;
       log(e.toString());
-      Get.snackbar("Terjadi kesalahan", e.toString());
+      showPopUpError(
+        errorTitle: 'Terjadi Kesalahan',
+        errorMessage: e.toString(),
+      );
     }
   }
 }

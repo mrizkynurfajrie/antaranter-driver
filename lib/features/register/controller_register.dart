@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:antaranter_driverapp/response/term_condition.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/register/api_register.dart';

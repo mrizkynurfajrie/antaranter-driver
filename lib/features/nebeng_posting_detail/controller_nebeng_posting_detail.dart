@@ -18,7 +18,6 @@ import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dar
 import 'package:antaranter_driverapp/shared/controller/controller_users.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_vehicle_info.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
-import 'package:antaranter_driverapp/shared/widgets/cards/card_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_time.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -93,6 +92,7 @@ class ControllerNebengPostingDetail extends GetxController
           var nebengPostingRes = NebengPostingResponse.fromJson(r["data"]);
           statusNebeng.value = nebengPostingRes.nebengPosting!.status!;
           log("status nebeng value : " + statusNebeng.toString());
+          controllerRiderInfo.hasActivePost.value = true;
           controllerPostingan.postingan.value = nebengPostingRes;
           listUserNebeng.clear();
           if (nebengPostingRes.nebengOrder != null) {

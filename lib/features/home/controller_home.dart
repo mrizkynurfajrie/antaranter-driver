@@ -1,7 +1,5 @@
-import 'dart:developer';
-
-import 'package:antaranter_driverapp/response/nebeng_posting_response.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_postingan.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/home/api_home.dart';
 import 'package:antaranter_driverapp/response/home_response.dart';
@@ -41,7 +39,10 @@ class ControllerHome extends GetxController {
       loading.value = false;
     } catch (e) {
       // print(e.toString());
-      Get.snackbar("Kesalahan", "Terjadi Kesalahan");
+      showPopUpError(
+        errorTitle: 'Kesalahan',
+        errorMessage: 'Terjadi Kesalahan',
+      );
     }
   }
 

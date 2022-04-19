@@ -41,6 +41,19 @@ class AppIcons {
   }
 }
 
+class PopUpIcons {
+  static const error = 'assets/icons/error_popup.svg';
+  static const success = 'assets/icons/success_popup.svg';
+  static const information = 'assets/icons/information-circle.svg';
+
+  static Widget iconApp(String asset) {
+    return SvgPicture.asset(
+      asset,
+      fit: BoxFit.contain,
+    );
+  }
+}
+
 class AppLogos {
   static const logoOnly = 'assets/logo/antaranter-logo-only.png';
   static const nameOnly = 'assets/logo/antaranter-text-only.png';

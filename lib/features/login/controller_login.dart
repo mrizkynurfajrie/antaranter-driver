@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -88,7 +89,10 @@ class ControllerLogin extends GetxController {
       loading.value = false;
     } catch (e) {
       log(e.toString());
-      Get.snackbar("Kesalahan", e.toString());
+      showPopUpError(
+        errorTitle: 'Kesalahan',
+        errorMessage: e.toString(),
+      );
       loading.value = false;
     }
   }
