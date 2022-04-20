@@ -5,6 +5,7 @@ class ApiUserAccount {
   Future<dynamic> updateUserAccount({
     required var name,
     required var email,
+    required var gender,
     required var nik,
     required var ktp,
     required var img,
@@ -18,6 +19,7 @@ class ApiUserAccount {
     final inputBody = {
       "name": name,
       "email": email,
+      "gender": gender,
       "nik": nik,
       "ktp_pict": ktp,
       "image": img,

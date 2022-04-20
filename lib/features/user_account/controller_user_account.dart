@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
@@ -25,8 +24,11 @@ class ControllerUserAccount extends GetxController {
   final ApiUserAccount api;
   ControllerUserAccount({required this.api});
 
+  List allGender = [].obs;
+
   var txtName = TextEditingController();
   var txtEmail = TextEditingController();
+  var txtGender = TextEditingController();
   var txtDate = TextEditingController();
   var txtAddress = TextEditingController();
   var txtPhone = TextEditingController();
@@ -53,15 +55,18 @@ class ControllerUserAccount extends GetxController {
   var isValidForm = false.obs;
   var loadingForm = false.obs;
   var statusUpdate = 0.obs;
-
   var itemProvince = 'Provinsi'.obs;
   var itemCities = 'Kota'.obs;
+  var itemGender = 'Jenis Kelamin'.obs;
   var search = ''.obs;
   var idProvince = 0.obs;
   var idCities = 0.obs;
+  var gender = ''.obs;
+  var selectedGender = ''.obs;
 
   var provinces = <ModelBottomsheet>[].obs;
   var cities = <ModelBottomsheet>[].obs;
+  
 
   final ImagePicker picker = ImagePicker();
   XFile? img;
@@ -284,6 +289,89 @@ class ControllerUserAccount extends GetxController {
     } catch (_) {}
   }
 
+  // getGender() {
+  //   List<String>
+  //   final List listGender = List.from(list);
+  //   allGender(List.from(listGender))
+  //   log("all gender : " + allGender.toString());
+  // }
+
+  buildGender() {
+    return Get.defaultDialog(
+      title: 'Pilih Jenis Kelamin',
+      titlePadding: EdgeInsets.symmetric(vertical: 15.h),
+      titleStyle: TextStyles.inter.copyWith(
+        fontSize: FontSizes.s14,
+        fontWeight: FontWeight.w500,
+        color: AppColor.primaryColor,
+      ),
+      contentPadding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+      content: SizedBox(
+        width: Get.width,
+        height: Get.height * 0.12.h,
+        child: Column(
+          children: [
+            ListView(
+              shrinkWrap: true,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    gender.value = 'Laki-Laki';
+                    Get.back();
+                  },
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: AppColor.greyColorLight, width: 1))),
+                    child: ListTile(
+                      dense: true,
+                      visualDensity: VisualDensity.comfortable,
+                      trailing: Icon(
+                        Icons.male,
+                        size: IconSizes.med,
+                        color: AppColor.genderMale,
+                      ),
+                      title: Text(
+                        'Laki-Laki',
+                        style: TextStyles.body1,
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    gender.value = 'Perempuan';
+                    Get.back();
+                  },
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: AppColor.greyColorLight, width: 1))),
+                    child: ListTile(
+                      dense: true,
+                      visualDensity: VisualDensity.comfortable,
+                      trailing: Icon(
+                        Icons.female,
+                        size: IconSizes.med,
+                        color: AppColor.genderFemale,
+                      ),
+                      title: Text(
+                        'Perempuan',
+                        style: TextStyles.body1,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   buildProvince(context) {
     BottomsheetSelection(
         title: 'Pilih Provinsi',
@@ -420,7 +508,7 @@ class ControllerUserAccount extends GetxController {
     var hasilstatus = controllerRiderInfo.rider.value.status == 0 ||
             controllerRiderInfo.rider.value.status == 2
         ? controllerRiderInfo.rider.value.status = 1
-        : controllerRiderInfo.rider.value.status = 2;
+        : controllerRiderInfo.rider.value.status = 1;
     try {
       await uploadImgRider();
       await uploadKtpRider();
@@ -434,9 +522,15 @@ class ControllerUserAccount extends GetxController {
           uploadKtp = controllerRiderInfo.rider.value.ktpPict!;
         }
       }
+      if (gender.value == 'Laki-Laki'){
+        selectedGender.value = 'male';
+      } else {
+        selectedGender.value = 'female';
+      }
       var updateResult = await api.updateUserAccount(
         name: txtName.text,
         email: txtEmail.text,
+        gender: selectedGender.value,
         nik: txtNik.text,
         ktp: uploadKtp,
         img: uploadImg,

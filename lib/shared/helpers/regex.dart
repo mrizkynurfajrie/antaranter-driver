@@ -22,14 +22,11 @@ bool isValidPassword({required String password, int minLength = 6}) {
   //     password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
   bool hasMinLength = password.length >= minLength;
 
-  return 
-  // capitalFirst &&
-      hasDigits &&
-      hasUppercase &&
-      hasLowercase &&
-      hasMinLength;
-      //  &&
-      // hasSpecialCharacters;
+  return
+      // capitalFirst &&
+      hasDigits && hasUppercase && hasLowercase && hasMinLength;
+  //  &&
+  // hasSpecialCharacters;
 }
 
 bool isValidConfirmPassword(

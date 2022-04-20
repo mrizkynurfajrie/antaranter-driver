@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/helpers/regex.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
@@ -165,6 +167,84 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     ],
                   ),
                   verticalSpace(10.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InputPrimary(
+                        hintText: 'Nama',
+                        onTap: () {},
+                        prefixIcon: const Icon(Icons.person),
+                        maxLines: 1,
+                        boxWidth: Get.width * 0.56.w,
+                        padding: EdgeInsets.only(bottom: 3.h, top: 2.h),
+                        controller: controller.txtName,
+                        label: 'Nama',
+                      ),
+                      horizontalSpace(4.w),
+                      InputDate(
+                        controller: controller.txtDate,
+                        selectedDate: (value) {},
+                        isValid: (value) {},
+                        boxWidth: Get.width * 0.30.w,
+                        prefixIcon: const Icon(Icons.date_range),
+                        hintText: 'Tanggal Lahir',
+                        padding: EdgeInsets.only(top: 1.h, bottom: 4.h),
+                        label: 'Tanggal Lahir',
+                      ),
+                    ],
+                  ),
+                  Obx(
+                    () => Container(
+                      width: Get.width * 0.88.w,
+                      margin: EdgeInsets.symmetric(horizontal: 6.w),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Jenis Kelamin',
+                            style: TextStyles.inter.copyWith(
+                              fontSize: FontSizes.s12,
+                              color: AppColor.neutral,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              controller.buildGender();
+                            },
+                            child: CardRounded(
+                              width: Get.width * 0.88.w,
+                              margin: EdgeInsets.only(
+                                  top: 2.h, bottom: 4.h, left: 2.w, right: 2.w),
+                              borderRadius: 6,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    (controller.gender.value == '')
+                                        ? "Pilih Jenis Kelamin"
+                                        : controller.gender.value,
+                                    style: TextStyles.inter.copyWith(
+                                      fontSize: FontSizes.s12,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.keyboard_arrow_down,
+                                    size: IconSizes.sm,
+                                    color: AppColor.bodyColor.shade600,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                   InputEmail(
                     controller: controller.txtEmail,
                     isValid: (value) {},
@@ -173,16 +253,6 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     prefixIcon: const Icon(Icons.mail),
                     boxWidth: Get.width * 0.88.w,
                     label: 'E-mail',
-                  ),
-                  InputPrimary(
-                    hintText: 'Nama',
-                    onTap: () {},
-                    prefixIcon: const Icon(Icons.person),
-                    maxLines: 1,
-                    boxWidth: Get.width * 0.88.w,
-                    padding: EdgeInsets.only(bottom: 3.h, top: 2.h),
-                    controller: controller.txtName,
-                    label: 'Nama',
                   ),
                   InputPrimary(
                     hintText: 'NIK',
@@ -194,6 +264,11 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     controller: controller.txtNik,
                     label: 'NIK',
                     inputFormatters: [LengthLimitingTextInputFormatter(16)],
+                    validate: (value) {
+                      if (!isValidIdNumber(idNumber: value.toString())) {
+                        return '- Tolong isi NIK dengan baik dan benar (16 Digit)';
+                      }
+                    },
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -288,16 +363,6 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                       ),
                       verticalSpace(5.h)
                     ],
-                  ),
-                  InputDate(
-                    controller: controller.txtDate,
-                    selectedDate: (value) {},
-                    isValid: (value) {},
-                    boxWidth: Get.width * 0.88.w,
-                    prefixIcon: const Icon(Icons.date_range),
-                    hintText: 'Tanggal Lahir',
-                    padding: EdgeInsets.only(top: 1.h, bottom: 4.h),
-                    label: 'Tanggal Lahir',
                   ),
                   Container(
                     width: Get.width * 0.88.w,

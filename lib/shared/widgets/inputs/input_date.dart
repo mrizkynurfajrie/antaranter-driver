@@ -20,23 +20,25 @@ class InputDate extends StatefulWidget {
   final ValueSetter<bool> isValid;
   final double? boxWidth;
   final EdgeInsets? padding;
+  final EdgeInsets? margin;
 
-  const InputDate({
-    Key? key,
-    this.hintText = 'Pilih Tanggal',
-    this.validate,
-    this.prefixIcon,
-    this.suffixIcon,
-    this.label = '',
-    required this.controller,
-    this.initialDate,
-    this.firstDate,
-    this.lastDate,
-    required this.selectedDate,
-    required this.isValid,
-    this.boxWidth,
-    this.padding,
-  }) : super(key: key);
+  const InputDate(
+      {Key? key,
+      this.hintText = 'Pilih Tanggal',
+      this.validate,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.label = '',
+      required this.controller,
+      this.initialDate,
+      this.firstDate,
+      this.lastDate,
+      required this.selectedDate,
+      required this.isValid,
+      this.boxWidth,
+      this.padding,
+      this.margin})
+      : super(key: key);
 
   @override
   _InputDateState createState() => _InputDateState();
@@ -90,6 +92,7 @@ class _InputDateState extends State<InputDate> {
         Container(
           padding: widget.padding,
           width: widget.boxWidth,
+          margin: widget.margin ?? EdgeInsets.zero,
           child: TextFormField(
             onTap: _selectDate,
             readOnly: true,
@@ -108,10 +111,7 @@ class _InputDateState extends State<InputDate> {
                   widget.isValid(true);
                   return null;
                 },
-            style: TextStyles.inter.copyWith(
-                fontSize: FontSizes.s12,
-                fontWeight: FontWeight.w400,
-                color: AppColor.neutral),
+            style: TextStyles.body2,
             decoration: inputDecoration(
               hintText: widget.hintText,
               prefixIcon: widget.prefixIcon,
