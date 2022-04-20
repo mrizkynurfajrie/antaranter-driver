@@ -217,4 +217,6 @@ class AppColor {
   static const Color greyColor = Color(0xFF5a5a5a);
   static const Color greyColorLight = Color(0xFF969696);
   static const Color transparentColor = Colors.transparent;
+  static const Color genderMale = Color(0xFF5084FC);
+  static const Color genderFemale = Color(0xFFFF2CC4);
 }

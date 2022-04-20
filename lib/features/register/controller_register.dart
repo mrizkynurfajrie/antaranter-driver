@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:antaranter_driverapp/response/term_condition.dart';
+import 'package:antaranter_driverapp/shared/helpers/regex.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,9 +21,9 @@ class ControllerRegister extends GetxController {
   var cName = TextEditingController();
   var cPhoneNumber = TextEditingController();
   var cPassword = TextEditingController();
-  var isValidName = false.obs;
-  var isValidPhoneNumber = false.obs;
-  var isValidPassword = false.obs;
+  var validName = false.obs;
+  var validPhoneNumber = false.obs;
+  var validPassword = false.obs;
   var isValidForm = false.obs;
 
   var statusNebeng = 0.obs;
@@ -68,22 +69,23 @@ class ControllerRegister extends GetxController {
 
   formValidationListener() {
     cPhoneNumber.addListener(() {
-      isValidPhoneNumber.value = cPhoneNumber.text.isNotEmpty;
+      validPhoneNumber.value = isValidPhoneNumber(phoneNumber: cPhoneNumber.text);
       validateForm();
     });
     cPassword.addListener(() {
-      isValidPassword.value = cPassword.text.isNotEmpty;
+      validPassword.value = isValidPassword(password: cPassword.text);
       validateForm();
     });
     cName.addListener(() {
-      isValidName.value = cName.text.isNotEmpty;
+      validName.value = isValidName(name: cName.text);
       validateForm();
     });
   }
 
   validateForm() {
     isValidForm.value =
-        isValidPhoneNumber.value && isValidPassword.value && isValidName.value;
+        validPhoneNumber.value && validPassword.value && validName.value;
+
   }
 
   register() async {

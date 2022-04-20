@@ -92,7 +92,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                                 height: IconSizes.xxl,
                                                 width: IconSizes.xxl,
                                                 child: Image.network(
-                                                  "${Api1().baseUrl}images/${controller.controllerRiderInfo.rider.value.image}",
+                                                  "${Api1().imgStorUrl}DEV/${controller.controllerRiderInfo.rider.value.image}",
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
@@ -241,7 +241,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                           width: Get.width.w,
                                           height: Get.height.h,
                                           child: Image.network(
-                                            "${Api1().baseUrl}images/${controller.controllerRiderInfo.rider.value.ktpPict}",
+                                            "${Api1().imgStorUrl}DEV/${controller.controllerRiderInfo.rider.value.ktpPict}",
                                             fit: BoxFit.cover,
                                           ),
                                         ),

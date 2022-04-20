@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:antaranter_driverapp/shared/helpers/regex.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +19,8 @@ class ControllerLogin extends GetxController {
 
   var cPhoneNumber = TextEditingController();
   var cPassword = TextEditingController();
-  var isValidPhoneNumber = false.obs;
-  var isValidPassword = false.obs;
+  var validPhoneNumber = false.obs;
+  var validPassword = false.obs;
   var isValidForm = false.obs;
 
   var loading = false.obs;
@@ -44,17 +45,17 @@ class ControllerLogin extends GetxController {
 
   formValidationListener() {
     cPhoneNumber.addListener(() {
-      isValidPhoneNumber.value = cPhoneNumber.text.isNotEmpty;
+      validPhoneNumber.value = isValidPhoneNumber(phoneNumber: cPhoneNumber.text);
       validateForm();
     });
     cPassword.addListener(() {
-      isValidPassword.value = cPassword.text.isNotEmpty;
+      validPassword.value = isValidPassword(password: cPassword.text);
       validateForm();
     });
   }
 
   validateForm() {
-    isValidForm.value = isValidPhoneNumber.value && isValidPassword.value;
+    isValidForm.value = validPhoneNumber.value && validPassword.value;
   }
 
   login() async {

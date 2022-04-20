@@ -9,7 +9,7 @@ bool isValidEmail({required String email}) {
   return GetUtils.isEmail(email);
 }
 
-bool isValidPassword({required String password, int minLength = 8}) {
+bool isValidPassword({required String password, int minLength = 6}) {
   if (password.isEmpty) {
     return false;
   }

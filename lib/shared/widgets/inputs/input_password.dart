@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_adjacent_string_concatenation
 
+import 'package:antaranter_driverapp/shared/helpers/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
@@ -78,12 +79,12 @@ class _InputPasswordState extends State<InputPassword> {
               textCapitalization: widget.textCapitalization,
               validator: widget.validate ??
                   (value) {
-                    // if (!isValidPassword(password: value.toString())) {
-                    //   return '- Password minimal 8 karakter\n' +
-                    //       // '- Diawali huruf kapital\n' +
-                    //       '- Terdiri dari huruf besar, huruf kecil, dan angka';
-                    //   // dan symbol (!@#\$%^&*(),.?":{}|<>])';
-                    // }
+                    if (!isValidPassword(password: value.toString())) {
+                      return '- Password minimal 6 karakter\n' +
+                          // '- Diawali huruf kapital\n' +
+                          '- Terdiri dari huruf besar, huruf kecil, dan angka';
+                      // dan symbol (!@#\$%^&*(),.?":{}|<>])';
+                    }
                   },
               style: TextStyles.textBase,
               decoration: inputDecoration(

@@ -61,10 +61,12 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                   Padding(
                                     padding:
                                         EdgeInsets.only(top: 5.h, bottom: 5.h),
-                                    child: CardRoundedBorder(
-                                      borderColor: AppColor.greyColorLight,
-                                      borderRadius: 9,
-                                      borderWidth: 2,
+                                    child: Container(
+                                      // borderColor: AppColor.greyColorLight,
+                                      // borderRadius: 9,
+                                      // borderWidth: 2,
+                                      color: AppColor.whiteColor,
+                                      padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 5.w),
                                       margin:
                                           EdgeInsets.symmetric(horizontal: 2.w),
                                       child: Column(
@@ -334,7 +336,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                 ),
                                               ],
                                             ),
-                                            verticalSpace(5.h),
+                                            verticalSpace(10.h),
                                             Row(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
@@ -716,12 +718,12 @@ class UserNebeng extends GetView<ControllerNebengPostingDetail> {
                           ?  Icon(
                               Icons.male,
                               size: IconSizes.sm,
-                              color: AppColor.primary,
+                              color: AppColor.genderMale,
                             )
                           :  Icon(
                               Icons.female,
                               size: IconSizes.sm,
-                              color: AppColor.primary,
+                              color: AppColor.genderFemale,
                             )),
                   verticalSpace(2),
                   CardRounded(
