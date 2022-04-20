@@ -5,6 +5,7 @@ import 'package:antaranter_driverapp/features/nebeng_posting_detail/page_nebeng_
 import 'package:antaranter_driverapp/features/profile/page_profile.dart';
 
 class ControllerMain extends GetxController {
+  late PageController pageController;
   var currentPage = 0.obs;
   final List<Widget> pages = [
     const PageHome(),
@@ -14,11 +15,18 @@ class ControllerMain extends GetxController {
   void changePage(index) => currentPage.value = index;
 
   @override
+  void onInit () {
+    super.onInit();
+    pageController = PageController(initialPage: currentPage.value);
+  }
+
+  @override
   void onReady() async {
     super.onReady();
     var pageArg = Get.arguments;
     if (pageArg != null) {
       changePage(pageArg);
+      pageController.jumpToPage(pageArg);
     }
   }
 }

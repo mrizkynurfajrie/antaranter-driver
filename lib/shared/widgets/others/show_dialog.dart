@@ -6,6 +6,7 @@ import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary_outli
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 showPopUp({
   String? title,
@@ -332,20 +333,20 @@ showPopUpChoice({
 //   );
 // }
 
-// showToast(
-//     {required String message,
-//     Color? color,
-//     Color? textColor,
-//     ToastGravity? gravity}) {
-//   Fluttertoast.showToast(
-//       msg: message,
-//       toastLength: Toast.LENGTH_SHORT,
-//       gravity: gravity ?? ToastGravity.BOTTOM,
-//       timeInSecForIosWeb: 1,
-//       backgroundColor: color ?? AppColor.primaryColor.withOpacity(.4),
-//       textColor: textColor ?? AppColor.bodyColor,
-//       fontSize: 12);
-// }
+showToast(
+    {required String message,
+    Color? color,
+    Color? textColor,
+    ToastGravity? gravity}) {
+  Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: gravity ?? ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: color ?? AppColor.primaryColor.withOpacity(.4),
+      textColor: textColor ?? AppColor.bodyColor,
+      fontSize: 12);
+}
 
 // choiceShowDialog({
 //   required dynamic Function() onPress,
