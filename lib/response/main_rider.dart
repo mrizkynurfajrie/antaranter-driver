@@ -25,6 +25,7 @@ class MainRider {
         this.cityLocation,
         this.role,
         this.fcm,
+        this.gender,
         this.accountRegis,
         this.createdAt,
         this.updatedAt,
@@ -46,6 +47,7 @@ class MainRider {
     String? cityLocation;
     String? role;
     String? fcm;
+    String? gender;
     DateTime? accountRegis;
     DateTime? createdAt;
     DateTime? updatedAt;
@@ -67,6 +69,7 @@ class MainRider {
         cityLocation: json["cityLocation"],
         role: json["role"],
         fcm: json["fcm"],
+        gender: json["gender"],
         accountRegis: json["account_regis"] == null ? null : DateTime.parse(json["account_regis"]),
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
@@ -89,6 +92,7 @@ class MainRider {
         "cityLocation": cityLocation,
         "role": role,
         "fcm": fcm,
+        "gender": gender,
         "account_regis": accountRegis ,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
@@ -111,6 +115,7 @@ class MainRider {
         cityLocation: json["cityLocation"],
         role: json["role"],
         fcm: json["fcm"],
+        gender: json["gender"],
         accountRegis: json["account_regis"],
         isDeleted: json["isDeleted"],
     );

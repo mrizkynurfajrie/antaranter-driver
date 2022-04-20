@@ -26,6 +26,7 @@ class Users {
         this.city,
         this.role,
         this.fcm,
+        this.gender,
         this.blockedAt,
         this.createdAt,
         this.updatedAt,
@@ -48,6 +49,7 @@ class Users {
     dynamic city;
     String? role;
     String? fcm;
+    String? gender;
     dynamic blockedAt;
     DateTime? createdAt;
     DateTime? updatedAt;
@@ -70,6 +72,7 @@ class Users {
         city: json["city"],
         role: json["role"],
         fcm: json["fcm"],
+        gender: json["gender"],
         blockedAt: json["blockedAt"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
@@ -93,6 +96,7 @@ class Users {
         "city": city,
         "role": role,
         "fcm": fcm,
+        "gender": gender,
         "blockedAt": blockedAt,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
@@ -116,6 +120,7 @@ class Users {
         city: json["city"],
         role: json["role"],
         fcm: json["fcm"],
+        gender: json["gender"],
         blockedAt: json["blockedAt"],
         createdAt: json["createdAt"].toIso8601String(),
         updatedAt: json["updatedAt"].toIso8601String(),

@@ -295,16 +295,16 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                 size: 20,
                               ),
                               boxWidth: Get.width * 0.65.w,
-                              // initialDate: DateTime(
-                              //   controller.now.year,
-                              //   controller.now.month,
-                              //   controller.now.day + 1,
-                              // ),
-                              // firstDate: DateTime(
-                              //   controller.now.year,
-                              //   controller.now.month,
-                              //   controller.now.day + 1,
-                              // ),
+                              initialDate: DateTime(
+                                controller.now.year,
+                                controller.now.month,
+                                controller.now.day + 1,
+                              ),
+                              firstDate: DateTime(
+                                controller.now.year,
+                                controller.now.month,
+                                controller.now.day + 1,
+                              ),
                             ),
                             verticalSpace(5.h),
                             InputTime(

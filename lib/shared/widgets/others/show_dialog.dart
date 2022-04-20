@@ -348,6 +348,32 @@ showToast(
       fontSize: 12);
 }
 
+showPopUpImage({
+  String? imageUri,
+}) {
+  Get.dialog(
+    Dialog(
+      shape: RoundedRectangleBorder(borderRadius: Corners.lgBorder),
+      child: Container(
+        padding: EdgeInsets.zero,
+        width: double.infinity,
+        decoration: BoxDecoration(borderRadius: Corners.lgBorder),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            imageUri != null
+                ? Image.network(
+                    imageUri,
+                    fit: BoxFit.cover,
+                  )
+                : const SizedBox(),
+          ],
+        ),
+      ),
+    ),
+    barrierDismissible: true,
+  );
+}
 // choiceShowDialog({
 //   required dynamic Function() onPress,
 //   required dynamic Function() onPress2,

@@ -57,6 +57,7 @@ class PageMain extends GetView<ControllerMain> {
           selectedIndex: controller.currentPage.value,
           onTap: (pageIndex) {
             controller.changePage(pageIndex);
+            controller.pageController.jumpToPage(pageIndex);
           },
         ),
       ),

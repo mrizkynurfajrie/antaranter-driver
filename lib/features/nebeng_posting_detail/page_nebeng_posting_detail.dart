@@ -1,8 +1,11 @@
-import 'package:antaranter_driverapp/shared/controller/controller_postingan.dart';
+import 'package:antaranter_driverapp/shared/helpers/utils.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_border.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -18,6 +21,7 @@ import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/loading_indicator.dart';
 import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
   const PageNebengPostingDetail({
@@ -470,7 +474,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                         2)
                                                     ? false
                                                     : true
-                                                    // ? true
+                                                // ? true
                                                 : false,
                                             color: AppColor.whiteColor,
                                             labelStyle:
@@ -656,28 +660,97 @@ class UserNebeng extends GetView<ControllerNebengPostingDetail> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Column(
+          Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              verticalSpace(2),
-              Text(
-                '${nebengOrder.users?.username}',
-                style: TextStyles.inter.copyWith(
-                  fontSize: FontSizes.s14,
-                  fontWeight: FontWeight.w500,
-                  color: AppColor.greyColor,
+              InkWell(
+                onTap: () {
+                  if ('${nebengOrder.users?.image}' != null) {
+                    showPopUpImage(
+                      imageUri: imageUrlPath(
+                        '${nebengOrder.users?.image}',
+                      ),
+                    );
+                  }
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(90),
+                  child: SizedBox(
+                    height: IconSizes.xxl,
+                    width: IconSizes.xxl,
+                    child: CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      imageUrl: imageUrlPath(
+                        '${nebengOrder.users?.image}',
+                      ),
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) => Shimmer(
+                        child: Container(color: AppColor.whiteColor),
+                        gradient: AppColor.shimmerGradient,
+                      ),
+                      errorWidget: (context, url, error) => DottedBorder(
+                        dashPattern: const [12, 4],
+                        strokeWidth: 1,
+                        strokeCap: StrokeCap.round,
+                        color: AppColor.greyColorLight,
+                        borderType: BorderType.Circle,
+                        radius: const Radius.circular(12),
+                        child: SvgPicture.asset(
+                          AppIcons.dummyAvatar,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
-              verticalSpace(2),
-              Text(
-                '${nebengOrder.users?.phone}',
-                style: TextStyles.inter.copyWith(
-                  fontSize: FontSizes.s14,
-                  fontWeight: FontWeight.w400,
-                  color: AppColor.greyColorLight,
-                ),
-              ),
+              horizontalSpace(5.w),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CardRounded(
+                      shadow: Shadows.none,
+                      padding: EdgeInsets.zero,
+                      child: '${nebengOrder.users?.gender}' == 'male'
+                          ?  Icon(
+                              Icons.male,
+                              size: IconSizes.sm,
+                              color: AppColor.primary,
+                            )
+                          :  Icon(
+                              Icons.female,
+                              size: IconSizes.sm,
+                              color: AppColor.primary,
+                            )),
+                  verticalSpace(2),
+                  CardRounded(
+                    shadow: Shadows.none,
+                    padding: EdgeInsets.zero,
+                    child: Text(
+                      '${nebengOrder.users?.username}',
+                      style: TextStyles.inter.copyWith(
+                        fontSize: FontSizes.s14,
+                        fontWeight: FontWeight.w500,
+                        color: AppColor.greyColor,
+                      ),
+                    ),
+                  ),
+                  verticalSpace(2),
+                  CardRounded(
+                    shadow: Shadows.none,
+                    padding: EdgeInsets.zero,
+                    child: Text(
+                      '${nebengOrder.users?.phone}',
+                      style: TextStyles.inter.copyWith(
+                        fontSize: FontSizes.s14,
+                        fontWeight: FontWeight.w400,
+                        color: AppColor.greyColorLight,
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
           IconButton(

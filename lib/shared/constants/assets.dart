@@ -25,11 +25,13 @@ class AppIcons {
   static const contInstagram = 'assets/icons/instagram.svg';
   static const contEmail = 'assets/icons/mail.svg';
   static const contWebsite = 'assets/icons/web.svg';
-  static const rupiah = 'assets/icons/rupiah.png';
   static const mandiri = 'assets/icons/mandiri.png';
   static const profile = 'assets/icons/profile.svg';
   static const activity = 'assets/icons/activity.svg';
   static const home = 'assets/icons/home.svg';
+  static const genderMale = 'assets/icons/gender-male.svg';
+  static const genderFemale = 'assets/icons/gender-female.svg';
+  static const dummyAvatar = 'assets/icons/avatar-dummy.svg';
 
   static Widget iconApp(String asset) {
     return SvgPicture.asset(
