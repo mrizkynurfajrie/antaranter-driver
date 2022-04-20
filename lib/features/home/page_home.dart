@@ -295,11 +295,23 @@ class PageHome extends GetView<ControllerHome> {
                           ),
                           hintText: 'tentukan perjalanan mu',
                           keyboardType: TextInputType.none,
-                          onTap: () {
+                          onTap: () async {
                             if (controller
                                     .controllerRiderInfo.rider.value.status ==
                                 2) {
-                              Get.toNamed(Routes.posting);
+                              if (controller.controllerRiderInfo.hasActivePost == true) {
+                                showPopUp(
+                                    title: 'Perjalanan Nebeng',
+                                    description:
+                                        'Anda masih memiliki pesanan aktif',
+                                    imageUri: PopUpIcons.error);
+                                await Future.delayed(
+                                    const Duration(seconds: 2));
+                                Get.back();
+                              } else {
+                                Get.toNamed(Routes.posting);
+                              }
+
                               // if (controller.controllerPosting.postingan.value
                               //             .nebengPosting!.status ==
                               //         3 &&

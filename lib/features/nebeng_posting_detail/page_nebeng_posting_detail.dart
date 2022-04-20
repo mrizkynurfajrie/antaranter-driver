@@ -66,7 +66,8 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                       // borderRadius: 9,
                                       // borderWidth: 2,
                                       color: AppColor.whiteColor,
-                                      padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 5.w),
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 5.h, horizontal: 5.w),
                                       margin:
                                           EdgeInsets.symmetric(horizontal: 2.w),
                                       child: Column(
@@ -579,12 +580,11 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                             .ubahStatus(2);
                                                       }
                                                     : () {
-                                                        Get.snackbar(
-                                                          "Perjalanan",
-                                                          "Anda belum bisa memulai perjalanan, karena tidak ada pelanggan yang nebeng dengan anda",
-                                                          snackPosition:
-                                                              SnackPosition.TOP,
-                                                        );
+                                                        showPopUpError(
+                                                            errorTitle:
+                                                                'Perjalanan',
+                                                            errorMessage:
+                                                                'Anda belum bisa memulai perjalanan, karena tidak ada pelanggan yang nebeng dengan anda');
                                                       },
                                                 enable: (controller.statusNebeng
                                                             .value ==
@@ -715,12 +715,12 @@ class UserNebeng extends GetView<ControllerNebengPostingDetail> {
                       shadow: Shadows.none,
                       padding: EdgeInsets.zero,
                       child: '${nebengOrder.users?.gender}' == 'male'
-                          ?  Icon(
+                          ? Icon(
                               Icons.male,
                               size: IconSizes.sm,
                               color: AppColor.genderMale,
                             )
-                          :  Icon(
+                          : Icon(
                               Icons.female,
                               size: IconSizes.sm,
                               color: AppColor.genderFemale,

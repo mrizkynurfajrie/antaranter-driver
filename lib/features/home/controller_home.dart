@@ -23,6 +23,7 @@ class ControllerHome extends GetxController {
   onInit() async {
     await getData();
     // await getDataPosting();
+    
     super.onInit();
   }
 

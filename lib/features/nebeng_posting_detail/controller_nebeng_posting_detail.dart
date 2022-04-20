@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -248,11 +249,10 @@ class ControllerNebengPostingDetail extends GetxController
             Get.snackbar("Batalkan Pesanan", "Berhasil membatalkan pesanan");
             Get.offAllNamed(Routes.main);
           } else {
-            Get.snackbar(
-              "Gagal",
-              "Gagal membatalkan pesanan",
-              snackPosition: SnackPosition.TOP,
-            );
+            showPopUpError(
+                errorTitle: 'Gagal',
+                errorMessage:
+                    'Anda harus memberikan alasan pembatalan perjalanan');
           }
         },
         label: 'Batalkan Perjalanan',
