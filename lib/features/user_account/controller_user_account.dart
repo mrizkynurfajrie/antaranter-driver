@@ -79,9 +79,10 @@ class ControllerUserAccount extends GetxController {
     idRider.value = rider["id"] ?? 0;
 
     // await getRiderData();
-
+    
     txtName.text = controllerRiderInfo.rider.value.name ?? '';
     txtEmail.text = controllerRiderInfo.rider.value.email ?? '';
+    selectedGender.value = controllerRiderInfo.rider.value.gender ?? '';
     txtNik.text = controllerRiderInfo.rider.value.nik ?? '';
     txtDate.text = controllerRiderInfo.rider.value.birth == null
         ? ''
@@ -232,7 +233,7 @@ class ControllerUserAccount extends GetxController {
       var uploadSelImg =
           await api.uploadProfileImg(profileImg: imgPreview.value);
       if (uploadSelImg != null) {
-        var selfImgValue = uploadSelImg["data"]["filename"];
+        var selfImgValue = uploadSelImg["data"]["key"];
         uploadImg = selfImgValue;
       }
     } catch (e) {
@@ -244,7 +245,7 @@ class ControllerUserAccount extends GetxController {
     try {
       var uploadSelKtp = await api.uploadKtpImg(ktpImg: ktpPreview.value);
       if (uploadSelKtp != null) {
-        var selfKtpValue = uploadSelKtp["data"]["filename"];
+        var selfKtpValue = uploadSelKtp["data"]["key"];
         uploadKtp = selfKtpValue;
       }
     } catch (e) {

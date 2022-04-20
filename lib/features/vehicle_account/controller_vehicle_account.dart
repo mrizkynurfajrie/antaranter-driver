@@ -184,7 +184,7 @@ class ControllerVehicleAccount extends GetxController {
     try {
       var uploadSelSim = await api.uploadSimImg(simImg: simPreview.value);
       if (uploadSelSim != null) {
-        var selfSimValue = uploadSelSim["data"]["filename"];
+        var selfSimValue = uploadSelSim["data"]["key"];
         uploadSim = selfSimValue;
       }
     } catch (e) {
@@ -196,7 +196,7 @@ class ControllerVehicleAccount extends GetxController {
     try {
       var uploadSelStnk = await api.uploadStnkImg(stnkImg: stnkPreview.value);
       if (uploadSelStnk != null) {
-        var selfStnkValue = uploadSelStnk["data"]["filename"];
+        var selfStnkValue = uploadSelStnk["data"]["key"];
         uploadStnk = selfStnkValue;
       }
     } catch (e) {

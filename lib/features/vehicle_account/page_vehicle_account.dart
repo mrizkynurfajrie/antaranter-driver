@@ -103,7 +103,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                                           width: Get.width.w,
                                           height: Get.height.h,
                                           child: Image.network(
-                                            "${Api1().baseUrl}images/${controller.controllerVehicleInfo.vehicle.value.simPict}",
+                                            "${Api1().imgStorUrl}${controller.controllerVehicleInfo.vehicle.value.simPict}",
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -231,7 +231,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                                           width: Get.width.w,
                                           height: Get.height.h,
                                           child: Image.network(
-                                            "${Api1().baseUrl}images/${controller.controllerVehicleInfo.vehicle.value.stnkPict}",
+                                            "${Api1().imgStorUrl}${controller.controllerVehicleInfo.vehicle.value.stnkPict}",
                                             fit: BoxFit.cover,
                                           ),
                                         ),
