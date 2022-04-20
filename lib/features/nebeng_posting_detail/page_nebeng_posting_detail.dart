@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/shared/controller/controller_postingan.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_border.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
@@ -181,8 +182,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                             .center,
                                                     children: <Widget>[
                                                       Icon(
-                                                        CupertinoIcons
-                                                            .color_filter,
+                                                        CupertinoIcons.number,
                                                         size: IconSizes.med,
                                                         color: AppColor
                                                             .primaryColor,
@@ -423,7 +423,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                   ),
                                   //list user//
                                   Container(
-                                      height: Get.height * 0.310.h,
+                                    height: Get.height * 0.310.h,
                                     width: Get.width,
                                     margin: EdgeInsets.symmetric(
                                         horizontal: Insets.sm),
@@ -459,7 +459,18 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                             enable: (controller
                                                         .statusNebeng.value ==
                                                     1)
-                                                ? true
+                                                ? (controller.formattedTimeNow
+                                                            .toString()
+                                                            .compareTo(controller
+                                                                .controllerPostingan
+                                                                .postingan
+                                                                .value
+                                                                .nebengPosting!
+                                                                .timeDep) <
+                                                        2)
+                                                    ? false
+                                                    : true
+                                                    // ? true
                                                 : false,
                                             color: AppColor.whiteColor,
                                             labelStyle:

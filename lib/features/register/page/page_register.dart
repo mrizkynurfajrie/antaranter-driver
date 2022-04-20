@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/shared/helpers/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:antaranter_driverapp/features/register/controller_register.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';

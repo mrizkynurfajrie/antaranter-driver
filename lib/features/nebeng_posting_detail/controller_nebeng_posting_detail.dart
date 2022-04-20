@@ -20,6 +20,7 @@ import 'package:antaranter_driverapp/shared/controller/controller_vehicle_info.d
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_time.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ControllerNebengPostingDetail extends GetxController
@@ -39,6 +40,7 @@ class ControllerNebengPostingDetail extends GetxController
   var isEmpty = false;
   var statusNebeng = 2.obs;
   var balance = 0.obs;
+  var timelock = ''.obs;
 
   var txtTimeDept = TextEditingController();
   var txtTimeArrv = TextEditingController();
@@ -50,8 +52,24 @@ class ControllerNebengPostingDetail extends GetxController
   @override
   void onInit() async {
     await getDataPosting();
-
+    formattedTimeNow();
     super.onInit();
+  }
+
+  formattedTimeNow() {
+    var timeNow = DateTime.now();
+    var formattedTime = DateFormat.Hms().format(timeNow);
+    // var timeDeparture =
+    //     controllerPostingan.postingan.value.nebengPosting!.timeDep;
+    // log("time depart : " + timeDeparture.toString());
+    // log("time now : " + formattedTime.toString());
+    // var hasil = formattedTime.compareTo(timeDeparture) < 2;
+    // log("hasil : " + hasil.toString());
+    // if (formattedTime.compareTo(timeDeparture) < 2) {
+    //   print("waktu kurang dari 2 jam");
+    // } else{
+    //   print("waktu lebih dari 2 jam");
+    // }
   }
 
   ourWa(String? phoneNum) async {
