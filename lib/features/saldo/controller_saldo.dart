@@ -75,6 +75,8 @@ class ControllerSaldo extends GetxController
         if (resultTransaction.isNotEmpty) {
           listTransaction.clear();
           listTransaction.addAll(resultTransaction);
+          listTransaction
+              .sort(((a, b) => b.datetimeSaldo!.compareTo(a.datetimeSaldo!)));
           change(listTransaction, status: RxStatus.success());
         } else {
           change(null, status: RxStatus.empty());

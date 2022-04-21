@@ -37,6 +37,7 @@ class ControllerOrderHistory extends GetxController
         if (resultHistory.isNotEmpty) {
           listHistory.clear();
           listHistory.addAll(resultHistory);
+          listHistory.sort(((a, b) => b.createdAt!.compareTo(a.createdAt!)));
           change(listHistory, status: RxStatus.success());
         } else {
           change(null, status: RxStatus.empty());
