@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:antaranter_driverapp/response/main_rider.dart';
 import 'package:antaranter_driverapp/response/term_condition.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
 import 'package:antaranter_driverapp/shared/helpers/regex.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/register/api_register.dart';
@@ -17,6 +19,8 @@ class ControllerRegister extends GetxController {
   ControllerRegister({required this.api});
 
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
+
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   var statusAgreementTerm = false.obs;
 
@@ -41,6 +45,8 @@ class ControllerRegister extends GetxController {
   var idRider = 0.obs;
   bool isReady = false;
   int? pages = 0;
+  var token = ''.obs;
+  var loginStatus = false;
 
   var loading = true.obs;
 
@@ -104,16 +110,32 @@ class ControllerRegister extends GetxController {
       );
 
       if (res['success'] == true) {
+        String? fcmToken = await messaging.getToken();
+        var autoSignin = await api.autoLogin(
+            phoneNumber: cPhoneNumber.text,
+            password: cPassword.text,
+            fcm: fcmToken ?? '00');
         loading.value = false;
-        Get.offAllNamed(Routes.regsuccess);
-        await Future.delayed(const Duration(seconds: 2));
-        var phoneNumber = res['data']['newRider']['phone'];
-        var riderId = res['data']['newRider']['id'];
-        var resNebengRider = await api.createNebengRider(
-          idRider: riderId,
-        );
-        log(resNebengRider.toString());
-        Get.offAllNamed(Routes.login, arguments: phoneNumber);
+        if (autoSignin['success'] == true) {
+          var detailUser = autoSignin["data"]["rider"];
+          await Api2().setRider(rider: detailUser);
+          var getDetailUser = await Api2().getRider();
+          controllerRiderInfo.rider.value = MainRider.fromJson(detailUser);
+          log(getDetailUser.toString());
+          var tokenUser = autoSignin["data"]["token"];
+          token.value = tokenUser;
+          await Api2().setToken(token: token.value);
+          loginStatus = true;
+          await Api2().setIsLogin(isLogin: loginStatus);
+          Get.offAllNamed(Routes.regsuccess);
+          await Future.delayed(const Duration(seconds: 2));
+          var phoneNumber = res['data']['newRider']['phone'];
+          var riderId = res['data']['newRider']['id'];
+          var resNebengRider = await api.createNebengRider(
+            idRider: riderId,
+          );
+          Get.toNamed(Routes.main);
+        }
       } else {
         var firstError = res['errors'][0];
         throw firstError['message'];

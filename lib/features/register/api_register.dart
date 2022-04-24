@@ -37,4 +37,19 @@ class ApiRegister {
 
     return response;
   }
+
+  Future<dynamic> autoLogin({
+    required String phoneNumber,
+    required String password,
+    required String fcm,
+  }) async {
+    final loginBody = {
+      "phone": phoneNumber,
+      "password": password,
+      "fcm": fcm,
+    };
+
+    var apiLoginResponse = await Api1().apiJSONPost("login-rider", loginBody);
+    return apiLoginResponse;
+  }
 }
