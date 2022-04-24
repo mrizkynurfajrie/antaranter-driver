@@ -249,7 +249,8 @@ class ControllerNebengPosting extends GetxController {
         ),
       ),
       confirm: ButtonPrimaryOutline(
-        onPressed: () {
+        onPressed: () async {
+          await checkDesc();
           createNebengPosting();
         },
         label: 'Ya, Bagikan',

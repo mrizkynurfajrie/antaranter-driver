@@ -57,10 +57,10 @@ class PopUpIcons {
 }
 
 class AppLogos {
-  static const logoOnly = 'assets/logo/antaranter-logo-only.png';
-  static const nameOnly = 'assets/logo/antaranter-text-only.png';
-  static const logoHorizontal = 'assets/logo/antaranter-horizontal.png';
-  static const logoVertical = 'assets/logo/antaranter-vertical.png';
+  static const logoOnly = 'assets/logo/logo-only.png';
+  // static const nameOnly = 'assets/logo/antaranter-text-only.png';
+  static const logoHorizontal = 'assets/logo/logo-horizontal.png';
+  static const logoVertical = 'assets/logo/logo-vertical.png';
 
   static Widget logoApp(String asset) {
     return Image.asset(
@@ -71,10 +71,10 @@ class AppLogos {
 }
 
 class AppLogosMed {
-  static const logoOnly = 'assets/logo/antaranter-logo-only.png';
-  static const nameOnly = 'assets/logo/antaranter-text-only.png';
-  static const logoHorizontal = 'assets/logo/antaranter-horizontal.png';
-  static const logoVertical = 'assets/logo/antaranter-vertical.png';
+  static const logoOnly = 'assets/logo/logo-only.png';
+  // static const nameOnly = 'assets/logo/antaranter-text-only.png';
+  static const logoHorizontal = 'assets/logo/logo-horizontal.png';
+  static const logoVertical = 'assets/logo/logo-vertical.png';
 
   static Widget logoApp(String asset) {
     return Image.asset(

@@ -30,7 +30,7 @@ class PageHome extends GetView<ControllerHome> {
       center: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AppLogos.logoApp(AppLogos.logoHorizontal),
+          AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
         ],
       ),
       child: RefreshIndicator(

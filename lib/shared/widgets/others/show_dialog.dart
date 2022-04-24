@@ -108,7 +108,7 @@ showPopUpChoice({
         backgroundColor: Colors.transparent,
         child: Container(
           decoration: BoxDecoration(
-              borderRadius: Corners.smBorder, color: Colors.white),
+              borderRadius: Corners.lgBorder, color: Colors.white),
           child: Padding(
             padding: EdgeInsets.all(Insets.xl),
             child: Column(
@@ -128,7 +128,7 @@ showPopUpChoice({
                   ),
                 Text(
                   description ?? "",
-                  style: TextStyles.body2.copyWith(color: Colors.black54),
+                  style: TextStyles.body2.copyWith(color: AppColor.greyColor),
                   textAlign: TextAlign.center,
                 ),
                 verticalSpace(Insets.xl),

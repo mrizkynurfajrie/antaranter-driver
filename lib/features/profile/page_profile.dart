@@ -24,7 +24,7 @@ class PageProfile extends GetView<ControllerProfile> {
       toolbarColor: AppColor.whiteColor,
       toolbarElevation: 2,
       center: Align(
-        child: AppLogosMed.logoApp(AppLogosMed.nameOnly),
+        child: AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
         alignment: Alignment.centerRight,
       ),
       padding: EdgeInsets.zero,

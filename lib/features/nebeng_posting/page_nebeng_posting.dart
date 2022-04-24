@@ -31,7 +31,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
       enableBack: true,
       toolbarTitleColor: AppColor.primaryColor,
       center: Align(
-        child: AppLogosMed.logoApp(AppLogosMed.nameOnly),
+        child: AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
         alignment: Alignment.centerRight,
       ),
       child: SafeArea(

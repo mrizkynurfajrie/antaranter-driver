@@ -19,7 +19,7 @@ class PageContact extends GetView<ControllerContact> {
       toolbarColor: AppColor.whiteColor,
       toolbarTitleColor: AppColor.primaryColor,
       center: Align(
-        child: AppLogosMed.logoApp(AppLogosMed.nameOnly),
+        child: AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
         alignment: Alignment.centerRight,
       ),
       toolbarElevation: 2,

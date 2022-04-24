@@ -47,12 +47,12 @@ class Body extends StatelessWidget {
           SizedBox(
             height: Get.height * 0.5,
             child: Image.asset(
-              "assets/logo/antaranter-logo-only.png",
+              "assets/logo/logo-only.png",
               width: size.width * 0.40,
             ),
           ),
           Text(
-            "AntarAnter App",
+            "AntarAnter Driver App",
             style: TextStyle(
               fontFamily: 'Poppins',
               fontSize: FontSizes.s20,

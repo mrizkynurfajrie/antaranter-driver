@@ -6,5 +6,5 @@ dismisKeyboard() {
 }
 
 String imageUrlPath(String fileName) {
-  return "${Api1().baseUrl}images/$fileName";
+  return "${Api1().imgStorUrl}$fileName";
 }

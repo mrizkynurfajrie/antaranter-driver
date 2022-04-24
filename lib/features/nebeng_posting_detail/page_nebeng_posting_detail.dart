@@ -38,7 +38,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
       backgroundColor: AppColor.bgPageColor,
       enableBack: false,
       center: Align(
-        child: AppLogos.logoApp(AppLogos.logoHorizontal),
+        child: AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
         alignment: Alignment.center,
       ),
       child: Obx(
@@ -152,8 +152,10 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                         // )
                                                         RichText(
                                                           text: TextSpan(
-                                                            text:
-                                                                "${controller.controllerPostingan.postingan.value.nebengPosting!.count}",
+                                                            text: "${controller.controllerPostingan.postingan.value.nebengPosting!.count}"
+                                                                    .isEmpty
+                                                                ? "0"
+                                                                : "${controller.controllerPostingan.postingan.value.nebengPosting!.count}",
                                                             style: TextStyles
                                                                 .inter
                                                                 .copyWith(
@@ -177,14 +179,23 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                                           .s14,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .w500,
+                                                                          .bold,
                                                                   color: AppColor
-                                                                      .greyColorLight,
+                                                                      .greyColor,
                                                                 ),
                                                               ),
-                                                              controller.controllerPostingan.postingan.value.nebengPosting!.seatAvail
-                                                                          ==
-                                                                      controller.controllerPostingan.postingan.value.nebengPosting!.count
+                                                              controller
+                                                                          .controllerPostingan
+                                                                          .postingan
+                                                                          .value
+                                                                          .nebengPosting!
+                                                                          .seatAvail ==
+                                                                      controller
+                                                                          .controllerPostingan
+                                                                          .postingan
+                                                                          .value
+                                                                          .nebengPosting!
+                                                                          .count
                                                                   ? TextSpan(
                                                                       text:
                                                                           " (penuh)",
@@ -575,8 +586,20 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                             borderType: BorderType.RRect,
                                             radius: const Radius.circular(4),
                                             child: ButtonPrimary(
-                                              onPressed: () async {
-                                                await controller.ubahStatus(3);
+                                              onPressed: () {
+                                                showPopUpChoice(
+                                                    title:
+                                                        'Menyelesaikan Perjalanan',
+                                                    description:
+                                                        'Apakah anda telah sampai ke tujuan anda?',
+                                                    onConfirm: () async {
+                                                      await controller
+                                                          .ubahStatus(3);
+                                                      Get.back();
+                                                    },
+                                                    onCancel: () {
+                                                      Get.back();
+                                                    });
                                               },
                                               label: 'Perjalanan Selesai',
                                               color: AppColor.primaryColor,
@@ -701,16 +724,18 @@ class UserNebeng extends GetView<ControllerNebengPostingDetail> {
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               InkWell(
                 onTap: () {
-                  if ('${nebengOrder.users?.image}' != null) {
+                  if ('${nebengOrder.users!.image}' != null) {
                     showPopUpImage(
                       imageUri: imageUrlPath(
                         '${nebengOrder.users?.image}',
                       ),
                     );
+                  } else {
+                    showPopUpImage(imageUri: 'assets/icons/avatar_dummy.svg');
                   }
                 },
                 child: ClipRRect(
@@ -747,33 +772,38 @@ class UserNebeng extends GetView<ControllerNebengPostingDetail> {
               horizontalSpace(5.w),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CardRounded(
-                      shadow: Shadows.none,
-                      padding: EdgeInsets.zero,
-                      child: '${nebengOrder.users?.gender}' == 'male'
-                          ? Icon(
-                              Icons.male,
-                              size: IconSizes.sm,
-                              color: AppColor.genderMale,
-                            )
-                          : Icon(
-                              Icons.female,
-                              size: IconSizes.sm,
-                              color: AppColor.genderFemale,
-                            )),
                   verticalSpace(2),
-                  CardRounded(
-                    shadow: Shadows.none,
-                    padding: EdgeInsets.zero,
-                    child: Text(
-                      '${nebengOrder.users?.username}',
-                      style: TextStyles.inter.copyWith(
-                        fontSize: FontSizes.s14,
-                        fontWeight: FontWeight.w500,
-                        color: AppColor.greyColor,
+                  Row(
+                    children: [
+                      CardRounded(
+                          shadow: Shadows.none,
+                          padding: EdgeInsets.zero,
+                          child: '${nebengOrder.users?.gender}' == 'male'
+                              ? Icon(
+                                  Icons.male,
+                                  size: IconSizes.sm,
+                                  color: AppColor.genderMale,
+                                )
+                              : Icon(
+                                  Icons.female,
+                                  size: IconSizes.sm,
+                                  color: AppColor.genderFemale,
+                                )),
+                      CardRounded(
+                        shadow: Shadows.none,
+                        padding: EdgeInsets.zero,
+                        child: Text(
+                          '${nebengOrder.users?.username}',
+                          style: TextStyles.inter.copyWith(
+                            fontSize: FontSizes.s14,
+                            fontWeight: FontWeight.w500,
+                            color: AppColor.greyColor,
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                   verticalSpace(2),
                   CardRounded(
