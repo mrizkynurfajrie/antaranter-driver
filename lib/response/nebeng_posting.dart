@@ -30,6 +30,7 @@ class NebengPosting {
     this.createdAt,
     this.updatedAt,
     this.isDeleted,
+    this.count,
   });
 
   int? id;
@@ -50,6 +51,9 @@ class NebengPosting {
   DateTime? createdAt;
   DateTime? updatedAt;
   DateTime? isDeleted;
+  int? count;
+  
+  get remainingSeat => seatAvail! - count!;
 
   factory NebengPosting.fromJson(Map<String, dynamic> json) => NebengPosting(
         id: json["id"],
@@ -71,6 +75,7 @@ class NebengPosting {
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         isDeleted: json["isDeleted"],
+        count: json["count"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -92,5 +97,6 @@ class NebengPosting {
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
         "isDeleted": isDeleted,
+        "count": count,
       };
 }

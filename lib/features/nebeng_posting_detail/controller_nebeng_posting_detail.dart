@@ -31,9 +31,12 @@ class ControllerNebengPostingDetail extends GetxController
   var controllerPostingan = Get.find<ControllerPostingan>();
 
   final ApiNebengPostingDetail api;
-  ControllerNebengPostingDetail({required this.api});
+  ControllerNebengPostingDetail({
+    required this.api,
+  });
 
   var userOrder = Users().obs;
+  var nebengPost = NebengPosting().obs;
   var loading = false.obs;
   var idNebengRider = 0.obs;
   var isPosting = true;

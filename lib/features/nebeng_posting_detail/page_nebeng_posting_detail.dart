@@ -130,26 +130,73 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                               .primaryColor,
                                                         ),
                                                         horizontalSpace(5.w),
-                                                        Text(
-                                                          controller
-                                                                  .controllerPostingan
-                                                                  .postingan
-                                                                  .value
-                                                                  .nebengPosting
-                                                                  ?.seatAvail
-                                                                  .toString() ??
-                                                              '',
-                                                          style: TextStyles
-                                                              .inter
-                                                              .copyWith(
-                                                            fontSize:
-                                                                FontSizes.s14,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: AppColor
-                                                                .greyColorLight,
+                                                        // Text(
+                                                        //   controller
+                                                        //           .controllerPostingan
+                                                        //           .postingan
+                                                        //           .value
+                                                        //           .nebengPosting
+                                                        //           ?.seatAvail
+                                                        //           .toString() ??
+                                                        //       '',
+                                                        //   style: TextStyles
+                                                        //       .inter
+                                                        //       .copyWith(
+                                                        //     fontSize:
+                                                        //         FontSizes.s14,
+                                                        //     fontWeight:
+                                                        //         FontWeight.w500,
+                                                        //     color: AppColor
+                                                        //         .greyColorLight,
+                                                        //   ),
+                                                        // )
+                                                        RichText(
+                                                          text: TextSpan(
+                                                            text:
+                                                                "${controller.controllerPostingan.postingan.value.nebengPosting!.count}",
+                                                            style: TextStyles
+                                                                .inter
+                                                                .copyWith(
+                                                              fontSize:
+                                                                  FontSizes.s14,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              color: AppColor
+                                                                  .greyColorLight,
+                                                            ),
+                                                            children: [
+                                                              TextSpan(
+                                                                text:
+                                                                    "/${controller.controllerPostingan.postingan.value.nebengPosting!.seatAvail}",
+                                                                style: TextStyles
+                                                                    .inter
+                                                                    .copyWith(
+                                                                  fontSize:
+                                                                      FontSizes
+                                                                          .s14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  color: AppColor
+                                                                      .greyColorLight,
+                                                                ),
+                                                              ),
+                                                              controller.controllerPostingan.postingan.value.nebengPosting!.seatAvail
+                                                                          ==
+                                                                      controller.controllerPostingan.postingan.value.nebengPosting!.count
+                                                                  ? TextSpan(
+                                                                      text:
+                                                                          " (penuh)",
+                                                                      style: TextStyles.inter.copyWith(
+                                                                          fontSize: FontSizes
+                                                                              .s14,
+                                                                          color:
+                                                                              AppColor.errorColor))
+                                                                  : const TextSpan()
+                                                            ],
                                                           ),
-                                                        )
+                                                        ),
                                                       ],
                                                     ),
                                                   ],
