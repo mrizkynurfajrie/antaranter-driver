@@ -463,21 +463,11 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                               controller.dialogUbah();
                                             },
                                             label: 'Ubah Waktu Perjalanan',
+                                            // enable: controller.checkAvailableButton(),
                                             enable: (controller
                                                         .statusNebeng.value ==
                                                     1)
-                                                ? (controller.formattedTimeNow
-                                                            .toString()
-                                                            .compareTo(controller
-                                                                .controllerPostingan
-                                                                .postingan
-                                                                .value
-                                                                .nebengPosting!
-                                                                .timeDep) <
-                                                        2)
-                                                    ? false
-                                                    : true
-                                                // ? true
+                                                ? true
                                                 : false,
                                             color: AppColor.whiteColor,
                                             labelStyle:

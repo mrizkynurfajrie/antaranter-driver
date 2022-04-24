@@ -82,7 +82,7 @@ class _InputPasswordState extends State<InputPassword> {
                     if (!isValidPassword(password: value.toString())) {
                       return '- Password minimal 6 karakter\n' +
                           // '- Diawali huruf kapital\n' +
-                          '- Terdiri dari huruf besar, huruf kecil, dan angka';
+                          '- Terdiri dari huruf kecil dan angka';
                       // dan symbol (!@#\$%^&*(),.?":{}|<>])';
                     }
                   },

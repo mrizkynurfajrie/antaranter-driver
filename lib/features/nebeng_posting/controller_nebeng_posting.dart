@@ -1,10 +1,16 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
+import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary_outline.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
+import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/nebeng_posting/api_nebeng_posting.dart';
 import 'package:antaranter_driverapp/response/nebeng_rider.dart';
@@ -31,6 +37,7 @@ class ControllerNebengPosting extends GetxController {
   var txtDateArrv = TextEditingController();
   var txtTimeDept = TextEditingController();
   var txtTimeArrv = TextEditingController();
+  var txtDesc = TextEditingController();
   var isValidForm = false.obs;
   var isValidPrice = false.obs;
   var itemProvinceDept = 'Provinsi'.obs;
@@ -39,6 +46,7 @@ class ControllerNebengPosting extends GetxController {
   var itemCitiesArrv = 'Kota'.obs;
   var dropDownValue = '1'.obs;
   var search = ''.obs;
+  var valDesc = ''.obs;
   var idProvince = 0.obs;
   var idCities = 0.obs;
   var idRider = 0.obs;
@@ -48,6 +56,7 @@ class ControllerNebengPosting extends GetxController {
   var cities = <ModelBottomsheet>[].obs;
   var loading = false;
   final now = DateTime.now();
+  var isSelectedProvince = false.obs;
 
   var maskFormatter = MaskTextInputFormatter(
     mask: '##.####' '###.###',
@@ -202,10 +211,86 @@ class ControllerNebengPosting extends GetxController {
         }).showSelection();
   }
 
+  popupDesc() {
+    Get.defaultDialog(
+      title: 'Bagikan Perjalanan',
+      titleStyle: TextStyles.inter.copyWith(
+        fontSize: FontSizes.s16,
+        color: AppColor.primaryColor,
+        fontWeight: FontWeight.w500,
+      ),
+      titlePadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+      content: CardRounded(
+        width: Get.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text('Apakah anda ingin memberikan catatan pada perjalanan anda?',
+                style: TextStyles.inter.copyWith(
+                    fontSize: FontSizes.s12,
+                    fontWeight: FontWeight.w400,
+                    color: AppColor.neutral)),
+            verticalSpace(10.h),
+            InputPrimary(
+              hintText: 'Catatan perjalanan',
+              controller: txtDesc,
+              onTap: () {},
+              prefixIcon: Icon(
+                Icons.note,
+                color: AppColor.primaryColor,
+                size: IconSizes.med,
+              ),
+              maxLenght: 100,
+              maxLines: 4,
+              boxWidth: Get.width * 0.65.w,
+            ),
+          ],
+        ),
+      ),
+      confirm: ButtonPrimaryOutline(
+        onPressed: () {
+          createNebengPosting();
+        },
+        label: 'Ya, Bagikan',
+        color: AppColor.whiteColor,
+        outlineColor: AppColor.primary,
+        labelStyle: TextStyles.inter.copyWith(
+          fontSize: FontSizes.s12,
+          color: AppColor.primary,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      cancel: ButtonPrimaryOutline(
+        onPressed: () async {
+           await checkDesc();
+          createNebengPosting();
+        },
+        label: 'Tidak, Bagikan Tanpa Deskripsi',
+        color: AppColor.whiteColor,
+        outlineColor: AppColor.primaryColor,
+        labelStyle: TextStyles.inter.copyWith(
+          fontSize: FontSizes.s12,
+          color: AppColor.primaryColor,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+  }
+
+  checkDesc() async {
+    if (txtDesc.text.isEmpty) {
+      valDesc.value = '-';
+    } else {
+      valDesc.value = txtDesc.text;
+    }
+  }
+
   createNebengPosting() async {
     try {
       loading = true;
       var priceformatted = txtPrice.text.replaceAll(RegExp('[^A-Za-z0-9]'), '');
+
       var updateResult = await api.postingNebeng(
         idRider: controllerRiderInfo.rider.value.id,
         cityOrigin: itemCitiesDept.value,
@@ -216,6 +301,7 @@ class ControllerNebengPosting extends GetxController {
         timeArr: txtTimeArrv.text,
         seatAvail: dropDownValue.value,
         price: priceformatted,
+        desc: valDesc.value,
       );
       log('hasil data : ' + updateResult.toString());
       if (updateResult['success'] == true) {

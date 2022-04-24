@@ -15,7 +15,7 @@ bool isValidPassword({required String password, int minLength = 6}) {
   }
 
   // bool capitalFirst = password.substring(0, 1).contains(RegExp(r'[A-Z]'));
-  bool hasUppercase = password.contains(RegExp(r'[A-Z]'));
+  // bool hasUppercase = password.contains(RegExp(r'[A-Z]'));
   bool hasDigits = password.contains(RegExp(r'[0-9]'));
   bool hasLowercase = password.contains(RegExp(r'[a-z]'));
   // bool hasSpecialCharacters =
@@ -24,7 +24,7 @@ bool isValidPassword({required String password, int minLength = 6}) {
 
   return
       // capitalFirst &&
-      hasDigits && hasUppercase && hasLowercase && hasMinLength;
+      hasDigits && hasLowercase && hasMinLength;
   //  &&
   // hasSpecialCharacters;
 }

@@ -21,7 +21,6 @@ import 'package:antaranter_driverapp/shared/controller/controller_vehicle_info.d
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_time.dart';
-import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ControllerNebengPostingDetail extends GetxController
@@ -53,24 +52,7 @@ class ControllerNebengPostingDetail extends GetxController
   @override
   void onInit() async {
     await getDataPosting();
-    formattedTimeNow();
     super.onInit();
-  }
-
-  formattedTimeNow() {
-    var timeNow = DateTime.now();
-    var formattedTime = DateFormat.Hms().format(timeNow);
-    // var timeDeparture =
-    //     controllerPostingan.postingan.value.nebengPosting!.timeDep;
-    // log("time depart : " + timeDeparture.toString());
-    // log("time now : " + formattedTime.toString());
-    // var hasil = formattedTime.compareTo(timeDeparture) < 2;
-    // log("hasil : " + hasil.toString());
-    // if (formattedTime.compareTo(timeDeparture) < 2) {
-    //   print("waktu kurang dari 2 jam");
-    // } else{
-    //   print("waktu lebih dari 2 jam");
-    // }
   }
 
   ourWa(String? phoneNum) async {
@@ -346,6 +328,25 @@ class ControllerNebengPostingDetail extends GetxController
       return false;
     }
   }
+
+  // bool checkAvailableButton() {
+  //   var timeNow = DateTime.now();
+  //   var dateDep = controllerPostingan.postingan.value.nebengPosting!.dateDep!;
+  //   var timeDep = controllerPostingan.postingan.value.nebengPosting!.timeDep
+  //       .toString()
+  //       .split(':');
+
+  //   var dateTimeDep = DateTime.utc(dateDep.year, dateDep.month, dateDep.day,
+  //       int.parse(timeDep[0]), int.parse(timeDep[1]));
+
+  //   log("datetimedpe : " + timeNow.difference(dateTimeDep).inHours.toString());
+
+  //   if (timeNow.difference(dateTimeDep).inHours > 2) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   onRefresh() async {
     await Future.delayed(const Duration(milliseconds: 1000));

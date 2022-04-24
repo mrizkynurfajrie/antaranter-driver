@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:antaranter_driverapp/response/term_condition.dart';
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
 import 'package:antaranter_driverapp/shared/helpers/regex.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,8 @@ import 'package:antaranter_driverapp/shared/helpers/utils.dart';
 class ControllerRegister extends GetxController {
   final ApiRegister api;
   ControllerRegister({required this.api});
+
+  var controllerRiderInfo = Get.find<ControllerRiderInfo>();
 
   var statusAgreementTerm = false.obs;
 
@@ -69,7 +73,8 @@ class ControllerRegister extends GetxController {
 
   formValidationListener() {
     cPhoneNumber.addListener(() {
-      validPhoneNumber.value = isValidPhoneNumber(phoneNumber: cPhoneNumber.text);
+      validPhoneNumber.value =
+          isValidPhoneNumber(phoneNumber: cPhoneNumber.text);
       validateForm();
     });
     cPassword.addListener(() {
@@ -85,7 +90,6 @@ class ControllerRegister extends GetxController {
   validateForm() {
     isValidForm.value =
         validPhoneNumber.value && validPassword.value && validName.value;
-
   }
 
   register() async {
@@ -116,8 +120,12 @@ class ControllerRegister extends GetxController {
       }
     } catch (e) {
       loading.value = false;
-      log(e.toString());
-      Get.snackbar("Terjadi kesalahan", e.toString());
+      showPopUp(
+          title: 'Terjadi Kesalahan',
+          description: e.toString(),
+          imageUri: PopUpIcons.error);
+      await Future.delayed(const Duration(seconds: 2));
+      Get.back();
     }
   }
 }

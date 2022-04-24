@@ -1,5 +1,6 @@
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/widgets/input_format/input_format_money.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -259,67 +260,83 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                       verticalSpace(5.h),
                       SizedBox(
                         width: Get.width,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            InputSelection(
-                              valueText: controller.itemProvinceDept.value,
-                              hintText: 'select_province'.tr,
-                              onTap: () {
-                                controller.buildProvince(context);
-                                controller.cities.clear();
-                              },
-                              padding: EdgeInsets.all(Insets.sm),
-                              width: Get.width * 0.65.w,
-                              margin: EdgeInsets.only(bottom: 5.h),
-                            ),
-                            InputSelection(
-                              valueText: controller.itemCitiesDept.value,
-                              hintText: 'select_cities'.tr,
-                              onTap: () {
-                                controller.buildCities(context);
-                              },
-                              padding: EdgeInsets.all(Insets.sm),
-                              margin: EdgeInsets.only(bottom: 5.h),
-                              width: Get.width * 0.65.w,
-                            ),
-                            InputDate(
-                              hintText: 'Pilih Tanggal Berangkat',
-                              controller: controller.txtDateDept,
-                              selectedDate: (value) {},
-                              isValid: (value) {},
-                              prefixIcon: const Icon(
-                                Icons.date_range,
-                                color: AppColor.greyColor,
-                                size: 20,
+                        child: Obx(
+                          () => Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              InputSelection(
+                                valueText: controller.itemProvinceDept.value,
+                                hintText: 'select_province'.tr,
+                                onTap: () async {
+                                  controller.buildProvince(context);
+                                  controller.cities.clear();
+                                },
+                                padding: EdgeInsets.all(Insets.sm),
+                                width: Get.width * 0.65.w,
+                                margin: EdgeInsets.only(bottom: 5.h),
                               ),
-                              boxWidth: Get.width * 0.65.w,
-                              initialDate: DateTime(
-                                controller.now.year,
-                                controller.now.month,
-                                controller.now.day + 1,
+                              InputSelection(
+                                valueText: controller.itemCitiesDept.value,
+                                hintText: 'select_cities'.tr,
+                                onTap: () async {
+                                  controller.buildCities(context);
+                                  // if (controller
+                                  //     .idProvince.value == null) {
+                                  //   controller.buildCities(context);
+                                  // } else {
+                                  //   showPopUp(
+                                  //     title: 'Perhatian',
+                                  //     description:
+                                  //         'Pilih provinsi terlebih dahulu untuk dapat memilih kota',
+                                  //     imageUri: PopUpIcons.information,
+                                  //   );
+                                  //   await Future.delayed(
+                                  //       const Duration(seconds: 2));
+                                  //   Navigator.pop(context);
+                                  // }
+                                },
+                                padding: EdgeInsets.all(Insets.sm),
+                                margin: EdgeInsets.only(bottom: 5.h),
+                                width: Get.width * 0.65.w,
                               ),
-                              firstDate: DateTime(
-                                controller.now.year,
-                                controller.now.month,
-                                controller.now.day + 1,
+                              InputDate(
+                                hintText: 'Pilih Tanggal Berangkat',
+                                controller: controller.txtDateDept,
+                                selectedDate: (value) {},
+                                isValid: (value) {},
+                                prefixIcon: const Icon(
+                                  Icons.date_range,
+                                  color: AppColor.greyColor,
+                                  size: 20,
+                                ),
+                                boxWidth: Get.width * 0.65.w,
+                                // initialDate: DateTime(
+                                //   controller.now.year,
+                                //   controller.now.month,
+                                //   controller.now.day + 1,
+                                // ),
+                                // firstDate: DateTime(
+                                //   controller.now.year,
+                                //   controller.now.month,
+                                //   controller.now.day + 1,
+                                // ),
                               ),
-                            ),
-                            verticalSpace(5.h),
-                            InputTime(
-                              hintText: 'Pilih Waktu Berangkat',
-                              controller: controller.txtTimeDept,
-                              selectedTime: (value) {},
-                              isValid: (value) {},
-                              prefixIcon: const Icon(
-                                Icons.access_time_outlined,
-                                size: 20,
-                                color: AppColor.greyColor,
+                              verticalSpace(5.h),
+                              InputTime(
+                                hintText: 'Pilih Waktu Berangkat',
+                                controller: controller.txtTimeDept,
+                                selectedTime: (value) {},
+                                isValid: (value) {},
+                                prefixIcon: const Icon(
+                                  Icons.access_time_outlined,
+                                  size: 20,
+                                  color: AppColor.greyColor,
+                                ),
+                                boxWidth: Get.width * 0.65.w,
                               ),
-                              boxWidth: Get.width * 0.65.w,
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       verticalSpace(Insets.med),
@@ -372,16 +389,16 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                 size: 20,
                               ),
                               boxWidth: Get.width * 0.65.w,
-                              initialDate: DateTime(
-                                controller.now.year,
-                                controller.now.month,
-                                controller.now.day + 1,
-                              ),
-                              firstDate: DateTime(
-                                controller.now.year,
-                                controller.now.month,
-                                controller.now.day + 1,
-                              ),
+                              // initialDate: DateTime(
+                              //   controller.now.year,
+                              //   controller.now.month,
+                              //   controller.now.day + 1,
+                              // ),
+                              // firstDate: DateTime(
+                              //   controller.now.year,
+                              //   controller.now.month,
+                              //   controller.now.day + 1,
+                              // ),
                             ),
                             verticalSpace(5.h),
                             InputTime(
@@ -425,7 +442,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                   onPressed: () {
                     controller.validateForm();
                     if (controller.isValidForm.value) {
-                      controller.createNebengPosting();
+                      controller.popupDesc();
                     }
                   },
                   label: 'Bagikan',
