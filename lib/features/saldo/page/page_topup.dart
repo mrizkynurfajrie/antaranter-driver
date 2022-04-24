@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/shared/helpers/format_currency.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +112,9 @@ class PageTopUp extends GetView<ControllerSaldo> {
                     ),
                     Text(
                       CurrencyFormat.convertToIdr(
-                        (controller.nominalTopUp.value * 1000),
+                        // (controller.nominalTopUp.value * 1000),
+                        (countTotal(controller.uniqueNominalDigit().toString(),
+                            controller.controllerRiderInfo.rider.value.id.toString())),
                         0,
                       ),
                       style: TextStyles.text2xl,
@@ -170,7 +173,7 @@ class PageTopUp extends GetView<ControllerSaldo> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "*******************",
+                                  "1480099906888",
                                   style: TextStyles.textLg.copyWith(
                                     color: AppColor.primaryColor,
                                   ),
@@ -195,14 +198,14 @@ class PageTopUp extends GetView<ControllerSaldo> {
                               color: Colors.black,
                             ),
                             Text(
-                              "Jika sudah berhasil transfer,mohon untuk melakukan konfirmasi ke nomor WA xxxx xxx xxx xx",
+                              "Jika sudah berhasil transfer,mohon tunggu sebentar admin akan melakukan pengecekan",
                               style: TextStyles.textXs.copyWith(
                                 color: Colors.green,
                               ),
                             ),
                             verticalSpace(Insets.med),
                             Text(
-                              "Hanya menerima pembayaran melalui bank Mandiri",
+                              "Saat ini kami hanya menerima pembayaran menuju bank Mandiri",
                               style: TextStyles.textXs
                                   .copyWith(color: AppColor.neutral.shade400),
                             ),

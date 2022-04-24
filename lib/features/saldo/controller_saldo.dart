@@ -24,6 +24,8 @@ class ControllerSaldo extends GetxController
 
   var nominalTopUp = 50.obs;
 
+  var thousand = 1000;
+
   @override
   void onInit() {
     super.onInit();
@@ -99,5 +101,10 @@ class ControllerSaldo extends GetxController
       change(null, status: RxStatus.error(e.toString()));
       Get.snackbar("Terjadi kesalahan", e.toString());
     }
+  }
+
+  int uniqueNominalDigit() {
+    var uniqueNomDig = nominalTopUp.value * 1000;
+    return uniqueNomDig;
   }
 }
