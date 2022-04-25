@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:antaranter_driverapp/shared/helpers/utils.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_border.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
@@ -728,14 +730,17 @@ class UserNebeng extends GetView<ControllerNebengPostingDetail> {
             children: <Widget>[
               InkWell(
                 onTap: () {
-                  if ('${nebengOrder.users!.image}' != null) {
+                  log("gambar image : " + nebengOrder.users!.image.toString());
+                  if (nebengOrder.users!.image != null) {
                     showPopUpImage(
                       imageUri: imageUrlPath(
                         '${nebengOrder.users?.image}',
                       ),
                     );
                   } else {
-                    showPopUpImage(imageUri: 'assets/icons/avatar_dummy.svg');
+                    showPopUpImage(
+                        imageUri:
+                            'https://antaranter.sgp1.digitaloceanspaces.com/PROD/avatar_dummy.png');
                   }
                 },
                 child: ClipRRect(
@@ -760,9 +765,15 @@ class UserNebeng extends GetView<ControllerNebengPostingDetail> {
                         color: AppColor.greyColorLight,
                         borderType: BorderType.Circle,
                         radius: const Radius.circular(12),
-                        child: SvgPicture.asset(
-                          AppIcons.dummyAvatar,
-                          fit: BoxFit.cover,
+                        child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: SvgPicture.asset(
+                            AppIcons.dummyAvatar,
+                            color: '${nebengOrder.users?.gender}' == 'male'
+                                ? AppColor.genderMale
+                                : AppColor.genderFemale,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),

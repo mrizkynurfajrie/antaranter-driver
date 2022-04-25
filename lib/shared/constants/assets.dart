@@ -31,7 +31,7 @@ class AppIcons {
   static const home = 'assets/icons/home.svg';
   static const genderMale = 'assets/icons/gender-male.svg';
   static const genderFemale = 'assets/icons/gender-female.svg';
-  static const dummyAvatar = 'assets/icons/avatar-dummy.svg';
+  static const dummyAvatar = 'assets/icons/avatar_dummy.svg';
 
   static Widget iconApp(String asset) {
     return SvgPicture.asset(

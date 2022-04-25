@@ -8,8 +8,6 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 class PageRegsuccess extends StatelessWidget {
   const PageRegsuccess({Key? key}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -23,20 +21,10 @@ class PageRegsuccess extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Column(
-              children: [
-                AppLogos.logoApp(AppLogos.logoOnly),
-                verticalSpace(5.w),
-                Text(
-                  "AntarAnter",
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: FontSizes.s16,
-                    fontWeight: FontWeight.w500,
-                    color: AppColor.primaryColor,
-                  ),
-                )
-              ],
-            ),
+                  children: [
+                    AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
+                  ],
+                ),
                 SizedBox(height: size.height * 0.30),
                 Text(
                   "Selamat!",

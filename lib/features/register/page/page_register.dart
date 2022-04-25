@@ -1,4 +1,3 @@
-import 'package:antaranter_driverapp/shared/helpers/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:antaranter_driverapp/features/register/controller_register.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
@@ -31,17 +30,7 @@ class PageRegister extends GetView<ControllerRegister> {
           children: <Widget>[
             Column(
               children: [
-                AppLogos.logoApp(AppLogos.logoOnly),
-                verticalSpace(5.w),
-                Text(
-                  "AntarAnter",
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: FontSizes.s16,
-                    fontWeight: FontWeight.w500,
-                    color: AppColor.primaryColor,
-                  ),
-                )
+                AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
               ],
             ),
             verticalSpace(25.h),

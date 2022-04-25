@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -29,19 +30,8 @@ class PageLogin extends GetView<ControllerLogin> {
             //Buat Logo//
             Column(
               children: [
-                Image.asset(
-                  "assets/logo/antaranter-logo-only.png",
-                  width: Get.width * 0.25.w,
-                ),
+                AppLogos.logoApp(AppLogos.logoHorizontal),
                 verticalSpace(5.h),
-                Text(
-                  "AntarAnter",
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: FontSizes.s16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                )
               ],
             ),
             //-----//
