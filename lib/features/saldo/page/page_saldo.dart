@@ -51,10 +51,10 @@ class PageSaldo extends GetView<ControllerSaldo> {
                   children: <Widget>[
                     Row(
                       children: [
-                        AppLogos.logoApp(AppLogos.logoHorizontal),
+                        AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
                       ],
                     ),
-                    verticalSpace(15.h),
+                    verticalSpace(30.h),
                     Align(
                       alignment: Alignment.centerRight,
                       child: SizedBox(

@@ -152,10 +152,10 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                         // )
                                                         RichText(
                                                           text: TextSpan(
-                                                            text: "${controller.controllerPostingan.postingan.value.nebengPosting!.count}"
+                                                            text: "${controller.controllerPostingan.postingan.value.nebengOrder!.length}"
                                                                     .isEmpty
                                                                 ? "0"
-                                                                : "${controller.controllerPostingan.postingan.value.nebengPosting!.count}",
+                                                                : "${controller.controllerPostingan.postingan.value.nebengOrder!.length}",
                                                             style: TextStyles
                                                                 .inter
                                                                 .copyWith(
