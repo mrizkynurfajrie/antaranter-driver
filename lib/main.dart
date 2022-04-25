@@ -123,7 +123,7 @@ class _AppViewState extends State<AppView> with WidgetsBindingObserver {
               },
               child: Stack(children: [
                 child!,
-                const OverlayLogButton(),
+                // const OverlayLogButton(),
                 // PageInfo(pageName: pageName),
               ]),
             ),
