@@ -46,7 +46,7 @@ class Api1 {
         await http.get(Uri.parse(baseUrl + url), headers: headers);
     log("status codenya " + r.statusCode.toString());
 
-    // log(r.body);
+    log(r.body);
     var data = json.decode(r.body);
     // log(data);
     logApi(url: url, res: r, method: "GET");

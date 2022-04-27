@@ -39,7 +39,7 @@ class ControllerHome extends GetxController {
       controllerRiderInfo.rider.refresh();
       loading.value = false;
     } catch (e) {
-      // print(e.toString());
+      print(e.toString());
       showPopUpError(
         errorTitle: 'Kesalahan',
         errorMessage: 'Terjadi Kesalahan',
