@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
@@ -47,7 +48,7 @@ class PageLogin extends GetView<ControllerLogin> {
                   InputPhone(
                     controller: controller.cPhoneNumber,
                     phoneNumber: (value) {},
-                    margin: EdgeInsets.symmetric(horizontal: 12.w),
+                    // margin: EdgeInsets.symmetric(horizontal: 12.w),
                     padding: EdgeInsets.only(bottom: 5.h),
                     inputWidth: Get.width * 0.52.w,
                   ),
@@ -56,33 +57,31 @@ class PageLogin extends GetView<ControllerLogin> {
                     controller: controller.cPassword,
                     label: 'Kata Sandi',
                     hintText: 'Masukkan Kata Sandi',
-                    padding: EdgeInsets.symmetric(horizontal: 14.w),
+                    // padding: EdgeInsets.symmetric(horizontal: 14.w),
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 14.w),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        ButtonText(
-                          label: 'Lupa Kata Sandi?',
-                          textStyle: TextStyles.inter.copyWith(
-                              fontSize: FontSizes.s12,
-                              fontWeight: FontWeight.w500),
-                          onPressed: () async {
-                            showPopUp(
-                              title: 'Lupa Kata Sandi',
-                              description: 'Silakan hubungi admin AntarAnter untuk mengatur kembali kata sandi anda',
-                              imageUri: PopUpIcons.information,
-                              dismissible: false,
-                            );
-                            await Future.delayed(const Duration(seconds: 4));
-                            Navigator.pop(context);
-                          },
-                          color: AppColor.forgotPass,
-                        ),
-                      ],
-                    ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      ButtonText(
+                        label: 'Lupa Kata Sandi?',
+                        textStyle: TextStyles.inter.copyWith(
+                            fontSize: FontSizes.s12,
+                            fontWeight: FontWeight.w500),
+                        onPressed: () async {
+                          // showPopUp(
+                          //   title: 'Lupa Kata Sandi',
+                          //   description: 'Silakan hubungi admin AntarAnter untuk mengatur kembali kata sandi anda',
+                          //   imageUri: PopUpIcons.information,
+                          //   dismissible: false,
+                          // );
+                          // await Future.delayed(const Duration(seconds: 4));
+                          // Navigator.pop(context);
+                          Get.toNamed(Routes.otp);
+                        },
+                        color: AppColor.forgotPass,
+                      ),
+                    ],
                   ),
                 ],
               ),

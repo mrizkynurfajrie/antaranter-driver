@@ -16,4 +16,5 @@ abstract class Routes {
   static const contact = '/contact_page';
   static const topup = '/topup_page';
   static const apiLog = '/page_api_log';
+  static const otp = '/page_otp';
 }
