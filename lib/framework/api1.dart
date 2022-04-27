@@ -6,8 +6,8 @@ import 'package:http_parser/http_parser.dart';
 import 'api2.dart';
 
 class Api1 {
-  // String baseUrl = 'http://app-dev.intakekurir.com/';
-  String baseUrl = 'https://api-prod.intakekurir.com/';
+  String baseUrl = 'http://api-dev.intakekurir.com/';
+  // String baseUrl = 'https://api-prod.intakekurir.com/';
    String webUrl = 'https://antaranter.indoteknokarya.com/';
    String imgStorUrl = 'https://antaranter.sgp1.digitaloceanspaces.com/';
 
@@ -46,7 +46,7 @@ class Api1 {
         await http.get(Uri.parse(baseUrl + url), headers: headers);
     log("status codenya " + r.statusCode.toString());
 
-    // log(r.body);
+    log(r.body);
     var data = json.decode(r.body);
     // log(data);
     logApi(url: url, res: r, method: "GET");

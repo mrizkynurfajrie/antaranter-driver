@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
@@ -17,6 +18,8 @@ import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dar
 import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
 import 'package:antaranter_driverapp/shared/widgets/bottomsheet/bottomsheet_selection.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_item_profile.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 
 class ControllerUserAccount extends GetxController {
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
@@ -66,10 +69,9 @@ class ControllerUserAccount extends GetxController {
 
   var provinces = <ModelBottomsheet>[].obs;
   var cities = <ModelBottomsheet>[].obs;
-  
 
   final ImagePicker picker = ImagePicker();
-  XFile? img;
+  // XFile? img;
 
   @override
   void onInit() async {
@@ -79,7 +81,7 @@ class ControllerUserAccount extends GetxController {
     idRider.value = rider["id"] ?? 0;
 
     // await getRiderData();
-    
+
     txtName.text = controllerRiderInfo.rider.value.name ?? '';
     txtEmail.text = controllerRiderInfo.rider.value.email ?? '';
     selectedGender.value = controllerRiderInfo.rider.value.gender ?? '';
@@ -148,13 +150,32 @@ class ControllerUserAccount extends GetxController {
   getKtpFromCamera() async {
     final XFile? camImage =
         await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
-    ktpPreview.value = camImage!.path;
+    if (camImage != null) {
+      var result = await compressImage(camImage);
+      ktpPreview.value = result.path;
+    }
+  }
+
+  Future<File> compressImage(XFile image) async {
+    final dir = await path_provider.getTemporaryDirectory();
+    var targetPath = dir.absolute.path +
+        "/temp-${DateTime.now().millisecondsSinceEpoch}.png";
+    var compressFile = await FlutterImageCompress.compressAndGetFile(
+      image.path,
+      targetPath,
+      quality: 70,
+      format: CompressFormat.png,
+    );
+    return compressFile!;
   }
 
   getKtpFromFile() async {
     final XFile? fileImage =
         await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
-    ktpPreview.value = fileImage!.path;
+    if (fileImage != null) {
+      var result = await compressImage(fileImage);
+      ktpPreview.value = result.path;
+    }
   }
 
   ktpSourceSelector(context) {
@@ -189,14 +210,20 @@ class ControllerUserAccount extends GetxController {
   getFromCamera() async {
     final XFile? camImage =
         await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
-    imgPreview.value = camImage!.path;
-    img = camImage;
+    if (camImage != null) {
+      var result = await compressImage(camImage);
+      imgPreview.value = result.path;
+      // img = compressFile;
+    }
   }
 
   getFromFile() async {
     final XFile? fileImage =
         await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
-    imgPreview.value = fileImage!.path;
+    if (fileImage != null) {
+      var result = await compressImage(fileImage);
+      imgPreview.value = fileImage.path;
+    }
   }
 
   imgSourceSelector(context) {
@@ -523,7 +550,7 @@ class ControllerUserAccount extends GetxController {
           uploadKtp = controllerRiderInfo.rider.value.ktpPict!;
         }
       }
-      if (gender.value == 'Laki-Laki'){
+      if (gender.value == 'Laki-Laki') {
         selectedGender.value = 'male';
       } else {
         selectedGender.value = 'female';

@@ -55,7 +55,7 @@ class ControllerRegister extends GetxController {
     getDataTerm();
     formValidationListener();
     var rider = await Api2().getRider();
-    idRider.value = rider["id"] ?? 0;
+    // idRider.value = rider["id"] ?? 0;
     super.onInit();
   }
 
