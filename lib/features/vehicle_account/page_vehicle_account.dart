@@ -281,7 +281,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                   verticalSpace(10.h),
                   controller.loading.isFalse?
                   ButtonPrimary(
-                    size: 345.w,
+                    size: 320.w,
                     cornerRadius: 9,
                     onPressed: () async {
                       await controller.updateVehicleAccount();

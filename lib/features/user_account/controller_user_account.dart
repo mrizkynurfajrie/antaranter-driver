@@ -335,9 +335,9 @@ class ControllerUserAccount extends GetxController {
         color: AppColor.primaryColor,
       ),
       contentPadding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-      content: SizedBox(
+      content: CardRounded(
         width: Get.width,
-        height: Get.height * 0.12.h,
+       
         child: Column(
           children: [
             ListView(

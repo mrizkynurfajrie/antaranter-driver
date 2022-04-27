@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:antaranter_driverapp/framework/api1.dart';
 
 class ApiUserAccount {
@@ -50,6 +52,7 @@ class ApiUserAccount {
 
    Future<dynamic> getProvince() async {
     var responseProvince = await Api1().apiJSONGetWitToken("provincies/list");
+    log('data province : ' + responseProvince.toString());
     return responseProvince;
   }
 

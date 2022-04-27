@@ -6,7 +6,7 @@ import 'package:http_parser/http_parser.dart';
 import 'api2.dart';
 
 class Api1 {
-  String baseUrl = 'http://api-dev.intakekurir.com/';
+  String baseUrl = 'https://api-dev.intakekurir.com/';
   // String baseUrl = 'https://api-prod.intakekurir.com/';
    String webUrl = 'https://antaranter.indoteknokarya.com/';
    String imgStorUrl = 'https://antaranter.sgp1.digitaloceanspaces.com/';
