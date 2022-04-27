@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtonText extends StatelessWidget {
   final Function() onPressed;
@@ -29,7 +30,7 @@ class ButtonText extends StatelessWidget {
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         primary: color ?? AppColor.secondColor.shade500,
         minimumSize: const Size(50, 30),
-        padding: EdgeInsets.zero,
+        padding: EdgeInsets.symmetric(vertical: 2.h),
         alignment: Alignment.topCenter,
       ),
       child: Text(

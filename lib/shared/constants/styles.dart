@@ -38,7 +38,7 @@ InputDecoration inputDecoration(
       filled: true,
       fillColor: Colors.white,
       contentPadding:
-          EdgeInsets.symmetric(horizontal: Insets.xs, vertical: Insets.med),
+          EdgeInsets.symmetric(horizontal: Insets.sm, vertical: Insets.med),
       hintText: hintText,
       border: BorderStyles.enableTextField,
       focusedBorder: BorderStyles.focusTextField,

@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -28,72 +29,79 @@ class PageTerms extends GetView<ControllerRegister> {
           AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
         ],
       ),
-      child: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            verticalSpace(15.h),
-            Text(
-              "Selamat datang",
-              style: TextStyles.textHeader,
-              textAlign: TextAlign.center,
-            ),
-            verticalSpace(10.h),
-            SizedBox(
-              width: Get.width * 0.88.w,
-              child: Text(
-                "Mohon perhatikan dan pahami ketentuan berikut untuk dapat menjadi mitra AntarAnter Driver",
-                style: TextStyles.textStd,
+      child: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              verticalSpace(15.h),
+              Text(
+                "Selamat datang",
+                style: TextStyles.textHeader,
                 textAlign: TextAlign.center,
-                maxLines: 3,
               ),
-            ),
-            verticalSpace(10.h),
-            CardRoundedBorder(
-              padding: EdgeInsets.only(left: 3.w, right: 5.w),
-              borderColor: AppColor.greyColorLight,
-              height: Get.height * 0.57.h,
-              width: Get.width * 0.8.w,
-              child: Obx(
-                () => controller.loading.isFalse
-                    ? Scrollbar(
-                        child: ListView(
-                          children: [
-                            Html(
-                              data: controller.termCondition.value.skDesc,
-                            )
-                          ],
-                        ),
-                      )
-                    : loadingIndicatorBottom(context),
+              verticalSpace(10.h),
+              CardRounded(
+                shadow: Shadows.none,
+                color: AppColor.bgPageColor,
+                margin: EdgeInsets.zero,
+                child: Text(
+                  "Mohon perhatikan dan pahami ketentuan berikut untuk dapat menjadi mitra AntarAnter Driver",
+                  style: TextStyles.inter.copyWith(
+                      fontSize: FontSizes.s14, fontWeight: FontWeight.w400),
+                  textAlign: TextAlign.center,
+                  maxLines: 3,
+                ),
               ),
-            ),
-            verticalSpace(10.h),
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: CheckboxLabel(
-                onChange: (value) {
-                  controller.statusAgreementTerm.value = value;
-                },
-                label:
-                    'Saya mengerti dan memahami dengan syarat serta ketentuan yang berlaku',
-                colorBorder: AppColor.greyColorLight,
-                labelStyle: TextStyles.textcheckbox,
+              verticalSpace(10.h),
+              CardRoundedBorder(
+                padding: EdgeInsets.only(left: 3.w, right: 5.w),
+                borderColor: AppColor.greyColorLight,
+                height: Get.height * 0.60.h,
+                child: Obx(
+                  () => controller.loading.isFalse
+                      ? Scrollbar(
+                          child: ListView(
+                            children: [
+                              Html(
+                                data: controller.termCondition.value.skDesc,
+                              )
+                            ],
+                          ),
+                        )
+                      : loadingIndicatorBottom(context),
+                ),
               ),
-            ),
-            verticalSpace(10.h),
-            Obx(
-              () => ButtonPrimary(
-                enable: controller.statusAgreementTerm.value,
-                label: 'Konfirmasi',
-                color: AppColor.primaryColor,
-                cornerRadius: 9,
-                onPressed: () {
-                  Get.toNamed('/register_page');
-                },
+              verticalSpace(10.h),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 5.h),
+                child: CheckboxLabel(
+                  onChange: (value) {
+                    controller.statusAgreementTerm.value = value;
+                  },
+                  label:
+                      'Saya mengerti dan memahami dengan syarat serta ketentuan yang berlaku',
+                  colorBorder: AppColor.greyColorLight,
+                  labelStyle: TextStyles.textcheckbox,
+                  width: Get.width * 0.80.w,
+                ),
               ),
-            ),
-          ],
+              Obx(
+                () => Padding(
+                  padding:  EdgeInsets.symmetric(vertical: 15.h),
+                  child: ButtonPrimary(
+                    enable: controller.statusAgreementTerm.value,
+                    label: 'Konfirmasi',
+                    color: AppColor.primaryColor,
+                    cornerRadius: 9,
+                    onPressed: () {
+                      Get.toNamed('/register_page');
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

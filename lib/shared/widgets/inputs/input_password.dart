@@ -47,7 +47,7 @@ class _InputPasswordState extends State<InputPassword> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: Insets.med),
+      padding: EdgeInsets.symmetric(vertical: 5.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -80,7 +80,7 @@ class _InputPasswordState extends State<InputPassword> {
               validator: widget.validate ??
                   (value) {
                     if (!isValidPassword(password: value.toString())) {
-                      return '- Password minimal 6 karakter\n' +
+                      return '- Kata Sandi minimal 6 karakter\n' +
                           // '- Diawali huruf kapital\n' +
                           '- Terdiri dari huruf kecil dan angka';
                       // dan symbol (!@#\$%^&*(),.?":{}|<>])';
@@ -91,7 +91,7 @@ class _InputPasswordState extends State<InputPassword> {
                 hintText: widget.hintText,
                 prefixIcon: widget.prefixIcon,
                 suffixIcon: Padding(
-                  padding: EdgeInsets.only(right: Insets.lg),
+                  padding: EdgeInsets.only(right: Insets.lg, left: Insets.lg),
                   child: InkWell(
                     child: _obsecureText
                         ? Icon(

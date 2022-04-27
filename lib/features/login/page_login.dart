@@ -1,4 +1,6 @@
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -36,9 +38,10 @@ class PageLogin extends GetView<ControllerLogin> {
             ),
             //-----//
             verticalSpace(40.h),
-            SizedBox(
-              height: Get.height * 0.35.h,
-              width: Get.width * 0.88.w,
+            CardRounded(
+              color: AppColor.bgPageColor,
+              shadow: Shadows.none,
+              margin: EdgeInsets.zero,
               child: Column(
                 children: [
                   InputPhone(
@@ -52,7 +55,34 @@ class PageLogin extends GetView<ControllerLogin> {
                     onChange: (value) {},
                     controller: controller.cPassword,
                     label: 'Kata Sandi',
+                    hintText: 'Masukkan Kata Sandi',
                     padding: EdgeInsets.symmetric(horizontal: 14.w),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 14.w),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        ButtonText(
+                          label: 'Lupa Kata Sandi?',
+                          textStyle: TextStyles.inter.copyWith(
+                              fontSize: FontSizes.s12,
+                              fontWeight: FontWeight.w500),
+                          onPressed: () async {
+                            showPopUp(
+                              title: 'Lupa Kata Sandi',
+                              description: 'Silakan hubungi admin AntarAnter untuk mengatur kembali kata sandi anda',
+                              imageUri: PopUpIcons.information,
+                              dismissible: false,
+                            );
+                            await Future.delayed(const Duration(seconds: 4));
+                            Navigator.pop(context);
+                          },
+                          color: AppColor.forgotPass,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -71,21 +101,23 @@ class PageLogin extends GetView<ControllerLogin> {
                           controller.login();
                         }
                       },
-                      size: 250.w,
+                      size: 280.w,
                     )
                   : loadingIndicatorBottom(context),
             ),
             verticalSpace(10.h),
+
+            verticalSpace(30.h),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const SizedBox(
                   height: 17,
-                  child: Text('Belum punya akun? yuk'),
+                  child: Text('----------'),
                 ),
                 ButtonText(
-                  label: 'Daftar',
+                  label: ' Daftar disini ',
                   onPressed: () {
                     Get.toNamed('/terms_page');
                   },
@@ -93,7 +125,7 @@ class PageLogin extends GetView<ControllerLogin> {
                 ),
                 const SizedBox(
                   height: 17,
-                  child: Text('dulu.'),
+                  child: Text('----------'),
                 ),
               ],
             ),

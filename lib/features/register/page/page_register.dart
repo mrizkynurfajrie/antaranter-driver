@@ -1,3 +1,6 @@
+import 'package:antaranter_driverapp/shared/helpers/regex.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
+import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary_name.dart';
 import 'package:flutter/material.dart';
 import 'package:antaranter_driverapp/features/register/controller_register.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
@@ -23,7 +26,7 @@ class PageRegister extends GetView<ControllerRegister> {
       resizeAvoidBottom: false,
       toolbarColor: AppColor.bgPageColor,
       backgroundColor: AppColor.bgPageColor,
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       child: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -43,37 +46,37 @@ class PageRegister extends GetView<ControllerRegister> {
               textAlign: TextAlign.center,
             ),
             verticalSpace(20.h),
-            SizedBox(
-              height: Get.height * 0.35.h,
-              width: Get.width * 0.88.w,
+            CardRounded(
+              color: AppColor.bgPageColor,
+              shadow: Shadows.none,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  InputPrimary(
+                  InputName(
+                    label: 'Nama',
                     controller: controller.cName,
-                    hintText: "Nama Lengkap",
+                    hintText: "Masukkan Nama Lengkap",
                     onTap: () {},
                     prefixIcon: null,
                     padding: EdgeInsets.symmetric(horizontal: 14.w),
-                    margin: EdgeInsets.only(bottom: 5.h),
                   ),
                   InputPhone(
                     controller: controller.cPhoneNumber,
                     phoneNumber: (value) {},
-                    // boxwidth: Get.width * 0.80.w,
                     margin: EdgeInsets.symmetric(horizontal: 12.w),
-                    padding: EdgeInsets.only(bottom: 5.h),
-                    inputWidth: Get.width * 0.52.w,
+                    inputWidth: Get.width * 0.54.w,
                   ),
                   InputPassword(
                     onChange: (value) {},
                     controller: controller.cPassword,
                     padding: EdgeInsets.symmetric(horizontal: 14.w),
+                    label: 'Kata Sandi',
+                    hintText: 'Masukkan Kata Sandi',
                   ),
                 ],
               ),
             ),
-            verticalSpace(5.h),
+            verticalSpace(15.h),
             Obx(
               () => controller.loading.isFalse
                   ? ButtonPrimary(
@@ -87,7 +90,7 @@ class PageRegister extends GetView<ControllerRegister> {
                         }
                         // Get.toNamed('/regsuccess_page');
                       },
-                      size: 250.w,
+                      size: 290.w,
                       cornerRadius: 9,
                     )
                   : loadingIndicatorBottom(context),

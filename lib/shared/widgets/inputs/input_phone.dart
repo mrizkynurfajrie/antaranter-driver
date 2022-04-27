@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +78,7 @@ class _InputPhoneState extends State<InputPhone> {
           widget.label != ''
               ? Container(
                   margin: EdgeInsets.only(
-                    bottom: Insets.sm,
+                    bottom: Insets.xs,
                   ),
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 16.w),

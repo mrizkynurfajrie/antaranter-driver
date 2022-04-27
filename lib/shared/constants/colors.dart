@@ -219,4 +219,5 @@ class AppColor {
   static const Color transparentColor = Colors.transparent;
   static const Color genderMale = Color(0xFF5084FC);
   static const Color genderFemale = Color(0xFFFF2CC4);
+  static const Color forgotPass = Color(0xFF757575);
 }
