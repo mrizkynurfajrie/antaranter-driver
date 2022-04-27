@@ -61,7 +61,7 @@ class _InputNameState extends State<InputName> {
       children: [
         widget.label != ''
             ? Container(
-              margin: EdgeInsets.only(left: 16.w, bottom: Insets.xs),
+              margin: EdgeInsets.only(left: 4.w, bottom: Insets.xs),
                 child: Text(
                   widget.label,
                   style: TextStyles.inter.copyWith(

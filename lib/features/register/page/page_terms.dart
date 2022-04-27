@@ -83,7 +83,7 @@ class PageTerms extends GetView<ControllerRegister> {
                       'Saya mengerti dan memahami dengan syarat serta ketentuan yang berlaku',
                   colorBorder: AppColor.greyColorLight,
                   labelStyle: TextStyles.textcheckbox,
-                  width: Get.width * 0.80.w,
+                  width: Get.width * 0.75.w,
                 ),
               ),
               Obx(

@@ -55,7 +55,7 @@ class _InputPasswordState extends State<InputPassword> {
               ? Container(
                   margin: EdgeInsets.only(
                     bottom: Insets.xs,
-                    left: 16.w,
+                    left: 4.w,
                   ),
                   child: Text(
                     widget.label,

@@ -214,7 +214,6 @@ class ControllerUserAccount extends GetxController {
     if (camImage != null) {
       var result = await compressImage(camImage);
       imgPreview.value = result.path;
-      // img = compressFile;
     }
   }
 
@@ -335,67 +334,69 @@ class ControllerUserAccount extends GetxController {
         color: AppColor.primaryColor,
       ),
       contentPadding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-      content: CardRounded(
+      content: SizedBox(
+        height: Get.height * 0.20.h,
         width: Get.width,
-       
-        child: Column(
-          children: [
-            ListView(
-              shrinkWrap: true,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    gender.value = 'Laki-Laki';
-                    Get.back();
-                  },
-                  child: Container(
-                    decoration: const BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                                color: AppColor.greyColorLight, width: 1))),
-                    child: ListTile(
-                      dense: true,
-                      visualDensity: VisualDensity.comfortable,
-                      trailing: Icon(
-                        Icons.male,
-                        size: IconSizes.med,
-                        color: AppColor.genderMale,
-                      ),
-                      title: Text(
-                        'Laki-Laki',
-                        style: TextStyles.body1,
-                      ),
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    gender.value = 'Perempuan';
-                    Get.back();
-                  },
-                  child: Container(
-                    decoration: const BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                                color: AppColor.greyColorLight, width: 1))),
-                    child: ListTile(
-                      dense: true,
-                      visualDensity: VisualDensity.comfortable,
-                      trailing: Icon(
-                        Icons.female,
-                        size: IconSizes.med,
-                        color: AppColor.genderFemale,
-                      ),
-                      title: Text(
-                        'Perempuan',
-                        style: TextStyles.body1,
+        child: CardRounded(
+          child: Column(
+            children: [
+              ListView(
+                shrinkWrap: true,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      gender.value = 'Laki-Laki';
+                      Get.back();
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                                  color: AppColor.greyColorLight, width: 1))),
+                      child: ListTile(
+                        dense: true,
+                        visualDensity: VisualDensity.comfortable,
+                        trailing: Icon(
+                          Icons.male,
+                          size: IconSizes.med,
+                          color: AppColor.genderMale,
+                        ),
+                        title: Text(
+                          'Laki-Laki',
+                          style: TextStyles.body1,
+                        ),
                       ),
                     ),
                   ),
-                )
-              ],
-            ),
-          ],
+                  GestureDetector(
+                    onTap: () {
+                      gender.value = 'Perempuan';
+                      Get.back();
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                                  color: AppColor.greyColorLight, width: 1))),
+                      child: ListTile(
+                        dense: true,
+                        visualDensity: VisualDensity.comfortable,
+                        trailing: Icon(
+                          Icons.female,
+                          size: IconSizes.med,
+                          color: AppColor.genderFemale,
+                        ),
+                        title: Text(
+                          'Perempuan',
+                          style: TextStyles.body1,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

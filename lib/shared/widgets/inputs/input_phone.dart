@@ -81,7 +81,7 @@ class _InputPhoneState extends State<InputPhone> {
                     bottom: Insets.xs,
                   ),
                   child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 16.w),
+                    margin: EdgeInsets.symmetric(horizontal: 4.w),
                     child: Text(
                       widget.label,
                       style: TextStyles.small1,

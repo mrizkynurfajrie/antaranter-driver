@@ -236,6 +236,16 @@ class ControllerVehicleAccount extends GetxController {
       loading.value = true;
       await uploadSimPict();
       await uploadStnkPict();
+      if (uploadSim == '') {
+        if (controllerVehicleInfo.vehicle.value.simPict != null) {
+          uploadSim = controllerVehicleInfo.vehicle.value.simPict!;
+        }
+      }
+      if (uploadStnk == '') {
+        if (controllerVehicleInfo.vehicle.value.stnkPict != null) {
+          uploadStnk = controllerVehicleInfo.vehicle.value.stnkPict!;
+        }
+      }
 
       var updateResult = await api.updateVehicleAccount(
         simNum: txtSimNum.text,
@@ -261,7 +271,7 @@ class ControllerVehicleAccount extends GetxController {
           imageUri: PopUpIcons.success,
         );
         await Future.delayed(const Duration(seconds: 3));
-        Get.offNamed(Routes.main);
+        Get.offAllNamed(Routes.main, arguments: 2);
       } else {
         throw "Gagal memperbarui akun";
       }
