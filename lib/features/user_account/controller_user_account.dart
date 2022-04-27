@@ -147,15 +147,6 @@ class ControllerUserAccount extends GetxController {
   // }
 
 //KTP//
-  getKtpFromCamera() async {
-    final XFile? camImage =
-        await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
-    if (camImage != null) {
-      var result = await compressImage(camImage);
-      ktpPreview.value = result.path;
-    }
-  }
-
   Future<File> compressImage(XFile image) async {
     final dir = await path_provider.getTemporaryDirectory();
     var targetPath = dir.absolute.path +
@@ -167,6 +158,15 @@ class ControllerUserAccount extends GetxController {
       format: CompressFormat.png,
     );
     return compressFile!;
+  }
+
+  getKtpFromCamera() async {
+    final XFile? camImage =
+        await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
+    if (camImage != null) {
+      var result = await compressImage(camImage);
+      ktpPreview.value = result.path;
+    }
   }
 
   getKtpFromFile() async {
@@ -207,6 +207,7 @@ class ControllerUserAccount extends GetxController {
         });
   }
 
+  //foto profil//
   getFromCamera() async {
     final XFile? camImage =
         await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
@@ -222,7 +223,7 @@ class ControllerUserAccount extends GetxController {
         await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     if (fileImage != null) {
       var result = await compressImage(fileImage);
-      imgPreview.value = fileImage.path;
+      imgPreview.value = result.path;
     }
   }
 

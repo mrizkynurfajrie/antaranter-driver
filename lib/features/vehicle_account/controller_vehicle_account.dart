@@ -1,9 +1,10 @@
 import 'dart:developer';
-
+import 'dart:io';
 import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:antaranter_driverapp/features/vehicle_account/api_vehicle_account.dart';
@@ -13,6 +14,7 @@ import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dar
 import 'package:antaranter_driverapp/shared/controller/controller_vehicle_info.dart';
 import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 
 class ControllerVehicleAccount extends GetxController {
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
@@ -97,16 +99,35 @@ class ControllerVehicleAccount extends GetxController {
   }
 
 // sim //
+  Future<File> compressImage(XFile image) async {
+    final dir = await path_provider.getTemporaryDirectory();
+    var targetPath = dir.absolute.path +
+        "/temp-${DateTime.now().millisecondsSinceEpoch}.png";
+    var compressFile = await FlutterImageCompress.compressAndGetFile(
+      image.path,
+      targetPath,
+      quality: 70,
+      format: CompressFormat.png,
+    );
+    return compressFile!;
+  }
+
   getSimFromCamera() async {
     final XFile? camImage =
         await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
-    simPreview.value = camImage!.path;
+    if (camImage != null) {
+      var result = await compressImage(camImage);
+      simPreview.value = result.path;
+    }
   }
 
   getSimFromFile() async {
     final XFile? fileImage =
         await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
-    simPreview.value = fileImage!.path;
+    if (fileImage != null) {
+      var result = await compressImage(fileImage);
+      simPreview.value = result.path;
+    }
   }
 
   simSourceSelector(context) {
@@ -142,13 +163,19 @@ class ControllerVehicleAccount extends GetxController {
   getStnkFromCamera() async {
     final XFile? camImage =
         await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
-    stnkPreview.value = camImage!.path;
+    if (camImage != null) {
+      var result = await compressImage(camImage);
+      stnkPreview.value =  result.path;
+    }
   }
 
   getStnkFromFile() async {
     final XFile? fileImage =
         await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
-    stnkPreview.value = fileImage!.path;
+    if (fileImage != null) {
+      var result = await compressImage(fileImage);
+      stnkPreview.value = result.path;
+    }
   }
 
   stnkSourceSelector(context) {
