@@ -31,69 +31,83 @@ class PageRegister extends GetView<ControllerRegister> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Column(
-              children: [
-                AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
-              ],
-            ),
-            verticalSpace(25.h),
-            Text(
-              "Silakan daftarkan sebuah akun untuk anda",
-              style: TextStyles.inter.copyWith(
-                fontSize: FontSizes.s14,
-                fontWeight: FontWeight.w500,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            verticalSpace(20.h),
             CardRounded(
+              width: Get.width,
               color: AppColor.bgPageColor,
               shadow: Shadows.none,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  InputName(
-                    label: 'Nama',
-                    controller: controller.cName,
-                    hintText: "Masukkan Nama Lengkap",
-                    onTap: () {},
-                    prefixIcon: null,
-                    // padding: EdgeInsets.symmetric(horizontal: 14.w),
+                  Column(
+                    children: [
+                      AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
+                    ],
                   ),
-                  InputPhone(
-                    controller: controller.cPhoneNumber,
-                    phoneNumber: (value) {},
-                    // margin: EdgeInsets.symmetric(horizontal: 12.w),
-                    inputWidth: Get.width * 0.54.w,
-                  ),
-                  InputPassword(
-                    onChange: (value) {},
-                    controller: controller.cPassword,
-                    // padding: EdgeInsets.symmetric(horizontal: 14.w),
-                    label: 'Kata Sandi',
-                    hintText: 'Masukkan Kata Sandi',
+                  verticalSpace(25.h),
+                  Text(
+                    "Silakan daftarkan sebuah akun untuk anda",
+                    style: TextStyles.inter.copyWith(
+                      fontSize: FontSizes.s14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
             ),
-            verticalSpace(15.h),
-            Obx(
-              () => controller.loading.isFalse
-                  ? ButtonPrimary(
-                      enable: controller.isValidForm.value,
-                      label: 'Daftar',
-                      color: AppColor.primaryColor,
-                      onPressed: () {
-                        controller.validateForm();
-                        if (controller.isValidForm.value) {
-                          controller.register();
-                        }
-                        // Get.toNamed('/regsuccess_page');
-                      },
-                      size: 290.w,
-                      cornerRadius: 9,
-                    )
-                  : loadingIndicatorBottom(context),
+            verticalSpace(20.h),
+            Column(
+              children: [
+                CardRounded(
+                  color: AppColor.bgPageColor,
+                  shadow: Shadows.none,
+                  margin: EdgeInsets.zero,
+                  width: Get.width * 0.88.w,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      InputName(
+                        label: 'Nama',
+                        controller: controller.cName,
+                        hintText: "Masukkan Nama Lengkap",
+                        onTap: () {},
+                        prefixIcon: null,
+                        // padding: EdgeInsets.symmetric(horizontal: 14.w),
+                      ),
+                      InputPhone(
+                        controller: controller.cPhoneNumber,
+                        phoneNumber: (value) {},
+                        // inputWidth: Get.width * 0.57.w,
+                      ),
+                      InputPassword(
+                        onChange: (value) {},
+                        controller: controller.cPassword,
+                        // padding: EdgeInsets.symmetric(horizontal: 14.w),
+                        label: 'Kata Sandi',
+                        hintText: 'Masukkan Kata Sandi',
+                      ),
+                      verticalSpace(25.h),
+                      Obx(
+                        () => controller.loading.isFalse
+                            ? ButtonPrimary(
+                                enable: controller.isValidForm.value,
+                                label: 'Daftar',
+                                color: AppColor.primaryColor,
+                                onPressed: () {
+                                  controller.validateForm();
+                                  if (controller.isValidForm.value) {
+                                    controller.register();
+                                  }
+                                  // Get.toNamed('/regsuccess_page');
+                                },
+                                // size: 290.w,
+                                cornerRadius: 9,
+                              )
+                            : loadingIndicatorBottom(context),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ],
         ),

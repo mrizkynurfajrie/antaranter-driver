@@ -1,4 +1,5 @@
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -92,75 +93,32 @@ class _InputPhoneState extends State<InputPhone> {
           Container(
             margin: widget.margin ?? EdgeInsets.zero,
             padding: widget.padding ?? EdgeInsets.zero,
-            width: widget.boxwidth,
+            width: widget.boxwidth ?? Get.width,
             height: widget.boxheight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                widget.setContryCode
-                    ? SizedBox(
-                        width: Get.width * 0.25.w,
-                        child: TextFormField(
-                          decoration: inputDecoration(
-                            prefixIcon: InkWell(
-                              onTap: _showListCountry,
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: Insets.med),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    // Text(_flag),
-                                    // horizontalSpace(Insets.xs),
-                                    Text(
-                                      _countryCode,
-                                      style: TextStyles.body2,
-                                    ),
-                                    const Icon(
-                                      Icons.keyboard_arrow_down,
-                                      size: 30,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            hintText: '',
-                          ),
-                        ))
-                    : Container(),
-                widget.setContryCode ? horizontalSpace(7) : Container(),
-                SizedBox(
-                  width: widget.inputWidth,
-                  child: TextFormField(
-                    enableInteractiveSelection: true,
-                    cursorColor: Theme.of(context).primaryColor,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    onChanged: widget.onChange ??
-                        (value) {
-                          widget.phoneNumber(_countryCode + value);
-                        },
-                    onEditingComplete: widget.onEditingComplete,
-                    onSaved: widget.onSave,
-                    keyboardType: TextInputType.phone,
-                    controller: widget.controller,
-                    validator: (value) {
-                      if (!GetUtils.isPhoneNumber(
-                          _countryCode + value.toString())) {
-                        return 'Masukkan nomor Telepon dengan benar';
-                      }
-                      return null;
-                    },
-                    style: TextStyles.body2,
-                    inputFormatters: [LengthLimitingTextInputFormatter(13)],
-                    decoration: inputDecoration(
-                      suffixIcon: widget.suffixIcon,
-                      hintText: 'Contoh : 08xx xxxx xxxx',
-                    ),
-                  ),
-                ),
-              ],
+            child: TextFormField(
+              enableInteractiveSelection: true,
+              cursorColor: Theme.of(context).primaryColor,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              onChanged: widget.onChange ??
+                  (value) {
+                    widget.phoneNumber(_countryCode + value);
+                  },
+              onEditingComplete: widget.onEditingComplete,
+              onSaved: widget.onSave,
+              keyboardType: TextInputType.phone,
+              controller: widget.controller,
+              validator: (value) {
+                if (!GetUtils.isPhoneNumber(_countryCode + value.toString())) {
+                  return 'Masukkan nomor Telepon dengan benar';
+                }
+                return null;
+              },
+              style: TextStyles.body2,
+              inputFormatters: [LengthLimitingTextInputFormatter(13)],
+              decoration: inputDecoration(
+                suffixIcon: widget.suffixIcon,
+                hintText: 'Contoh : 08xx xxxx xxxx',
+              ),
             ),
           ),
         ],

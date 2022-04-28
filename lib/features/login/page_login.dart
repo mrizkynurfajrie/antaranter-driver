@@ -42,15 +42,12 @@ class PageLogin extends GetView<ControllerLogin> {
             CardRounded(
               color: AppColor.bgPageColor,
               shadow: Shadows.none,
-              margin: EdgeInsets.zero,
               child: Column(
                 children: [
                   InputPhone(
                     controller: controller.cPhoneNumber,
                     phoneNumber: (value) {},
-                    // margin: EdgeInsets.symmetric(horizontal: 12.w),
-                    padding: EdgeInsets.only(bottom: 5.h),
-                    inputWidth: Get.width * 0.52.w,
+                    inputWidth: Get.width * 0.50.w,
                   ),
                   InputPassword(
                     onChange: (value) {},
@@ -83,30 +80,28 @@ class PageLogin extends GetView<ControllerLogin> {
                       ),
                     ],
                   ),
+                  verticalSpace(15.h),
+                  Obx(
+                    () => controller.loading.isFalse
+                        ? ButtonPrimary(
+                            enable: controller.isValidForm.value,
+                            label: 'Masuk',
+                            cornerRadius: 9,
+                            color: AppColor.primaryColor,
+                            onPressed: () {
+                              controller.validateForm();
+                              if (controller.isValidForm.value) {
+                                controller.login();
+                              }
+                            },
+                          )
+                        : loadingIndicatorBottom(context),
+                  ),
                 ],
               ),
             ),
-            verticalSpace(15.h),
-            Obx(
-              () => controller.loading.isFalse
-                  ? ButtonPrimary(
-                      enable: controller.isValidForm.value,
-                      label: 'Masuk',
-                      cornerRadius: 9,
-                      color: AppColor.primaryColor,
-                      onPressed: () {
-                        controller.validateForm();
-                        if (controller.isValidForm.value) {
-                          controller.login();
-                        }
-                      },
-                      size: 280.w,
-                    )
-                  : loadingIndicatorBottom(context),
-            ),
-            verticalSpace(10.h),
 
-            verticalSpace(30.h),
+            verticalSpace(40.h),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
