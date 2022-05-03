@@ -159,7 +159,9 @@ class PageProfile extends GetView<ControllerProfile> {
               ),
               verticalSpace(8.h),
               ButtonProfil(
-                ontap: () {},
+                ontap: () {
+                  Get.toNamed(Routes.termsProfile);
+                },
                 icon: AppIcons.iconApp(AppIcons.profTnc),
                 title: 'Syarat & Ketentuan',
                 buttonHeight: Get.height * 0.08.h,

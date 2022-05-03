@@ -3,6 +3,8 @@ import 'package:antaranter_driverapp/features/api_log/page_api_log.dart';
 import 'package:antaranter_driverapp/features/contact/binding_contact.dart';
 import 'package:antaranter_driverapp/features/otp/binding_otp.dart';
 import 'package:antaranter_driverapp/features/otp/page_otp.dart';
+import 'package:antaranter_driverapp/features/terms/binding_terms.dart';
+import 'package:antaranter_driverapp/features/terms/page_terms.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/contact/page_contact.dart';
 import 'package:antaranter_driverapp/features/home/page_home.dart';
@@ -117,6 +119,11 @@ class AppPages {
       name: Routes.otp,
       page: () => const PageOtp(),
       binding: BindingOtp(),
+    ),
+    GetPage(
+      name: Routes.termsProfile,
+      page: () => const PageTermsProfile(),
+      binding: BindingTermsProfile(),
     ),
   ];
 }
