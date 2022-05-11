@@ -8,7 +8,6 @@ import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_border.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/loading_indicator.dart';
 import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

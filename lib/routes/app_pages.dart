@@ -1,3 +1,5 @@
+import 'package:antaranter_driverapp/features/agreement/binding_agreement.dart';
+import 'package:antaranter_driverapp/features/agreement/page_agreement.dart';
 import 'package:antaranter_driverapp/features/api_log/binding_api_log.dart';
 import 'package:antaranter_driverapp/features/api_log/page_api_log.dart';
 import 'package:antaranter_driverapp/features/contact/binding_contact.dart';
@@ -124,6 +126,11 @@ class AppPages {
       name: Routes.termsProfile,
       page: () => const PageTermsProfile(),
       binding: BindingTermsProfile(),
+    ),
+    GetPage(
+      name: Routes.agreement,
+      page: () => const PageAgreement(),
+      binding: BindingAgreement(),
     ),
   ];
 }

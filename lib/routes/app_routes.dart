@@ -18,4 +18,5 @@ abstract class Routes {
   static const apiLog = '/page_api_log';
   static const otp = '/page_otp';
   static const termsProfile = '/page_termsProfile';
+  static const agreement = '/page_agreement';
 }
