@@ -19,6 +19,19 @@ class ApiRegister {
     return r;
   }
 
+  Future<dynamic> createAgreement({
+    required int idRider,
+    required int status,
+  }) async {
+    final payload = {
+      "rider_id": idRider,
+      "status": status,
+    };
+
+    var r = await Api1().apiJSONPostWithToken('agreements/create', payload);
+    return r;
+  }
+
   Future<dynamic> createNebengRider({
     required int idRider,
   }) async {

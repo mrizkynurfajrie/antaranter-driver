@@ -10,6 +10,8 @@ const String CACHE_VEHICLE = "vehicle";
 const String CACHE_POSTING = "posting";
 const String CACHE_USER = "user";
 const String CACHE_API_LOGGER = "api_logger";
+const String CACHE_AGREEMENT = "agreement";
+
 class Api2 {
   final box = GetStorage();
 
@@ -47,6 +49,15 @@ class Api2 {
 
   Future<dynamic> getVehicle() async {
     return box.read(CACHE_VEHICLE);
+  }
+
+  Future<dynamic> setAgreement({dynamic agreement}) async {
+    agreement ??= "";
+    await box.write(CACHE_AGREEMENT, agreement);
+  }
+
+  Future<dynamic> getAgreement() async {
+    return box.read(CACHE_AGREEMENT);
   }
 
   Future<dynamic> setPosting({dynamic posting}) async {

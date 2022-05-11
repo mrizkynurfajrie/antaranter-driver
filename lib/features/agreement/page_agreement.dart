@@ -85,7 +85,7 @@ class PageAgreement extends GetView<ControllerAgreement> {
                         child: ListView(
                           children: [
                             Html(
-                              data: controller.agreement.value.skDesc!,
+                              data: controller.agreementData.value.skDesc!,
                             ),
                           ],
                         ),
@@ -93,11 +93,12 @@ class PageAgreement extends GetView<ControllerAgreement> {
                     : loadingIndicatorBottom(context)),
               ),
               verticalSpace(5.h),
-               Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(vertical: 5.h),
                 child: CheckboxLabel(
                   onChange: (value) {
                     controller.statusAgreement.value = value;
+                    controller.status.value = 1;
                   },
                   label:
                       'Saya telah membaca dan menyetujui Surat Perjanjian Kerjasama sebagai Mitra Driver Aplikasi AntarAnter diatas',
@@ -106,16 +107,18 @@ class PageAgreement extends GetView<ControllerAgreement> {
                   width: Get.width * 0.75.w,
                 ),
               ),
-              Obx(
-                () => Padding(
-                  padding:  EdgeInsets.symmetric(vertical: 15.h),
-                  child: ButtonPrimary(
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 15.h),
+                child: Obx(
+                  () => ButtonPrimary(
                     enable: controller.statusAgreement.value,
                     label: 'Konfirmasi',
                     color: AppColor.primaryColor,
                     cornerRadius: 9,
                     onPressed: () async {
-                      Get.offAllNamed(Routes.main, arguments: 1);
+                      // Get.offAllNamed(Routes.main, arguments: 0);
+                      // await Future.delayed(const Duration(seconds: 2));
+                      controller.updateAgreement();
                     },
                   ),
                 ),

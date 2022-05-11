@@ -1,3 +1,6 @@
+import 'package:antaranter_driverapp/features/agreement/api_agreement.dart';
+import 'package:antaranter_driverapp/features/agreement/controller_agreement.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_agreement.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/login/api_login.dart';
 import 'package:antaranter_driverapp/features/login/controller_login.dart';
@@ -19,6 +22,7 @@ class ControllerBind extends Bindings {
     Get.put(ControllerVehicleInfo());
     Get.put(ControllerRiderInfo());
     Get.put(ControllerLogin(api: ApiLogin()));
+    Get.put(ControllerAgreementInfo());
     // Get.put(ControllerHelp(apiHelp: ApiHelp()));
     // Get.put(ControllerLastTrx(api: ApiLastTrx()));
   }

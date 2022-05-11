@@ -47,6 +47,7 @@ class ControllerRegister extends GetxController {
   int? pages = 0;
   var token = ''.obs;
   var loginStatus = false;
+  var status = 0.obs;
 
   var loading = true.obs;
 
@@ -134,6 +135,11 @@ class ControllerRegister extends GetxController {
           var resNebengRider = await api.createNebengRider(
             idRider: riderId,
           );
+          var resAgreement = await api.createAgreement(
+            idRider: riderId,
+            status: status.value,
+          );
+          log("regis agreement : " + resAgreement.toString());
           Get.toNamed(Routes.main);
         }
       } else {
