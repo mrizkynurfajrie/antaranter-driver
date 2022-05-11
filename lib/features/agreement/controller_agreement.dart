@@ -59,7 +59,6 @@ class ControllerAgreement extends GetxController {
           idRider: controllerRiderInfo.rider.value.id,
           status: status.value,
           idAgreement: idAgreement.value);
-      log('update result : ' + updateResult.toString());
     } catch (e) {}
   }
 }

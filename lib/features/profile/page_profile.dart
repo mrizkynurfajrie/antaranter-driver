@@ -169,9 +169,7 @@ class PageProfile extends GetView<ControllerProfile> {
               ),
               verticalSpace(8.h),
               ButtonProfil(
-                ontap: () {
-                  Get.toNamed(Routes.agreement);
-                },
+                ontap: () {},
                 icon: AppIcons.iconApp(AppIcons.profPrivacy),
                 title: 'Kebijakan Privasi',
                 buttonHeight: Get.height * 0.08.h,

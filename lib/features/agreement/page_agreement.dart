@@ -7,6 +7,7 @@ import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart'
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_border.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/checkbox_label.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/loading_indicator.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -116,9 +117,15 @@ class PageAgreement extends GetView<ControllerAgreement> {
                     color: AppColor.primaryColor,
                     cornerRadius: 9,
                     onPressed: () async {
-                      // Get.offAllNamed(Routes.main, arguments: 0);
-                      // await Future.delayed(const Duration(seconds: 2));
                       controller.updateAgreement();
+                      showPopUp(
+                        title: 'Perjanjian Kerjasama',
+                        description:
+                            'Anda telah menyetujui Surat Perjanjian Kerjasama sebagai Mitra Driver Aplikasi AntarAnter',
+                        imageUri: PopUpIcons.success,
+                      );
+                      await Future.delayed(const Duration(seconds: 2));
+                      Get.offAllNamed(Routes.main, arguments: 0);
                     },
                   ),
                 ),

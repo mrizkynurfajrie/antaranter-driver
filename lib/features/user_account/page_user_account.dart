@@ -36,7 +36,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
       child: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+            padding: EdgeInsets.symmetric(vertical: 10.h),
             child: Obx(
               () => CardRounded(
                 color: AppColor.bgPageColor,
@@ -45,133 +45,133 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding:  EdgeInsets.symmetric(horizontal: 15.w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          GestureDetector(
-                            onTap: () => controller.imgSourceSelector(context),
-                            child: (controller.imgPreview != "")
-                                ? DottedBorder(
-                                    dashPattern: const [12, 4],
-                                    strokeWidth: 1,
-                                    strokeCap: StrokeCap.round,
-                                    color: AppColor.greyColorLight,
-                                    borderType: BorderType.Circle,
-                                    radius: const Radius.circular(12),
-                                    child: SizedBox(
-                                      width: IconSizes.xxl,
-                                      height: IconSizes.xxl,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(100),
-                                        child: Image.file(
-                                          File(controller.imgPreview.value),
-                                          width: IconSizes.xxl,
-                                          height: IconSizes.xxl,
-                                          fit: BoxFit.cover,
-                                        ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        GestureDetector(
+                          onTap: () => controller.imgSourceSelector(context),
+                          child: (controller.imgPreview != "")
+                              ? DottedBorder(
+                                  dashPattern: const [12, 4],
+                                  strokeWidth: 1,
+                                  strokeCap: StrokeCap.round,
+                                  color: AppColor.greyColorLight,
+                                  borderType: BorderType.Circle,
+                                  radius: const Radius.circular(12),
+                                  child: SizedBox(
+                                    width: IconSizes.xxl,
+                                    height: IconSizes.xxl,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(100),
+                                      child: Image.file(
+                                        File(controller.imgPreview.value),
+                                        width: IconSizes.xxl,
+                                        height: IconSizes.xxl,
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
-                                  )
-                                : DottedBorder(
-                                    dashPattern: const [12, 4],
-                                    strokeWidth: 1,
-                                    strokeCap: StrokeCap.round,
-                                    color: AppColor.greyColorLight,
-                                    borderType: BorderType.Circle,
-                                    radius: const Radius.circular(12),
+                                  ),
+                                )
+                              : DottedBorder(
+                                  dashPattern: const [12, 4],
+                                  strokeWidth: 1,
+                                  strokeCap: StrokeCap.round,
+                                  color: AppColor.greyColorLight,
+                                  borderType: BorderType.Circle,
+                                  radius: const Radius.circular(12),
+                                  child: Container(
+                                    alignment: Alignment.topCenter,
+                                    height: IconSizes.xxl,
+                                    width: IconSizes.xxl,
                                     child: Container(
-                                      alignment: Alignment.topCenter,
-                                      height: IconSizes.xxl,
-                                      width: IconSizes.xxl,
-                                      child: Container(
-                                          padding: const EdgeInsets.all(2),
-                                          child: (controller.controllerRiderInfo
-                                                          .rider.value.image !=
-                                                      '' &&
-                                                  controller.controllerRiderInfo
-                                                          .rider.value.image !=
-                                                      null)
-                                              ? ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(90),
-                                                  child: SizedBox(
-                                                    height: IconSizes.xxl,
-                                                    width: IconSizes.xxl,
-                                                    child: Image.network(
-                                                      "${Api1().imgStorUrl}${controller.controllerRiderInfo.rider.value.image}",
-                                                      fit: BoxFit.cover,
+                                        padding: const EdgeInsets.all(2),
+                                        child: (controller.controllerRiderInfo
+                                                        .rider.value.image !=
+                                                    '' &&
+                                                controller.controllerRiderInfo
+                                                        .rider.value.image !=
+                                                    null)
+                                            ? ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(90),
+                                                child: SizedBox(
+                                                  height: IconSizes.xxl,
+                                                  width: IconSizes.xxl,
+                                                  child: Image.network(
+                                                    "${Api1().imgStorUrl}${controller.controllerRiderInfo.rider.value.image}",
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              )
+                                            : Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  SizedBox(
+                                                    width: IconSizes.med,
+                                                    height: IconSizes.med,
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              100),
+                                                      child: SvgPicture.asset(
+                                                        'assets/images/avatar_dummy.svg',
+                                                      ),
                                                     ),
                                                   ),
-                                                )
-                                              : Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    SizedBox(
-                                                      width: IconSizes.med,
-                                                      height: IconSizes.med,
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                100),
-                                                        child: SvgPicture.asset(
-                                                          'assets/images/avatar_dummy.svg',
-                                                        ),
-                                                      ),
+                                                  Text(
+                                                    'Tambah Foto',
+                                                    style: TextStyles.inter
+                                                        .copyWith(
+                                                      fontSize: 8,
+                                                      color: AppColor.greyColor,
+                                                      fontWeight:
+                                                          FontWeight.w500,
                                                     ),
-                                                    Text(
-                                                      'Tambah Foto',
-                                                      style:
-                                                          TextStyles.inter.copyWith(
-                                                        fontSize: 8,
-                                                        color: AppColor.greyColor,
-                                                        fontWeight: FontWeight.w500,
-                                                      ),
-                                                    )
-                                                  ],
-                                                )),
-                                    ),
+                                                  )
+                                                ],
+                                              )),
                                   ),
-                          ),
-                          horizontalSpace(10.w),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                controller.controllerRiderInfo.rider.value.name ??
-                                    '-',
-                                style: TextStyles.inter.copyWith(
-                                  fontSize: FontSizes.s14,
-                                  color: AppColor.primaryColor,
-                                  fontWeight: FontWeight.w500,
                                 ),
+                        ),
+                        horizontalSpace(10.w),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              controller.controllerRiderInfo.rider.value.name ??
+                                  '-',
+                              style: TextStyles.inter.copyWith(
+                                fontSize: FontSizes.s14,
+                                color: AppColor.primaryColor,
+                                fontWeight: FontWeight.w500,
                               ),
-                              verticalSpace(2.h),
-                              Text(
-                                controller.controllerRiderInfo.rider.value.phone ??
-                                    '-',
-                                style: TextStyles.inter.copyWith(
-                                  fontSize: FontSizes.s14,
-                                  color: AppColor.neutral,
-                                  fontWeight: FontWeight.w400,
-                                ),
+                            ),
+                            verticalSpace(2.h),
+                            Text(
+                              controller
+                                      .controllerRiderInfo.rider.value.phone ??
+                                  '-',
+                              style: TextStyles.inter.copyWith(
+                                fontSize: FontSizes.s14,
+                                color: AppColor.neutral,
+                                fontWeight: FontWeight.w400,
                               ),
-                              verticalSpace(2.h),
-                              Text(
-                                controller.controllerRiderInfo.rider.value.email ??
-                                    '-',
-                                style: TextStyles.inter.copyWith(
-                                  fontSize: FontSizes.s14,
-                                  color: AppColor.neutral,
-                                  fontWeight: FontWeight.w400,
-                                ),
+                            ),
+                            verticalSpace(2.h),
+                            Text(
+                              controller
+                                      .controllerRiderInfo.rider.value.email ??
+                                  '-',
+                              style: TextStyles.inter.copyWith(
+                                fontSize: FontSizes.s14,
+                                color: AppColor.neutral,
+                                fontWeight: FontWeight.w400,
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                     verticalSpace(10.h),
                     Row(
@@ -182,7 +182,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                           onTap: () {},
                           prefixIcon: const Icon(Icons.person),
                           maxLines: 1,
-                          boxWidth: Get.width * 0.56.w,
+                          boxWidth: Get.width * 0.58.w,
                           padding: EdgeInsets.only(bottom: 3.h, top: 2.h),
                           controller: controller.txtName,
                           label: 'Nama',
@@ -203,7 +203,6 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     Obx(
                       () => Container(
                         width: Get.width * 0.88.w,
-                        margin: EdgeInsets.symmetric(horizontal: 6.w),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -223,7 +222,10 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                               child: CardRounded(
                                 width: Get.width * 0.88.w,
                                 margin: EdgeInsets.only(
-                                    top: 2.h, bottom: 4.h, left: 2.w, right: 2.w),
+                                    top: 2.h,
+                                    bottom: 4.h,
+                                    left: 2.w,
+                                    right: 2.w),
                                 borderRadius: 6,
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -235,8 +237,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                           ? (controller.selectedGender.value ==
                                                   'male')
                                               ? "Laki-Laki"
-                                              : (controller
-                                                          .selectedGender.value ==
+                                              : (controller.selectedGender
+                                                          .value ==
                                                       'female')
                                                   ? "Perempuan"
                                                   : "Pilih Jenis Kelamin"
@@ -326,7 +328,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                                   .value.ktpPict !=
                                               null)
                                       ? ClipRRect(
-                                          borderRadius: BorderRadius.circular(12),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                           child: SizedBox(
                                             width: Get.width.w,
                                             height: Get.height.h,
@@ -446,7 +449,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                   imageUri: PopUpIcons.success,
                                   dismissible: false,
                                 );
-                                await Future.delayed(const Duration(seconds: 2));
+                                await Future.delayed(
+                                    const Duration(seconds: 2));
                                 controller.dialogProfilKendaraan();
                               } else {
                                 await controller.dialogUbahProfil();

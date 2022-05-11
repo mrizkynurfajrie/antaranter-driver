@@ -2,9 +2,14 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:antaranter_driverapp/features/vehicle_account/api_vehicle_account.dart';
@@ -165,7 +170,7 @@ class ControllerVehicleAccount extends GetxController {
         await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
     if (camImage != null) {
       var result = await compressImage(camImage);
-      stnkPreview.value =  result.path;
+      stnkPreview.value = result.path;
     }
   }
 
@@ -231,6 +236,38 @@ class ControllerVehicleAccount extends GetxController {
     }
   }
 
+  dialogAgreement() {
+    return Get.defaultDialog(
+      title: "Profil Pengguna & Kendaraan",
+      barrierDismissible: false,
+      titleStyle: TextStyles.inter
+          .copyWith(color: AppColor.primaryColor, fontWeight: FontWeight.w500),
+      titlePadding: EdgeInsets.only(bottom: 10.h, top: 20.h),
+      backgroundColor: AppColor.whiteColor,
+      radius: 10,
+      content: CardRounded(
+        padding: EdgeInsets.symmetric(
+            horizontal: Insets.med.w, vertical: Insets.med.h),
+        child: Text(
+          "Silakan baca dan menyetujui Surat Perjanjian Kerjasama sebagai Mitra Driver Aplikasi AntarAnter",
+          style: TextStyles.inter
+              .copyWith(fontSize: FontSizes.s14, fontWeight: FontWeight.w400),
+          textAlign: TextAlign.justify,
+        ),
+      ),
+      confirm: ButtonPrimary(
+        onPressed: () {
+          Get.toNamed(Routes.agreement);
+        },
+        label: 'Ya',
+        cornerRadius: 4,
+        size: 300,
+        height: Get.height * 0.06.h,
+        labelStyle: TextStyles.inter.copyWith(color: AppColor.whiteColor),
+      ),
+    );
+  }
+
   updateVehicleAccount() async {
     try {
       loading.value = true;
@@ -270,8 +307,12 @@ class ControllerVehicleAccount extends GetxController {
           description: 'Profil Kendaraan anda berhasil diperbarui',
           imageUri: PopUpIcons.success,
         );
-        await Future.delayed(const Duration(seconds: 3));
-        Get.offAllNamed(Routes.main, arguments: 2);
+        await Future.delayed(const Duration(seconds: 2));
+        if (controllerRiderInfo.rider.value.status != 2) {
+          dialogAgreement();
+        } else {
+          Get.offAllNamed(Routes.main, arguments: 2);
+        }
       } else {
         throw "Gagal memperbarui akun";
       }
