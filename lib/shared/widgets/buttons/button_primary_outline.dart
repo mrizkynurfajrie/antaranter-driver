@@ -14,6 +14,7 @@ class ButtonPrimaryOutline extends StatelessWidget {
   final Color? iconColor;
   final double? height;
   final bool enable;
+  final double? borderRadius;
 
   const ButtonPrimaryOutline({
     Key? key,
@@ -28,6 +29,7 @@ class ButtonPrimaryOutline extends StatelessWidget {
     this.iconColor,
     this.height,
     this.enable = true,
+    this.borderRadius,
   }) : super(key: key);
 
   @override
@@ -42,7 +44,7 @@ class ButtonPrimaryOutline extends StatelessWidget {
           elevation: elevation ?? 1,
           primary: color ?? AppColor.bodyColor.shade50,
           shape: RoundedRectangleBorder(
-            borderRadius: Corners.xxlBorder * 2,
+            borderRadius: BorderRadius.all(Radius.circular(borderRadius ?? 0)),
             side: BorderSide(
                 color: enable
                     ? outlineColor ?? Theme.of(context).primaryColor

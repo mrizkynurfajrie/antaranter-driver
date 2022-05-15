@@ -27,8 +27,6 @@ class ControllerUserAccount extends GetxController {
   final ApiUserAccount api;
   ControllerUserAccount({required this.api});
 
-  List allGender = [].obs;
-
   var txtName = TextEditingController();
   var txtEmail = TextEditingController();
   var txtGender = TextEditingController();
@@ -316,13 +314,6 @@ class ControllerUserAccount extends GetxController {
       }
     } catch (_) {}
   }
-
-  // getGender() {
-  //   List<String>
-  //   final List listGender = List.from(list);
-  //   allGender(List.from(listGender))
-  //   log("all gender : " + allGender.toString());
-  // }
 
   buildGender() {
     return Get.defaultDialog(

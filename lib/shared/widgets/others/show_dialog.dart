@@ -135,9 +135,14 @@ showPopUpChoice({
                 Row(
                   children: [
                     Expanded(
-                      child: ButtonPrimaryOutline(
+                      child: ButtonPrimary(
                         onPressed: onCancel ?? () => Get.back(),
                         label: labelNegatif ?? "Batal",
+                        labelStyle: TextStyles.inter.copyWith(
+                          fontSize: FontSizes.s14,
+                          color: AppColor.whiteColor,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     horizontalSpace(Insets.xl),
@@ -145,7 +150,13 @@ showPopUpChoice({
                       child: ButtonPrimary(
                         onPressed: onConfirm ?? () => Get.back(),
                         label: labelPositif ?? "Ya",
-                        // gradient: AppColor.primaryColor,
+                        color: AppColor.whiteColor,
+                        borderColor: AppColor.primaryColor,
+                        labelStyle: TextStyles.inter.copyWith(
+                          fontSize: FontSizes.s14,
+                          color: AppColor.primaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],

@@ -1,4 +1,3 @@
-import 'package:antaranter_driverapp/shared/helpers/regex.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary_name.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,6 @@ import 'package:antaranter_driverapp/shared/widgets/inputs/input_password.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_phone.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/loading_indicator.dart';
 import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
 
@@ -26,7 +24,7 @@ class PageRegister extends GetView<ControllerRegister> {
       resizeAvoidBottom: false,
       toolbarColor: AppColor.bgPageColor,
       backgroundColor: AppColor.bgPageColor,
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+      // padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       child: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

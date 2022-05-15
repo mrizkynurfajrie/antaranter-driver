@@ -1,7 +1,6 @@
 import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
-import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -48,6 +47,7 @@ class PageLogin extends GetView<ControllerLogin> {
                     controller: controller.cPhoneNumber,
                     phoneNumber: (value) {},
                     inputWidth: Get.width * 0.50.w,
+                    
                   ),
                   InputPassword(
                     onChange: (value) {},

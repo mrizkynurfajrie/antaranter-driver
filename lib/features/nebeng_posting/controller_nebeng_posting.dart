@@ -3,12 +3,10 @@ import 'dart:developer';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
-import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary_outline.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -27,7 +25,7 @@ class ControllerNebengPosting extends GetxController {
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
 
   final ApiNebengPosting api;
-  ControllerNebengPosting({required this.api});
+  ControllerNebengPosting({required this.api, this.onToggleCallback});
 
   List dropDownList = ['1', '2', '3', '4', '5'];
 
@@ -57,6 +55,12 @@ class ControllerNebengPosting extends GetxController {
   var loading = false;
   final now = DateTime.now();
   var isSelectedProvince = false.obs;
+  var availSeat = ''.obs;
+  var selectedSeat = ''.obs;
+  var isUrgent = false.obs;
+  var isUrgentCanceled = false.obs;
+  bool initialPosition = true;
+  final ValueChanged? onToggleCallback;
 
   var maskFormatter = MaskTextInputFormatter(
     mask: '##.####' '###.###',
@@ -69,7 +73,8 @@ class ControllerNebengPosting extends GetxController {
     formValidationListener();
     await getVehicle();
     await getProvinces();
-
+    isUrgent.value = false;
+    log('isurgent : ' + isUrgent.toString());
     super.onInit();
   }
 
@@ -88,6 +93,139 @@ class ControllerNebengPosting extends GetxController {
 
   validateForm() {
     isValidForm.value = isValidPrice.value;
+  }
+
+  buildavailSeat() {
+    return Get.defaultDialog(
+      title: 'Pilih Ketersediaan Tempat Duduk',
+      titlePadding: EdgeInsets.symmetric(vertical: 20.h),
+      titleStyle: TextStyles.inter.copyWith(
+        fontSize: FontSizes.s14,
+        fontWeight: FontWeight.w500,
+        color: AppColor.primaryColor,
+      ),
+      contentPadding: EdgeInsets.symmetric(horizontal: 15.w),
+      content: SizedBox(
+        height: Get.height * 0.33.h,
+        width: Get.width * 0.50.w,
+        child: CardRounded(
+          child: Column(
+            children: [
+              ListView(
+                shrinkWrap: true,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      availSeat.value = '1';
+                      Get.back();
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                                  color: AppColor.greyColorLight, width: 1))),
+                      child: ListTile(
+                        dense: true,
+                        visualDensity: VisualDensity.comfortable,
+                        title: Text(
+                          '1',
+                          style: TextStyles.body1,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      availSeat.value = '2';
+                      Get.back();
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                                  color: AppColor.greyColorLight, width: 1))),
+                      child: ListTile(
+                        dense: true,
+                        visualDensity: VisualDensity.comfortable,
+                        title: Text(
+                          '2',
+                          style: TextStyles.body1,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      availSeat.value = '3';
+                      Get.back();
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                                  color: AppColor.greyColorLight, width: 1))),
+                      child: ListTile(
+                        dense: true,
+                        visualDensity: VisualDensity.comfortable,
+                        title: Text(
+                          '3',
+                          style: TextStyles.body1,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      availSeat.value = '4';
+                      Get.back();
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                                  color: AppColor.greyColorLight, width: 1))),
+                      child: ListTile(
+                        dense: true,
+                        visualDensity: VisualDensity.comfortable,
+                        title: Text(
+                          '4',
+                          style: TextStyles.body1,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      availSeat.value = '5';
+                      Get.back();
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                                  color: AppColor.greyColorLight, width: 1))),
+                      child: ListTile(
+                        dense: true,
+                        visualDensity: VisualDensity.comfortable,
+                        title: Text(
+                          '5',
+                          style: TextStyles.body1,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   getVehicle() async {
@@ -249,6 +387,7 @@ class ControllerNebengPosting extends GetxController {
         ),
       ),
       confirm: ButtonPrimaryOutline(
+        borderRadius: 9,
         onPressed: () async {
           await checkDesc();
           createNebengPosting();
@@ -263,8 +402,9 @@ class ControllerNebengPosting extends GetxController {
         ),
       ),
       cancel: ButtonPrimaryOutline(
+        borderRadius: 9,
         onPressed: () async {
-           await checkDesc();
+          await checkDesc();
           createNebengPosting();
         },
         label: 'Tidak, Bagikan Tanpa Deskripsi',
@@ -332,3 +472,4 @@ class ControllerNebengPosting extends GetxController {
     }
   }
 }
+
