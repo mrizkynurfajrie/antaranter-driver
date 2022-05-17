@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_balance.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary_outline.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
@@ -23,9 +24,10 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 class ControllerNebengPosting extends GetxController {
   var controllerVehicleInfo = Get.find<ControllerVehicleInfo>();
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
+  var controllerBalanceInfo = Get.find<ControllerBalanceInfo>();
 
   final ApiNebengPosting api;
-  ControllerNebengPosting({required this.api, this.onToggleCallback});
+  ControllerNebengPosting({required this.api});
 
   List dropDownList = ['1', '2', '3', '4', '5'];
 
@@ -59,8 +61,9 @@ class ControllerNebengPosting extends GetxController {
   var selectedSeat = ''.obs;
   var isUrgent = false.obs;
   var isUrgentCanceled = false.obs;
-  bool initialPosition = true;
-  final ValueChanged? onToggleCallback;
+  var listSeat = [];
+  var countSeat = 0;
+
 
   var maskFormatter = MaskTextInputFormatter(
     mask: '##.####' '###.###',
@@ -444,6 +447,7 @@ class ControllerNebengPosting extends GetxController {
         price: priceformatted,
         desc: valDesc.value,
       );
+
       log('hasil data : ' + updateResult.toString());
       if (updateResult['success'] == true) {
         controllerRiderInfo.setRiderHasActivePost(true);
@@ -462,9 +466,10 @@ class ControllerNebengPosting extends GetxController {
           description: 'Anda gagal membagikan perjalanan anda',
           imageUri: PopUpIcons.error,
         );
-        await Future.delayed(const Duration(seconds: 3));
-        Get.offAllNamed(Routes.main);
       }
+      await Future.delayed(const Duration(seconds: 3));
+      Get.offAllNamed(Routes.main);
+
       loading = false;
     } catch (e) {
       loading = false;
@@ -472,4 +477,3 @@ class ControllerNebengPosting extends GetxController {
     }
   }
 }
-

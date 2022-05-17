@@ -33,6 +33,13 @@ class ApiNebengPosting {
     return responsePosting;
   }
 
+  Future<dynamic> getBalance({required var riderId}) async {
+    final body = {"rider_id": riderId};
+    var response =
+        await Api1().apiJSONPostWithToken("balance/findbyrider", body);
+    return response;
+  }
+
   Future<dynamic> getVehicleInfo({required var riderId}) async {
     final bodyVehicle = {"rider_id": riderId};
     var responseVehicle = await Api1()

@@ -11,6 +11,7 @@ const String CACHE_POSTING = "posting";
 const String CACHE_USER = "user";
 const String CACHE_API_LOGGER = "api_logger";
 const String CACHE_AGREEMENT = "agreement";
+const String CACHE_BALANCE = "balance";
 
 class Api2 {
   final box = GetStorage();
@@ -31,6 +32,14 @@ class Api2 {
 
   Future<dynamic> getRider() async {
     return box.read(CACHE_RIDER);
+  }
+  Future setBalance({dynamic balance}) async {
+    balance ??= "";
+    await box.write(CACHE_BALANCE, balance);
+  }
+
+  Future<dynamic> getBalance() async {
+    return box.read(CACHE_BALANCE);
   }
 
   Future setUser({dynamic user}) async {
