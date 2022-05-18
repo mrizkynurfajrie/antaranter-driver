@@ -62,8 +62,9 @@ class ControllerNebengPosting extends GetxController {
   var isUrgent = false.obs;
   var isUrgentCanceled = false.obs;
   var listSeat = [];
-  var countSeat = 0;
-
+  var countSeat = 0.obs;
+  var currentBalance = 0.obs;
+  double calcPrice = 0;
 
   var maskFormatter = MaskTextInputFormatter(
     mask: '##.####' '###.###',
@@ -74,6 +75,7 @@ class ControllerNebengPosting extends GetxController {
   @override
   void onInit() async {
     formValidationListener();
+    await balanceCalc();
     await getVehicle();
     await getProvinces();
     isUrgent.value = false;
@@ -96,6 +98,18 @@ class ControllerNebengPosting extends GetxController {
 
   validateForm() {
     isValidForm.value = isValidPrice.value;
+  }
+
+  balanceCalc() async {
+    try {
+      var response =
+          await api.getBalance(riderId: controllerRiderInfo.rider.value.id);
+      log('response balance : ' + response.toString());
+      if (response['success'] == true) {
+        currentBalance.value = response['data']['curr_balance'];
+        log('curr balance : ' + currentBalance.toString());
+      }
+    } catch (e) {}
   }
 
   buildavailSeat() {
@@ -235,7 +249,7 @@ class ControllerNebengPosting extends GetxController {
     try {
       var r =
           await api.getVehicleInfo(riderId: controllerRiderInfo.rider.value.id);
-      log('data r' + r.toString());
+      // log('data r' + r.toString());
       idNebengRider.value = r["data"]["nebeng_rider"]["id"];
       controllerVehicleInfo.vehicle.value =
           NebengRider.fromJson(r["data"]["nebeng_rider"]);

@@ -8,6 +8,7 @@ class InputPrimary extends StatefulWidget {
   final String hintText;
   final String? Function(String?)? validate;
   final Function() onTap;
+  final Function(String?)? onChange;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final String label;
@@ -29,6 +30,7 @@ class InputPrimary extends StatefulWidget {
     required this.hintText,
     this.validate,
     required this.onTap,
+    this.onChange,
     required this.prefixIcon,
     this.suffixIcon,
     this.label = '',
@@ -82,6 +84,7 @@ class _InputPrimaryState extends State<InputPrimary> {
             cursorColor: Theme.of(context).primaryColor,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             onTap: widget.onTap,
+            onChanged: widget.onChange,
             keyboardType: widget.keyboardType,
             controller: widget.controller,
             obscureText: widget.obsecureText,

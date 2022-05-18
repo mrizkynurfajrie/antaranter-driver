@@ -460,6 +460,14 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                         InputPrimary(
                           hintText: 'Harga Perjalanan',
                           onTap: () {},
+                          onChange: (value) {
+                            var priceformatted = controller.txtPrice.text.replaceAll(RegExp('[^A-Za-z0-9]'), '');
+                            var perc = int.parse(priceformatted) * 0.15;
+                            var calc = controller.currentBalance / double.tryParse(perc.toString())!;
+                            controller.countSeat.value = double.tryParse(calc.toString())!.floor();
+                            log('count seat : ' +
+                                controller.countSeat.toString());
+                          },
                           prefixIcon: const Icon(Icons.confirmation_number),
                           inputFormatters: [
                             // controller.maskFormatter,
@@ -469,6 +477,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                           keyboardType: TextInputType.number,
                           controller: controller.txtPrice,
                         ),
+
                         verticalSpace(10.h),
                         Container(
                           padding: EdgeInsets.only(left: 6.w, right: 7.w),
