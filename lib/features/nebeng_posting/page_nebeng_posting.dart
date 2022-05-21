@@ -460,13 +460,29 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                         InputPrimary(
                           hintText: 'Harga Perjalanan',
                           onTap: () {},
-                          onChange: (value) {
-                            var priceformatted = controller.txtPrice.text.replaceAll(RegExp('[^A-Za-z0-9]'), '');
+                          onChange: (value) async {
+                            var priceformatted = controller.txtPrice.text
+                                .replaceAll(RegExp('[^A-Za-z0-9]'), '');
                             var perc = int.parse(priceformatted) * 0.15;
-                            var calc = controller.currentBalance / double.tryParse(perc.toString())!;
-                            controller.countSeat.value = double.tryParse(calc.toString())!.floor();
+                            var calc = controller.currentBalance /
+                                double.tryParse(perc.toString())!;
+                            controller.countSeat.value =
+                                double.tryParse(calc.toString())!.floor();
+
+                            controller.listSeat.clear();
+
                             log('count seat : ' +
                                 controller.countSeat.toString());
+
+                            if (controller.countSeat.value <= 5) {
+                              for (var i = 1;
+                                  i <= controller.countSeat.value;
+                                  i++) {
+                                controller.listSeat.add(i);
+                                log('list seat : ' +
+                                    controller.listSeat.toString());
+                              }
+                            }
                           },
                           prefixIcon: const Icon(Icons.confirmation_number),
                           inputFormatters: [
@@ -503,24 +519,23 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                     ),
                                   ),
                                   horizontalSpace(10.w),
-                                  Obx(
-                                    () => SizedBox(
-                                      width: Get.width * 0.60.w,
-                                      height: Get.height * 0.05.h,
-                                      child: DropdownButton(
+                                  SizedBox(
+                                    width: Get.width * 0.60.w,
+                                    height: Get.height * 0.05.h,
+                                    child: Obx(
+                                      () => DropdownButton(
                                         hint: const Text('Ketersediaan Tempat'),
                                         onChanged: (newValue) {
-                                          controller.dropDownValue.value =
-                                              newValue.toString();
+                                          controller.dropDownValue.value = newValue.toString();
                                           controller.update();
                                         },
                                         value: controller.dropDownValue.value,
                                         items: [
-                                          for (var data
-                                              in controller.dropDownList)
+                                          for (var data in controller.listSeat)
                                             DropdownMenuItem(
                                               child: Text(
-                                                data,
+                                                data.toString(),
+                                                
                                                 style: TextStyles.inter
                                                     .copyWith(
                                                         fontSize: FontSizes.s12,

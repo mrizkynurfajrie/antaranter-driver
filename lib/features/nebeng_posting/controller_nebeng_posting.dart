@@ -62,7 +62,7 @@ class ControllerNebengPosting extends GetxController {
   var isUrgent = false.obs;
   var isUrgentCanceled = false.obs;
   var listSeat = [];
-  var countSeat = 0.obs;
+  var countSeat = 1.obs;
   var currentBalance = 0.obs;
   double calcPrice = 0;
 
@@ -111,6 +111,15 @@ class ControllerNebengPosting extends GetxController {
       }
     } catch (e) {}
   }
+
+  // buildSeat () async {
+  //   try {
+  //     for (var i = 1; i < countSeat.value; i++) {
+  //       listSeat.add(i);
+  //     }
+  //   } catch (e) {}
+  // }
+
 
   buildavailSeat() {
     return Get.defaultDialog(
