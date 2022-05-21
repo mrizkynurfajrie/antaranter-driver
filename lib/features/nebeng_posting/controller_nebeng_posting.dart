@@ -61,7 +61,7 @@ class ControllerNebengPosting extends GetxController {
   var selectedSeat = ''.obs;
   var isUrgent = false.obs;
   var isUrgentCanceled = false.obs;
-  var listSeat = [];
+  List listSeat = [].obs;
   var countSeat = 1.obs;
   var currentBalance = 0.obs;
   double calcPrice = 0;
@@ -466,7 +466,7 @@ class ControllerNebengPosting extends GetxController {
         dateArr: txtDateArrv.text,
         timeDep: txtTimeDept.text,
         timeArr: txtTimeArrv.text,
-        seatAvail: dropDownValue.value,
+        seatAvail: dropDownValue,
         price: priceformatted,
         desc: valDesc.value,
       );

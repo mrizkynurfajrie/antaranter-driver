@@ -482,6 +482,17 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                 log('list seat : ' +
                                     controller.listSeat.toString());
                               }
+                            } else {
+                              if (controller.countSeat.value == 0) {
+                                return showPopUp(
+                                    title: 'Saldo Kurang',
+                                    description:
+                                        'Saldo anda tidak mencukupi untuk melakukan perjalanan dengan harga tersebut.');
+                              } else {
+                                for (var i = 1; i <= 5; i++) {
+                                  controller.listSeat.add(i);
+                                }
+                              }
                             }
                           },
                           prefixIcon: const Icon(Icons.confirmation_number),
@@ -523,28 +534,59 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                     width: Get.width * 0.60.w,
                                     height: Get.height * 0.05.h,
                                     child: Obx(
-                                      () => DropdownButton(
-                                        hint: const Text('Ketersediaan Tempat'),
+                                      () => DropdownButtonFormField<String>(
+                                        hint: Text(
+                                          controller.countSeat.value < 1 || controller.countSeat.value > 5
+                                              ? 'Saldo Tidak Cukup'
+                                              : 'Ketersediaan Tempat',
+                                          style: controller.countSeat.value <= 0
+                                              ? TextStyles.inter.copyWith(
+                                                  fontSize: FontSizes.s12,
+                                                  color: AppColor.errorColor,
+                                                  fontWeight: FontWeight.w400)
+                                              : TextStyles.inter.copyWith(
+                                                  fontSize: FontSizes.s12,
+                                                  color:
+                                                      AppColor.greyColorLight,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                        ),
                                         onChanged: (newValue) {
-                                          controller.dropDownValue.value = newValue.toString();
+                                          // controller.dropDownValue = newValue.toString();
+                                          controller.dropDownValue.value =
+                                              newValue.toString();
                                           controller.update();
                                         },
-                                        value: controller.dropDownValue.value,
+                                        value:
+                                            controller.dropDownValue.toString(),
+                                        // items: controller.listSeat
+                                        //     .map((countSeat) {
+                                        //   return DropdownMenuItem(
+                                        //     child: Text(
+                                        //       countSeat.toString(),
+                                        //     ),
+                                        //     value: countSeat.toString(),
+                                        //   );
+                                        // }).toList(),
                                         items: [
                                           for (var data in controller.listSeat)
                                             DropdownMenuItem(
                                               child: Text(
                                                 data.toString(),
-                                                
-                                                style: TextStyles.inter
-                                                    .copyWith(
-                                                        fontSize: FontSizes.s12,
-                                                        fontWeight:
-                                                            FontWeight.w500),
                                               ),
-                                              value: data,
-                                            ),
+                                              value: data.toString(),
+                                            )
                                         ],
+                                        // items: [
+                                        //   for (var data
+                                        //       in controller.dropDownList)
+                                        //     DropdownMenuItem(
+                                        //       child: Text(
+                                        //         data.toString(),
+                                        //       ),
+                                        //       value: data,
+                                        //     )
+                                        // ],
                                         isExpanded: true,
                                       ),
                                     ),
