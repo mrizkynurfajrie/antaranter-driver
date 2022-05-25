@@ -37,16 +37,16 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
       center: Center(child: AppLogosMed.logoApp(AppLogosMed.logoHorizontal)),
       child: SafeArea(
         child: SingleChildScrollView(
-          child: Obx(
-            () => CardRounded(
-              color: AppColor.bgPageColor,
-              padding: EdgeInsets.zero,
-              margin: EdgeInsets.zero,
-              child: Column(
+          child: CardRounded(
+            color: AppColor.bgPageColor,
+            padding: EdgeInsets.zero,
+            margin: EdgeInsets.zero,
+            child: Obx(
+              () => Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  controller.isUrgent.value == false
-                      ? controller.isUrgentCanceled.value == false
+                  controller.isUrgent.value == 0
+                      ? controller.isUrgentCanceled.value == 0
                           ? CardRounded(
                               color: AppColor.whiteColor,
                               padding: EdgeInsets.symmetric(
@@ -70,13 +70,12 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                       onToggleCallback: (value) {
                                         if (value == 0) {
                                           var togglefalse =
-                                              controller.isUrgent.value == true;
+                                              controller.isUrgent.value == 1;
                                           log('togglefalse : ' +
                                               togglefalse.toString());
                                         } else {
                                           var toggletrue =
-                                              controller.isUrgent.value ==
-                                                  false;
+                                              controller.isUrgent.value == 0;
                                           log('toggletrue : ' +
                                               toggletrue.toString());
                                           showPopUpChoice(
@@ -87,15 +86,14 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                               labelPositif: 'Ya',
                                               labelNegatif: 'Batal',
                                               onCancel: () {
-                                                controller.isUrgent.value =
-                                                    false;
-                                                controller.isUrgentCanceled
-                                                    .value = true;
+                                                controller.isUrgent.value = 0;
+                                                controller
+                                                    .isUrgentCanceled.value = 1;
                                                 Get.back();
                                               },
                                               onConfirm: () {
-                                                controller.isUrgent.value =
-                                                    true;
+                                                controller.isUrgent.value = 1;
+                                                log('isurgent : ' + controller.isUrgent.value.toString());
                                                 Get.back();
                                               });
                                         }
@@ -326,22 +324,21 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                       size: 20,
                                     ),
                                     boxWidth: Get.width * 0.65.w,
-                                    initialDate:
-                                        controller.isUrgent.value == true
-                                            ? DateTime.now()
-                                            : DateTime(
-                                                controller.now.year,
-                                                controller.now.month,
-                                                controller.now.day + 1,
-                                              ),
-                                    firstDate: controller.isUrgent.value == true
+                                    initialDate: controller.isUrgent.value == 1
                                         ? DateTime.now()
                                         : DateTime(
                                             controller.now.year,
                                             controller.now.month,
                                             controller.now.day + 1,
                                           ),
-                                    lastDate: controller.isUrgent.value == true
+                                    firstDate: controller.isUrgent.value == 1
+                                        ? DateTime.now()
+                                        : DateTime(
+                                            controller.now.year,
+                                            controller.now.month,
+                                            controller.now.day + 1,
+                                          ),
+                                    lastDate: controller.isUrgent.value == 1
                                         ? DateTime.now()
                                         : DateTime(2030),
                                   ),
@@ -413,7 +410,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                   size: 20,
                                 ),
                                 boxWidth: Get.width * 0.65.w,
-                                initialDate: controller.isUrgent.value == true
+                                initialDate: controller.isUrgent.value == 1
                                     ? DateTime(
                                         controller.now.year,
                                         controller.now.month,
@@ -423,7 +420,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                         controller.now.month,
                                         controller.now.day + 1,
                                       ),
-                                firstDate: controller.isUrgent.value == true
+                                firstDate: controller.isUrgent.value == 1
                                     ? DateTime(controller.now.year)
                                     : DateTime(
                                         controller.now.year,
@@ -463,7 +460,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                           onChange: (value) async {
                             var priceformatted = controller.txtPrice.text
                                 .replaceAll(RegExp('[^A-Za-z0-9]'), '');
-                            var perc = int.parse(priceformatted) * 0.15;
+                            var perc = int.parse(priceformatted) * 13.45 / 100;
                             var calc = controller.currentBalance /
                                 double.tryParse(perc.toString())!;
                             controller.countSeat.value =
@@ -536,7 +533,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                     child: Obx(
                                       () => DropdownButtonFormField<String>(
                                         hint: Text(
-                                          controller.countSeat.value < 1 || controller.countSeat.value > 5
+                                          controller.countSeat.value < 1
                                               ? 'Saldo Tidak Cukup'
                                               : 'Ketersediaan Tempat',
                                           style: controller.countSeat.value <= 0

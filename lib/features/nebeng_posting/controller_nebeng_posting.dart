@@ -59,8 +59,8 @@ class ControllerNebengPosting extends GetxController {
   var isSelectedProvince = false.obs;
   var availSeat = ''.obs;
   var selectedSeat = ''.obs;
-  var isUrgent = false.obs;
-  var isUrgentCanceled = false.obs;
+  var isUrgent = 0.obs;
+  var isUrgentCanceled = 0.obs;
   List listSeat = [].obs;
   var countSeat = 1.obs;
   var currentBalance = 0.obs;
@@ -78,7 +78,7 @@ class ControllerNebengPosting extends GetxController {
     await balanceCalc();
     await getVehicle();
     await getProvinces();
-    isUrgent.value = false;
+    isUrgent.value = 0;
     log('isurgent : ' + isUrgent.toString());
     super.onInit();
   }
@@ -119,7 +119,6 @@ class ControllerNebengPosting extends GetxController {
   //     }
   //   } catch (e) {}
   // }
-
 
   buildavailSeat() {
     return Get.defaultDialog(
@@ -431,6 +430,9 @@ class ControllerNebengPosting extends GetxController {
         borderRadius: 9,
         onPressed: () async {
           await checkDesc();
+          // var formatPrice =
+          //     txtPrice.text.replaceAll(RegExp('[^A-Za-z0-9]'), '');
+          // var calc =
           createNebengPosting();
         },
         label: 'Tidak, Bagikan Tanpa Deskripsi',
@@ -466,9 +468,10 @@ class ControllerNebengPosting extends GetxController {
         dateArr: txtDateArrv.text,
         timeDep: txtTimeDept.text,
         timeArr: txtTimeArrv.text,
-        seatAvail: dropDownValue,
+        seatAvail: dropDownValue.value,
         price: priceformatted,
         desc: valDesc.value,
+        // isUrgent: isUrgent.value,
       );
 
       log('hasil data : ' + updateResult.toString());
@@ -489,9 +492,11 @@ class ControllerNebengPosting extends GetxController {
           description: 'Anda gagal membagikan perjalanan anda',
           imageUri: PopUpIcons.error,
         );
+        await Future.delayed(const Duration(seconds: 2));
+        Get.back();
       }
-      await Future.delayed(const Duration(seconds: 3));
-      Get.offAllNamed(Routes.main);
+      // await Future.delayed(const Duration(seconds: 3));
+      // Get.offAllNamed(Routes.main);
 
       loading = false;
     } catch (e) {

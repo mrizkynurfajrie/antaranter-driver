@@ -1,4 +1,5 @@
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -295,43 +296,43 @@ class PageHome extends GetView<ControllerHome> {
                           hintText: 'tentukan perjalanan mu',
                           keyboardType: TextInputType.none,
                           onTap: () async {
-                            Get.toNamed(Routes.posting);
-                            // if (controller
-                            //         .controllerRiderInfo.rider.value.status ==
-                            //     2) {
-                            //   if (controller
-                            //           .controllerRiderInfo.hasActivePost ==
-                            //       true) {
-                            //     showPopUp(
-                            //         title: 'Perjalanan Nebeng',
-                            //         description:
-                            //             'Anda masih memiliki pesanan aktif',
-                            //         imageUri: PopUpIcons.error);
-                            //     await Future.delayed(
-                            //         const Duration(seconds: 2));
-                            //     Get.back();
-                            //   } else {
-                            //     Get.toNamed(Routes.posting);
-                            //   }
-                            // } else {
-                            //   var message = controller.controllerRiderInfo.rider
-                            //                   .value.status ==
-                            //               0 &&
-                            //           controller.controllerVehicleInfo.vehicle
-                            //                   .value.sim ==
-                            //               null
-                            //       ? "Lengkapi data diri & kendaraan anda untuk mulai menggunakan layanan kami"
-                            //       : "Admin sedang melakukan verifikasi data anda, mohon tunggu 1x24 jam admin akan segera menghubungi anda";
-                            //   showPopUp(
-                            //     title: 'Pemberitahuan',
-                            //     description: message,
-                            //     imageUri: PopUpIcons.information,
-                            //     dismissible: false,
-                            //     labelButton: 'OK',
-                            //     labelButtonColor: AppColor.primary,
-                            //     outlineButtonColor: AppColor.primary,
-                            //   );
-                            // }
+                            // Get.toNamed(Routes.posting);
+                            if (controller
+                                    .controllerRiderInfo.rider.value.status ==
+                                2) {
+                              if (controller
+                                      .controllerRiderInfo.hasActivePost.value ==
+                                  true) {
+                                showPopUp(
+                                    title: 'Perjalanan Nebeng',
+                                    description:
+                                        'Anda masih memiliki pesanan aktif',
+                                    imageUri: PopUpIcons.error);
+                                await Future.delayed(
+                                    const Duration(seconds: 2));
+                                Get.back();
+                              } else {
+                                Get.toNamed(Routes.posting);
+                              }
+                            } else {
+                              var message = controller.controllerRiderInfo.rider
+                                              .value.status ==
+                                          0 &&
+                                      controller.controllerVehicleInfo.vehicle
+                                              .value.sim ==
+                                          null
+                                  ? "Lengkapi data diri & kendaraan anda untuk mulai menggunakan layanan kami"
+                                  : "Admin sedang melakukan verifikasi data anda, mohon tunggu 1x24 jam admin akan segera menghubungi anda";
+                              showPopUp(
+                                title: 'Pemberitahuan',
+                                description: message,
+                                imageUri: PopUpIcons.information,
+                                dismissible: false,
+                                labelButton: 'OK',
+                                labelButtonColor: AppColor.primary,
+                                outlineButtonColor: AppColor.primary,
+                              );
+                            }
 
                             //code lama//
                             // if (controller.controllerPosting.postingan.value

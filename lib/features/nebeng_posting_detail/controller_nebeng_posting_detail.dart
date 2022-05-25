@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
@@ -261,6 +262,8 @@ class ControllerNebengPostingDetail extends GetxController
         log("result : " + result.toString());
         controllerPostingan.postingan.value.nebengPosting =
             NebengPosting.fromJson(result);
+        controllerRiderInfo.setRiderHasActivePost(true);
+        isEmpty = false;
         controllerPostingan.postingan.refresh();
         return true;
       } else {
@@ -320,6 +323,17 @@ class ControllerNebengPostingDetail extends GetxController
           await Api2().removePosting();
           await Api2().removeActivePost();
           isEmpty = false;
+
+          showPopUp(
+            title: 'Perjalanan Selesai',
+            imageUri: 'assets/logo/logo-only-svg.svg',
+            imageSize: 25,
+            description:
+                'Terima kasih anda telah menyelesaikan perjalanan sampai tujuan dengan nyaman dan aman',
+          );
+          await Future.delayed(const Duration(seconds: 3));
+          Get.back();
+          
           controllerPostingan.postingan.refresh();
           return true;
         }
