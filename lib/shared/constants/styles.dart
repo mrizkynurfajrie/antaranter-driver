@@ -78,6 +78,7 @@ class Times {
 class Sizes {
   static double get xs => 8.w;
   static double get sm => 12.w;
+  static double get smmed => 16.w;
   static double get med => 20.w;
   static double get lg => 32.w;
   static double get xl => 48.w;

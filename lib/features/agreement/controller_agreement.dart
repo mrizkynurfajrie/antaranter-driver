@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:antaranter_driverapp/features/agreement/api_agreement.dart';
-import 'package:antaranter_driverapp/framework/api2.dart';
 import 'package:antaranter_driverapp/response/agreement.dart';
 import 'package:antaranter_driverapp/response/term_condition.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_agreement.dart';

@@ -221,4 +221,5 @@ class AppColor {
   static const Color genderFemale = Color(0xFFFF2CC4);
   static const Color forgotPass = Color(0xFF757575);
   static const Color disableText = Color(0xFF9E9E9E);
+  static const Color cardline = Color(0xFFEDEDED);
 }

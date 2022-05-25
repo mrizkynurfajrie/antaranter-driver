@@ -300,8 +300,8 @@ class PageHome extends GetView<ControllerHome> {
                             if (controller
                                     .controllerRiderInfo.rider.value.status ==
                                 2) {
-                              if (controller
-                                      .controllerRiderInfo.hasActivePost.value ==
+                              if (controller.controllerRiderInfo.hasActivePost
+                                      .value ==
                                   true) {
                                 showPopUp(
                                     title: 'Perjalanan Nebeng',
@@ -416,6 +416,14 @@ class PageHome extends GetView<ControllerHome> {
                 ),
               ),
             ),
+            SliverToBoxAdapter(
+              child: ButtonText(
+                label: 'customer posting',
+                onPressed: () {
+                  Get.toNamed(Routes.customer_posting);
+                },
+              ),
+            )
           ],
         ),
       ),

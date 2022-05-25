@@ -3,6 +3,8 @@ import 'package:antaranter_driverapp/features/agreement/page_agreement.dart';
 import 'package:antaranter_driverapp/features/api_log/binding_api_log.dart';
 import 'package:antaranter_driverapp/features/api_log/page_api_log.dart';
 import 'package:antaranter_driverapp/features/contact/binding_contact.dart';
+import 'package:antaranter_driverapp/features/customer_posting/bind_customer_posting.dart';
+import 'package:antaranter_driverapp/features/customer_posting/page_customer_posting.dart';
 import 'package:antaranter_driverapp/features/otp/binding_otp.dart';
 import 'package:antaranter_driverapp/features/otp/page_otp.dart';
 import 'package:antaranter_driverapp/features/terms/binding_terms.dart';
@@ -132,5 +134,10 @@ class AppPages {
       page: () => const PageAgreement(),
       binding: BindingAgreement(),
     ),
+    GetPage(
+      name: Routes.customer_posting,
+      page: () => const PageCustomerPosting(),
+      binding: BindingCustomerPosting(),
+    )
   ];
 }
