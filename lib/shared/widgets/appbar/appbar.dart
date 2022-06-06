@@ -7,6 +7,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
   final Widget? icon;
   final Widget? center;
+  final bool? centerTitle;
   final Widget? bottom;
   final Widget? flexibleSpace;
 
@@ -25,6 +26,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
       this.colorTitle,
       this.icon,
       this.center,
+      this.centerTitle,
       this.bottom,
       this.flexibleSpace,
       this.actions,
@@ -80,7 +82,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
               ),
             ),
           ],
-      centerTitle: false,
+      centerTitle: widget.centerTitle ?? false,
     );
   }
 }

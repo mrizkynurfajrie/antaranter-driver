@@ -121,9 +121,9 @@ class Users {
         role: json["role"],
         fcm: json["fcm"],
         gender: json["gender"],
-        blockedAt: json["blockedAt"],
-        createdAt: json["createdAt"].toIso8601String(),
-        updatedAt: json["updatedAt"].toIso8601String(),
+        // blockedAt: json["blockedAt"],
+        // createdAt: json["createdAt"].toIso8601String(),
+        // updatedAt: json["updatedAt"].toIso8601String(),
         isDeleted: json["isDeleted"],
       );
 }

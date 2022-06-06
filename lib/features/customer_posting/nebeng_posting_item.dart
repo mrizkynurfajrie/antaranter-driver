@@ -1,5 +1,4 @@
 import 'package:antaranter_driverapp/response/nebeng_customer_response.dart';
-import 'package:antaranter_driverapp/response/nebeng_posting.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
@@ -10,7 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/routes/app_routes.dart';
-import 'package:antaranter_driverapp/shared/helpers/currency_formatter.dart';
 import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
 import 'package:antaranter_driverapp/shared/helpers/utils.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_clickable.dart';
@@ -30,10 +28,10 @@ class NebengPostingItem extends StatelessWidget {
       ),
       shadow: Shadows.shadowsUp,
       onTap: () {
-        // Get.toNamed(
-        //   Routes.orderNebeng,
-        //   arguments: nebengPost.toJson(),
-        // );
+        Get.toNamed(
+          Routes.postingCustomerOrder,
+          arguments: nebengPost.toJson(),
+        );
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,15 +107,6 @@ class NebengPostingItem extends StatelessWidget {
               )
             ],
           ),
-          // verticalSpace(Insets.lg),
-          // Text(
-          //   "${nebengPost.user?.vehicleVariant}",
-          //   style: TextStyles.textBase.copyWith(
-          //     color: AppColor.neutral.shade600,
-          //   ),
-          //   maxLines: 1,
-          //   overflow: TextOverflow.ellipsis,
-          // ),
           verticalSpace(Insets.med),
           Row(
             children: [
@@ -222,49 +211,11 @@ class NebengPostingItem extends StatelessWidget {
                       ),
                     ),
                     verticalSpace(Insets.xs - Insets.offsetScale),
-                    // Row(
-                    //   children: [
-                    //     SvgPicture.asset(
-                    //       AppIcons.seatSvg,
-                    //       width: Sizes.sm,
-                    //     ),
-                    //     horizontalSpace(Insets.xs),
-                    //     Text(
-                    //       "Sisa ${nebengPost.remainingSeat} dari ${nebengPost.seatAvail} kursi",
-                    //       style: TextStyles.textXs,
-                    //     ),
-                    //   ],
-                    // ),
                   ],
                 ),
               ),
             ],
           ),
-          // verticalSpace(Insets.xs),
-          // const Divider(
-          //   color: Color(0xFFC2C2C2),
-          // ),
-          // verticalSpace(Insets.xs),
-          // RichText(
-          //   text: TextSpan(
-          //     text: CurrencyFormat.convertToIdr(
-          //       nebengPost.price,
-          //       0,
-          //     ),
-          //     style: TextStyles.textBase.copyWith(
-          //       color: Color(0xFF43936C),
-          //     ),
-          //     children: [
-          //       TextSpan(
-          //         text: " / Kursi",
-          //         style: TextStyles.textBase.copyWith(
-          //           color: AppColor.neutral.shade600,
-          //           fontWeight: FontWeight.w500,
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
         ],
       ),
     );

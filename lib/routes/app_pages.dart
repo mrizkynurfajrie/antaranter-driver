@@ -3,6 +3,8 @@ import 'package:antaranter_driverapp/features/agreement/page_agreement.dart';
 import 'package:antaranter_driverapp/features/api_log/binding_api_log.dart';
 import 'package:antaranter_driverapp/features/api_log/page_api_log.dart';
 import 'package:antaranter_driverapp/features/contact/binding_contact.dart';
+import 'package:antaranter_driverapp/features/customer_order/binding_customer_order.dart';
+import 'package:antaranter_driverapp/features/customer_order/page_customer_order.dart';
 import 'package:antaranter_driverapp/features/customer_posting/binding_customer_posting.dart';
 import 'package:antaranter_driverapp/features/customer_posting/page_customer_posting.dart';
 import 'package:antaranter_driverapp/features/otp/binding_otp.dart';
@@ -143,6 +145,11 @@ class AppPages {
     GetPage(
       name: Routes.webView,
       page: () => const PageWebView(),
-    )
+    ),
+    GetPage(
+      name: Routes.postingCustomerOrder,
+      page: () => const PageCustomerOrder(),
+      binding: BindingCustomerOrder(),
+    ),
   ];
 }

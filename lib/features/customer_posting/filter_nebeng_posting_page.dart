@@ -126,6 +126,7 @@ class FilterNebengPostingPage extends GetView<ControllerCustomerPosting> {
                       labelStyle: TextStyles.textBaseBold.copyWith(
                         color: AppColor.primaryColor,
                       ),
+                      borderRadius: Corners.xxl * 2,
                       height: IconSizes.xl - 4.h,
                     ),
                   ),

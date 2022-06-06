@@ -39,6 +39,7 @@ class ControllerCustomerPosting extends GetxController {
     txtDateDeptStart = TextEditingController();
     txtDateDeptEnd = TextEditingController();
     getData();
+    getCities();
     super.onInit();
   }
 

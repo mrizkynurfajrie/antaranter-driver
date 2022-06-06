@@ -21,4 +21,5 @@ abstract class Routes {
   static const agreement = '/page_agreement';
   static const customerPosting = '/customer_posting';
   static const webView = '/page_webview';
+  static const postingCustomerOrder = '/page_posting_customer_order';
 }

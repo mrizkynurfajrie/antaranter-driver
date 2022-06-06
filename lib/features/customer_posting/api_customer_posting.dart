@@ -18,7 +18,7 @@ class ApiCustomerPosting {
     };
     var response =
         await Api1().apiJSONPostWithToken("cities/listbyregion", data);
-    // log('return data = ' + apiLoginResponse.toString());
+    log('return data city = ' + response.toString());
 
     return response;
   }
