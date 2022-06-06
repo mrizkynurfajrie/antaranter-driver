@@ -107,14 +107,25 @@ class PageHome extends GetView<ControllerHome> {
                                         maxLines: 2,
                                       ),
                                       verticalSpace(5),
-                                      Text(
-                                        controller.controllerRiderInfo.rider
-                                                .value.phone ??
-                                            '',
-                                        style: TextStyles.inter.copyWith(
-                                          color: AppColor.whiteColor,
-                                          fontSize: FontSizes.s14,
-                                        ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '+62',
+                                            style: TextStyles.inter.copyWith(
+                                              color: AppColor.whiteColor,
+                                              fontSize: FontSizes.s14,
+                                            ),
+                                          ),
+                                          Text(
+                                            controller.controllerRiderInfo.rider
+                                                    .value.phone ??
+                                                '',
+                                            style: TextStyles.inter.copyWith(
+                                              color: AppColor.whiteColor,
+                                              fontSize: FontSizes.s14,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
@@ -420,7 +431,7 @@ class PageHome extends GetView<ControllerHome> {
               child: ButtonText(
                 label: 'customer posting',
                 onPressed: () {
-                  Get.toNamed(Routes.customer_posting);
+                  Get.toNamed(Routes.customerPosting);
                 },
               ),
             )

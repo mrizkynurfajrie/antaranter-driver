@@ -14,6 +14,8 @@ class InputSelection extends StatefulWidget {
   final EdgeInsets? margin;
   final double? width;
   final double? height;
+  final bool isRequired;
+  final bool isValid;
 
   const InputSelection({
     Key? key,
@@ -28,6 +30,8 @@ class InputSelection extends StatefulWidget {
     this.margin,
     this.width,
     this.height,
+    required this.isRequired,
+    this.isValid = true,
   }) : super(key: key);
 
   @override
@@ -74,10 +78,23 @@ class _InputSelectionState extends State<InputSelection> {
               padding: widget.padding,
               margin: widget.margin,
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: Corners.lgBorder,
-                  border: Border.all(
-                      width: Strokes.thin, color: AppColor.bodyColor.shade300)),
+                color: Colors.white,
+                borderRadius: Corners.lgBorder,
+                border: widget.isRequired
+                    ? widget.isValid
+                        ? Border.all(
+                            width: Strokes.xthin,
+                            color: AppColor.bodyColor.shade300,
+                          )
+                        : Border.all(
+                            width: Strokes.thin,
+                            color: AppColor.errorColor,
+                          )
+                    : Border.all(
+                        width: Strokes.xthin,
+                        color: AppColor.bodyColor.shade300,
+                      ),
+              ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

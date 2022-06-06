@@ -287,6 +287,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                   padding: EdgeInsets.all(Insets.sm),
                                   width: Get.width * 0.65.w,
                                   margin: EdgeInsets.only(bottom: 5.h),
+                                  isRequired: false,
                                 ),
                                 InputSelection(
                                   valueText: controller.itemCitiesDept.value,
@@ -311,6 +312,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                   padding: EdgeInsets.all(Insets.sm),
                                   margin: EdgeInsets.only(bottom: 5.h),
                                   width: Get.width * 0.65.w,
+                                  isRequired: false,
                                 ),
                                 Obx(
                                   () => InputDate(
@@ -398,6 +400,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                 padding: EdgeInsets.all(Insets.sm),
                                 margin: EdgeInsets.only(bottom: 5.h),
                                 width: Get.width * 0.65.w,
+                                isRequired: false,
                               ),
                               InputDate(
                                 hintText: 'Pilih Tanggal Tiba',

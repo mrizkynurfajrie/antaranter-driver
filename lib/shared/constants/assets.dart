@@ -32,6 +32,7 @@ class AppIcons {
   static const genderMale = 'assets/icons/gender-male.svg';
   static const genderFemale = 'assets/icons/gender-female.svg';
   static const dummyAvatar = 'assets/icons/avatar_dummy.svg';
+  static const seatSvg = 'assets/icons/seat.svg';
 
   static Widget iconApp(String asset) {
     return SvgPicture.asset(
@@ -88,4 +89,6 @@ class AppLotties {
   static const loadingProcess = 'assets/lottie/loading-orange.json';
   static const loadingCar = 'assets/lottie/loading-car.json';
   static const empty = 'assets/lottie/empty.json';
+  static const emptyList = 'assets/lottie/empty-list.json';
+  static const errorIcon = 'assets/lottie/error.json';
 }

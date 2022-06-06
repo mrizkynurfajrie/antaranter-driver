@@ -409,6 +409,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                             margin: EdgeInsets.only(
                               bottom: 5.h,
                             ),
+                            isRequired: false,
                           ),
                           InputSelection(
                             valueText: controller.itemCities.value,
@@ -419,6 +420,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                             padding: EdgeInsets.all(Insets.sm),
                             margin: EdgeInsets.only(bottom: 5.h),
                             width: Get.width * 0.88.w,
+                            isRequired: false,
                           ),
                         ],
                       ),

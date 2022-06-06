@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:antaranter_driverapp/response/users.dart';
+
 
 NebengPosting nebengPostingFromJson(String str) =>
     NebengPosting.fromJson(json.decode(str));
@@ -31,6 +33,8 @@ class NebengPosting {
     this.updatedAt,
     this.isDeleted,
     this.count,
+    this.desc,
+    this.user,
   });
 
   int? id;
@@ -52,6 +56,8 @@ class NebengPosting {
   DateTime? updatedAt;
   DateTime? isDeleted;
   int? count;
+  String? desc;
+  Users? user;
   
   get remainingSeat => seatAvail! - count!;
 
@@ -76,6 +82,8 @@ class NebengPosting {
         updatedAt: DateTime.parse(json["updatedAt"]),
         isDeleted: json["isDeleted"],
         count: json["count"],
+        desc: json["desc"],
+        user: json["user"] == null ? null : Users.fromJson(json["user"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -98,5 +106,7 @@ class NebengPosting {
         "updatedAt": updatedAt?.toIso8601String(),
         "isDeleted": isDeleted,
         "count": count,
+        "desc": desc,
+        "user": user?.toJson(),
       };
 }

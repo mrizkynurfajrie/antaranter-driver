@@ -3,6 +3,33 @@
 import 'package:intl/intl.dart';
 
 class FormatDateTime {
+  static String localeWithoutSeparator(dynamic value) {
+    final dateFormat = DateFormat('yyyyMMdd');
+    if (value == null) {
+      return '-';
+    } else {
+      return dateFormat.format(value);
+    }
+  }
+
+  static String locale({required DateTime value}) {
+    final dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
+    try {
+      return dateFormat.format(value);
+    } catch (e) {
+      return dateFormat.format(DateTime.now());
+    }
+  }
+
+  static DateTime stringDateToDateTime(String date) {
+    DateFormat inputFormat = DateFormat('yyyy-MM-dd');
+    var dateTimeConvert;
+    if (date.contains('-')) {
+      dateTimeConvert = inputFormat.parse(date);
+    }
+    return dateTimeConvert;
+  }
+
   static String formatDateWithoutSeparator(dynamic value) {
     final dateFormat = DateFormat('yyyyMMdd');
     if (value == null) {
@@ -29,6 +56,7 @@ class FormatDateTime {
       return dateFormat.format(DateTime.now());
     }
   }
+
   static String formatDateWithoutHouryyyy({required DateTime value}) {
     final dateFormat = DateFormat('yyyy-MM-dd');
     try {

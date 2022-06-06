@@ -3,12 +3,13 @@ import 'package:antaranter_driverapp/features/agreement/page_agreement.dart';
 import 'package:antaranter_driverapp/features/api_log/binding_api_log.dart';
 import 'package:antaranter_driverapp/features/api_log/page_api_log.dart';
 import 'package:antaranter_driverapp/features/contact/binding_contact.dart';
-import 'package:antaranter_driverapp/features/customer_posting/bind_customer_posting.dart';
+import 'package:antaranter_driverapp/features/customer_posting/binding_customer_posting.dart';
 import 'package:antaranter_driverapp/features/customer_posting/page_customer_posting.dart';
 import 'package:antaranter_driverapp/features/otp/binding_otp.dart';
 import 'package:antaranter_driverapp/features/otp/page_otp.dart';
 import 'package:antaranter_driverapp/features/terms/binding_terms.dart';
 import 'package:antaranter_driverapp/features/terms/page_terms.dart';
+import 'package:antaranter_driverapp/shared/widgets/pages/page_webview.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/contact/page_contact.dart';
 import 'package:antaranter_driverapp/features/home/page_home.dart';
@@ -135,9 +136,13 @@ class AppPages {
       binding: BindingAgreement(),
     ),
     GetPage(
-      name: Routes.customer_posting,
+      name: Routes.customerPosting,
       page: () => const PageCustomerPosting(),
       binding: BindingCustomerPosting(),
+    ),
+    GetPage(
+      name: Routes.webView,
+      page: () => const PageWebView(),
     )
   ];
 }

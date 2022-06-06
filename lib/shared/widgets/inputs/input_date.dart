@@ -19,6 +19,7 @@ class InputDate extends StatefulWidget {
   final ValueSetter<DateTime> selectedDate;
   final ValueSetter<bool> isValid;
   final double? boxWidth;
+  final double? boxHeight;
   final EdgeInsets? padding;
   final EdgeInsets? margin;
 
@@ -36,6 +37,7 @@ class InputDate extends StatefulWidget {
       required this.selectedDate,
       required this.isValid,
       this.boxWidth,
+      this.boxHeight,
       this.padding,
       this.margin})
       : super(key: key);
@@ -92,6 +94,7 @@ class _InputDateState extends State<InputDate> {
         Container(
           padding: widget.padding,
           width: widget.boxWidth,
+          height: widget.boxHeight,
           margin: widget.margin ?? EdgeInsets.zero,
           child: TextFormField(
             onTap: _selectDate,

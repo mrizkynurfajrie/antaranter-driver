@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/response/region.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/framework/api2.dart';
 import 'package:antaranter_driverapp/response/main_rider.dart';
@@ -5,6 +6,7 @@ import 'package:antaranter_driverapp/response/main_rider.dart';
 class ControllerRiderInfo extends GetxController {
   var hasActivePost = false.obs;
   var rider = MainRider().obs;
+  var region = Region().obs;
 
   @override
   void onInit() async {
