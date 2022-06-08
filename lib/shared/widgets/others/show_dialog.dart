@@ -83,7 +83,7 @@ showPopUpError({
 }) {
   if (onError != null) onError();
   showPopUp(
-      title: errorTitle != null ? errorTitle : "Informasi",
+      title: errorTitle ?? "Informasi",
       description: errorMessage,
       imageUri: PopUpIcons.error,
       labelButton: "Kembali",
@@ -121,7 +121,7 @@ showPopUpChoice({
                 ),
                 verticalSpace(Insets.xl),
                 if (imageUri != null)
-                  Image.asset(
+                  SvgPicture.asset(
                     imageUri,
                     height: imageSize ?? IconSizes.xxl,
                     width: imageSize ?? IconSizes.xxl,

@@ -277,18 +277,18 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                InputSelection(
-                                  valueText: controller.itemProvinceDept.value,
-                                  hintText: 'select_province'.tr,
-                                  onTap: () async {
-                                    controller.buildProvince(context);
-                                    controller.cities.clear();
-                                  },
-                                  padding: EdgeInsets.all(Insets.sm),
-                                  width: Get.width * 0.65.w,
-                                  margin: EdgeInsets.only(bottom: 5.h),
-                                  isRequired: false,
-                                ),
+                                // InputSelection(
+                                //   valueText: controller.itemProvinceDept.value,
+                                //   hintText: 'select_province'.tr,
+                                //   onTap: () async {
+                                //     controller.buildProvince(context);
+                                //     controller.cities.clear();
+                                //   },
+                                //   padding: EdgeInsets.all(Insets.sm),
+                                //   width: Get.width * 0.65.w,
+                                //   margin: EdgeInsets.only(bottom: 5.h),
+                                //   isRequired: false,
+                                // ),
                                 InputSelection(
                                   valueText: controller.itemCitiesDept.value,
                                   hintText: 'select_cities'.tr,

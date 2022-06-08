@@ -63,4 +63,11 @@ class ApiNebengPosting {
 
     return responseCity;
   }
+
+  Future<dynamic> getCityByRegion({required int idRegion}) async {
+    final body = {"region_id" : idRegion};
+    var response = await Api1().apiJSONPostWithToken("cities/listbyregion", body);
+
+    return response;
+  }
 }

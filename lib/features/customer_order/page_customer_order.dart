@@ -1,4 +1,5 @@
 import 'package:antaranter_driverapp/features/customer_order/controller_customer_order.dart';
+import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
@@ -269,8 +270,11 @@ class PageCustomerOrder extends GetView<ControllerCustomerOrder> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          controller.postinganCustomerNebeng.value.user?.gender == 'male' ? "Laki-Laki" : "Perempuan",
-                          
+                          controller.postinganCustomerNebeng.value.user
+                                      ?.gender ==
+                                  'male'
+                              ? "Laki-Laki"
+                              : "Perempuan",
                           style: TextStyles.text2xs.copyWith(
                             color: const Color(0xFF404040),
                             fontWeight: FontWeight.w500,
@@ -339,8 +343,22 @@ class PageCustomerOrder extends GetView<ControllerCustomerOrder> {
                   imageSize: 120.w,
                   labelPositif: "Ambil",
                   onConfirm: () {
-                    Get.back();
-                    // controller.orderNebeng();
+                    if (controller.controllerRiderInfo.hasActivePost.value ==
+                        true) {
+                      Get.back();
+                    } else {
+                      showPopUpChoice(
+                        title: 'Buat Perjalanan',
+                        description: 'Anda belum membuat perjalanan, silakan buat dan tentukan perjalanan anda.',
+                        imageUri: PopUpIcons.information,
+                        onConfirm: () {
+                          Get.offAllNamed(Routes.posting);
+                        },
+                        onCancel: () {
+                          Get.back();
+                        }
+                      );
+                    }
                   },
                   title: "Konfirmasi Penawaran",
                   description:

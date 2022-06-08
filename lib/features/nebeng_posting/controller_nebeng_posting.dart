@@ -77,7 +77,8 @@ class ControllerNebengPosting extends GetxController {
     formValidationListener();
     await balanceCalc();
     await getVehicle();
-    await getProvinces();
+    await getCities();
+    // await getProvinces();
     isUrgent.value = 0;
     log('isurgent : ' + isUrgent.toString());
     super.onInit();
@@ -267,28 +268,29 @@ class ControllerNebengPosting extends GetxController {
     }
   }
 
-  getProvinces() async {
-    try {
-      var r = await api.getProvince();
+  // getProvinces() async {
+  //   try {
+  //     var r = await api.getProvince();
 
-      for (var x in r['data']) {
-        provinces.add(
-          ModelBottomsheet(
-              itemName: x['name'],
-              widget: CardItem(
-                data: x,
-              ),
-              value: x['id']),
-        );
-        provinces.sort((a, b) => a.itemName.compareTo(b.itemName));
-      }
-    } catch (_) {}
-  }
+  //     for (var x in r['data']) {
+  //       provinces.add(
+  //         ModelBottomsheet(
+  //             itemName: x['name'],
+  //             widget: CardItem(
+  //               data: x,
+  //             ),
+  //             value: x['id']),
+  //       );
+  //       provinces.sort((a, b) => a.itemName.compareTo(b.itemName));
+  //     }
+  //   } catch (_) {}
+  // }
 
   getCities() async {
     try {
       cities.clear();
-      var r = await api.getCity(idProvince: idProvince.value);
+      var r = await api.getCityByRegion(idRegion: controllerRiderInfo.region.value.id!);
+      // log('data r : ' + r.toString());
       for (var x in r['data']) {
         cities.add(ModelBottomsheet(
           itemName: x['name'],
@@ -302,25 +304,25 @@ class ControllerNebengPosting extends GetxController {
     } catch (_) {}
   }
 
-  buildProvince(context) {
-    BottomsheetSelection(
-      title: 'Pilih Provinsi',
-      context: context,
-      labelButton: '',
-      listWidget: provinces,
-      value: (value) async {
-        if (value != null) {
-          search('');
-          idProvince(value);
-          Navigator.pop(context);
-          getCities();
-        }
-      },
-      itemName: (value) {
-        itemProvinceDept(value);
-      },
-    ).showSelection();
-  }
+  // buildProvince(context) {
+  //   BottomsheetSelection(
+  //     title: 'Pilih Provinsi',
+  //     context: context,
+  //     labelButton: '',
+  //     listWidget: provinces,
+  //     value: (value) async {
+  //       if (value != null) {
+  //         search('');
+  //         idProvince(value);
+  //         Navigator.pop(context);
+  //         getCities();
+  //       }
+  //     },
+  //     itemName: (value) {
+  //       itemProvinceDept(value);
+  //     },
+  //   ).showSelection();
+  // }
 
   buildCities(context) {
     BottomsheetSelection(
@@ -339,22 +341,22 @@ class ControllerNebengPosting extends GetxController {
         }).showSelection();
   }
 
-  buildProvinceArrv(context) {
-    BottomsheetSelection(
-        title: 'Pilih Provinsi',
-        context: context,
-        listWidget: provinces,
-        value: (value) async {
-          if (value != null) {
-            search('');
-            idProvince(value);
-            await getCities();
-          }
-        },
-        itemName: (value) {
-          itemProvinceArrv(value);
-        }).showSelection();
-  }
+  // buildProvinceArrv(context) {
+  //   BottomsheetSelection(
+  //       title: 'Pilih Provinsi',
+  //       context: context,
+  //       listWidget: provinces,
+  //       value: (value) async {
+  //         if (value != null) {
+  //           search('');
+  //           idProvince(value);
+  //           await getCities();
+  //         }
+  //       },
+  //       itemName: (value) {
+  //         itemProvinceArrv(value);
+  //       }).showSelection();
+  // }
 
   buildCitiesArrv(context) {
     BottomsheetSelection(

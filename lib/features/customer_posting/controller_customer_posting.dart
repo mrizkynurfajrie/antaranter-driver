@@ -5,6 +5,7 @@ import 'package:antaranter_driverapp/response/nebeng_customer_response.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
 import 'package:antaranter_driverapp/shared/widgets/bottomsheet/bottomsheet_selection.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_item.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_item_filter.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
 import 'package:flutter/cupertino.dart';
@@ -91,7 +92,7 @@ class ControllerCustomerPosting extends GetxController {
       for (var x in r['data']) {
         cities.add(ModelBottomsheet(
           itemName: x['name'],
-          widget: CardItem(
+          widget: CardItemFilter(
             data: x,
           ),
           value: x['id'],
