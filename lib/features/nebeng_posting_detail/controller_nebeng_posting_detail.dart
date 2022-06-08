@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +44,8 @@ class ControllerNebengPostingDetail extends GetxController
   var statusNebeng = 2.obs;
   var balance = 0.obs;
   var timelock = ''.obs;
+  var isDayDep = false;
+  var buttonStart = false.obs;
 
   var txtTimeDept = TextEditingController();
   var txtTimeArrv = TextEditingController();
@@ -56,6 +57,7 @@ class ControllerNebengPostingDetail extends GetxController
   @override
   void onInit() async {
     await getDataPosting();
+
     super.onInit();
   }
 
@@ -103,6 +105,7 @@ class ControllerNebengPostingDetail extends GetxController
           if (nebengPostingRes.nebengOrder != null) {
             listUserNebeng.addAll(nebengPostingRes.nebengOrder!);
           }
+          buttonStart.value = checkAvailableButton();
         } catch (e) {
           controllerRiderInfo.hasActivePost.value = false;
         }
@@ -316,6 +319,7 @@ class ControllerNebengPostingDetail extends GetxController
             controllerPostingan.postingan.value.nebengPosting!.status!;
         controllerPostingan.postingan.refresh();
         var statusUpdate = controllerPostingan.postingan.value.nebengPosting;
+
         if (statusUpdate?.status == 3) {
           await updateStatusDone();
           controllerPostingan.postingan.value = NebengPostingResponse();
@@ -333,7 +337,7 @@ class ControllerNebengPostingDetail extends GetxController
           );
           await Future.delayed(const Duration(seconds: 3));
           Get.back();
-          
+
           controllerPostingan.postingan.refresh();
           return true;
         }
@@ -346,24 +350,18 @@ class ControllerNebengPostingDetail extends GetxController
     }
   }
 
-  // bool checkAvailableButton() {
-  //   var timeNow = DateTime.now();
-  //   var dateDep = controllerPostingan.postingan.value.nebengPosting!.dateDep!;
-  //   var timeDep = controllerPostingan.postingan.value.nebengPosting!.timeDep
-  //       .toString()
-  //       .split(':');
+  bool checkAvailableButton() {
+    var timeNow = DateTime.now();
+    var dateDep = controllerPostingan.postingan.value.nebengPosting!.dateDep!;
+    var timeDep =
+        controllerPostingan.postingan.value.nebengPosting!.timeDep.toString();
 
-  //   var dateTimeDep = DateTime.utc(dateDep.year, dateDep.month, dateDep.day,
-  //       int.parse(timeDep[0]), int.parse(timeDep[1]));
+    var splitFromTime = timeDep.split(':');
 
-  //   log("datetimedpe : " + timeNow.difference(dateTimeDep).inHours.toString());
-
-  //   if (timeNow.difference(dateTimeDep).inHours > 2) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+    var fromDate = DateTime(
+        dateDep.year, dateDep.month, dateDep.day, int.parse(splitFromTime[0]));
+    return (timeNow.difference(fromDate).inSeconds / 60).round() > 0;
+  }
 
   onRefresh() async {
     await Future.delayed(const Duration(milliseconds: 1000));

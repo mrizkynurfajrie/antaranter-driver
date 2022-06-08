@@ -310,7 +310,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                 ),
                                               ],
                                             ),
-                                            verticalSpace(15.h),
+                                            verticalSpace(25.h),
                                             Row(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
@@ -646,11 +646,20 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                             errorMessage:
                                                                 'Anda belum bisa memulai perjalanan, karena tidak ada pelanggan yang nebeng dengan anda');
                                                       },
-                                                enable: (controller.statusNebeng
-                                                            .value ==
-                                                        1)
+                                                // enable: (controller.statusNebeng
+                                                //             .value ==
+                                                //         1)
+                                                //     ? true
+                                                //     : false,
+                                                enable: controller.buttonStart
+                                                                .value ==
+                                                            true &&
+                                                        controller.statusNebeng
+                                                                .value ==
+                                                            1
                                                     ? true
                                                     : false,
+
                                                 label: 'Mulai Perjalanan',
                                                 color: AppColor.successColor,
                                                 labelStyle:

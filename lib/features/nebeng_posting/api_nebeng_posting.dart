@@ -14,7 +14,7 @@ class ApiNebengPosting {
     required seatAvail,
     required price,
     required desc,
-    // required isUrgent
+    required isUrgent
   }) async {
     final bodyPosting = {
       "rider_id": idRider,
@@ -27,7 +27,7 @@ class ApiNebengPosting {
       "seatAvail": seatAvail,
       "price": price,
       "desc": desc,
-      // "is_urgent": isUrgent,
+      "is_urgent": isUrgent,
     };
     var responsePosting =
         await Api1().apiJSONPostWithToken('nebengposts/create', bodyPosting);

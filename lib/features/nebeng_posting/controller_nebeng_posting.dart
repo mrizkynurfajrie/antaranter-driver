@@ -471,7 +471,7 @@ class ControllerNebengPosting extends GetxController {
         seatAvail: dropDownValue.value,
         price: priceformatted,
         desc: valDesc.value,
-        // isUrgent: isUrgent.value,
+        isUrgent: isUrgent.value,
       );
 
       log('hasil data : ' + updateResult.toString());

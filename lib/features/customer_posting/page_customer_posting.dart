@@ -27,6 +27,7 @@ class PageCustomerPosting extends GetView<ControllerCustomerPosting> {
       toolbarColor: AppColor.primaryColor,
       enableBack: true,
       toolbarTitleColor: AppColor.whiteColor,
+      toolbarElevation: 1,
       padding: EdgeInsets.zero,
       center: Center(
         child: Text(
@@ -42,7 +43,7 @@ class PageCustomerPosting extends GetView<ControllerCustomerPosting> {
         () => LoadingOverlay(
           isLoading: controller.loading.value,
           opacity: 0.5,
-          color: AppColor.secondary.shade200,
+          color: AppColor.secondary,
           progressIndicator: loadingIndicator(context),
           child: RefreshIndicator(
             onRefresh: () async => controller.onRefresh(),

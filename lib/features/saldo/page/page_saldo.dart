@@ -136,6 +136,7 @@ class PageSaldo extends GetView<ControllerSaldo> {
               ),
               verticalSpace(15.h),
               CardPrimary(
+                shadow: Shadows.universal,
                 width: Get.width * 0.88.w,
                 height: Get.height * 0.40.h,
                 color: AppColor.whiteColor,
