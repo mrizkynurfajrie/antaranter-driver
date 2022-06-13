@@ -11,7 +11,7 @@ import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:antaranter_driverapp/features/nebeng_posting/api_nebeng_posting.dart';
+import 'package:antaranter_driverapp/features/posting/nebeng_posting/api_nebeng_posting.dart';
 import 'package:antaranter_driverapp/response/nebeng_rider.dart';
 import 'package:antaranter_driverapp/response/post.dart';
 import 'package:antaranter_driverapp/routes/app_routes.dart';
@@ -289,7 +289,8 @@ class ControllerNebengPosting extends GetxController {
   getCities() async {
     try {
       cities.clear();
-      var r = await api.getCityByRegion(idRegion: controllerRiderInfo.region.value.id!);
+      var r = await api.getCityByRegion(
+          idRegion: controllerRiderInfo.region.value.id!);
       // log('data r : ' + r.toString());
       for (var x in r['data']) {
         cities.add(ModelBottomsheet(
@@ -328,6 +329,7 @@ class ControllerNebengPosting extends GetxController {
     BottomsheetSelection(
         title: 'Pilih Kota',
         context: context,
+      
         listWidget: cities,
         value: (value) async {
           if (value != null) {
@@ -491,7 +493,7 @@ class ControllerNebengPosting extends GetxController {
       } else {
         showPopUp(
           title: 'Gagal',
-          description: 'Anda gagal membagikan perjalanan anda',
+          description: 'Anda sudah memiliki perjalanan aktif',
           imageUri: PopUpIcons.error,
         );
         await Future.delayed(const Duration(seconds: 2));

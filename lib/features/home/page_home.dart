@@ -307,24 +307,25 @@ class PageHome extends GetView<ControllerHome> {
                           hintText: 'tentukan perjalanan mu',
                           keyboardType: TextInputType.none,
                           onTap: () async {
-                            // Get.toNamed(Routes.posting);
+                           
                             if (controller
                                     .controllerRiderInfo.rider.value.status ==
                                 2) {
-                              if (controller.controllerRiderInfo.hasActivePost
-                                      .value ==
-                                  true) {
-                                showPopUp(
-                                    title: 'Perjalanan Nebeng',
-                                    description:
-                                        'Anda masih memiliki pesanan aktif',
-                                    imageUri: PopUpIcons.error);
-                                await Future.delayed(
-                                    const Duration(seconds: 2));
-                                Get.back();
-                              } else {
-                                Get.toNamed(Routes.posting);
-                              }
+                                   Get.toNamed(Routes.postingPage);
+                              // if (controller.controllerRiderInfo.hasActivePost
+                              //         .value ==
+                              //     true) {
+                              //   showPopUp(
+                              //       title: 'Perjalanan Nebeng',
+                              //       description:
+                              //           'Anda masih memiliki pesanan aktif',
+                              //       imageUri: PopUpIcons.error);
+                              //   await Future.delayed(
+                              //       const Duration(seconds: 2));
+                              //   Get.back();
+                              // } else {
+                              //   Get.toNamed(Routes.postingPage);
+                              // }
                             } else {
                               var message = controller.controllerRiderInfo.rider
                                               .value.status ==
@@ -427,14 +428,6 @@ class PageHome extends GetView<ControllerHome> {
                 ),
               ),
             ),
-            SliverToBoxAdapter(
-              child: ButtonText(
-                label: 'customer posting',
-                onPressed: () {
-                  Get.toNamed(Routes.customerPosting);
-                },
-              ),
-            )
           ],
         ),
       ),

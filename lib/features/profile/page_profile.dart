@@ -85,13 +85,26 @@ class PageProfile extends GetView<ControllerProfile> {
                             ),
                           ),
                           verticalSpace(8.h),
-                          Text(
-                            controller.controllerRiderInfo.rider.value.phone ??
-                                "-",
-                            style: TextStyles.inter.copyWith(
-                                fontSize: FontSizes.s12,
-                                fontWeight: FontWeight.w500,
-                                color: AppColor.neutral),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "+62",
+                                style: TextStyles.inter.copyWith(
+                                    fontSize: FontSizes.s12,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColor.neutral),
+                              ),
+                              Text(
+                                controller.controllerRiderInfo.rider.value
+                                        .phone ??
+                                    "-",
+                                style: TextStyles.inter.copyWith(
+                                    fontSize: FontSizes.s12,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColor.neutral),
+                              ),
+                            ],
                           ),
                         ],
                       ),

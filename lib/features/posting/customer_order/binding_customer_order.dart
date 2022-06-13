@@ -1,5 +1,5 @@
-import 'package:antaranter_driverapp/features/customer_order/api_customer_order.dart';
-import 'package:antaranter_driverapp/features/customer_order/controller_customer_order.dart';
+import 'package:antaranter_driverapp/features/posting/customer_order/api_customer_order.dart';
+import 'package:antaranter_driverapp/features/posting/customer_order/controller_customer_order.dart';
 import 'package:get/get.dart';
 
 class BindingCustomerOrder implements Bindings {

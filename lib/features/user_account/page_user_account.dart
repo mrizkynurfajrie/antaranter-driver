@@ -148,15 +148,27 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                               ),
                             ),
                             verticalSpace(2.h),
-                            Text(
-                              controller
-                                      .controllerRiderInfo.rider.value.phone ??
-                                  '-',
-                              style: TextStyles.inter.copyWith(
-                                fontSize: FontSizes.s14,
-                                color: AppColor.neutral,
-                                fontWeight: FontWeight.w400,
-                              ),
+                            Row(
+                              children: [
+                                Text(
+                                  "+62",
+                                  style: TextStyles.inter.copyWith(
+                                    fontSize: FontSizes.s14,
+                                    color: AppColor.neutral,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  controller.controllerRiderInfo.rider.value
+                                          .phone ??
+                                      '-',
+                                  style: TextStyles.inter.copyWith(
+                                    fontSize: FontSizes.s14,
+                                    color: AppColor.neutral,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
                             ),
                             verticalSpace(2.h),
                             Text(
@@ -411,8 +423,18 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                             ),
                             isRequired: false,
                           ),
+                          Text(
+                              "Sebelum memilih kota, silakan pilih provinsi terlebih dahulu",
+                              style: TextStyles.inter.copyWith(
+                                fontSize: FontSizes.s11,
+                                color: AppColor.greyColor,
+                                fontWeight: FontWeight.w300,
+                              )),
                           InputSelection(
-                            valueText: controller.itemCities.value,
+                            valueText: controller.itemCities.value == null
+                                ? 'Kota'
+                                : controller.txtCity.text,
+                            // valueText: controller.txtCity.text,
                             hintText: 'select_cities'.tr,
                             onTap: () {
                               controller.buildCities(context);

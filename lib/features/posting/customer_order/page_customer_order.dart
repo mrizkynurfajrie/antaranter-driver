@@ -1,4 +1,4 @@
-import 'package:antaranter_driverapp/features/customer_order/controller_customer_order.dart';
+import 'package:antaranter_driverapp/features/posting/customer_order/controller_customer_order.dart';
 import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
@@ -338,26 +338,35 @@ class PageCustomerOrder extends GetView<ControllerCustomerOrder> {
               height: Sizes.xl,
               enable: true,
               onPressed: () {
-                showPopUpChoice(
-                  imageUri: AppIcons.confirmData,
+                showPopUpChoicePng(
+                  imageUri: AppIconsPng.confirmData,
                   imageSize: 120.w,
                   labelPositif: "Ambil",
-                  onConfirm: () {
+                  onConfirm: () async {
                     if (controller.controllerRiderInfo.hasActivePost.value ==
                         true) {
-                      Get.back();
+                      showPopUp(
+                        title: 'Penawaran',
+                        description:
+                            'Mohon untuk dapat menunggu beberapa waktu, pelanggan akan memberikan keputusan persetujuan penawaran nebeng',
+                        imageUri: PopUpIcons.information,
+                        dismissible: false,
+                      );
+                      await Future.delayed(const Duration(seconds: 3));
+                      controller.createPost();
+                      Get.offAllNamed(Routes.main, arguments: 1);
                     } else {
                       showPopUpChoice(
-                        title: 'Buat Perjalanan',
-                        description: 'Anda belum membuat perjalanan, silakan buat dan tentukan perjalanan anda.',
-                        imageUri: PopUpIcons.information,
-                        onConfirm: () {
-                          Get.offAllNamed(Routes.posting);
-                        },
-                        onCancel: () {
-                          Get.back();
-                        }
-                      );
+                          title: 'Buat Perjalanan',
+                          description:
+                              'Anda belum membuat perjalanan, silakan buat dan tentukan perjalanan anda.',
+                          imageUri: PopUpIcons.information,
+                          onConfirm: () {
+                            Get.offAllNamed(Routes.postingPage);
+                          },
+                          onCancel: () {
+                            Get.back();
+                          });
                     }
                   },
                   title: "Konfirmasi Penawaran",

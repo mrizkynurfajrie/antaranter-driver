@@ -1,10 +1,9 @@
 import 'dart:developer';
 
-import 'package:antaranter_driverapp/features/customer_posting/api_customer_posting.dart';
+import 'package:antaranter_driverapp/features/posting/customer_posting/api_customer_posting.dart';
 import 'package:antaranter_driverapp/response/nebeng_customer_response.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
 import 'package:antaranter_driverapp/shared/widgets/bottomsheet/bottomsheet_selection.dart';
-import 'package:antaranter_driverapp/shared/widgets/cards/card_item.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_item_filter.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
@@ -111,6 +110,7 @@ class ControllerCustomerPosting extends GetxController {
     BottomsheetSelection(
         title: 'Pilih Kota',
         context: context,
+       
         listWidget: cities,
         value: (value) async {
           if (value != null) {

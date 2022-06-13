@@ -1,4 +1,4 @@
-import 'package:antaranter_driverapp/features/customer_posting/controller_customer_posting.dart';
+import 'package:antaranter_driverapp/features/posting/customer_posting/controller_customer_posting.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
 import 'package:flutter/material.dart';

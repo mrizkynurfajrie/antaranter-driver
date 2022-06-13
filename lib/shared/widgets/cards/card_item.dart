@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:antaranter_driverapp/features/nebeng_posting/controller_nebeng_posting.dart';
+import 'package:antaranter_driverapp/features/posting/nebeng_posting/controller_nebeng_posting.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
 

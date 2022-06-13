@@ -71,14 +71,25 @@ class PageSaldo extends GetView<ControllerSaldo> {
                                   color: AppColor.neutral,
                                   fontWeight: FontWeight.w500),
                             ),
-                            Text(
-                              controller
-                                      .controllerRiderInfo.rider.value.phone ??
-                                  "-",
-                              style: TextStyles.inter.copyWith(
-                                fontSize: FontSizes.s14,
-                                color: AppColor.neutral,
-                              ),
+                            Row(
+                              children: [
+                                Text(
+                                  "+62",
+                                  style: TextStyles.inter.copyWith(
+                                    fontSize: FontSizes.s14,
+                                    color: AppColor.neutral,
+                                  ),
+                                ),
+                                Text(
+                                  controller.controllerRiderInfo.rider.value
+                                          .phone ??
+                                      "-",
+                                  style: TextStyles.inter.copyWith(
+                                    fontSize: FontSizes.s14,
+                                    color: AppColor.neutral,
+                                  ),
+                                )
+                              ],
                             )
                           ],
                         ),

@@ -3,12 +3,14 @@ import 'package:antaranter_driverapp/features/agreement/page_agreement.dart';
 import 'package:antaranter_driverapp/features/api_log/binding_api_log.dart';
 import 'package:antaranter_driverapp/features/api_log/page_api_log.dart';
 import 'package:antaranter_driverapp/features/contact/binding_contact.dart';
-import 'package:antaranter_driverapp/features/customer_order/binding_customer_order.dart';
-import 'package:antaranter_driverapp/features/customer_order/page_customer_order.dart';
-import 'package:antaranter_driverapp/features/customer_posting/binding_customer_posting.dart';
-import 'package:antaranter_driverapp/features/customer_posting/page_customer_posting.dart';
+import 'package:antaranter_driverapp/features/posting/binding_posting.dart';
+import 'package:antaranter_driverapp/features/posting/customer_order/binding_customer_order.dart';
+import 'package:antaranter_driverapp/features/posting/customer_order/page_customer_order.dart';
+import 'package:antaranter_driverapp/features/posting/customer_posting/binding_customer_posting.dart';
+import 'package:antaranter_driverapp/features/posting/customer_posting/page_customer_posting.dart';
 import 'package:antaranter_driverapp/features/otp/binding_otp.dart';
 import 'package:antaranter_driverapp/features/otp/page_otp.dart';
+import 'package:antaranter_driverapp/features/posting/page_posting.dart';
 import 'package:antaranter_driverapp/features/terms/binding_terms.dart';
 import 'package:antaranter_driverapp/features/terms/page_terms.dart';
 import 'package:antaranter_driverapp/shared/widgets/pages/page_webview.dart';
@@ -18,8 +20,8 @@ import 'package:antaranter_driverapp/features/home/page_home.dart';
 import 'package:antaranter_driverapp/features/login/page_login.dart';
 import 'package:antaranter_driverapp/features/main/binding_main.dart';
 import 'package:antaranter_driverapp/features/main/page_main.dart';
-import 'package:antaranter_driverapp/features/nebeng_posting/binding_nebeng_posting.dart';
-import 'package:antaranter_driverapp/features/nebeng_posting/page_nebeng_posting.dart';
+import 'package:antaranter_driverapp/features/posting/nebeng_posting/binding_nebeng_posting.dart';
+import 'package:antaranter_driverapp/features/posting/nebeng_posting/page_nebeng_posting.dart';
 import 'package:antaranter_driverapp/features/nebeng_posting_detail/binding_nebeng_posting_detail.dart';
 import 'package:antaranter_driverapp/features/nebeng_posting_detail/page_nebeng_posting_detail.dart';
 import 'package:antaranter_driverapp/features/order_history/binding_order_history.dart';
@@ -89,7 +91,7 @@ class AppPages {
       binding: BindingOrderHistory(),
     ),
     GetPage(
-      name: Routes.posting,
+      name: Routes.nebengPosting,
       page: () => const PageNebengPosting(),
       binding: BindingNebengPosting(),
     ),
@@ -151,5 +153,10 @@ class AppPages {
       page: () => const PageCustomerOrder(),
       binding: BindingCustomerOrder(),
     ),
+    GetPage(
+      name: Routes.postingPage,
+      page: () => const PagePosting(),
+      binding: BindingPosting(),
+    )
   ];
 }

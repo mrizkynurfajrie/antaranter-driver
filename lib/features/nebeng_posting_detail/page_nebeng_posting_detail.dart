@@ -588,6 +588,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                             child: ButtonPrimary(
                                               onPressed: () {
                                                 showPopUpChoice(
+                                                  imageUri: PopUpIcons.success,
                                                     title:
                                                         'Menyelesaikan Perjalanan',
                                                     description:
@@ -827,13 +828,49 @@ class UserNebeng extends GetView<ControllerNebengPostingDetail> {
                   CardRounded(
                     shadow: Shadows.none,
                     padding: EdgeInsets.zero,
+                    child: Row(
+                      children: [
+                        Text(
+                          "+62",
+                          style: TextStyles.inter.copyWith(
+                            fontSize: FontSizes.s14,
+                            fontWeight: FontWeight.w400,
+                            color: AppColor.greyColorLight,
+                          ),
+                        ),
+                        Text(
+                          '${nebengOrder.users?.phone}',
+                          style: TextStyles.inter.copyWith(
+                            fontSize: FontSizes.s14,
+                            fontWeight: FontWeight.w400,
+                            color: AppColor.greyColorLight,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  verticalSpace(2),
+                  CardRounded(
+                    shadow: Shadows.none,
+                    padding: EdgeInsets.zero,
                     child: Text(
-                      '${nebengOrder.users?.phone}',
+                      nebengOrder.status == 1
+                          ? 'Menunggu Waktu Perjalanan'
+                          : nebengOrder.status == 2
+                              ? 'Sedang Dalam Perjalanan'
+                              : nebengOrder.status == 3
+                                  ? 'Perjalanan Selesai'
+                                  : 'Menunggu Persetujuan Pelanggan',
                       style: TextStyles.inter.copyWith(
-                        fontSize: FontSizes.s14,
-                        fontWeight: FontWeight.w400,
-                        color: AppColor.greyColorLight,
-                      ),
+                          fontSize: FontSizes.s12,
+                          fontWeight: FontWeight.w400,
+                          color: nebengOrder.status == 1
+                              ? AppColor.orangeColor
+                              : nebengOrder.status == 2
+                                  ? AppColor.primary
+                                  : nebengOrder.status == 3
+                                      ? AppColor.doneTextColor
+                                      : AppColor.errorColor),
                     ),
                   ),
                 ],

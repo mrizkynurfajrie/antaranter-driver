@@ -57,13 +57,17 @@ class ControllerUserAccount extends GetxController {
   var loadingForm = false.obs;
   var statusUpdate = 0.obs;
   var itemProvince = 'Provinsi'.obs;
-  var itemCities = 'Kota'.obs;
+  var itemCities = ''.obs;
   var itemGender = 'Jenis Kelamin'.obs;
   var search = ''.obs;
   var idProvince = 0.obs;
   var idCities = 0.obs;
   var gender = ''.obs;
   var selectedGender = ''.obs;
+  var selectedCities = ''.obs;
+  var selectedProvince = ''.obs;
+  var indexProv = 0.obs;
+  var indexCities = 0.obs;
 
   var provinces = <ModelBottomsheet>[].obs;
   var cities = <ModelBottomsheet>[].obs;
@@ -419,10 +423,8 @@ class ControllerUserAccount extends GetxController {
         value: (value) async {
           if (value != null) {
             search('');
-            // idCities(value);
-            // search(value);
             Navigator.pop(context);
-          }
+          } else {}
         },
         itemName: (value) {
           itemCities(value);

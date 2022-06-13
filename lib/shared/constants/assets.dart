@@ -36,7 +36,6 @@ class AppIcons {
   static const riderPerson = 'assets/icons/rider-person.svg';
   static const map = 'assets/icons/map.svg';
   static const note = 'assets/icons/note.svg';
-  static const confirmData = 'assets/images/confirm_data.png';
 
   static Widget iconApp(String asset) {
     return SvgPicture.asset(
@@ -44,6 +43,18 @@ class AppIcons {
       height: IconSizes.sm,
       fit: BoxFit.contain,
       color: AppColor.primaryColor,
+    );
+  }
+}
+
+class AppIconsPng {
+  static const confirmData = 'assets/images/confirm_data.png';
+
+  static Widget iconApp(String asset) {
+    return Image.asset(
+      asset,
+      height: IconSizes.sm,
+      fit: BoxFit.contain,
     );
   }
 }

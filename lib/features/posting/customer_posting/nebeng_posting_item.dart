@@ -51,7 +51,7 @@ class NebengPostingItem extends StatelessWidget {
                         (context, url, downloadProgress) => Shimmer(
                       gradient: AppColor.shimmerGradient,
                       child: Container(
-                        color: Colors.white,
+                        color: AppColor.whiteColor,
                       ),
                     ),
                     errorWidget: (context, url, error) => Container(

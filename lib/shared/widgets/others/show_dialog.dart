@@ -168,6 +168,82 @@ showPopUpChoice({
       ),
       barrierDismissible: dismissible ?? true);
 }
+showPopUpChoicePng({
+  String? title,
+  String? description,
+  String? labelNegatif,
+  String? labelPositif,
+  String? imageUri,
+  double? imageSize,
+  bool? dismissible,
+  Function()? onConfirm,
+  Function()? onCancel,
+}) {
+  Get.dialog(
+      Dialog(
+        backgroundColor: Colors.transparent,
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: Corners.lgBorder, color: Colors.white),
+          child: Padding(
+            padding: EdgeInsets.all(Insets.xl),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  title ?? "",
+                  style: TextStyles.subtitle1,
+                  textAlign: TextAlign.center,
+                ),
+                verticalSpace(Insets.xl),
+                if (imageUri != null)
+                  Image.asset(
+                    imageUri,
+                    height: imageSize ?? IconSizes.xxl,
+                    width: imageSize ?? IconSizes.xxl,
+                  ),
+                Text(
+                  description ?? "",
+                  style: TextStyles.body2.copyWith(color: AppColor.greyColor),
+                  textAlign: TextAlign.center,
+                ),
+                verticalSpace(Insets.xl),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ButtonPrimary(
+                        onPressed: onCancel ?? () => Get.back(),
+                        label: labelNegatif ?? "Batal",
+                        labelStyle: TextStyles.inter.copyWith(
+                          fontSize: FontSizes.s14,
+                          color: AppColor.whiteColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    horizontalSpace(Insets.xl),
+                    Expanded(
+                      child: ButtonPrimary(
+                        onPressed: onConfirm ?? () => Get.back(),
+                        label: labelPositif ?? "Ya",
+                        color: AppColor.whiteColor,
+                        borderColor: AppColor.primaryColor,
+                        labelStyle: TextStyles.inter.copyWith(
+                          fontSize: FontSizes.s14,
+                          color: AppColor.primaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      barrierDismissible: dismissible ?? true);
+}
 
 // dialogConfirmation({
 //   String? title,

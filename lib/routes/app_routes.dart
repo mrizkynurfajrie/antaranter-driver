@@ -9,7 +9,7 @@ abstract class Routes {
   static const main = '/main_page';
   static const saldo = '/saldo_page';
   static const actHistory = '/actHistory_page';
-  static const posting = '/posting_page';
+  static const nebengPosting = '/nebeng_posting_page';
   static const postingDetail = '/posting_detail_page';
   static const userAccount = '/userAccount_page';
   static const vehicleAccount = '/vehicleAccount_page';
@@ -22,4 +22,5 @@ abstract class Routes {
   static const customerPosting = '/customer_posting';
   static const webView = '/page_webview';
   static const postingCustomerOrder = '/page_posting_customer_order';
+  static const postingPage = '/posting_page';
 }
