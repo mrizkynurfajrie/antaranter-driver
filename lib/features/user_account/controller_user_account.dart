@@ -94,10 +94,18 @@ class ControllerUserAccount extends GetxController {
             value: controllerRiderInfo.rider.value.birth!);
     txtAddress.text = controllerRiderInfo.rider.value.address ?? '';
     txtPhone.text = controllerRiderInfo.rider.value.phone ?? '';
-    itemCities.value = itemCities.value;
-    txtCity.text = controllerRiderInfo.rider.value.cityLocation ?? '';
+    itemCities.value =
+        controllerRiderInfo.rider.value.cityLocation ?? itemCities.value;
+    txtCity.text =
+        controllerRiderInfo.rider.value.cityLocation ?? itemCities.value;
     // controllerRiderInfo.rider.value.status = 1;
     statusUpdate.value = controllerRiderInfo.rider.value.status!;
+
+    if (controllerRiderInfo.rider.value.gender == 'male') {
+      gender.value = 'Laki-Laki';
+    } else {
+      gender.value = 'Perempuan';
+    }
 
     await getProvinces();
 

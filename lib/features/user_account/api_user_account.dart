@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:antaranter_driverapp/framework/api1.dart';
@@ -38,21 +37,21 @@ class ApiUserAccount {
     return apiUserAccountRespons;
   }
 
-  Future<dynamic>uploadProfileImg({required String profileImg}) async {
+  Future<dynamic> uploadProfileImg({required String profileImg}) async {
     var upload = Api1().apiJSONMultipartWithToken(profileImg, 'upload');
 
     return upload;
   }
 
-  Future<dynamic>uploadKtpImg({required String ktpImg}) async {
+  Future<dynamic> uploadKtpImg({required String ktpImg}) async {
     var upload = Api1().apiJSONMultipartWithToken(ktpImg, 'upload');
 
     return upload;
   }
 
-   Future<dynamic> getProvince() async {
+  Future<dynamic> getProvince() async {
     var responseProvince = await Api1().apiJSONGetWitToken("provincies/list");
-    log('data province : ' + responseProvince.toString());
+
     return responseProvince;
   }
 

@@ -157,7 +157,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                       ],
                     ),
                     InputPrimary(
-                      hintText: 'Nomor Plat Kendaraan',
+                      hintText: 'contoh: KT 1234 AAA',
                       label: 'Nomor Plat Kendaraan',
                       onTap: () {},
                       prefixIcon: const Icon(CupertinoIcons.number_square),

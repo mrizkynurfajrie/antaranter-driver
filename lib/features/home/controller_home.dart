@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:antaranter_driverapp/response/region.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_postingan.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
@@ -24,17 +26,20 @@ class ControllerHome extends GetxController {
   onInit() async {
     await getData();
     // await getDataPosting();
-    
+
     super.onInit();
   }
 
   getData() async {
     try {
       var res = await api.riderHome(controllerRiderInfo.rider.value.id ?? 0);
+
       if (res["success"] == true) {
         homeResponse.value = HomeResponse.fromJson(res["data"]);
         if (homeResponse.value.rider != null) {
           controllerRiderInfo.rider.value = homeResponse.value.rider!;
+        }
+        if (homeResponse.value.region != null) {
           controllerRiderInfo.region.value = homeResponse.value.region!;
         }
       }

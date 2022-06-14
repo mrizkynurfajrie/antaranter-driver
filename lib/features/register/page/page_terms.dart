@@ -24,85 +24,84 @@ class PageTerms extends GetView<ControllerRegister> {
       padding: EdgeInsets.symmetric(horizontal: Insets.xl),
       toolbarColor: AppColor.bgPageColor,
       backgroundColor: AppColor.bgPageColor,
-      center: Row(
-        children: [
-          AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
-        ],
+      center: Center(
+        child: AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
       ),
-      child: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              verticalSpace(15.h),
-              Text(
-                "Selamat datang",
-                style: TextStyles.textHeader,
-                textAlign: TextAlign.center,
-              ),
-              verticalSpace(10.h),
-              CardRounded(
-                shadow: Shadows.none,
-                color: AppColor.bgPageColor,
-                margin: EdgeInsets.zero,
-                child: Text(
-                  "Mohon perhatikan dan pahami ketentuan berikut untuk dapat menjadi mitra AntarAnter Driver",
-                  style: TextStyles.inter.copyWith(
-                      fontSize: FontSizes.s14, fontWeight: FontWeight.w400),
+      child: CustomScrollView(
+        slivers: [
+          SliverFillRemaining(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "Selamat datang",
+                  style: TextStyles.textH2,
                   textAlign: TextAlign.center,
-                  maxLines: 3,
                 ),
-              ),
-              verticalSpace(10.h),
-              CardRoundedBorder(
-                padding: EdgeInsets.only(left: 3.w, right: 5.w),
-                borderColor: AppColor.greyColorLight,
-                height: Get.height * 0.60.h,
-                child: Obx(
-                  () => controller.loading.isFalse
-                      ? Scrollbar(
-                          child: ListView(
-                            children: [
-                              Html(
-                                data: controller.termCondition.value.skDesc,
-                              )
-                            ],
-                          ),
-                        )
-                      : loadingIndicatorBottom(context),
-                ),
-              ),
-              verticalSpace(10.h),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 5.h),
-                child: CheckboxLabel(
-                  onChange: (value) {
-                    controller.statusAgreementTerm.value = value;
-                  },
-                  label:
-                      'Saya mengerti dan memahami dengan syarat serta ketentuan yang berlaku',
-                  colorBorder: AppColor.greyColorLight,
-                  labelStyle: TextStyles.textcheckbox,
-                  width: Get.width * 0.75.w,
-                ),
-              ),
-              Obx(
-                () => Padding(
-                  padding:  EdgeInsets.symmetric(vertical: 15.h),
-                  child: ButtonPrimary(
-                    enable: controller.statusAgreementTerm.value,
-                    label: 'Konfirmasi',
-                    color: AppColor.primaryColor,
-                    cornerRadius: 9,
-                    onPressed: () {
-                      Get.toNamed('/register_page');
-                    },
+                verticalSpace(5.h),
+                CardRounded(
+                  shadow: Shadows.none,
+                  color: AppColor.bgPageColor,
+                  margin: EdgeInsets.zero,
+                  child: Text(
+                    "Mohon perhatikan dan pahami ketentuan berikut untuk dapat menjadi mitra AntarAnter Driver",
+                    style: TextStyles.inter.copyWith(
+                        fontSize: FontSizes.s14, fontWeight: FontWeight.w400),
+                    textAlign: TextAlign.center,
+                    maxLines: 3,
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
+                verticalSpace(5.h),
+                CardRoundedBorder(
+                  padding: EdgeInsets.only(left: 3.w, right: 5.w),
+                  borderColor: AppColor.greyColorLight,
+                  height: Get.height * 0.55.h,
+                  child: Obx(
+                    () => controller.loading.isFalse
+                        ? Scrollbar(
+                            child: ListView(
+                              children: [
+                                Html(
+                                  data: controller.termCondition.value.skDesc,
+                                )
+                              ],
+                            ),
+                          )
+                        : loadingIndicatorBottom(context),
+                  ),
+                ),
+                const Spacer(),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5.h),
+                  child: CheckboxLabel(
+                    onChange: (value) {
+                      controller.statusAgreementTerm.value = value;
+                    },
+                    label:
+                        'Saya mengerti dan memahami dengan syarat serta ketentuan yang berlaku',
+                    colorBorder: AppColor.greyColorLight,
+                    labelStyle: TextStyles.textcheckbox,
+                    width: Get.width * 0.75.w,
+                  ),
+                ),
+                Obx(
+                  () => Padding(
+                    padding: EdgeInsets.symmetric(vertical: 15.h),
+                    child: ButtonPrimary(
+                      enable: controller.statusAgreementTerm.value,
+                      label: 'Konfirmasi',
+                      color: AppColor.primaryColor,
+                      cornerRadius: 9,
+                      onPressed: () {
+                        Get.toNamed('/register_page');
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

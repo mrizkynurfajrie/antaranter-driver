@@ -27,7 +27,7 @@ class PageRegsuccess extends StatelessWidget {
                 SizedBox(height: size.height * 0.30),
                 Text(
                   "Selamat!",
-                  style: TextStyles.textHeader,
+                  style: TextStyles.textH2,
                   textAlign: TextAlign.center,
                 ),
                 Text(

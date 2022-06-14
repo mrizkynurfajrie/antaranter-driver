@@ -200,8 +200,12 @@ class TextStyles {
   static const TextStyle inter =
       TextStyle(fontWeight: FontWeight.w400, fontFamily: 'DMSans');
 
-  static TextStyle get textHeader => inter.copyWith(
+  static TextStyle get textH1 => inter.copyWith(
         fontSize: 22,
+        fontWeight: FontWeight.w500,
+      );
+  static TextStyle get textH2 => inter.copyWith(
+        fontSize: 20,
         fontWeight: FontWeight.w500,
       );
 

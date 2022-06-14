@@ -254,7 +254,9 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                                       'female')
                                                   ? "Perempuan"
                                                   : "Pilih Jenis Kelamin"
-                                          // : "Perempuan"
+                                          // : (controller.gender.value == 'male')
+                                          //     ? "Laki-Laki"
+                                          //     : "Perempuan",
                                           : controller.gender.value,
                                       style: TextStyles.inter.copyWith(
                                         fontSize: FontSizes.s12,
@@ -433,8 +435,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                           InputSelection(
                             valueText: controller.itemCities.value == null
                                 ? 'Kota'
-                                : controller.txtCity.text,
-                            // valueText: controller.txtCity.text,
+                                : controller.itemCities.value,
                             hintText: 'select_cities'.tr,
                             onTap: () {
                               controller.buildCities(context);
