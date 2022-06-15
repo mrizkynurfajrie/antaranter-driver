@@ -65,13 +65,15 @@ class ControllerCustomerPosting extends GetxController {
         if (resultNebeng.isNotEmpty) {
           resultNebeng = resultNebeng
               .where((nebeng) =>
-                  dateTimeBetween(nebeng.dateDep!, "00:00:00", DateTime.now().subtract(Duration(days: 1)),
+                  dateTimeBetween(
+                      nebeng.dateDep!,
+                      "00:00:00",
+                      DateTime.now().subtract(const Duration(days: 1)),
                       "${DateTime.now().hour}:${DateTime.now().minute}:00") <
                   0)
               .toList();
           listCustomerNebeng.addAll(resultNebeng);
           loading.value = loadingList.value = false;
-          log("list datetime : " + listCustomerNebeng.toString());
         } else {
           loading.value = loadingList.value = false;
         }
@@ -111,7 +113,6 @@ class ControllerCustomerPosting extends GetxController {
     BottomsheetSelection(
         title: 'Pilih Kota',
         context: context,
-       
         listWidget: cities,
         value: (value) async {
           if (value != null) {

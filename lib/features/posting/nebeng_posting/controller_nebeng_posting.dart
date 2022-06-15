@@ -84,11 +84,11 @@ class ControllerNebengPosting extends GetxController {
     super.onInit();
   }
 
-  @override
-  onClose() {
-    super.onClose();
-    txtPrice.dispose();
-  }
+  // @override
+  // onClose() {
+  //   super.onClose();
+  //   // txtPrice.dispose();
+  // }
 
   formValidationListener() {
     txtPrice.addListener(() {
