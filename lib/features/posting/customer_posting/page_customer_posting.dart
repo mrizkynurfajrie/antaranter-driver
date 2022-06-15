@@ -10,6 +10,7 @@ import 'package:antaranter_driverapp/shared/constants/styles.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/loading_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -28,9 +29,11 @@ class PageCustomerPosting extends GetView<ControllerCustomerPosting> {
         progressIndicator: loadingIndicator(context),
         child: RefreshIndicator(
           onRefresh: () async => controller.onRefresh(),
-          child: CustomScrollView(slivers: [
+          child: CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            slivers: [
             SliverFillRemaining(
-              child: Container(
+              child: CardRounded(
                 width: Get.width,
                 color: AppColor.bgPageColor,
                 child: Column(
