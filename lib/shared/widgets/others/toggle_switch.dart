@@ -11,7 +11,6 @@ class AnimatedToggle extends StatefulWidget {
   final Color buttonColor;
   final Color textColor;
 
-
   const AnimatedToggle(
       {required this.values,
       required this.onToggleCallback,
@@ -27,8 +26,8 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Get.width * 0.32.w,
-      height: Get.height * 0.03.h,
+      width: 110.w,
+      height: 30.h,
       margin: EdgeInsets.symmetric(vertical: 5.h),
       child: Stack(
         children: <Widget>[
@@ -40,13 +39,11 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
                 index = 1;
               }
               widget.onToggleCallback(index);
-              setState(() {
-                
-              });
+              setState(() {});
             },
             child: Container(
-              width: Get.width * 0.5.w,
-              height: Get.height * 0.05.h,
+              width: 110.w,
+              height: 30.h,
               decoration: ShapeDecoration(
                 color: widget.backgroundColor,
                 shape: RoundedRectangleBorder(
@@ -54,11 +51,11 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
                 ),
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: List.generate(
                   widget.values.length,
                   (index) => Padding(
-                    padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
+                    padding: EdgeInsets.symmetric(horizontal: 3.w),
                     child: Text(
                       widget.values[index],
                       style: TextStyles.inter.copyWith(
@@ -78,8 +75,8 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
             alignment:
                 initialPosition ? Alignment.centerLeft : Alignment.centerRight,
             child: Container(
-              width: Get.width * 0.15.w,
-              height: Get.height * 0.03.h,
+              width: 55.w,
+              height: 30.h,
               decoration: ShapeDecoration(
                 color: widget.buttonColor,
                 shape: RoundedRectangleBorder(
@@ -93,6 +90,7 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
                   color: widget.textColor,
                   fontWeight: FontWeight.bold,
                 ),
+                textAlign: TextAlign.center,
               ),
               alignment: Alignment.center,
             ),

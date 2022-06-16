@@ -1,3 +1,7 @@
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_primary.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -123,10 +127,14 @@ class _InputPhoneState extends State<InputPhone> {
           //     ),
           //   ),
           // ),
-          SizedBox(
-            width: Get.width * 0.88.w,
+          CardRounded(
+            width: Get.width,
+            margin: EdgeInsets.zero,
+            padding: EdgeInsets.zero,
+            color: AppColor.bgPageColor,
+            shadow: Shadows.none,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 widget.setContryCode
@@ -162,8 +170,8 @@ class _InputPhoneState extends State<InputPhone> {
                         ))
                     : Container(),
                 widget.setContryCode ? horizontalSpace(7) : Container(),
-                SizedBox(
-                  width: Get.width * 0.5.w,
+                Expanded(
+                  // width: Get.width * 0.5.w,
                   child: TextFormField(
                     enableInteractiveSelection: true,
                     cursorColor: Theme.of(context).primaryColor,

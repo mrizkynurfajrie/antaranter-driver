@@ -1,6 +1,7 @@
 import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -41,12 +42,13 @@ class PageLogin extends GetView<ControllerLogin> {
             CardRounded(
               color: AppColor.bgPageColor,
               shadow: Shadows.none,
+              width: Get.width,
               child: Column(
                 children: [
                   InputPhone(
                     controller: controller.cPhoneNumber,
                     phoneNumber: (value) {},
-                    inputWidth: Get.width * 0.50.w,
+                    // inputWidth: Get.width * 0.50.w,
                     
                   ),
                   InputPassword(
@@ -66,15 +68,15 @@ class PageLogin extends GetView<ControllerLogin> {
                             fontSize: FontSizes.s12,
                             fontWeight: FontWeight.w500),
                         onPressed: () async {
-                          // showPopUp(
-                          //   title: 'Lupa Kata Sandi',
-                          //   description: 'Silakan hubungi admin AntarAnter untuk mengatur kembali kata sandi anda',
-                          //   imageUri: PopUpIcons.information,
-                          //   dismissible: false,
-                          // );
-                          // await Future.delayed(const Duration(seconds: 4));
-                          // Navigator.pop(context);
-                          Get.toNamed(Routes.otp);
+                          showPopUp(
+                            title: 'Lupa Kata Sandi',
+                            description: 'Silakan hubungi admin AntarAnter untuk mengatur kembali kata sandi anda',
+                            imageUri: PopUpIcons.information,
+                            dismissible: false,
+                          );
+                          await Future.delayed(const Duration(seconds: 4));
+                          Navigator.pop(context);
+                          // Get.toNamed(Routes.otp);
                         },
                         color: AppColor.forgotPass,
                       ),

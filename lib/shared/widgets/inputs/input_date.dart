@@ -1,3 +1,5 @@
+import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
+import 'package:flutter_holo_date_picker/date_time_formatter.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -55,7 +57,7 @@ class _InputDateState extends State<InputDate> {
         firstDate: widget.firstDate ?? DateTime(1900),
         lastDate: widget.lastDate ?? DateTime(2030),
         dateFormat: "dd-MMMM-yyyy",
-        locale: DateTimePickerLocale.id,
+        // locale: DateTimePickerLocale.id,
         looping: false,
         textColor: Theme.of(context).primaryColor,
         cancelText: 'Batal',
@@ -65,9 +67,12 @@ class _InputDateState extends State<InputDate> {
     if (datePicked != null) {
       setState(() {
         _date = DateFormat('yyyy-MM-dd').format(datePicked);
+        // _date = FormatDateTime.formatDateWithoutHour(value: datePicked);
       });
+     
       widget.controller.text = _date;
-      widget.selectedDate(datePicked);
+      var selectDate = DateTime.parse(_date);
+      widget.selectedDate(selectDate);
       FocusManager.instance.primaryFocus?.unfocus();
     }
   }
@@ -114,7 +119,11 @@ class _InputDateState extends State<InputDate> {
                   widget.isValid(true);
                   return null;
                 },
-            style: TextStyles.body2,
+            style: TextStyles.inter.copyWith(
+              fontSize: FontSizes.s12,
+              fontWeight: FontWeight.normal,
+              color: AppColor.neutral,
+            ),
             decoration: inputDecoration(
               hintText: widget.hintText,
               prefixIcon: widget.prefixIcon,

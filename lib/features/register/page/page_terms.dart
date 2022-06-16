@@ -52,22 +52,42 @@ class PageTerms extends GetView<ControllerRegister> {
                   ),
                 ),
                 verticalSpace(5.h),
-                CardRoundedBorder(
-                  padding: EdgeInsets.only(left: 3.w, right: 5.w),
-                  borderColor: AppColor.greyColorLight,
-                  height: Get.height * 0.55.h,
-                  child: Obx(
-                    () => controller.loading.isFalse
-                        ? Scrollbar(
-                            child: ListView(
-                              children: [
-                                Html(
-                                  data: controller.termCondition.value.skDesc,
-                                )
-                              ],
-                            ),
-                          )
-                        : loadingIndicatorBottom(context),
+                // CardRoundedBorder(
+                //   padding: EdgeInsets.only(left: 3.w, right: 5.w),
+                //   borderColor: AppColor.greyColorLight,
+                //   height: Get.height * 0.55.h,
+                //   child: Obx(
+                //     () => controller.loading.isFalse
+                //         ? Scrollbar(
+                //             child: ListView(
+                //               children: [
+                //                 Html(
+                //                   data: controller.termCondition.value.skDesc,
+                //                 )
+                //               ],
+                //             ),
+                //           )
+                //         : loadingIndicatorBottom(context),
+                //   ),
+                // ),
+                Expanded(
+                  flex: 10,
+                  child: CardRounded(
+                    width: Get.width,
+                    color: AppColor.whiteColor,
+                    child: Obx(
+                      () => controller.loading.isFalse
+                          ? Scrollbar(
+                              child: ListView(
+                                children: [
+                                  Html(
+                                    data: controller.termCondition.value.skDesc,
+                                  )
+                                ],
+                              ),
+                            )
+                          : loadingIndicatorBottom(context),
+                    ),
                   ),
                 ),
                 const Spacer(),

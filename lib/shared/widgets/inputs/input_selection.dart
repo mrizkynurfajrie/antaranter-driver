@@ -111,7 +111,7 @@ class _InputSelectionState extends State<InputSelection> {
                       style: widget.valueText != widget.hintText
                           ? TextStyles.inter.copyWith(
                               fontSize: FontSizes.s12,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.normal,
                               color: AppColor.neutral,
                             )
                           : TextStyles.inter.copyWith(

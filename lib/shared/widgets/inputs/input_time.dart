@@ -92,10 +92,7 @@ class _InputTimeState extends State<InputTime> {
                   widget.isValid(true);
                   return null;
                 },
-            style: TextStyles.inter.copyWith(
-              fontSize: FontSizes.s12,
-              fontWeight: FontWeight.w500,
-            ),
+            style: TextStyles.inter.copyWith(fontSize: FontSizes.s12, fontWeight: FontWeight.normal),
             decoration: inputDecoration(
               hintText: widget.hintText,
               prefixIcon: widget.prefixIcon,

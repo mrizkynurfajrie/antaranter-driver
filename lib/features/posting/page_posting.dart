@@ -65,8 +65,9 @@ class PagePosting extends StatelessWidget {
             Expanded(
               child: CardRoundedTop(
                 padding: EdgeInsets.zero,
-                borderRadius: Corners.lg,
                 margin: EdgeInsets.zero,
+                shadow: Shadows.none,
+                color: AppColor.bgPageColor,
                 child: const TabBarView(
                   children: <Widget>[
                     PageNebengPosting(),

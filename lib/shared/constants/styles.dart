@@ -34,28 +34,30 @@ class BorderStyles {
 InputDecoration inputDecoration(
     {required String hintText, Widget? prefixIcon, Widget? suffixIcon}) {
   return InputDecoration(
-      isDense: true,
-      filled: true,
-      fillColor: Colors.white,
-      contentPadding:
-          EdgeInsets.symmetric(horizontal: Insets.sm, vertical: Insets.med),
-      hintText: hintText,
-      border: BorderStyles.enableTextField,
-      focusedBorder: BorderStyles.focusTextField,
-      enabledBorder: BorderStyles.enableTextField,
-      errorBorder: BorderStyles.errorTextField,
-      disabledBorder: BorderStyles.disableTextField,
-      errorMaxLines: 5,
-      prefixIcon: prefixIcon,
-      prefixIconConstraints:
-          BoxConstraints(minHeight: Sizes.lg, minWidth: Sizes.lg),
-      suffixIconConstraints:
-          BoxConstraints(minHeight: Sizes.lg, minWidth: Sizes.lg),
-      suffixIcon: suffixIcon,
-      hintStyle: TextStyles.textBase.copyWith(
-          color: AppColor.greyColorLight,
-          fontSize: FontSizes.s12,
-          fontWeight: FontWeight.w500));
+    isDense: true,
+    filled: true,
+    fillColor: Colors.white,
+    contentPadding:
+        EdgeInsets.symmetric(horizontal: Insets.sm, vertical: Insets.med),
+    hintText: hintText,
+    border: BorderStyles.enableTextField,
+    focusedBorder: BorderStyles.focusTextField,
+    enabledBorder: BorderStyles.enableTextField,
+    errorBorder: BorderStyles.errorTextField,
+    disabledBorder: BorderStyles.disableTextField,
+    errorMaxLines: 5,
+    prefixIcon: prefixIcon,
+    prefixIconConstraints:
+        BoxConstraints(minHeight: Sizes.lg, minWidth: Sizes.lg),
+    suffixIconConstraints:
+        BoxConstraints(minHeight: Sizes.lg, minWidth: Sizes.lg),
+    suffixIcon: suffixIcon,
+    hintStyle: TextStyles.inter.copyWith(
+      fontSize: FontSizes.s12,
+      fontWeight: FontWeight.normal,
+      color: AppColor.disableText,
+    ),
+  );
 }
 
 Widget verticalSpace(double v) {

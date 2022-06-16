@@ -52,7 +52,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                           true
                       ? CustomScrollView(
                           slivers: [
-                            SliverToBoxAdapter(
+                            SliverFillRemaining(
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -504,9 +504,9 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                       ),
                                     ),
                                   ),
-                                  // const Spacer(),
+                                  const Spacer(),
                                   //tombol//
-                                  verticalSpace(10.h),
+                                  // verticalSpace(10.h),
                                   Container(
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 10.w),
@@ -588,7 +588,8 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                             child: ButtonPrimary(
                                               onPressed: () {
                                                 showPopUpChoice(
-                                                  imageUri: PopUpIcons.success,
+                                                    imageUri:
+                                                        PopUpIcons.success,
                                                     title:
                                                         'Menyelesaikan Perjalanan',
                                                     description:
@@ -623,59 +624,59 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                       ),
                                       Expanded(
                                         child: Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 10.w),
-                                            child: DottedBorder(
-                                              dashPattern: const [12, 4],
-                                              strokeWidth: 1,
-                                              strokeCap: StrokeCap.round,
-                                              color: AppColor.greyColorLight,
-                                              borderType: BorderType.RRect,
-                                              radius: const Radius.circular(4),
-                                              child: ButtonPrimary(
-                                                onPressed: controller
-                                                        .listUserNebeng
-                                                        .isNotEmpty
-                                                    ? () {
-                                                        controller
-                                                            .ubahStatus(2);
-                                                      }
-                                                    : () {
-                                                        showPopUpError(
-                                                            errorTitle:
-                                                                'Perjalanan',
-                                                            errorMessage:
-                                                                'Anda belum bisa memulai perjalanan, karena tidak ada pelanggan yang nebeng dengan anda');
-                                                      },
-                                                // enable: (controller.statusNebeng
-                                                //             .value ==
-                                                //         1)
-                                                //     ? true
-                                                //     : false,
-                                                enable: controller.buttonStart
-                                                                .value ==
-                                                            true &&
-                                                        controller.statusNebeng
-                                                                .value ==
-                                                            1
-                                                    ? true
-                                                    : false,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 10.w),
+                                          child: DottedBorder(
+                                            dashPattern: const [12, 4],
+                                            strokeWidth: 1,
+                                            strokeCap: StrokeCap.round,
+                                            color: AppColor.greyColorLight,
+                                            borderType: BorderType.RRect,
+                                            radius: const Radius.circular(4),
+                                            child: ButtonPrimary(
+                                              onPressed: controller
+                                                      .listUserNebeng.isNotEmpty
+                                                  ? () {
+                                                      controller.ubahStatus(2);
+                                                    }
+                                                  : () {
+                                                      showPopUpError(
+                                                          errorTitle:
+                                                              'Perjalanan',
+                                                          errorMessage:
+                                                              'Anda belum bisa memulai perjalanan, karena tidak ada pelanggan yang nebeng dengan anda');
+                                                    },
+                                              // enable: (controller.statusNebeng
+                                              //             .value ==
+                                              //         1)
+                                              //     ? true
+                                              //     : false,
+                                              enable: controller.buttonStart
+                                                              .value ==
+                                                          true &&
+                                                      controller.statusNebeng
+                                                              .value ==
+                                                          1
+                                                  ? true
+                                                  : false,
 
-                                                label: 'Mulai Perjalanan',
-                                                color: AppColor.successColor,
-                                                labelStyle:
-                                                    TextStyles.inter.copyWith(
-                                                  color: AppColor.whiteColor,
-                                                  fontSize: FontSizes.s14,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                                // height: Get.height * 0.08.h,
-                                                cornerRadius: 4,
+                                              label: 'Mulai Perjalanan',
+                                              color: AppColor.successColor,
+                                              labelStyle:
+                                                  TextStyles.inter.copyWith(
+                                                color: AppColor.whiteColor,
+                                                fontSize: FontSizes.s14,
+                                                fontWeight: FontWeight.w500,
                                               ),
-                                            )),
+                                              // height: Get.height * 0.08.h,
+                                              cornerRadius: 4,
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),
+                                  verticalSpace(5.h),
                                 ],
                               ),
                             ),

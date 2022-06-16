@@ -31,7 +31,7 @@ class InputPrimary extends StatefulWidget {
     this.validate,
     required this.onTap,
     this.onChange,
-    required this.prefixIcon,
+    this.prefixIcon,
     this.suffixIcon,
     this.label = '',
     this.controller,

@@ -1,11 +1,9 @@
 import 'dart:developer';
 
-import 'package:antaranter_driverapp/shared/constants/assets.dart';
-import 'package:antaranter_driverapp/shared/widgets/buttons/button_switch.dart';
+import 'package:antaranter_driverapp/response/nebeng_posting.dart';
 import 'package:antaranter_driverapp/shared/widgets/input_format/input_format_money.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/toggle_switch.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,9 +14,7 @@ import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart'
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_date.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
-import 'package:antaranter_driverapp/shared/widgets/inputs/input_selection.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_time.dart';
-import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
 import 'controller_nebeng_posting.dart';
 
 class PageNebengPosting extends GetView<ControllerNebengPosting> {
@@ -32,6 +28,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
           color: AppColor.bgPageColor,
           padding: EdgeInsets.zero,
           margin: EdgeInsets.zero,
+          shadow: Shadows.none,
           child: Obx(
             () => Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -40,6 +37,8 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                     ? controller.isUrgentCanceled.value == 0
                         ? CardRounded(
                             color: AppColor.whiteColor,
+                            borderRadius: 0,
+                            shadow: Shadows.none,
                             padding: EdgeInsets.symmetric(
                                 horizontal: 10.w, vertical: 10.h),
                             margin: EdgeInsets.only(
@@ -98,16 +97,17 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                           )
                         : const SizedBox()
                     : const SizedBox(),
-                verticalSpace(Insets.med),
                 CardRounded(
                   width: Get.width,
+                  borderRadius: 0,
+                  shadow: Shadows.none,
                   margin: EdgeInsets.symmetric(horizontal: Insets.sm),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(
                         child: Text(
-                          'Informasi Kendaraan',
+                          'Informasi Kendaraan*',
                           style: TextStyles.inter.copyWith(
                             fontSize: FontSizes.s14,
                             fontWeight: FontWeight.bold,
@@ -115,127 +115,105 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                         ),
                       ),
                       verticalSpace(Insets.sm),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
                             padding: EdgeInsets.symmetric(
-                              horizontal: 5.w,
+                              horizontal: 10.w,
                               vertical: 5.h,
                             ),
-                            width: Get.width * 0.30,
+                            width: Get.width,
                             decoration: BoxDecoration(
+                              color: AppColor.disbaleBox,
                               border:
                                   Border.all(color: AppColor.greyColorLight),
-                              borderRadius: BorderRadius.circular(7),
+                              borderRadius: BorderRadius.circular(6),
                             ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Icon(
-                                  CupertinoIcons.car_detailed,
-                                  color: AppColor.primaryColor,
-                                  size: IconSizes.sm,
+                            child: Flexible(
+                              child: Text(
+                                controller.controllerVehicleInfo.vehicle.value
+                                        .vehicleVariant ??
+                                    '',
+                                style: TextStyles.inter.copyWith(
+                                  fontSize: FontSizes.s12,
+                                  color: AppColor.disableText,
+                                  fontWeight: FontWeight.w400,
                                 ),
-                                horizontalSpace(10.w),
-                                Flexible(
-                                  child: Text(
-                                    controller.controllerVehicleInfo.vehicle
-                                            .value.vehicleVariant ??
-                                        '',
-                                    style: TextStyles.inter.copyWith(
-                                      fontSize: FontSizes.s12,
-                                      color: AppColor.greyColor,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                )
-                              ],
+                              ),
                             ),
                           ),
-                          Container(
-                            width: Get.width * 0.25.w,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 5.w, vertical: 5.h),
-                            decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: AppColor.greyColorLight),
-                              borderRadius: BorderRadius.circular(7),
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Icon(
-                                  CupertinoIcons.color_filter,
-                                  color: AppColor.primaryColor,
-                                  size: IconSizes.sm,
-                                ),
-                                horizontalSpace(3.w),
-                                Flexible(
+                          verticalSpace(Insets.sm),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: Get.width,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 10.w, vertical: 5.h),
+                                  decoration: BoxDecoration(
+                                    color: AppColor.disbaleBox,
+                                    border: Border.all(
+                                        color: AppColor.greyColorLight),
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
                                   child: Text(
                                     controller.controllerVehicleInfo.vehicle
                                             .value.vehicleColor ??
                                         '',
                                     style: TextStyles.inter.copyWith(
                                       fontSize: FontSizes.s12,
-                                      color: AppColor.greyColor,
+                                      color: AppColor.disableText,
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            width: Get.width * 0.27.w,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 5.w, vertical: 5.h),
-                            decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: AppColor.greyColorLight),
-                              borderRadius: BorderRadius.circular(7),
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Icon(
-                                  Icons.numbers,
-                                  color: AppColor.primaryColor,
-                                  size: IconSizes.sm,
-                                ),
-                                horizontalSpace(3.w),
-                                Flexible(
+                              ),
+                              horizontalSpace(Insets.sm),
+                              Expanded(
+                                child: Container(
+                                  width: Get.width,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 10.w, vertical: 5.h),
+                                  decoration: BoxDecoration(
+                                    color: AppColor.disbaleBox,
+                                    border: Border.all(
+                                        color: AppColor.greyColorLight),
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
                                   child: Text(
                                     controller.controllerVehicleInfo.vehicle
                                             .value.platNumber ??
                                         '',
                                     style: TextStyles.inter.copyWith(
                                       fontSize: FontSizes.s12,
-                                      color: AppColor.greyColor,
+                                      color: AppColor.disableText,
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      verticalSpace(5),
                     ],
                   ),
                 ),
-                verticalSpace(Insets.med),
                 CardRounded(
+                  borderRadius: 0,
                   width: Get.width,
+                  shadow: Shadows.none,
                   margin: EdgeInsets.symmetric(horizontal: Insets.sm),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(
                         child: Text(
-                          'Perjalanan',
+                          'Perjalanan*',
                           style: TextStyles.inter.copyWith(
                             fontSize: FontSizes.s14,
                             fontWeight: FontWeight.bold,
@@ -244,48 +222,26 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                       ),
                       verticalSpace(Insets.med),
                       //berangkat//
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Icon(
-                            Icons.my_location_rounded,
-                            size: IconSizes.sm,
-                            color: AppColor.greyColor,
-                          ),
-                          horizontalSpace(5.w),
-                          Text(
-                            'Berangkat',
-                            style: TextStyles.inter.copyWith(
-                              fontSize: FontSizes.s12,
-                              color: AppColor.greyColor,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        'Berangkat',
+                        style: TextStyles.inter.copyWith(
+                          fontSize: FontSizes.s12,
+                          color: AppColor.greyColor,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                       verticalSpace(5.h),
                       SizedBox(
                         width: Get.width,
                         child: Obx(
                           () => Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
-                              // InputSelection(
-                              //   valueText: controller.itemProvinceDept.value,
-                              //   hintText: 'select_province'.tr,
-                              //   onTap: () async {
-                              //     controller.buildProvince(context);
-                              //     controller.cities.clear();
-                              //   },
-                              //   padding: EdgeInsets.all(Insets.sm),
-                              //   width: Get.width * 0.65.w,
-                              //   margin: EdgeInsets.only(bottom: 5.h),
-                              //   isRequired: false,
-                              // ),
-                              InputSelection(
-                                valueText: controller.itemCitiesDept.value,
+                              InputSelectionNebeng(
+                                valueText: controller.itemCitiesDept.value != ''
+                                    ? controller.itemCitiesDept.value
+                                    : 'Kota/Kabupaten',
                                 hintText: 'select_cities'.tr,
                                 onTap: () async {
                                   controller.buildCities(context);
@@ -306,145 +262,147 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                 },
                                 padding: EdgeInsets.all(Insets.sm),
                                 margin: EdgeInsets.only(bottom: 5.h),
-                                width: Get.width * 0.65.w,
+                                width: Get.width,
                                 isRequired: false,
                               ),
-                              Obx(
-                                () => InputDate(
-                                  hintText: 'Pilih Tanggal Berangkat',
-                                  controller: controller.txtDateDept,
-                                  selectedDate: (value) {},
-                                  isValid: (value) {},
-                                  prefixIcon: const Icon(
-                                    Icons.date_range,
-                                    color: AppColor.greyColor,
-                                    size: 20,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Obx(
+                                    () => InputDate(
+                                      hintText: 'DD/MM/YYYY',
+                                      controller: controller.txtDateDept,
+                                      selectedDate: (value) {},
+                                      isValid: (value) {},
+                                      suffixIcon: const Icon(
+                                        Icons.date_range,
+                                        color: AppColor.greyColor,
+                                        size: 20,
+                                      ),
+                                      boxWidth: 130.w,
+                                      initialDate:
+                                          controller.isUrgent.value == 1
+                                              ? DateTime.now()
+                                              : DateTime(
+                                                  controller.now.year,
+                                                  controller.now.month,
+                                                  controller.now.day + 1,
+                                                ),
+                                      firstDate: controller.isUrgent.value == 1
+                                          ? DateTime.now()
+                                          : DateTime(
+                                              controller.now.year,
+                                              controller.now.month,
+                                              controller.now.day + 1,
+                                            ),
+                                      lastDate: controller.isUrgent.value == 1
+                                          ? DateTime.now()
+                                          : DateTime(2030),
+                                    ),
                                   ),
-                                  boxWidth: Get.width * 0.65.w,
-                                  initialDate: controller.isUrgent.value == 1
-                                      ? DateTime.now()
-                                      : DateTime(
-                                          controller.now.year,
-                                          controller.now.month,
-                                          controller.now.day + 1,
-                                        ),
-                                  firstDate: controller.isUrgent.value == 1
-                                      ? DateTime.now()
-                                      : DateTime(
-                                          controller.now.year,
-                                          controller.now.month,
-                                          controller.now.day + 1,
-                                        ),
-                                  lastDate: controller.isUrgent.value == 1
-                                      ? DateTime.now()
-                                      : DateTime(2030),
-                                ),
-                              ),
-                              verticalSpace(5.h),
-                              InputTime(
-                                hintText: 'Pilih Waktu Berangkat',
-                                controller: controller.txtTimeDept,
-                                selectedTime: (value) {},
-                                isValid: (value) {},
-                                prefixIcon: const Icon(
-                                  Icons.access_time_outlined,
-                                  size: 20,
-                                  color: AppColor.greyColor,
-                                ),
-                                boxWidth: Get.width * 0.65.w,
-                              ),
+                                  horizontalSpace(5.w),
+                                  InputTime(
+                                      hintText: '00.00',
+                                      controller: controller.txtTimeDept,
+                                      selectedTime: (value) {},
+                                      isValid: (value) {},
+                                      suffixIcon: const Icon(
+                                        Icons.access_time_outlined,
+                                        size: 20,
+                                        color: AppColor.greyColor,
+                                      ),
+                                      boxWidth: 110.w),
+                                ],
+                              )
                             ],
                           ),
                         ),
                       ),
                       verticalSpace(Insets.med),
                       //tujuan//
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Icon(
-                            Icons.my_location_rounded,
-                            size: IconSizes.sm,
-                            color: AppColor.primaryColor,
-                          ),
-                          horizontalSpace(5.w),
-                          Text(
-                            'Tujuan',
-                            style: TextStyles.inter.copyWith(
-                              fontSize: FontSizes.s12,
-                              color: AppColor.neutral.shade500,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        'Tujuan',
+                        style: TextStyles.inter.copyWith(
+                          fontSize: FontSizes.s12,
+                          color: AppColor.neutral.shade500,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                       verticalSpace(10.h),
                       SizedBox(
                         width: Get.width,
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            InputSelection(
-                              valueText: controller.itemCitiesArrv.value,
+                            InputSelectionNebeng(
+                              valueText: controller.itemCitiesArrv.value != ''
+                                  ? controller.itemCitiesArrv.value
+                                  : 'Kota/Kabupaten',
                               hintText: 'select_cities'.tr,
                               onTap: () {
                                 controller.buildCitiesArrv(context);
                               },
                               padding: EdgeInsets.all(Insets.sm),
                               margin: EdgeInsets.only(bottom: 5.h),
-                              width: Get.width * 0.65.w,
+                              width: Get.width,
                               isRequired: false,
                             ),
-                            InputDate(
-                              hintText: 'Pilih Tanggal Tiba',
-                              controller: controller.txtDateArrv,
-                              selectedDate: (value) {},
-                              isValid: (value) {},
-                              prefixIcon: const Icon(
-                                Icons.date_range,
-                                color: AppColor.primaryColor,
-                                size: 20,
-                              ),
-                              boxWidth: Get.width * 0.65.w,
-                              initialDate: controller.isUrgent.value == 1
-                                  ? DateTime(controller.now.year,
-                                      controller.now.month, controller.now.day)
-                                  : DateTime(
-                                      controller.now.year,
-                                      controller.now.month,
-                                      controller.now.day + 1,
-                                    ),
-                              firstDate: controller.isUrgent.value == 1
-                                  ? DateTime(controller.now.year)
-                                  : DateTime(
-                                      controller.now.year,
-                                      controller.now.month,
-                                      controller.now.day + 1,
-                                    ),
-                            ),
-                            verticalSpace(5.h),
-                            InputTime(
-                              hintText: 'Pilih Waktu Tiba',
-                              controller: controller.txtTimeArrv,
-                              selectedTime: (value) {},
-                              isValid: (value) {},
-                              prefixIcon: const Icon(
-                                Icons.access_time,
-                                size: 20,
-                                color: AppColor.primaryColor,
-                              ),
-                              boxWidth: Get.width * 0.65.w,
-                            ),
+                            Row(
+                              children: [
+                                InputDate(
+                                  hintText: 'DD/MM/YYYY',
+                                  controller: controller.txtDateArrv,
+                                  selectedDate: (value) {},
+                                  isValid: (value) {},
+                                  suffixIcon: const Icon(
+                                    Icons.date_range,
+                                    color: AppColor.greyColor,
+                                    size: 20,
+                                  ),
+                                  boxWidth: 130.w,
+                                  initialDate: controller.isUrgent.value == 1
+                                      ? DateTime(
+                                          controller.now.year,
+                                          controller.now.month,
+                                          controller.now.day)
+                                      : DateTime(
+                                          controller.now.year,
+                                          controller.now.month,
+                                          controller.now.day + 1,
+                                        ),
+                                  firstDate: controller.isUrgent.value == 1
+                                      ? DateTime(controller.now.year)
+                                      : DateTime(
+                                          controller.now.year,
+                                          controller.now.month,
+                                          controller.now.day + 1,
+                                        ),
+                                ),
+                                horizontalSpace(5.w),
+                                InputTime(
+                                  hintText: '00.00',
+                                  controller: controller.txtTimeArrv,
+                                  selectedTime: (value) {},
+                                  isValid: (value) {},
+                                  suffixIcon: const Icon(
+                                    Icons.access_time,
+                                    size: 20,
+                                    color: AppColor.greyColor,
+                                  ),
+                                  boxWidth: 110.w,
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ),
                     ],
                   ),
                 ),
-                verticalSpace(Insets.med),
+                verticalSpace(Insets.sm),
                 CardRounded(
+                  borderRadius: 0,
                   width: Get.width,
                   margin: EdgeInsets.symmetric(horizontal: Insets.sm),
                   child: Column(
@@ -501,7 +459,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                       verticalSpace(10.h),
                       Container(
                         padding: EdgeInsets.only(left: 6.w, right: 7.w),
-                        height: Get.height * 0.06,
+                        height: Get.height * 0.07.h,
                         decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(10),
@@ -544,22 +502,12 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                               ),
                                       ),
                                       onChanged: (newValue) {
-                                        // controller.dropDownValue = newValue.toString();
                                         controller.dropDownValue.value =
                                             newValue.toString();
                                         controller.update();
                                       },
                                       value:
                                           controller.dropDownValue.toString(),
-                                      // items: controller.listSeat
-                                      //     .map((countSeat) {
-                                      //   return DropdownMenuItem(
-                                      //     child: Text(
-                                      //       countSeat.toString(),
-                                      //     ),
-                                      //     value: countSeat.toString(),
-                                      //   );
-                                      // }).toList(),
                                       items: [
                                         for (var data in controller.listSeat)
                                           DropdownMenuItem(
@@ -569,16 +517,6 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                             value: data.toString(),
                                           )
                                       ],
-                                      // items: [
-                                      //   for (var data
-                                      //       in controller.dropDownList)
-                                      //     DropdownMenuItem(
-                                      //       child: Text(
-                                      //         data.toString(),
-                                      //       ),
-                                      //       value: data,
-                                      //     )
-                                      // ],
                                       isExpanded: true,
                                     ),
                                   ),
@@ -682,6 +620,117 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class InputSelectionNebeng extends GetView<ControllerNebengPosting> {
+  final String label;
+  final String hintText;
+  final Function onTap;
+  final String valueText;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final Widget? suffixLabel;
+  final EdgeInsets? padding;
+  final EdgeInsets? margin;
+  final double? width;
+  final double? height;
+  final bool isRequired;
+  final bool isValid;
+  final NebengPosting? nebengPost;
+
+  const InputSelectionNebeng(
+      {Key? key,
+      this.label = '',
+      required this.valueText,
+      required this.onTap,
+      required this.hintText,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.suffixLabel,
+      this.padding,
+      this.margin,
+      this.width,
+      this.height,
+      required this.isRequired,
+      this.isValid = true,
+      this.nebengPost})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      // padding: EdgeInsets.symmetric(vertical: Insets.med),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          InkWell(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+              onTap();
+            },
+            child: Container(
+              width: width,
+              height: height,
+              padding: padding,
+              margin: margin,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: Corners.lgBorder,
+                border: isRequired
+                    ? isValid
+                        ? Border.all(
+                            width: Strokes.xthin,
+                            color: AppColor.bodyColor.shade300,
+                          )
+                        : Border.all(
+                            width: Strokes.thin,
+                            color: AppColor.errorColor,
+                          )
+                    : Border.all(
+                        width: Strokes.xthin,
+                        color: AppColor.bodyColor.shade300,
+                      ),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  if (prefixIcon != null)
+                    Padding(
+                      padding: EdgeInsets.only(right: Insets.med),
+                      child: prefixIcon!,
+                    )
+                  else
+                    const SizedBox(),
+                  Expanded(
+                    child: Text(
+                      valueText,
+                      style: valueText == 'Kota/Kabupaten'
+                          ? TextStyles.inter.copyWith(
+                              fontSize: FontSizes.s12,
+                              color: AppColor.disableText,
+                              fontWeight: FontWeight.normal)
+                          : TextStyles.inter.copyWith(
+                              color: AppColor.neutral,
+                              fontSize: FontSizes.s12,
+                              fontWeight: FontWeight.normal,
+                            ),
+                    ),
+                  ),
+                  // const Spacer(),
+                  suffixIcon ??
+                      Icon(
+                        Icons.keyboard_arrow_down,
+                        size: IconSizes.med,
+                        color: AppColor.bodyColor.shade600,
+                      ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_balance.dart';
+import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary_outline.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
@@ -19,6 +20,7 @@ import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dar
 import 'package:antaranter_driverapp/shared/controller/controller_vehicle_info.dart';
 import 'package:antaranter_driverapp/shared/widgets/bottomsheet/bottomsheet_selection.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_item.dart';
+import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class ControllerNebengPosting extends GetxController {
@@ -41,9 +43,9 @@ class ControllerNebengPosting extends GetxController {
   var isValidForm = false.obs;
   var isValidPrice = false.obs;
   var itemProvinceDept = 'Provinsi'.obs;
-  var itemCitiesDept = 'Kota'.obs;
+  var itemCitiesDept = ''.obs;
   var itemProvinceArrv = 'Provinsi'.obs;
-  var itemCitiesArrv = 'Kota'.obs;
+  var itemCitiesArrv = ''.obs;
   var dropDownValue = '1'.obs;
   var search = ''.obs;
   var valDesc = ''.obs;
@@ -329,7 +331,6 @@ class ControllerNebengPosting extends GetxController {
     BottomsheetSelection(
         title: 'Pilih Kota',
         context: context,
-      
         listWidget: cities,
         value: (value) async {
           if (value != null) {
@@ -459,11 +460,17 @@ class ControllerNebengPosting extends GetxController {
     }
   }
 
+
+
   createNebengPosting() async {
     try {
       loading = true;
       var priceformatted = txtPrice.text.replaceAll(RegExp('[^A-Za-z0-9]'), '');
-
+      // var dateDept = DateTime.parse(txtDateDept.text);
+      // var dateArrv = DateTime.parse(txtDateArrv.text);
+      // var parsedDateDept = FormatDateTime.formatDate(value: dateDept);
+      // log("parsed date : " + parsedDateDept.toString());
+      // var parsedDateArrv = FormatDateTime.formatDate(value: dateArrv);
       var updateResult = await api.postingNebeng(
         idRider: controllerRiderInfo.rider.value.id,
         cityOrigin: itemCitiesDept.value,

@@ -154,7 +154,6 @@ class ControllerNebengPostingDetail extends GetxController
                 isValid: (value) {},
                 boxWidth: Get.width * 0.65,
               ),
-              verticalSpace(20.h),
             ],
           ),
         ),
@@ -177,10 +176,13 @@ class ControllerNebengPostingDetail extends GetxController
             }
           },
           label: 'Ubah',
-          cornerRadius: 4,
-          size: 300,
+          cornerRadius: 8,
           height: Get.height * 0.06.h,
-          labelStyle: TextStyles.inter.copyWith(color: AppColor.whiteColor),
+          labelStyle: TextStyles.inter.copyWith(
+            color: AppColor.whiteColor,
+            fontSize: FontSizes.s14,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         cancel: ButtonPrimary(
           onPressed: () {
@@ -189,11 +191,14 @@ class ControllerNebengPostingDetail extends GetxController
             Get.back();
           },
           label: 'Batal',
-          cornerRadius: 4,
-          size: 300,
+          cornerRadius: 8,
           height: Get.height * 0.06.h,
           color: AppColor.whiteColor,
-          labelStyle: TextStyles.inter.copyWith(color: AppColor.errorColor),
+          labelStyle: TextStyles.inter.copyWith(
+            color: AppColor.errorColor,
+            fontSize: FontSizes.s14,
+            fontWeight: FontWeight.w500,
+          ),
           borderColor: AppColor.errorColor,
         ));
   }
@@ -201,7 +206,7 @@ class ControllerNebengPostingDetail extends GetxController
   dialogBatal() {
     txtNote.clear();
     return Get.defaultDialog(
-      title: 'Yakin Ingin Membatalkan Perjalanan?',
+      title: 'Batalkan Perjalanan',
       titleStyle: TextStyles.inter
           .copyWith(color: AppColor.primaryColor, fontWeight: FontWeight.w500),
       titlePadding: EdgeInsets.only(bottom: 15.h, top: 20.h),
@@ -214,20 +219,24 @@ class ControllerNebengPostingDetail extends GetxController
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Text(
+              "Apakah anda yakin ingin membatalkan perjalanan? jika ya, mohon sertakan alasan nya pada kolom dibawah.",
+              style: TextStyles.inter.copyWith(
+                fontSize: FontSizes.s12,
+                fontWeight: FontWeight.normal,
+                color: AppColor.neutral,
+              ),
+              textAlign: TextAlign.justify,
+            ),
+            verticalSpace(10.h),
             InputPrimary(
               hintText: 'Alasan Pembatalan',
               controller: txtNote,
               onTap: () {},
-              prefixIcon: Icon(
-                Icons.note,
-                color: AppColor.primaryColor,
-                size: IconSizes.med,
-              ),
               maxLenght: 100,
               maxLines: 4,
-              boxWidth: Get.width * 0.65.w,
+              // boxWidth: Get.width * 0.65.w,
             ),
-            verticalSpace(20.h),
           ],
         ),
       ),
@@ -245,10 +254,13 @@ class ControllerNebengPostingDetail extends GetxController
           }
         },
         label: 'Batalkan Perjalanan',
-        cornerRadius: 4,
-        size: 300,
+        cornerRadius: 8,
         height: Get.height * 0.06.h,
-        labelStyle: TextStyles.inter.copyWith(color: AppColor.whiteColor),
+        labelStyle: TextStyles.inter.copyWith(
+          color: AppColor.whiteColor,
+          fontSize: FontSizes.s14,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }
