@@ -1,6 +1,7 @@
 import 'package:antaranter_driverapp/features/posting/controller_posting.dart';
 import 'package:antaranter_driverapp/features/posting/customer_posting/page_customer_posting.dart';
 import 'package:antaranter_driverapp/features/posting/nebeng_posting/page_nebeng_posting.dart';
+import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
@@ -22,6 +23,9 @@ class PagePosting extends StatelessWidget {
       backgroundColor: AppColor.bgPageColor,
       toolbarElevation: 2,
       enableBack: true,
+      onBackPressed: () {
+        Get.offNamed(Routes.main, arguments: 0);
+      },
       toolbarTitleColor: AppColor.primaryColor,
       center: Center(child: AppLogosMed.logoApp(AppLogosMed.logoHorizontal)),
       child: DefaultTabController(
