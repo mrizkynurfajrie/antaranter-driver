@@ -270,8 +270,7 @@ class PageCustomerOrder extends GetView<ControllerCustomerOrder> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          controller.postinganCustomerNebeng.value.user
-                                      ?.gender ==
+                          controller.postinganCustomerNebeng.value.genderPref ==
                                   'male'
                               ? "Laki-Laki"
                               : "Perempuan",

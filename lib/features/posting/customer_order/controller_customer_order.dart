@@ -24,8 +24,6 @@ class ControllerCustomerOrder extends GetxController {
     super.onInit();
     postinganCustomerNebeng.value =
         NebengCustomerResponse.fromArguments(Get.arguments);
-
-        log(Get.arguments.toString());
   }
 
   void createPost() async {
