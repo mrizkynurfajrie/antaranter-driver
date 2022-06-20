@@ -57,7 +57,8 @@ class ControllerNebengPostingDetail extends GetxController
   @override
   void onInit() async {
     await getDataPosting();
-
+    checkAvailableButton();
+    log('available check : ' + checkAvailableButton().toString());
     super.onInit();
   }
 
@@ -367,11 +368,14 @@ class ControllerNebengPostingDetail extends GetxController
     var dateDep = controllerPostingan.postingan.value.nebengPosting!.dateDep!;
     var timeDep =
         controllerPostingan.postingan.value.nebengPosting!.timeDep.toString();
-
+    
     var splitFromTime = timeDep.split(':');
 
     var fromDate = DateTime(
         dateDep.year, dateDep.month, dateDep.day, int.parse(splitFromTime[0]));
+        log("datedep : " + dateDep.toString() + timeDep.toString() + fromDate.toString());
+        log("datenow : " + timeNow.toString());
+  log("detik : " + (timeNow.difference(fromDate).inSeconds / 60).round().toString());
     return (timeNow.difference(fromDate).inSeconds / 60).round() > 0;
   }
 

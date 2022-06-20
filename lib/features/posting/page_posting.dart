@@ -24,7 +24,7 @@ class PagePosting extends StatelessWidget {
       toolbarElevation: 2,
       enableBack: true,
       onBackPressed: () {
-        Get.offNamed(Routes.main, arguments: 0);
+        Get.offAllNamed(Routes.main, arguments: 0);
       },
       toolbarTitleColor: AppColor.primaryColor,
       center: Center(child: AppLogosMed.logoApp(AppLogosMed.logoHorizontal)),
