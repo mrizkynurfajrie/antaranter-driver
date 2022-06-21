@@ -1,16 +1,16 @@
+import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/saldo/controller_saldo.dart';
-import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
 import 'package:antaranter_driverapp/shared/helpers/currency_formatter.dart';
 import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_primary.dart';
-import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_border.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/loading_indicator.dart';
 import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,218 +22,233 @@ class PageSaldo extends GetView<ControllerSaldo> {
   @override
   Widget build(BuildContext context) {
     return PageDecorationTop(
-      title: 'SALDO',
-      toolbarTitleColor: AppColor.bgPageColor,
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-      backgroundColor: AppColor.bgPageColor,
+      title: 'Saldo',
+      center: null,
+      centerTitle: true,
+      padding: EdgeInsets.zero,
+      backgroundColor: AppColor.primaryColor,
       toolbarColor: AppColor.primaryColor,
       enableBack: true,
-      child: RefreshIndicator(
-        color: AppColor.primaryColor,
-        onRefresh: () async {
-          await controller.refreshData();
-        },
-        child: CustomScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            slivers: [
-              SliverFillRemaining(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    CardRoundedBorder(
-                      color: AppColor.whiteColor,
-                      padding: EdgeInsets.symmetric(
-                          vertical: 10.h, horizontal: 15.w),
-                      borderRadius: 9,
-                      borderColor: AppColor.primaryColor,
-                      borderWidth: 4,
+      child: Stack(
+        children: <Widget>[
+          SizedBox(
+            width: Get.width,
+            height: Get.height * 0.23.h,
+            child: SvgPicture.asset(
+              AppIcons.saldoframe,
+              fit: BoxFit.cover,
+            ),
+          ),
+          RefreshIndicator(
+            color: AppColor.primaryColor,
+            onRefresh: () async {
+              await controller.refreshData();
+            },
+            child: Obx(
+              () => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(top: 20.h, left: 20.w),
+                    child: Obx(
+                      () => controller.loading.isTrue
+                          ? Shimmer.fromColors(
+                              baseColor: AppColor.neutral.shade300,
+                              highlightColor: Colors.grey.shade100,
+                              enabled: controller.loading.isTrue,
+                              child: Container(
+                                width: 100.w,
+                                height: 40.w,
+                                decoration: BoxDecoration(
+                                  borderRadius: Corners.lgBorder,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
+                          : Text(
+                              CurrencyFormat.convertToIdr(
+                                controller.balance.value.currBalance,
+                                0,
+                              ),
+                              style: TextStyles.inter.copyWith(
+                                fontSize: FontSizes.s36,
+                                fontWeight: FontWeight.w400,
+                                color: AppColor.whiteColor,
+                              ),
+                            ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 30.w, top: 10.h),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Get.toNamed(Routes.topup);
+                      },
+                      child: Text(
+                        'Isi Saldo',
+                        style: TextStyles.inter.copyWith(
+                          fontSize: FontSizes.s14,
+                          fontWeight: FontWeight.w400,
+                          color: AppColor.whiteColor,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          primary: AppColor.transparentColor,
+                          onPrimary: AppColor.whiteColor,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(90),
+                              side: const BorderSide(
+                                width: 1,
+                                color: AppColor.whiteColor,
+                              ))),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.only(top: 20.h),
+                      decoration: const BoxDecoration(
+                        color: AppColor.whiteColor,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(10),
+                          topLeft: Radius.circular(10),
+                        ),
+                      ),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Row(
-                            children: [
-                              AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
-                            ],
-                          ),
-                          verticalSpace(35.h),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: CardRounded(
-                              shadow: Shadows.none,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    controller.controllerRiderInfo.rider.value
-                                                .name !=
-                                            null
-                                        ? controller.controllerRiderInfo.rider
-                                            .value.name!
-                                            .toUpperCase()
-                                        : "-",
-                                    style: TextStyles.inter.copyWith(
-                                      fontSize: FontSizes.s18,
-                                      color: AppColor.neutral,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  // Row(
-                                  //   children: [
-                                  //     Text(
-                                  //       "+62",
-                                  //       style: TextStyles.inter.copyWith(
-                                  //         fontSize: FontSizes.s14,
-                                  //         color: AppColor.neutral,
-                                  //       ),
-                                  //     ),
-                                  //     Text(
-                                  //       controller.controllerRiderInfo.rider.value
-                                  //               .phone ??
-                                  //           "-",
-                                  //       style: TextStyles.inter.copyWith(
-                                  //         fontSize: FontSizes.s14,
-                                  //         color: AppColor.neutral,
-                                  //       ),
-                                  //     )
-                                  //   ],
-                                  // )
-                                ],
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(
+                                left: 20.w, top: 20.h, bottom: 20.h),
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Transaksi',
+                              style: TextStyles.inter.copyWith(
+                                fontSize: FontSizes.s20,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
-                          verticalSpace(15.h),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              ButtonSaldo(
-                                icon: AppIcons.icTopUp,
-                                title: 'Isi Saldo',
-                                ontap: () {
-                                  Get.toNamed(Routes.topup);
-                                },
-                              ),
-                            ],
-                          ),
-                          verticalSpace(5.h),
-                          Obx(
-                            () => controller.loading.isTrue
-                                ? Shimmer.fromColors(
-                                    baseColor: AppColor.neutral.shade300,
-                                    highlightColor: Colors.grey.shade100,
-                                    enabled: controller.loading.isTrue,
-                                    child: Container(
-                                      width: 100.w,
-                                      height: 40.w,
-                                      decoration: BoxDecoration(
-                                        borderRadius: Corners.lgBorder,
-                                        color: Colors.white,
+                          Expanded(
+                            child: CardPrimary(
+                              shadow: Shadows.universal,
+                              width: Get.width,
+                              height: Get.height * 0.50.h,
+                              color: AppColor.whiteColor,
+                              child: controller.obx(
+                                (state) => Scrollbar(
+                                  child: ListView.builder(
+                                    controller: controller.scrollController,
+                                    itemCount:
+                                        controller.listTransaction.length,
+                                    itemBuilder: (context, index) => Container(
+                                      decoration: const BoxDecoration(
+                                          border: Border(
+                                              top: BorderSide(
+                                                  color: AppColor.disableText,
+                                                  width: 1))),
+                                      child: ListTile(
+                                        title: Text(
+                                          controller.listTransaction[index]
+                                                      .trxType ==
+                                                  1
+                                              ? "Isi Saldo"
+                                              : "Pembayaran",
+                                          style: TextStyles.inter.copyWith(
+                                            fontSize: FontSizes.s14,
+                                            color: AppColor.neutral,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        subtitle: Text(
+                                            FormatDateTime.formatDateLocale(
+                                                controller
+                                                    .listTransaction[index]
+                                                    .datetimeSaldo
+                                                    .toString())),
+                                        trailing: RichText(
+                                            text: TextSpan(
+                                                text: controller
+                                                            .listTransaction[
+                                                                index]
+                                                            .trxType ==
+                                                        1
+                                                    ? '+ '
+                                                    : '- ',
+                                                style: TextStyles.inter.copyWith(
+                                                    fontSize: FontSizes.s14,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: controller
+                                                                .listTransaction[
+                                                                    index]
+                                                                .trxType ==
+                                                            1
+                                                        ? AppColor.doneTextColor
+                                                        : AppColor
+                                                            .transactionColor),
+                                                children: [
+                                              TextSpan(
+                                                  text: CurrencyFormat
+                                                      .convertToIdr(
+                                                          controller
+                                                              .listTransaction[
+                                                                  index]
+                                                              .amount,
+                                                          0),
+                                                  style: controller
+                                                              .listTransaction[
+                                                                  index]
+                                                              .trxType ==
+                                                          1
+                                                      ? TextStyles.inter
+                                                          .copyWith(
+                                                              color: AppColor
+                                                                  .doneTextColor)
+                                                      : TextStyles.inter.copyWith(
+                                                          color: AppColor
+                                                              .transactionColor)),
+                                            ])),
                                       ),
                                     ),
-                                  )
-                                : Text(
-                                    CurrencyFormat.convertToIdr(
-                                      controller.balance.value.currBalance,
-                                      2,
-                                    ),
-                                    style: TextStyles.inter.copyWith(
-                                      fontSize: FontSizes.s26,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
                                   ),
-                          ),
+                                ),
+                                onLoading: loadingIndicatorBottom(context),
+                                onEmpty: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      height: IconSizes.xxl,
+                                      width: IconSizes.xxl,
+                                      child: Image.asset(
+                                          'assets/icons/no_data.png'),
+                                    ),
+                                    verticalSpace(5.h),
+                                    SizedBox(
+                                      width: Get.width * 0.7.w,
+                                      child: Text(
+                                          'Anda belum memiliki transaksi, silakan lakukan isi ulang saldo',
+                                          style: TextStyles.inter.copyWith(
+                                            fontSize: FontSizes.s12,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          textAlign: TextAlign.center),
+                                    )
+                                  ],
+                                ),
+                                onError: (e) {
+                                  return const Text("Something wrong");
+                                },
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     ),
-                    verticalSpace(10.h),
-                    CardPrimary(
-                      shadow: Shadows.universal,
-                      width: Get.width,
-                      height: Get.height * 0.50.h,
-                      color: AppColor.whiteColor,
-                      child: controller.obx(
-                        (state) => Scrollbar(
-                          child: ListView.builder(
-                            controller: controller.scrollController,
-                            itemCount: controller.listTransaction.length,
-                            itemBuilder: (context, index) => ListTile(
-                              title: Text(
-                                controller.listTransaction[index].trxType == 1
-                                    ? "Top Up"
-                                    : "Transaksi",
-                                style: TextStyles.body1,
-                              ),
-                              subtitle: Text(
-                                  "${FormatDateTime.formatDateLocale(controller.listTransaction[index].datetimeSaldo.toString())} . ${FormatDateTime.formatTime(dateString: controller.listTransaction[index].datetimeSaldo.toString())}"),
-                              leading: CardRoundedBorder(
-                                padding: EdgeInsets.zero,
-                                width: IconSizes.xl,
-                                child: Icon(
-                                  controller.listTransaction[index].trxType == 1
-                                      ? CupertinoIcons.plus
-                                      : CupertinoIcons.car_detailed,
-                                  color: controller
-                                              .listTransaction[index].trxType ==
-                                          1
-                                      ? Colors.green
-                                      : Colors.red,
-                                  size: IconSizes.lg,
-                                ),
-                              ),
-                              trailing: RichText(
-                                  text: TextSpan(
-                                      text: controller.listTransaction[index]
-                                                  .trxType ==
-                                              1
-                                          ? ''
-                                          : '-',
-                                      style: TextStyles.textStd
-                                          .copyWith(color: Colors.black),
-                                      children: [
-                                    TextSpan(
-                                      text: CurrencyFormat.convertToIdr(
-                                          controller
-                                              .listTransaction[index].amount,
-                                          0),
-                                    ),
-                                  ])),
-                            ),
-                          ),
-                        ),
-                        onLoading: loadingIndicatorBottom(context),
-                        onEmpty: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: IconSizes.xxl,
-                              width: IconSizes.xxl,
-                              child: Image.asset('assets/icons/no_data.png'),
-                            ),
-                            verticalSpace(5.h),
-                            SizedBox(
-                              width: Get.width * 0.7.w,
-                              child: Text(
-                                  'Anda belum memiliki transaksi, silakan lakukan isi ulang saldo',
-                                  style: TextStyles.inter.copyWith(
-                                    fontSize: FontSizes.s12,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  textAlign: TextAlign.center),
-                            )
-                          ],
-                        ),
-                        onError: (e) {
-                          return const Text("Something wrong");
-                        },
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ]),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

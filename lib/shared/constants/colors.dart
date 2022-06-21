@@ -225,5 +225,6 @@ class AppColor {
   static const Color disbaleBox = Color(0xFFEDEDED);
   static const Color cardline = Color(0xFFEDEDED);
   static const Color subTextColor = Color(0xFF9E9E9E);
- static const Color doneTextColor = Color(0xFF43936C);
+  static const Color doneTextColor = Color(0xFF43936C);
+  static const Color transactionColor = Color(0xFFFB692E);
 }

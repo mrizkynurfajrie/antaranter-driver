@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/helpers/format_currency.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/cupertino.dart';
@@ -376,9 +377,9 @@ class PageTopUp extends GetView<ControllerSaldo> {
               height: Sizes.xl,
               onPressed: () {
                 controller.nominalTopUp.value = 50;
-                Get.back();
+                Get.offAllNamed(Routes.main);
               },
-              label: "Ok",
+              label: "Kembali ke Beranda",
               cornerRadius: Corners.sm,
             )
           ],

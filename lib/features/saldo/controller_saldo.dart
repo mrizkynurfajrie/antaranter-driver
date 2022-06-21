@@ -21,6 +21,7 @@ class ControllerSaldo extends GetxController
   late ScrollController scrollController;
 
   var loading = true.obs;
+  var balancedValue = 0.obs;
 
   var nominalTopUp = 50.obs;
 
