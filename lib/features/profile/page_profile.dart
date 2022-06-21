@@ -131,7 +131,7 @@ class PageProfile extends GetView<ControllerProfile> {
                 ontap: () {
                   Get.toNamed(Routes.userAccount);
                 },
-                icon: AppIcons.iconApp(AppIcons.profUser),
+                icon: AppIcons.iconApp(AppIcons.profUser, AppColor.primaryColor, IconSizes.sm),
                 title: 'Profil Pengguna',
                 buttonHeight: Get.height * 0.08.h,
                 buttonWidth: Get.width * 0.9.w,
@@ -141,7 +141,7 @@ class PageProfile extends GetView<ControllerProfile> {
                 ontap: () {
                   Get.toNamed(Routes.vehicleAccount);
                 },
-                icon: AppIcons.iconApp(AppIcons.profCar),
+                icon: AppIcons.iconApp(AppIcons.profCar, AppColor.primaryColor, IconSizes.sm),
                 title: 'Profil Kendaraan',
                 buttonHeight: Get.height * 0.08.h,
                 buttonWidth: Get.width * 0.9.w,
@@ -151,7 +151,7 @@ class PageProfile extends GetView<ControllerProfile> {
                 ontap: () {
                   Get.toNamed(Routes.contact);
                 },
-                icon: AppIcons.iconApp(AppIcons.profCallus),
+                icon: AppIcons.iconApp(AppIcons.profCallus, AppColor.primaryColor, IconSizes.sm),
                 title: 'Hubungi Kami',
                 buttonHeight: Get.height * 0.08.h,
                 buttonWidth: Get.width * 0.9.w,
@@ -175,7 +175,7 @@ class PageProfile extends GetView<ControllerProfile> {
                 ontap: () {
                   Get.toNamed(Routes.termsProfile);
                 },
-                icon: AppIcons.iconApp(AppIcons.profTnc),
+                icon: AppIcons.iconApp(AppIcons.profTnc, AppColor.primaryColor, IconSizes.sm),
                 title: 'Syarat & Ketentuan',
                 buttonHeight: Get.height * 0.08.h,
                 buttonWidth: Get.width * 0.9.w,
@@ -183,7 +183,7 @@ class PageProfile extends GetView<ControllerProfile> {
               verticalSpace(8.h),
               ButtonProfil(
                 ontap: () {},
-                icon: AppIcons.iconApp(AppIcons.profPrivacy),
+                icon: AppIcons.iconApp(AppIcons.profPrivacy, AppColor.primaryColor, IconSizes.sm),
                 title: 'Kebijakan Privasi',
                 buttonHeight: Get.height * 0.08.h,
                 buttonWidth: Get.width * 0.9.w,
@@ -191,7 +191,7 @@ class PageProfile extends GetView<ControllerProfile> {
               verticalSpace(8.h),
               ButtonProfil(
                 ontap: () {},
-                icon: AppIcons.iconApp(AppIcons.profRating),
+                icon: AppIcons.iconApp(AppIcons.profRating, AppColor.primaryColor, IconSizes.sm),
                 title: 'Beri Penilaian Aplikasi',
                 buttonHeight: Get.height * 0.08.h,
                 buttonWidth: Get.width * 0.9.w,
@@ -201,7 +201,7 @@ class PageProfile extends GetView<ControllerProfile> {
                 ontap: () {
                   controller.logout();
                 },
-                icon: AppIcons.iconApp(AppIcons.profLogout),
+                icon: AppIcons.iconApp(AppIcons.profLogout, AppColor.primaryColor, IconSizes.sm),
                 title: 'Keluar',
                 buttonHeight: Get.height * 0.08.h,
                 buttonWidth: Get.width * 0.9.w,

@@ -19,6 +19,7 @@ class PageDecorationTop extends StatelessWidget {
   final Color? backgroundColor;
   final Function()? onBackPressed;
   final Widget? center;
+  final bool? centerTitle;
   final bool? resizeAvoidBottom;
 
   const PageDecorationTop({
@@ -37,6 +38,7 @@ class PageDecorationTop extends StatelessWidget {
     this.backgroundColor,
     this.onBackPressed,
     this.center,
+    this.centerTitle,
     this.resizeAvoidBottom,
   }) : super(key: key);
 
@@ -55,6 +57,7 @@ class PageDecorationTop extends StatelessWidget {
           useLeading: enableBack,
           onBackPressed: onBackPressed ?? () => Get.back(),
           center: center,
+          centerTitle: centerTitle ?? false,
         ),
         body: SafeArea(
             child: Padding(

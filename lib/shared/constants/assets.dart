@@ -37,12 +37,12 @@ class AppIcons {
   static const map = 'assets/icons/map.svg';
   static const note = 'assets/icons/note.svg';
 
-  static Widget iconApp(String asset) {
+  static Widget iconApp(String asset, Color color, double height) {
     return SvgPicture.asset(
       asset,
-      height: IconSizes.sm,
+      height: height,
       fit: BoxFit.contain,
-      color: AppColor.primaryColor,
+      color: color,
     );
   }
 }

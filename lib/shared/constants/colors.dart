@@ -55,6 +55,7 @@ class AppColor {
 
   //ACCENT
   static const Color errorColor = Color(0xFFE53935); //Danger - Use for errors
+  static const Color redButton = Color(0xFFCB3A31); //Red Button
   static const Color successColor = Color(0xFF31B76A); //Succes - Use for Succes
   static const Color whiteColor = Color(0xFFFFFFFF);
   static const Color bgPageColor = Color(0xFFE5E5E5);
@@ -165,12 +166,12 @@ class AppColor {
   );
   static const int _success = 0xFF000000;
 
-  static const MaterialColor error = MaterialColor(
-    _error,
+  static const MaterialColor divider = MaterialColor(
+    _divider,
     <int, Color>{
       50: Color(0xFFFFFFFF),
       100: Color(0xFFF8F8F8),
-      200: Color(0xFFBEC4E0),
+      200: Color(0xFFE0E0E0),
       300: Color(0xFFB3B3B3),
       400: Color(0xFF999999),
       500: Color(0xFF808080),
@@ -180,7 +181,7 @@ class AppColor {
       900: Color(0xFF000000),
     },
   );
-  static const int _error = 0xFF000000;
+  static const int _divider = 0xFF000000;
 
   static const MaterialColor basic = MaterialColor(
     _basic,

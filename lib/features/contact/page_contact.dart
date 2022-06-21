@@ -49,7 +49,7 @@ class PageContact extends GetView<ControllerContact> {
               verticalSpace(5.h),
               ButtonContact(
                 ontap: () => controller.ourIg(),
-                icon: AppIcons.iconApp(AppIcons.contInstagram),
+                icon: AppIcons.iconApp(AppIcons.contInstagram, AppColor.primaryColor, IconSizes.sm),
                 title: 'Instagram',
                 buttonHeight: Get.height * 0.09.h,
                 buttonWidth: Get.width * 0.88.w,
@@ -57,7 +57,7 @@ class PageContact extends GetView<ControllerContact> {
               verticalSpace(5.h),
               ButtonContact(
                 ontap: () => controller.ourFb(),
-                icon: AppIcons.iconApp(AppIcons.contFacebook),
+                icon: AppIcons.iconApp(AppIcons.contFacebook, AppColor.primaryColor, IconSizes.sm),
                 title: 'Facebook',
                 buttonHeight: Get.height * 0.09.h,
                 buttonWidth: Get.width * 0.88.w,
@@ -65,7 +65,7 @@ class PageContact extends GetView<ControllerContact> {
               verticalSpace(5.h),
               ButtonContact(
                 ontap: () => controller.ourEmail(),
-                icon: AppIcons.iconApp(AppIcons.contEmail),
+                icon: AppIcons.iconApp(AppIcons.contEmail, AppColor.primaryColor, IconSizes.sm),
                 title: 'Email',
                 buttonHeight: Get.height * 0.09.h,
                 buttonWidth: Get.width * 0.88.w,
@@ -73,7 +73,7 @@ class PageContact extends GetView<ControllerContact> {
               verticalSpace(5.h),
               ButtonContact(
                 ontap: () => controller.ourWeb(),
-                icon: AppIcons.iconApp(AppIcons.contWebsite),
+                icon: AppIcons.iconApp(AppIcons.contWebsite, AppColor.primaryColor, IconSizes.sm),
                 title: 'Website',
                 buttonHeight: Get.height * 0.09.h,
                 buttonWidth: Get.width * 0.88.w,
@@ -85,7 +85,7 @@ class PageContact extends GetView<ControllerContact> {
                       snackPosition: SnackPosition.TOP);
                   await Future.delayed(const Duration(seconds: 2));
                 },
-                icon: AppIcons.iconApp(AppIcons.contWhatsapp),
+                icon: AppIcons.iconApp(AppIcons.contWhatsapp, AppColor.primaryColor, IconSizes.sm),
                 title: 'Whatsapp',
                 buttonHeight: Get.height * 0.09.h,
                 buttonWidth: Get.width * 0.88.w,
