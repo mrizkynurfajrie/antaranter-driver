@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/features/order_history/page_order_history.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/features/home/page_home.dart';
@@ -10,12 +11,13 @@ class ControllerMain extends GetxController {
   final List<Widget> pages = [
     const PageHome(),
     const PageNebengPostingDetail(),
+    PageOrderHistory(),
     const PageProfile(),
   ];
   void changePage(index) => currentPage.value = index;
 
   @override
-  void onInit () {
+  void onInit() {
     super.onInit();
     pageController = PageController(initialPage: currentPage.value);
   }

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:antaranter_driverapp/response/balance.dart';
 import 'package:antaranter_driverapp/response/region.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_postingan.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
@@ -13,6 +14,8 @@ class ControllerHome extends GetxController {
   final ApiHome api;
   ControllerHome({required this.api});
 
+  var balance = Balance().obs;
+
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
   var controllerVehicleInfo = Get.find<ControllerVehicleInfo>();
   var controllerPosting = Get.find<ControllerPostingan>();
@@ -21,17 +24,22 @@ class ControllerHome extends GetxController {
   var homeResponse = HomeResponse().obs;
   var idNebengRider = 0.obs;
   var statusPost = 0.obs;
+  var balancedWarning = false.obs;
+  var balancedValue = 0.obs;
 
   @override
   onInit() async {
     await getData();
+    getDataBalance();
     // await getDataPosting();
 
     super.onInit();
   }
 
   getData() async {
+   
     try {
+      loading.value = true;
       var res = await api.riderHome(controllerRiderInfo.rider.value.id ?? 0);
 
       if (res["success"] == true) {
@@ -51,6 +59,32 @@ class ControllerHome extends GetxController {
         errorTitle: 'Kesalahan',
         errorMessage: 'Terjadi Kesalahan',
       );
+    }
+  }
+
+  void getDataBalance() async {
+    loading.value = true;
+    try {
+      // print(controllerRiderInfo.rider.value.id);
+      var res = await api.getBalance(
+        id: controllerRiderInfo.rider.value.id ?? 0,
+      );
+      // print(res);
+      if (res['success'] == true) {
+        balance.value = Balance.fromJson(res['data']);
+        balancedValue.value = res['data']['curr_balance'];
+        balancedValue.value == 0
+            ? balancedWarning.value = true
+            : balancedWarning.value = false;
+
+        loading.value = false;
+      } else {
+        throw "Status response false";
+      }
+    } catch (e) {
+      loading.value = false;
+      log(e.toString());
+      Get.snackbar("Terjadi kesalahan", e.toString());
     }
   }
 

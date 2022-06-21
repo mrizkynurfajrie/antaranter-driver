@@ -35,6 +35,8 @@ class ApiNebengPostingDetail {
     var responHapus =
         await Api1().apiJSONPostWithToken('nebengposts/cancelpost', bodyHapus);
 
+        log('delete post : ' + responHapus.toString());
+
     return responHapus;
   }
 

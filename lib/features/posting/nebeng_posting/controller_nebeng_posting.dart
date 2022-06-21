@@ -392,30 +392,33 @@ class ControllerNebengPosting extends GetxController {
       titlePadding:
           EdgeInsets.only(top: 25.h, bottom: 5.h, left: 10.w, right: 10.w),
           contentPadding: EdgeInsets.only(bottom: 25.h, left: 10.w, right: 10.w),
-      content: CardRounded(
-        width: Get.width,
-        shadow: Shadows.none,
-        color: AppColor.whiteColor,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('Apakah anda ingin memberikan catatan pada perjalanan anda?',
-                style: TextStyles.inter.copyWith(
-                    fontSize: FontSizes.s12,
-                    fontWeight: FontWeight.w400,
-                    color: AppColor.neutral)),
-            verticalSpace(10.h),
-            InputPrimary(
-              hintText: 'Tuliskan catatan perjalanan',
-              hintFontStyle: FontStyle.italic,
-              controller: txtDesc,
-              onTap: () {},
-              maxLenght: 100,
-              maxLines: 3,
-              boxWidth: Get.width * 0.65.w,
-            ),
-          ],
+      content: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: CardRounded(
+          width: Get.width,
+          shadow: Shadows.none,
+          color: AppColor.whiteColor,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text('Apakah anda ingin memberikan catatan pada perjalanan anda?',
+                  style: TextStyles.inter.copyWith(
+                      fontSize: FontSizes.s12,
+                      fontWeight: FontWeight.w400,
+                      color: AppColor.neutral)),
+              verticalSpace(10.h),
+              InputPrimary(
+                hintText: 'Tuliskan catatan perjalanan',
+                hintFontStyle: FontStyle.italic,
+                controller: txtDesc,
+                onTap: () {},
+                maxLenght: 100,
+                maxLines: 3,
+                boxWidth: Get.width * 0.65.w,
+              ),
+            ],
+          ),
         ),
       ),
       confirm: ButtonPrimary(

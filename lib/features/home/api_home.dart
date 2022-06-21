@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:antaranter_driverapp/framework/api1.dart';
 
 class ApiHome {
@@ -13,5 +15,17 @@ class ApiHome {
         .apiJSONPostWithToken('nebengposts/findbyrider', bodyNebengPosting);
 
     return responseNebengPosting;
+  }
+
+  Future<dynamic> getBalance({
+    required int id,
+  }) async {
+    final payload = {
+      "rider_id": id,
+    };
+
+    var r = await Api1().apiJSONPostWithToken("balance/findbyrider", payload);
+    log('balance : ' + r.toString());
+    return r;
   }
 }

@@ -7,7 +7,6 @@ import 'package:antaranter_driverapp/shared/constants/styles.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
 import 'package:antaranter_driverapp/shared/widgets/menus/menu_item_image.dart';
 
-
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar(
       {Key? key, required this.selectedIndex, required this.onTap})
@@ -112,8 +111,18 @@ class CustomBottomNavBar extends StatelessWidget {
             onTap: () {
               onTap(2);
             },
-            label: 'Profile',
+            label: 'History',
             isSelected: selectedIndex == 2,
+            iconPrimary: AppIcons.history,
+            primaryColor: AppColor.primaryColor,
+          ),
+          _itemMenu(
+            context,
+            onTap: () {
+              onTap(3);
+            },
+            label: 'Profile',
+            isSelected: selectedIndex == 3,
             iconPrimary: AppIcons.profile,
             primaryColor: AppColor.primaryColor,
           ),

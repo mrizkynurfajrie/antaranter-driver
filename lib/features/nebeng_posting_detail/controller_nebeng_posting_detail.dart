@@ -213,32 +213,35 @@ class ControllerNebengPostingDetail extends GetxController
       titlePadding: EdgeInsets.only(bottom: 15.h, top: 20.h),
       backgroundColor: AppColor.whiteColor,
       radius: 10,
-      content: CardRounded(
-        width: Get.width,
-        color: AppColor.bgPageColor,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              "Apakah anda yakin ingin membatalkan perjalanan? jika ya, mohon sertakan alasan nya pada kolom dibawah.",
-              style: TextStyles.inter.copyWith(
-                fontSize: FontSizes.s12,
-                fontWeight: FontWeight.normal,
-                color: AppColor.neutral,
+      content: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: CardRounded(
+          width: Get.width,
+          color: AppColor.bgPageColor,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "Apakah anda yakin ingin membatalkan perjalanan? jika ya, mohon sertakan alasan nya pada kolom dibawah.",
+                style: TextStyles.inter.copyWith(
+                  fontSize: FontSizes.s12,
+                  fontWeight: FontWeight.normal,
+                  color: AppColor.neutral,
+                ),
+                textAlign: TextAlign.justify,
               ),
-              textAlign: TextAlign.justify,
-            ),
-            verticalSpace(10.h),
-            InputPrimary(
-              hintText: 'Alasan Pembatalan',
-              controller: txtNote,
-              onTap: () {},
-              maxLenght: 100,
-              maxLines: 4,
-              // boxWidth: Get.width * 0.65.w,
-            ),
-          ],
+              verticalSpace(10.h),
+              InputPrimary(
+                hintText: 'Alasan Pembatalan',
+                controller: txtNote,
+                onTap: () {},
+                maxLenght: 100,
+                maxLines: 4,
+                // boxWidth: Get.width * 0.65.w,
+              ),
+            ],
+          ),
         ),
       ),
       confirm: ButtonPrimary(

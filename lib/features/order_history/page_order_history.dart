@@ -188,12 +188,18 @@ class PageOrderHistory extends GetView<ControllerOrderHistory> {
   @override
   Widget build(BuildContext context) {
     return PageDecorationTop(
-      title: 'RIWAYAT',
-      toolbarTitleColor: AppColor.whiteColor,
+      title: '',
       padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
       toolbarColor: AppColor.primaryColor,
-      enableBack: true,
+      enableBack: false,
+      center: Center(
+          child: Text('Riwayat Nebeng',
+              style: TextStyles.inter.copyWith(
+                fontSize: FontSizes.s16,
+                color: AppColor.whiteColor,
+                fontWeight: FontWeight.w500,
+              ))),
       child: controller.obx(
         (state) => _containHistory(),
         onEmpty: _notContainHistory(),
