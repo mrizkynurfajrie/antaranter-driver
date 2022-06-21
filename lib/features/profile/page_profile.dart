@@ -240,7 +240,7 @@ class ButtonProfil extends StatelessWidget {
         margin: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
         width: buttonWidth,
-        shadow: Shadows.none,
+        shadow: Shadows.universal,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
