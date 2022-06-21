@@ -390,6 +390,8 @@ class ControllerNebengPosting extends GetxController {
       titlePadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       content: CardRounded(
         width: Get.width,
+        shadow: Shadows.none,
+        color: AppColor.whiteColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -404,11 +406,6 @@ class ControllerNebengPosting extends GetxController {
               hintText: 'Catatan perjalanan',
               controller: txtDesc,
               onTap: () {},
-              prefixIcon: Icon(
-                Icons.note,
-                color: AppColor.primaryColor,
-                size: IconSizes.med,
-              ),
               maxLenght: 100,
               maxLines: 4,
               boxWidth: Get.width * 0.65.w,
@@ -418,6 +415,7 @@ class ControllerNebengPosting extends GetxController {
       ),
       confirm: ButtonPrimaryOutline(
         borderRadius: 9,
+        height: 45.h,
         onPressed: () async {
           await checkDesc();
           createNebengPosting();
@@ -433,6 +431,7 @@ class ControllerNebengPosting extends GetxController {
       ),
       cancel: ButtonPrimaryOutline(
         borderRadius: 9,
+        height: 45.h,
         onPressed: () async {
           await checkDesc();
           // var formatPrice =
@@ -459,8 +458,6 @@ class ControllerNebengPosting extends GetxController {
       valDesc.value = txtDesc.text;
     }
   }
-
-
 
   createNebengPosting() async {
     try {

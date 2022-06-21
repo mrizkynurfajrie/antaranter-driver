@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:antaranter_driverapp/response/nebeng_posting.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_border.dart';
 import 'package:antaranter_driverapp/shared/widgets/input_format/input_format_money.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/toggle_switch.dart';
@@ -131,16 +132,14 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                   Border.all(color: AppColor.greyColorLight),
                               borderRadius: BorderRadius.circular(6),
                             ),
-                            child: Flexible(
-                              child: Text(
-                                controller.controllerVehicleInfo.vehicle.value
-                                        .vehicleVariant ??
-                                    '',
-                                style: TextStyles.inter.copyWith(
-                                  fontSize: FontSizes.s12,
-                                  color: AppColor.disableText,
-                                  fontWeight: FontWeight.w400,
-                                ),
+                            child: Text(
+                              controller.controllerVehicleInfo.vehicle.value
+                                      .vehicleVariant ??
+                                  '',
+                              style: TextStyles.inter.copyWith(
+                                fontSize: FontSizes.s12,
+                                color: AppColor.disableText,
+                                fontWeight: FontWeight.w400,
                               ),
                             ),
                           ),
@@ -406,198 +405,223 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                   width: Get.width,
                   margin: EdgeInsets.symmetric(horizontal: Insets.sm),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      InputPrimary(
-                        hintText: 'Harga Perjalanan',
-                        onTap: () {},
-                        onChange: (value) async {
-                          var priceformatted = controller.txtPrice.text
-                              .replaceAll(RegExp('[^A-Za-z0-9]'), '');
-                          var perc = int.parse(priceformatted) * 13.45 / 100;
-                          var calc = controller.currentBalance /
-                              double.tryParse(perc.toString())!;
-                          controller.countSeat.value =
-                              double.tryParse(calc.toString())!.floor();
-
-                          controller.listSeat.clear();
-
-                          log('count seat : ' +
-                              controller.countSeat.toString());
-
-                          if (controller.countSeat.value <= 5) {
-                            for (var i = 1;
-                                i <= controller.countSeat.value;
-                                i++) {
-                              controller.listSeat.add(i);
-                              log('list seat : ' +
-                                  controller.listSeat.toString());
-                            }
-                          } else {
-                            if (controller.countSeat.value == 0) {
-                              return showPopUp(
-                                  title: 'Saldo Kurang',
-                                  description:
-                                      'Saldo anda tidak mencukupi untuk melakukan perjalanan dengan harga tersebut.');
-                            } else {
-                              for (var i = 1; i <= 5; i++) {
-                                controller.listSeat.add(i);
-                              }
-                            }
-                          }
-                        },
-                        prefixIcon: const Icon(Icons.confirmation_number),
-                        inputFormatters: [
-                          // controller.maskFormatter,
-                          LengthLimitingTextInputFormatter(7),
-                          ThousandsSeparatorInputFormatter(),
-                        ],
-                        keyboardType: TextInputType.number,
-                        controller: controller.txtPrice,
-                      ),
-
-                      verticalSpace(10.h),
-                      Container(
-                        padding: EdgeInsets.only(left: 6.w, right: 7.w),
-                        height: Get.height * 0.07.h,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: AppColor.bodyColor.shade300,
-                            )),
-                        width: Get.width,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  child: Icon(
-                                    Icons.event_seat_rounded,
-                                    color: AppColor.greyColorLight,
-                                    size: IconSizes.sm,
-                                  ),
+                      Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Harga',
+                                style: TextStyles.inter.copyWith(
+                                  fontSize: FontSizes.s12,
+                                  color: AppColor.neutral.shade500,
+                                  fontWeight: FontWeight.w500,
                                 ),
-                                horizontalSpace(10.w),
-                                SizedBox(
-                                  width: Get.width * 0.60.w,
-                                  height: Get.height * 0.05.h,
-                                  child: Obx(
-                                    () => DropdownButtonFormField<String>(
-                                      hint: Text(
-                                        controller.countSeat.value < 1
-                                            ? 'Saldo Tidak Cukup'
-                                            : 'Ketersediaan Tempat',
-                                        style: controller.countSeat.value <= 0
-                                            ? TextStyles.inter.copyWith(
-                                                fontSize: FontSizes.s12,
-                                                color: AppColor.errorColor,
-                                                fontWeight: FontWeight.w400)
-                                            : TextStyles.inter.copyWith(
-                                                fontSize: FontSizes.s12,
-                                                color: AppColor.greyColorLight,
-                                                fontWeight: FontWeight.w400,
-                                              ),
+                              ),
+                              verticalSpace(5.h),
+                              InputPrimary(
+                                boxWidth: 120.w,
+                                hintText: 'Rp 0',
+                                onTap: () {},
+                                onChange: (value) async {
+                                  var priceformatted = controller.txtPrice.text
+                                      .replaceAll(RegExp('[^A-Za-z0-9]'), '');
+                                  var perc =
+                                      int.parse(priceformatted) * 13.45 / 100;
+                                  var calc = controller.currentBalance /
+                                      double.tryParse(perc.toString())!;
+                                  controller.countSeat.value =
+                                      double.tryParse(calc.toString())!.floor();
+
+                                  controller.listSeat.clear();
+
+                                  log('count seat : ' +
+                                      controller.countSeat.toString());
+
+                                  if (controller.countSeat.value <= 5) {
+                                    for (var i = 1;
+                                        i <= controller.countSeat.value;
+                                        i++) {
+                                      controller.listSeat.add(i);
+                                      log('list seat : ' +
+                                          controller.listSeat.toString());
+                                    }
+                                  } else {
+                                    if (controller.countSeat.value == 0) {
+                                      return showPopUp(
+                                          title: 'Saldo Kurang',
+                                          description:
+                                              'Saldo anda tidak mencukupi untuk melakukan perjalanan dengan harga tersebut.');
+                                    } else {
+                                      for (var i = 1; i <= 5; i++) {
+                                        controller.listSeat.add(i);
+                                      }
+                                    }
+                                  }
+                                },
+                                inputFormatters: [
+                                  // controller.maskFormatter,
+                                  LengthLimitingTextInputFormatter(7),
+                                  ThousandsSeparatorInputFormatter(),
+                                ],
+                                keyboardType: TextInputType.number,
+                                controller: controller.txtPrice,
+                              ),
+                            ],
+                          ),
+                          horizontalSpace(20.w),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Kursi Penumpang',
+                                style: TextStyles.inter.copyWith(
+                                  fontSize: FontSizes.s12,
+                                  color: AppColor.neutral.shade500,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              verticalSpace(5.h),
+                              CardRoundedBorder(
+                                width: 130.w,
+                                borderWidth: 1,
+                                shadow: Shadows.none,
+                                margin: EdgeInsets.zero,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10.w, vertical: 0.h),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    CardRounded(
+                                      width: 60.w,
+                                      shadow: Shadows.none,
+                                      color: AppColor.whiteColor,
+                                      margin: EdgeInsets.zero,
+                                      padding: EdgeInsets.zero,
+                                      child: Obx(
+                                        () => DropdownButtonFormField<String>(
+                                          elevation: 1,
+                                          hint: Text(
+                                            controller.countSeat.value < 1
+                                                ? 'Saldo Tidak Cukup'
+                                                : '0',
+                                            style: controller.countSeat.value <=
+                                                    0
+                                                ? TextStyles.inter.copyWith(
+                                                    fontSize: FontSizes.s12,
+                                                    color: AppColor.errorColor,
+                                                    fontWeight: FontWeight.w400)
+                                                : TextStyles.inter.copyWith(
+                                                    fontSize: FontSizes.s12,
+                                                    color:
+                                                        AppColor.greyColorLight,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                          ),
+                                          style: TextStyles.inter.copyWith(
+                                              fontSize: FontSizes.s12,
+                                              fontWeight: FontWeight.normal,
+                                              color: AppColor.neutral),
+                                          decoration: const InputDecoration(
+                                            border: InputBorder.none,
+                                          ),
+                                          onChanged: (newValue) {
+                                            controller.dropDownValue.value =
+                                                newValue.toString();
+                                            controller.update();
+                                          },
+                                          value: controller.dropDownValue
+                                              .toString(),
+                                          items: [
+                                            for (var data
+                                                in controller.listSeat)
+                                              DropdownMenuItem(
+                                                child: Text(
+                                                  data.toString(),
+                                                ),
+                                                value: data.toString(),
+                                              )
+                                          ],
+                                          isExpanded: true,
+                                        ),
                                       ),
-                                      onChanged: (newValue) {
-                                        controller.dropDownValue.value =
-                                            newValue.toString();
-                                        controller.update();
-                                      },
-                                      value:
-                                          controller.dropDownValue.toString(),
-                                      items: [
-                                        for (var data in controller.listSeat)
-                                          DropdownMenuItem(
-                                            child: Text(
-                                              data.toString(),
-                                            ),
-                                            value: data.toString(),
-                                          )
-                                      ],
-                                      isExpanded: true,
                                     ),
-                                  ),
+                                    horizontalSpace(10.w),
+                                    Text(
+                                      'kursi',
+                                      style: TextStyles.inter.copyWith(
+                                          fontSize: FontSizes.s12,
+                                          fontWeight: FontWeight.w500,
+                                          color: AppColor.greyColorLight),
+                                    )
+                                  ],
                                 ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  'kursi',
-                                  style: TextStyles.inter.copyWith(
-                                      fontSize: FontSizes.s12,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColor.greyColorLight),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
+                              ),
+                            ],
+                          ),
+                          // Obx(
+                          //   () => SizedBox(
+                          //     width: Get.width * 0.88.w,
+                          //     child: Column(
+                          //       mainAxisAlignment: MainAxisAlignment.start,
+                          //       crossAxisAlignment: CrossAxisAlignment.start,
+                          //       children: [
+                          //         Text(
+                          //           'Ketersediaan Tempat Duduk',
+                          //           style: TextStyles.inter.copyWith(
+                          //             fontSize: FontSizes.s12,
+                          //             color: AppColor.neutral,
+                          //             fontWeight: FontWeight.w400,
+                          //           ),
+                          //         ),
+                          //         GestureDetector(
+                          //           onTap: () {
+                          //             controller.buildavailSeat();
+                          //           },
+                          //           child: CardRounded(
+                          //             width: Get.width * 0.88.w,
+                          //             margin: EdgeInsets.only(
+                          //               top: 2.h,
+                          //               bottom: 4.h,
+                          //               left: 2.w,
+                          //               right: 2.w,
+                          //             ),
+                          //             borderRadius: 6,
+                          //             shadow: Shadows.universal,
+                          //             child: Row(
+                          //               crossAxisAlignment:
+                          //                   CrossAxisAlignment.center,
+                          //               mainAxisAlignment:
+                          //                   MainAxisAlignment.spaceBetween,
+                          //               children: [
+                          //                 Text(
+                          //                   (controller.availSeat.value == '')
+                          //                       ? "-Pilih"
+                          //                       : controller.availSeat.value,
+                          //                   style: TextStyles.inter.copyWith(
+                          //                     fontSize: FontSizes.s12,
+                          //                     fontWeight: FontWeight.w400,
+                          //                   ),
+                          //                 ),
+                          //                 Icon(
+                          //                   Icons.keyboard_arrow_down,
+                          //                   size: IconSizes.sm,
+                          //                   color: AppColor.bodyColor.shade600,
+                          //                 )
+                          //               ],
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
+                        ],
                       ),
-                      // Obx(
-                      //   () => SizedBox(
-                      //     width: Get.width * 0.88.w,
-                      //     child: Column(
-                      //       mainAxisAlignment: MainAxisAlignment.start,
-                      //       crossAxisAlignment: CrossAxisAlignment.start,
-                      //       children: [
-                      //         Text(
-                      //           'Ketersediaan Tempat Duduk',
-                      //           style: TextStyles.inter.copyWith(
-                      //             fontSize: FontSizes.s12,
-                      //             color: AppColor.neutral,
-                      //             fontWeight: FontWeight.w400,
-                      //           ),
-                      //         ),
-                      //         GestureDetector(
-                      //           onTap: () {
-                      //             controller.buildavailSeat();
-                      //           },
-                      //           child: CardRounded(
-                      //             width: Get.width * 0.88.w,
-                      //             margin: EdgeInsets.only(
-                      //               top: 2.h,
-                      //               bottom: 4.h,
-                      //               left: 2.w,
-                      //               right: 2.w,
-                      //             ),
-                      //             borderRadius: 6,
-                      //             shadow: Shadows.universal,
-                      //             child: Row(
-                      //               crossAxisAlignment:
-                      //                   CrossAxisAlignment.center,
-                      //               mainAxisAlignment:
-                      //                   MainAxisAlignment.spaceBetween,
-                      //               children: [
-                      //                 Text(
-                      //                   (controller.availSeat.value == '')
-                      //                       ? "-Pilih"
-                      //                       : controller.availSeat.value,
-                      //                   style: TextStyles.inter.copyWith(
-                      //                     fontSize: FontSizes.s12,
-                      //                     fontWeight: FontWeight.w400,
-                      //                   ),
-                      //                 ),
-                      //                 Icon(
-                      //                   Icons.keyboard_arrow_down,
-                      //                   size: IconSizes.sm,
-                      //                   color: AppColor.bodyColor.shade600,
-                      //                 )
-                      //               ],
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
-                verticalSpace(Insets.med),
                 CardRounded(
                   color: AppColor.bgPageColor,
                   shadow: Shadows.none,
@@ -613,7 +637,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                     },
                     label: 'Bagikan',
                     color: AppColor.primaryColor,
-                    cornerRadius: 9,
+                    cornerRadius: 7,
                   ),
                 ),
               ],

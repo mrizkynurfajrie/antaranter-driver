@@ -297,7 +297,7 @@ class ControllerNebengPostingDetail extends GetxController
         note: txtNote.text,
       );
       log('hapus posting :' + updateResult.toString());
-      if (updateResult["success"] == true) {
+      if (updateResult['success'] == true) {
         var result = updateResult["data"];
         log("result : " + result.toString());
         controllerPostingan.postingan.value.nebengPosting?.status = 4;
