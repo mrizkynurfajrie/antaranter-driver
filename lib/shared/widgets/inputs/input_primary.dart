@@ -11,6 +11,7 @@ class InputPrimary extends StatefulWidget {
   final Function(String?)? onChange;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final FontStyle? hintFontStyle;
   final String label;
   final TextEditingController? controller;
   final TextInputType keyboardType;
@@ -33,6 +34,7 @@ class InputPrimary extends StatefulWidget {
     this.onChange,
     this.prefixIcon,
     this.suffixIcon,
+    this.hintFontStyle,
     this.label = '',
     this.controller,
     this.keyboardType = TextInputType.text,
@@ -96,6 +98,7 @@ class _InputPrimaryState extends State<InputPrimary> {
               hintText: widget.hintText,
               prefixIcon: widget.prefixIcon,
               suffixIcon: widget.suffixIcon,
+              fontStyle: widget.hintFontStyle,
             ),
           ),
         ),

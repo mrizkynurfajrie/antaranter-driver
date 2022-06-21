@@ -32,7 +32,7 @@ class BorderStyles {
 }
 
 InputDecoration inputDecoration(
-    {required String hintText, Widget? prefixIcon, Widget? suffixIcon}) {
+    {required String hintText, Widget? prefixIcon, Widget? suffixIcon, FontStyle? fontStyle}) {
   return InputDecoration(
     isDense: true,
     filled: true,
@@ -56,6 +56,7 @@ InputDecoration inputDecoration(
       fontSize: FontSizes.s12,
       fontWeight: FontWeight.normal,
       color: AppColor.disableText,
+      fontStyle: fontStyle ?? FontStyle.normal,
     ),
   );
 }

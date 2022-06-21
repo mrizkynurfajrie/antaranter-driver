@@ -5,7 +5,9 @@ import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_balance.dart';
 import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
+import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary_outline.dart';
+import 'package:antaranter_driverapp/shared/widgets/buttons/button_text.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
@@ -381,13 +383,15 @@ class ControllerNebengPosting extends GetxController {
 
   popupDesc() {
     Get.defaultDialog(
-      title: 'Bagikan Perjalanan',
+      title: 'Catatan Perjalanan',
       titleStyle: TextStyles.inter.copyWith(
         fontSize: FontSizes.s16,
-        color: AppColor.primaryColor,
+        color: AppColor.neutral,
         fontWeight: FontWeight.w500,
       ),
-      titlePadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+      titlePadding:
+          EdgeInsets.only(top: 25.h, bottom: 5.h, left: 10.w, right: 10.w),
+          contentPadding: EdgeInsets.only(bottom: 25.h, left: 10.w, right: 10.w),
       content: CardRounded(
         width: Get.width,
         shadow: Shadows.none,
@@ -403,35 +407,34 @@ class ControllerNebengPosting extends GetxController {
                     color: AppColor.neutral)),
             verticalSpace(10.h),
             InputPrimary(
-              hintText: 'Catatan perjalanan',
+              hintText: 'Tuliskan catatan perjalanan',
+              hintFontStyle: FontStyle.italic,
               controller: txtDesc,
               onTap: () {},
               maxLenght: 100,
-              maxLines: 4,
+              maxLines: 3,
               boxWidth: Get.width * 0.65.w,
             ),
           ],
         ),
       ),
-      confirm: ButtonPrimaryOutline(
-        borderRadius: 9,
+      confirm: ButtonPrimary(
+        cornerRadius: 8,
         height: 45.h,
+        size: Get.width * 0.65.w,
         onPressed: () async {
           await checkDesc();
           createNebengPosting();
         },
         label: 'Ya, Bagikan',
-        color: AppColor.whiteColor,
-        outlineColor: AppColor.primary,
+        color: AppColor.primaryColor,
         labelStyle: TextStyles.inter.copyWith(
-          fontSize: FontSizes.s12,
-          color: AppColor.primary,
+          fontSize: FontSizes.s14,
+          color: AppColor.whiteColor,
           fontWeight: FontWeight.w500,
         ),
       ),
-      cancel: ButtonPrimaryOutline(
-        borderRadius: 9,
-        height: 45.h,
+      cancel: ButtonText(
         onPressed: () async {
           await checkDesc();
           // var formatPrice =
@@ -439,11 +442,10 @@ class ControllerNebengPosting extends GetxController {
           // var calc =
           createNebengPosting();
         },
-        label: 'Tidak, Bagikan Tanpa Deskripsi',
+        label: 'Tidak, Bagikan Tanpa Catatan',
         color: AppColor.whiteColor,
-        outlineColor: AppColor.primaryColor,
-        labelStyle: TextStyles.inter.copyWith(
-          fontSize: FontSizes.s12,
+        textStyle: TextStyles.inter.copyWith(
+          fontSize: FontSizes.s14,
           color: AppColor.primaryColor,
           fontWeight: FontWeight.w500,
         ),

@@ -10,7 +10,6 @@ import 'package:antaranter_driverapp/shared/widgets/others/loading_indicator.dar
 import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
 
 class PageOrderHistory extends GetView<ControllerOrderHistory> {
-  
   bool isHistory = true;
 
   PageOrderHistory({Key? key}) : super(key: key);
@@ -23,19 +22,20 @@ class PageOrderHistory extends GetView<ControllerOrderHistory> {
           slivers: [
             SliverToBoxAdapter(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
                     height: Get.height * 0.8,
-                    width: Get.width * 0.95,
+                    width: Get.width,
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
                       itemCount: controller.listHistory.length,
                       itemBuilder: (context, index) {
                         return Container(
                           margin: EdgeInsets.only(bottom: Insets.med),
-                          width: Get.width * 0.8,
-                          height: Get.height * 0.12,
+                          width: Get.width,
+                          height: Get.height * 0.13,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(9),
                             color: AppColor.whiteColor,
@@ -50,7 +50,7 @@ class PageOrderHistory extends GetView<ControllerOrderHistory> {
                                     vertical: 10, horizontal: 20),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     SizedBox(
                                       child: Image.asset(
@@ -62,12 +62,12 @@ class PageOrderHistory extends GetView<ControllerOrderHistory> {
                                     horizontalSpace(15),
                                     Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
                                         SizedBox(
-                                          width:  Get.width * 0.60.w,
+                                          width: Get.width * 0.60.w,
                                           child: Text(
                                             "${controller.listHistory[index].cityOrigin} - ${controller.listHistory[index].cityDestination}",
                                             style: TextStyles.inter.copyWith(
@@ -95,18 +95,21 @@ class PageOrderHistory extends GetView<ControllerOrderHistory> {
                                         ),
                                         verticalSpace(2),
                                         Text(
-                                          controller.listHistory[index].status == 3 ?
-                                          FormatDateTime.formatDateWithoutHour(
-                                            value: controller.listHistory[index]
-                                                .datetimeFinish!,
-                                          ) :
-                                          '-',
+                                          controller.listHistory[index]
+                                                      .status ==
+                                                  3
+                                              ? FormatDateTime
+                                                  .formatDateWithoutHour(
+                                                  value: controller
+                                                      .listHistory[index]
+                                                      .datetimeFinish!,
+                                                )
+                                              : '-',
                                           style: TextStyles.inter.copyWith(
                                             fontSize: FontSizes.s12,
                                             fontWeight: FontWeight.w400,
                                             color: AppColor.greyColorLight,
                                           ),
-
                                         ),
                                       ],
                                     ),
