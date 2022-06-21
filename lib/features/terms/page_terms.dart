@@ -96,7 +96,7 @@ class PageTermsProfile extends GetView<ControllerTermsProfile> {
                 shadow: Shadows.none,
                 child: ButtonPrimary(
                   onPressed: () {
-                    Get.offAllNamed(Routes.main, arguments: 2);
+                    Get.offAllNamed(Routes.main, arguments: 3);
                   },
                   label: 'Kembali',
                   cornerRadius: 9,

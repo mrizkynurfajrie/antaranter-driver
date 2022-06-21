@@ -31,6 +31,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
   Widget build(BuildContext context) {
     return PageDecorationTop(
       title: '',
+      resizeAvoidBottom: false,
       toolbarTitleColor: AppColor.whiteColor,
       padding: EdgeInsets.zero,
       toolbarColor: AppColor.primaryColor,

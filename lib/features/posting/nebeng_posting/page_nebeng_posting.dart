@@ -350,37 +350,37 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                             Row(
                               children: [
                                 InputDate(
-                                    hintText: 'DD/MM/YYYY',
-                                    controller: controller.txtDateArrv,
-                                    selectedDate: (value) {},
-                                    isValid: (value) {},
-                                    suffixIcon: const Icon(
-                                      Icons.date_range,
-                                      color: AppColor.greyColor,
-                                      size: 20,
-                                    ),
-                                    boxWidth: 130.w,
-                                    initialDate: controller.isUrgent.value == 1
-                                        ? DateTime(
-                                            controller.now.year,
-                                            controller.now.month,
-                                            controller.now.day)
-                                        : DateTime(
-                                            controller.now.year,
-                                            controller.now.month,
-                                            controller.now.day + 1,
-                                          ),
-                                    firstDate: controller.isUrgent.value == 1
-                                        ? DateTime(
-                                            controller.now.year,
-                                            controller.now.month,
-                                            controller.now.day)
-                                        : DateTime(
-                                            controller.now.year,
-                                            controller.now.month,
-                                            controller.now.day + 1,
-                                          ),
-                                    ),
+                                  hintText: 'DD/MM/YYYY',
+                                  controller: controller.txtDateArrv,
+                                  selectedDate: (value) {},
+                                  isValid: (value) {},
+                                  suffixIcon: const Icon(
+                                    Icons.date_range,
+                                    color: AppColor.greyColor,
+                                    size: 20,
+                                  ),
+                                  boxWidth: 130.w,
+                                  initialDate: controller.isUrgent.value == 1
+                                      ? DateTime(
+                                          controller.now.year,
+                                          controller.now.month,
+                                          controller.now.day)
+                                      : DateTime(
+                                          controller.now.year,
+                                          controller.now.month,
+                                          controller.now.day + 1,
+                                        ),
+                                  firstDate: controller.isUrgent.value == 1
+                                      ? DateTime(
+                                          controller.now.year,
+                                          controller.now.month,
+                                          controller.now.day)
+                                      : DateTime(
+                                          controller.now.year,
+                                          controller.now.month,
+                                          controller.now.day + 1,
+                                        ),
+                                ),
                                 horizontalSpace(5.w),
                                 InputTime(
                                   hintText: '00.00',

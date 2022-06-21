@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
@@ -248,7 +249,10 @@ class ControllerNebengPostingDetail extends GetxController
         onPressed: () async {
           var hasil = await hapusPosting();
           if (hasil == true) {
-            Get.snackbar("Batalkan Pesanan", "Berhasil membatalkan pesanan");
+            showPopUp(
+                imageUri: PopUpIcons.success,
+                description: 'Perjalanan Nebeng anda telah dibatalkan');
+            await Future.delayed(const Duration(seconds: 2));
             Get.offAllNamed(Routes.main);
           } else {
             showPopUpError(
@@ -371,14 +375,18 @@ class ControllerNebengPostingDetail extends GetxController
     var dateDep = controllerPostingan.postingan.value.nebengPosting!.dateDep!;
     var timeDep =
         controllerPostingan.postingan.value.nebengPosting!.timeDep.toString();
-    
+
     var splitFromTime = timeDep.split(':');
 
     var fromDate = DateTime(
         dateDep.year, dateDep.month, dateDep.day, int.parse(splitFromTime[0]));
-        log("datedep : " + dateDep.toString() + timeDep.toString() + fromDate.toString());
-        log("datenow : " + timeNow.toString());
-  log("detik : " + (timeNow.difference(fromDate).inSeconds / 60).round().toString());
+    log("datedep : " +
+        dateDep.toString() +
+        timeDep.toString() +
+        fromDate.toString());
+    log("datenow : " + timeNow.toString());
+    log("detik : " +
+        (timeNow.difference(fromDate).inSeconds / 60).round().toString());
     return (timeNow.difference(fromDate).inSeconds / 60).round() > 0;
   }
 

@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -22,99 +23,87 @@ class PageOrderHistory extends GetView<ControllerOrderHistory> {
           slivers: [
             SliverToBoxAdapter(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
-                    height: Get.height * 0.8,
-                    width: Get.width,
+                    height: Get.height * 0.8.h,
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
                       itemCount: controller.listHistory.length,
                       itemBuilder: (context, index) {
-                        return Container(
+                        return CardRounded(
                           margin: EdgeInsets.only(bottom: Insets.med),
+                          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                           width: Get.width,
-                          height: Get.height * 0.13,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(9),
-                            color: AppColor.whiteColor,
-                            boxShadow: Shadows.universal,
-                          ),
                           child: Material(
                             color: Colors.transparent,
                             child: InkWell(
                               onTap: () {},
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 20),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    SizedBox(
-                                      child: Image.asset(
-                                        AppIcons.roadRoutes,
-                                        height: 45,
-                                        width: 45,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  SizedBox(
+                                    child: Image.asset(
+                                      AppIcons.roadRoutes,
+                                      height: 30,
+                                      width: 30,
+                                    ),
+                                  ),
+                                  horizontalSpace(15),
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      SizedBox(
+                                        width: Get.width * 0.60.w,
+                                        child: Text(
+                                          "${controller.listHistory[index].cityOrigin} - ${controller.listHistory[index].cityDestination}",
+                                          style: TextStyles.inter.copyWith(
+                                            fontSize: FontSizes.s14,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                    horizontalSpace(15),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        SizedBox(
-                                          width: Get.width * 0.60.w,
-                                          child: Text(
-                                            "${controller.listHistory[index].cityOrigin} - ${controller.listHistory[index].cityDestination}",
-                                            style: TextStyles.inter.copyWith(
-                                              fontSize: FontSizes.s14,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                        verticalSpace(2),
-                                        Text(
-                                          controller.listHistory[index]
+                                      verticalSpace(2),
+                                      Text(
+                                        controller.listHistory[index]
+                                                    .status ==
+                                                3
+                                            ? 'Selesai'
+                                            : 'Dibatalkan',
+                                        style: TextStyles.inter.copyWith(
+                                          fontSize: FontSizes.s12,
+                                          fontWeight: FontWeight.w500,
+                                          color: controller.listHistory[index]
                                                       .status ==
                                                   3
-                                              ? 'Selesai'
-                                              : 'Dibatalkan',
-                                          style: TextStyles.inter.copyWith(
-                                            fontSize: FontSizes.s12,
-                                            fontWeight: FontWeight.w500,
-                                            color: controller.listHistory[index]
-                                                        .status ==
-                                                    3
-                                                ? AppColor.successColor
-                                                : AppColor.errorColor,
-                                          ),
+                                              ? AppColor.successColor
+                                              : AppColor.errorColor,
                                         ),
-                                        verticalSpace(2),
-                                        Text(
-                                          controller.listHistory[index]
-                                                      .status ==
-                                                  3
-                                              ? FormatDateTime
-                                                  .formatDateWithoutHour(
-                                                  value: controller
-                                                      .listHistory[index]
-                                                      .datetimeFinish!,
-                                                )
-                                              : '-',
-                                          style: TextStyles.inter.copyWith(
-                                            fontSize: FontSizes.s12,
-                                            fontWeight: FontWeight.w400,
-                                            color: AppColor.greyColorLight,
-                                          ),
+                                      ),
+                                      verticalSpace(2),
+                                      Text(
+                                        controller.listHistory[index]
+                                                    .status ==
+                                                3
+                                            ? FormatDateTime
+                                                .formatDateWithoutHour(
+                                                value: controller
+                                                    .listHistory[index]
+                                                    .datetimeFinish!,
+                                              )
+                                            : '-',
+                                        style: TextStyles.inter.copyWith(
+                                          fontSize: FontSizes.s12,
+                                          fontWeight: FontWeight.w400,
+                                          color: AppColor.greyColorLight,
                                         ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
                           ),

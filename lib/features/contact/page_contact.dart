@@ -1,3 +1,5 @@
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -5,7 +7,6 @@ import 'package:antaranter_driverapp/features/contact/controller_contact.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
-import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_border.dart';
 import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
 
 class PageContact extends GetView<ControllerContact> {
@@ -18,9 +19,8 @@ class PageContact extends GetView<ControllerContact> {
       backgroundColor: AppColor.bgPageColor,
       toolbarColor: AppColor.whiteColor,
       toolbarTitleColor: AppColor.primaryColor,
-      center: Align(
+      center: Center(
         child: AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
-        alignment: Alignment.centerRight,
       ),
       toolbarElevation: 2,
       enableBack: true,
@@ -49,46 +49,43 @@ class PageContact extends GetView<ControllerContact> {
               verticalSpace(5.h),
               ButtonContact(
                 ontap: () => controller.ourIg(),
-                icon: AppIcons.iconApp(AppIcons.contInstagram, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(AppIcons.contInstagram,
+                    AppColor.primaryColor, IconSizes.sm),
                 title: 'Instagram',
                 buttonHeight: Get.height * 0.09.h,
                 buttonWidth: Get.width * 0.88.w,
               ),
-              verticalSpace(5.h),
               ButtonContact(
                 ontap: () => controller.ourFb(),
-                icon: AppIcons.iconApp(AppIcons.contFacebook, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(
+                    AppIcons.contFacebook, AppColor.primaryColor, IconSizes.sm),
                 title: 'Facebook',
-                buttonHeight: Get.height * 0.09.h,
-                buttonWidth: Get.width * 0.88.w,
               ),
-              verticalSpace(5.h),
               ButtonContact(
                 ontap: () => controller.ourEmail(),
-                icon: AppIcons.iconApp(AppIcons.contEmail, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(
+                    AppIcons.contEmail, AppColor.primaryColor, IconSizes.sm),
                 title: 'Email',
-                buttonHeight: Get.height * 0.09.h,
-                buttonWidth: Get.width * 0.88.w,
               ),
-              verticalSpace(5.h),
               ButtonContact(
                 ontap: () => controller.ourWeb(),
-                icon: AppIcons.iconApp(AppIcons.contWebsite, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(
+                    AppIcons.contWebsite, AppColor.primaryColor, IconSizes.sm),
                 title: 'Website',
-                buttonHeight: Get.height * 0.09.h,
-                buttonWidth: Get.width * 0.88.w,
               ),
-              verticalSpace(5.h),
               ButtonContact(
                 ontap: () async {
-                  Get.snackbar("Belum Tersedia", "Akan segera tersedia",
-                      snackPosition: SnackPosition.TOP);
+                  showPopUp(
+                    imageUri: PopUpIcons.construction,
+                    description: 'Under Construction',
+                    dismissible: false,
+                  );
                   await Future.delayed(const Duration(seconds: 2));
+                  Get.back();
                 },
-                icon: AppIcons.iconApp(AppIcons.contWhatsapp, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(
+                    AppIcons.contWhatsapp, AppColor.primaryColor, IconSizes.sm),
                 title: 'Whatsapp',
-                buttonHeight: Get.height * 0.09.h,
-                buttonWidth: Get.width * 0.88.w,
               ),
             ],
           ),
@@ -118,11 +115,11 @@ class ButtonContact extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: ontap,
-      child: CardRoundedBorder(
-        padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.h),
-        height: buttonHeight,
+      child: CardRounded(
+        margin: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
         width: buttonWidth,
-        shadow: Shadows.universal,
+        shadow: Shadows.none,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

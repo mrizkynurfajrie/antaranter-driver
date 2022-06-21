@@ -391,7 +391,7 @@ class ControllerNebengPosting extends GetxController {
       ),
       titlePadding:
           EdgeInsets.only(top: 25.h, bottom: 5.h, left: 10.w, right: 10.w),
-          contentPadding: EdgeInsets.only(bottom: 25.h, left: 10.w, right: 10.w),
+      contentPadding: EdgeInsets.only(bottom: 25.h, left: 10.w, right: 10.w),
       content: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: CardRounded(

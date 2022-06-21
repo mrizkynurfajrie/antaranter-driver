@@ -148,11 +148,11 @@ class PageSaldo extends GetView<ControllerSaldo> {
                         ],
                       ),
                     ),
-                    const Spacer(),
+                    verticalSpace(10.h),
                     CardPrimary(
                       shadow: Shadows.universal,
                       width: Get.width,
-                      height: Get.height * 0.52.h,
+                      height: Get.height * 0.50.h,
                       color: AppColor.whiteColor,
                       child: controller.obx(
                         (state) => Scrollbar(

@@ -63,6 +63,7 @@ class PopUpIcons {
   static const error = 'assets/icons/error_popup.svg';
   static const success = 'assets/icons/success_popup.svg';
   static const information = 'assets/icons/information-circle.svg';
+  static const construction = 'assets/icons/under_construction.svg';
 
   static Widget iconApp(String asset) {
     return SvgPicture.asset(

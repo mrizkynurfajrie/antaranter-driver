@@ -1,3 +1,5 @@
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
+import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,9 +25,8 @@ class PageProfile extends GetView<ControllerProfile> {
       enableBack: false,
       toolbarColor: AppColor.whiteColor,
       toolbarElevation: 2,
-      center: Align(
+      center: Center(
         child: AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
-        alignment: Alignment.centerRight,
       ),
       padding: EdgeInsets.zero,
       backgroundColor: AppColor.bgPageColor,
@@ -71,7 +72,6 @@ class PageProfile extends GetView<ControllerProfile> {
                           ),
                         ),
                       ),
-                      verticalSpace(8.h),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -84,7 +84,6 @@ class PageProfile extends GetView<ControllerProfile> {
                               color: AppColor.primaryColor,
                             ),
                           ),
-                          verticalSpace(8.h),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -126,35 +125,29 @@ class PageProfile extends GetView<ControllerProfile> {
                   ),
                 ),
               ),
-              verticalSpace(8.h),
               ButtonProfil(
                 ontap: () {
                   Get.toNamed(Routes.userAccount);
                 },
-                icon: AppIcons.iconApp(AppIcons.profUser, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(
+                    AppIcons.profUser, AppColor.primaryColor, IconSizes.sm),
                 title: 'Profil Pengguna',
-                buttonHeight: Get.height * 0.08.h,
-                buttonWidth: Get.width * 0.9.w,
               ),
-              verticalSpace(8.h),
               ButtonProfil(
                 ontap: () {
                   Get.toNamed(Routes.vehicleAccount);
                 },
-                icon: AppIcons.iconApp(AppIcons.profCar, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(
+                    AppIcons.profCar, AppColor.primaryColor, IconSizes.sm),
                 title: 'Profil Kendaraan',
-                buttonHeight: Get.height * 0.08.h,
-                buttonWidth: Get.width * 0.9.w,
               ),
-              verticalSpace(8.h),
               ButtonProfil(
                 ontap: () {
                   Get.toNamed(Routes.contact);
                 },
-                icon: AppIcons.iconApp(AppIcons.profCallus, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(
+                    AppIcons.profCallus, AppColor.primaryColor, IconSizes.sm),
                 title: 'Hubungi Kami',
-                buttonHeight: Get.height * 0.08.h,
-                buttonWidth: Get.width * 0.9.w,
               ),
               verticalSpace(15.h),
               Align(
@@ -170,41 +163,49 @@ class PageProfile extends GetView<ControllerProfile> {
                   ),
                 ),
               ),
-              verticalSpace(8.h),
               ButtonProfil(
                 ontap: () {
                   Get.toNamed(Routes.termsProfile);
                 },
-                icon: AppIcons.iconApp(AppIcons.profTnc, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(
+                    AppIcons.profTnc, AppColor.primaryColor, IconSizes.sm),
                 title: 'Syarat & Ketentuan',
-                buttonHeight: Get.height * 0.08.h,
-                buttonWidth: Get.width * 0.9.w,
               ),
-              verticalSpace(8.h),
               ButtonProfil(
-                ontap: () {},
-                icon: AppIcons.iconApp(AppIcons.profPrivacy, AppColor.primaryColor, IconSizes.sm),
+                ontap: () async {
+                  showPopUp(
+                    imageUri: PopUpIcons.construction,
+                    description: 'Under Construction',
+                    dismissible: false,
+                  );
+                  await Future.delayed(const Duration(seconds: 2));
+                  Get.back();
+                },
+                icon: AppIcons.iconApp(
+                    AppIcons.profPrivacy, AppColor.primaryColor, IconSizes.sm),
                 title: 'Kebijakan Privasi',
-                buttonHeight: Get.height * 0.08.h,
-                buttonWidth: Get.width * 0.9.w,
               ),
-              verticalSpace(8.h),
               ButtonProfil(
-                ontap: () {},
-                icon: AppIcons.iconApp(AppIcons.profRating, AppColor.primaryColor, IconSizes.sm),
+                ontap: () async {
+                  showPopUp(
+                    imageUri: PopUpIcons.construction,
+                    description: 'Under Construction',
+                    dismissible: false,
+                  );
+                  await Future.delayed(const Duration(seconds: 2));
+                  Get.back();
+                },
+                icon: AppIcons.iconApp(
+                    AppIcons.profRating, AppColor.primaryColor, IconSizes.sm),
                 title: 'Beri Penilaian Aplikasi',
-                buttonHeight: Get.height * 0.08.h,
-                buttonWidth: Get.width * 0.9.w,
               ),
-              verticalSpace(8.h),
               ButtonProfil(
                 ontap: () {
                   controller.logout();
                 },
-                icon: AppIcons.iconApp(AppIcons.profLogout, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(
+                    AppIcons.profLogout, AppColor.primaryColor, IconSizes.sm),
                 title: 'Keluar',
-                buttonHeight: Get.height * 0.08.h,
-                buttonWidth: Get.width * 0.9.w,
               ),
               verticalSpace(15.h)
             ],
@@ -235,11 +236,11 @@ class ButtonProfil extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: ontap,
-      child: CardRoundedBorder(
-        padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.h),
-        height: buttonHeight,
+      child: CardRounded(
+        margin: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
         width: buttonWidth,
-        shadow: Shadows.universal,
+        shadow: Shadows.none,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
