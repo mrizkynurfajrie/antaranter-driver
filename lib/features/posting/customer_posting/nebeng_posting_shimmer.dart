@@ -32,7 +32,7 @@ class NebengPostingShimmer extends StatelessWidget {
               ),
             ),
           ),
-          verticalSpace(Insets.lg),
+          verticalSpace(Insets.sm),
           SizedBox(
             width: 100.w,
             height: Sizes.med,
@@ -44,7 +44,7 @@ class NebengPostingShimmer extends StatelessWidget {
               ),
             ),
           ),
-          verticalSpace(Insets.med),
+          verticalSpace(Insets.sm),
           Row(
             children: [
               Expanded(

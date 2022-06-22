@@ -44,6 +44,7 @@ class ButtonPrimary extends StatelessWidget {
         child: ElevatedButton(
             onPressed: enable ? onPressed : null,
             style: ElevatedButton.styleFrom(
+              
               primary: enable
                   ? color ?? Theme.of(context).primaryColor
                   : AppColor.bodyColor.shade300,

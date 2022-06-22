@@ -43,6 +43,7 @@ class PageHome extends GetView<ControllerHome> {
               color: AppColor.primaryColor,
               onRefresh: () async {
                 controller.getData();
+                controller.getDataBalance();
                 await Future.delayed(const Duration(seconds: 3));
               },
               child: CustomScrollView(

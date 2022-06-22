@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:antaranter_driverapp/features/home/controller_home.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_balance.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +32,8 @@ class ControllerNebengPostingDetail extends GetxController
   var controllerVehicleInfo = Get.find<ControllerVehicleInfo>();
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
   var controllerPostingan = Get.find<ControllerPostingan>();
+  var controllerHome = Get.find<ControllerHome>();
+  var controllerBalance = Get.find<ControllerBalanceInfo>();
 
   final ApiNebengPostingDetail api;
   ControllerNebengPostingDetail({
@@ -352,15 +356,16 @@ class ControllerNebengPostingDetail extends GetxController
 
           showPopUp(
             title: 'Perjalanan Selesai',
-            imageUri: 'assets/logo/logo-only-svg.svg',
-            imageSize: 25,
+            imageUri: AppLogos.logoOnlySvg,
+            imageSize: IconSizes.med,
             description:
                 'Terima kasih anda telah menyelesaikan perjalanan sampai tujuan dengan nyaman dan aman',
           );
           await Future.delayed(const Duration(seconds: 3));
-          Get.back();
-
+          Get.offAllNamed(Routes.main);
           controllerPostingan.postingan.refresh();
+          controllerHome.homeResponse.refresh();
+          controllerBalance.balance.refresh();
           return true;
         }
         return true;

@@ -227,4 +227,6 @@ class AppColor {
   static const Color subTextColor = Color(0xFF9E9E9E);
   static const Color doneTextColor = Color(0xFF43936C);
   static const Color transactionColor = Color(0xFFFB692E);
+  static const Color cardDetailHeader = Color(0xFF4C4DDC);
+  static const Color cardDetailBody = Color(0xFFF5F5FF);
 }

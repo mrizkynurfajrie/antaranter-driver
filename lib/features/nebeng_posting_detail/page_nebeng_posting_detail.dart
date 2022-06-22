@@ -1,9 +1,12 @@
 import 'dart:developer';
 
 import 'package:antaranter_driverapp/shared/helpers/utils.dart';
+import 'package:antaranter_driverapp/shared/widgets/buttons/button_text.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_top.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -32,19 +35,14 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
     return PageDecorationTop(
       title: '',
       resizeAvoidBottom: false,
-      toolbarTitleColor: AppColor.whiteColor,
       padding: EdgeInsets.zero,
-      toolbarColor: AppColor.primaryColor,
+      toolbarColor: AppColor.bgPageColor,
       toolbarElevation: 2,
       backgroundColor: AppColor.bgPageColor,
       enableBack: false,
       center: Center(
-          child: Text('Aktifitas Nebeng',
-              style: TextStyles.inter.copyWith(
-                fontSize: FontSizes.s16,
-                color: AppColor.whiteColor,
-                fontWeight: FontWeight.w500,
-              ))),
+        child: AppLogosMed.logoApp(AppLogosMed.logoHorizontal),
+      ),
       child: Obx(
         () => controller.loading.isFalse
             ? RefreshIndicator(
@@ -56,7 +54,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                           true
                       ? CustomScrollView(
                           slivers: [
-                            SliverToBoxAdapter(
+                            SliverFillRemaining(
                               child: CardRounded(
                                 color: AppColor.bgPageColor,
                                 padding: EdgeInsets.zero,
@@ -67,236 +65,245 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                     //card info//
                                     CardRounded(
                                       color: AppColor.whiteColor,
+                                      borderRadius: 0,
                                       width: Get.width,
+                                      shadow: Shadows.none,
                                       padding: EdgeInsets.symmetric(
-                                          vertical: 10.h, horizontal: 15.w),
+                                          vertical: 0.h, horizontal: 5.w),
                                       margin:
                                           EdgeInsets.symmetric(horizontal: 2.w),
                                       child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: <Widget>[
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      'Titik Awal',
-                                                      style: TextStyles.inter
-                                                          .copyWith(
-                                                        fontSize: FontSizes.s12,
-                                                        color: AppColor
-                                                            .disableText,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    ),
-                                                    verticalSpace(5.h),
-                                                    Text(
-                                                      controller
-                                                              .controllerPostingan
-                                                              .postingan
-                                                              .value
-                                                              .nebengPosting
-                                                              ?.cityOrigin ??
-                                                          '',
-                                                      style: TextStyles.inter
-                                                          .copyWith(
-                                                        fontSize: FontSizes.s14,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        color: AppColor.neutral,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      'Tanggal Berangkat',
-                                                      style: TextStyles.inter
-                                                          .copyWith(
-                                                        fontSize: FontSizes.s12,
-                                                        color: AppColor
-                                                            .disableText,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    ),
-                                                    verticalSpace(5.h),
-                                                    Row(
-                                                      children: [
-                                                        Text(
-                                                          FormatDateTime.formatDateWithoutHour(
-                                                                  value: controller
-                                                                      .controllerPostingan
-                                                                      .postingan
-                                                                      .value
-                                                                      .nebengPosting!
-                                                                      .dateDep!) +
-                                                              ','.toString(),
-                                                          style: TextStyles
-                                                              .inter
-                                                              .copyWith(
-                                                            fontSize:
-                                                                FontSizes.s14,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            color: AppColor
-                                                                .neutral,
-                                                          ),
-                                                        ),
-                                                        horizontalSpace(5.w),
-                                                        Obx(
-                                                          () => Text(
-                                                            controller
-                                                                .controllerPostingan
-                                                                .postingan
-                                                                .value
-                                                                .nebengPosting!
-                                                                .timeDep!
-                                                                .toString(),
+                                        children: [
+                                          CardRounded(
+                                            shadow: Shadows.universal,
+                                            color: AppColor.cardDetailBody,
+                                            width: Get.width,
+                                            padding: EdgeInsets.only(
+                                                top: 0.h,
+                                                left: 0.w,
+                                                right: 0.w,
+                                                bottom: 10.h),
+                                            margin: EdgeInsets.only(
+                                                top: 10.h,
+                                                left: 5.w,
+                                                right: 5.w,
+                                                bottom: 3.h),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                CardRoundedTop(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10.w,
+                                                      vertical: 5.h),
+                                                  width: Get.width,
+                                                  margin: EdgeInsets.zero,
+                                                  color: AppColor.primaryColor,
+                                                  borderRadius: 8,
+                                                  child: Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            'Harga',
                                                             style: TextStyles
                                                                 .inter
                                                                 .copyWith(
                                                               fontSize:
-                                                                  FontSizes.s14,
+                                                                  FontSizes.s12,
+                                                              color: AppColor
+                                                                  .whiteColor,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w400,
-                                                              color: AppColor
-                                                                  .neutral,
+                                                                      .w500,
                                                             ),
                                                           ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          verticalSpace(10.h),
-                                          Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      'Tujuan',
-                                                      style: TextStyles.inter
-                                                          .copyWith(
-                                                        fontSize: FontSizes.s12,
-                                                        color: AppColor
-                                                            .disableText,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    ),
-                                                    verticalSpace(5.h),
-                                                    Text(
-                                                      controller
-                                                              .controllerPostingan
-                                                              .postingan
-                                                              .value
-                                                              .nebengPosting
-                                                              ?.cityDestination
-                                                              .toString() ??
-                                                          '',
-                                                      style: TextStyles.inter
-                                                          .copyWith(
-                                                        fontSize: FontSizes.s14,
-                                                        color: AppColor.neutral,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      'Kursi',
-                                                      style: TextStyles.inter
-                                                          .copyWith(
-                                                        fontSize: FontSizes.s12,
-                                                        color: AppColor
-                                                            .disableText,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    ),
-                                                    verticalSpace(5.h),
-                                                    RichText(
-                                                        text: controller
-                                                                    .controllerPostingan
-                                                                    .postingan
-                                                                    .value
-                                                                    .nebengPosting!
-                                                                    .seatAvail ==
+                                                          verticalSpace(3.h),
+                                                          Text(
+                                                            CurrencyFormat.convertToIdr(
                                                                 controller
-                                                                    .controllerPostingan
-                                                                    .postingan
-                                                                    .value
-                                                                    .nebengOrder!
-                                                                    .length
-                                                            ? TextSpan(
-                                                                text: "Penuh",
-                                                                style: TextStyles
-                                                                    .inter
-                                                                    .copyWith(
-                                                                  fontSize:
-                                                                      FontSizes
-                                                                          .s14,
-                                                                  color: AppColor
-                                                                      .errorColor,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
+                                                                        .controllerPostingan
+                                                                        .postingan
+                                                                        .value
+                                                                        .nebengPosting
+                                                                        ?.price ??
+                                                                    0,
+                                                                0),
+                                                            style: TextStyles
+                                                                .inter
+                                                                .copyWith(
+                                                              fontSize:
+                                                                  FontSizes.s16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              color: AppColor
+                                                                  .whiteColor,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      ButtonText(
+                                                        label:
+                                                            'Ubah Waktu Perjalanan',
+                                                        textStyle: TextStyles
+                                                            .inter
+                                                            .copyWith(
+                                                          fontSize:
+                                                              FontSizes.s12,
+                                                          color: controller
+                                                                      .statusNebeng
+                                                                      .value ==
+                                                                  1
+                                                              ? AppColor
+                                                                  .whiteColor
+                                                              : AppColor
+                                                                  .disableText,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                        onPressed: () {
+                                                          controller.statusNebeng
+                                                                      .value ==
+                                                                  1
+                                                              ? controller
+                                                                  .dialogUbah()
+                                                              : null;
+                                                        },
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                verticalSpace(6.h),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 10.h,
+                                                      left: 10.w,
+                                                      right: 10.w,
+                                                      bottom: 3.h),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: <Widget>[
+                                                      Expanded(
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              'Titik Awal',
+                                                              style: TextStyles
+                                                                  .inter
+                                                                  .copyWith(
+                                                                fontSize:
+                                                                    FontSizes
+                                                                        .s12,
+                                                                color: AppColor
+                                                                    .disableText,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                            ),
+                                                            verticalSpace(3.h),
+                                                            Text(
+                                                              controller
+                                                                      .controllerPostingan
+                                                                      .postingan
+                                                                      .value
+                                                                      .nebengPosting
+                                                                      ?.cityOrigin ??
+                                                                  '',
+                                                              style: TextStyles
+                                                                  .inter
+                                                                  .copyWith(
+                                                                fontSize:
+                                                                    FontSizes
+                                                                        .s14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                color: AppColor
+                                                                    .neutral,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      horizontalSpace(40.w),
+                                                      Expanded(
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              'Tanggal Berangkat',
+                                                              style: TextStyles
+                                                                  .inter
+                                                                  .copyWith(
+                                                                fontSize:
+                                                                    FontSizes
+                                                                        .s12,
+                                                                color: AppColor
+                                                                    .disableText,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                            ),
+                                                            verticalSpace(5.h),
+                                                            Row(
+                                                              children: [
+                                                                Text(
+                                                                  FormatDateTime.formatDateWithoutHour(
+                                                                          value: controller
+                                                                              .controllerPostingan
+                                                                              .postingan
+                                                                              .value
+                                                                              .nebengPosting!
+                                                                              .dateDep!) +
+                                                                      ','.toString(),
+                                                                  style: TextStyles
+                                                                      .inter
+                                                                      .copyWith(
+                                                                    fontSize:
+                                                                        FontSizes
+                                                                            .s14,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    color: AppColor
+                                                                        .neutral,
+                                                                  ),
                                                                 ),
-                                                              )
-                                                            : TextSpan(
-                                                                text: "${controller.controllerPostingan.postingan.value.nebengOrder!.length}"
-                                                                        .isEmpty
-                                                                    ? "0"
-                                                                    : "${controller.controllerPostingan.postingan.value.nebengOrder!.length}",
-                                                                style: TextStyles
-                                                                    .inter
-                                                                    .copyWith(
-                                                                  fontSize:
-                                                                      FontSizes
-                                                                          .s14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  color: AppColor
-                                                                      .greyColorLight,
-                                                                ),
-                                                                children: [
-                                                                  TextSpan(
-                                                                    text:
-                                                                        "/${controller.controllerPostingan.postingan.value.nebengPosting!.seatAvail}",
+                                                                horizontalSpace(
+                                                                    5.w),
+                                                                Obx(
+                                                                  () => Text(
+                                                                    controller
+                                                                        .controllerPostingan
+                                                                        .postingan
+                                                                        .value
+                                                                        .nebengPosting!
+                                                                        .timeDep!
+                                                                        .toString(),
                                                                     style: TextStyles
                                                                         .inter
                                                                         .copyWith(
@@ -305,89 +312,283 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                                               .s14,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .bold,
+                                                                              .w400,
                                                                       color: AppColor
-                                                                          .greyColor,
+                                                                          .neutral,
                                                                     ),
-                                                                  )
-                                                                ],
-                                                              )),
-                                                  ],
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
+                                                verticalSpace(10.h),
+                                                Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: 0.h,
+                                                      horizontal: 10.w),
+                                                  child: Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              'Tujuan',
+                                                              style: TextStyles
+                                                                  .inter
+                                                                  .copyWith(
+                                                                fontSize:
+                                                                    FontSizes
+                                                                        .s12,
+                                                                color: AppColor
+                                                                    .disableText,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                            ),
+                                                            verticalSpace(3.h),
+                                                            Text(
+                                                              controller
+                                                                      .controllerPostingan
+                                                                      .postingan
+                                                                      .value
+                                                                      .nebengPosting
+                                                                      ?.cityDestination
+                                                                      .toString() ??
+                                                                  '',
+                                                              style: TextStyles
+                                                                  .inter
+                                                                  .copyWith(
+                                                                fontSize:
+                                                                    FontSizes
+                                                                        .s14,
+                                                                color: AppColor
+                                                                    .neutral,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      horizontalSpace(40.w),
+                                                      Expanded(
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              'Kursi',
+                                                              style: TextStyles
+                                                                  .inter
+                                                                  .copyWith(
+                                                                fontSize:
+                                                                    FontSizes
+                                                                        .s12,
+                                                                color: AppColor
+                                                                    .disableText,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                            ),
+                                                            verticalSpace(5.h),
+                                                            RichText(
+                                                                text: controller
+                                                                            .controllerPostingan
+                                                                            .postingan
+                                                                            .value
+                                                                            .nebengPosting!
+                                                                            .seatAvail ==
+                                                                        controller
+                                                                            .controllerPostingan
+                                                                            .postingan
+                                                                            .value
+                                                                            .nebengOrder!
+                                                                            .length
+                                                                    ? TextSpan(
+                                                                        text:
+                                                                            "Penuh",
+                                                                        style: TextStyles
+                                                                            .inter
+                                                                            .copyWith(
+                                                                          fontSize:
+                                                                              FontSizes.s14,
+                                                                          color:
+                                                                              AppColor.errorColor,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        ),
+                                                                      )
+                                                                    : TextSpan(
+                                                                        text: "${controller.controllerPostingan.postingan.value.nebengOrder!.length}".isEmpty
+                                                                            ? "0"
+                                                                            : "${controller.controllerPostingan.postingan.value.nebengOrder!.length}",
+                                                                        style: TextStyles
+                                                                            .inter
+                                                                            .copyWith(
+                                                                          fontSize:
+                                                                              FontSizes.s14,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                          color:
+                                                                              AppColor.greyColorLight,
+                                                                        ),
+                                                                        children: [
+                                                                          TextSpan(
+                                                                            text:
+                                                                                "/${controller.controllerPostingan.postingan.value.nebengPosting!.seatAvail}",
+                                                                            style:
+                                                                                TextStyles.inter.copyWith(
+                                                                              fontSize: FontSizes.s14,
+                                                                              fontWeight: FontWeight.bold,
+                                                                              color: AppColor.greyColor,
+                                                                            ),
+                                                                          )
+                                                                        ],
+                                                                      )),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                verticalSpace(10.h),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 3.h,
+                                                      left: 10.w,
+                                                      right: 10.w,
+                                                      bottom: 0.h),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Catatan Perjalanan',
+                                                        style: TextStyles.inter
+                                                            .copyWith(
+                                                          fontSize:
+                                                              FontSizes.s12,
+                                                          color: AppColor
+                                                              .disableText,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      verticalSpace(3.h),
+                                                      Text(
+                                                        controller
+                                                                .controllerPostingan
+                                                                .postingan
+                                                                .value
+                                                                .nebengPosting
+                                                                ?.desc
+                                                                .toString() ??
+                                                            '',
+                                                        maxLines: 2,
+                                                        style: TextStyles.inter
+                                                            .copyWith(
+                                                          fontSize:
+                                                              FontSizes.s14,
+                                                          color:
+                                                              AppColor.neutral,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.justify,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsets.only(right: 8.w),
+                                            child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: ButtonText(
+                                                label: 'Batalkan Perjalanan',
+                                                textStyle:
+                                                    TextStyles.inter.copyWith(
+                                                  fontSize: FontSizes.s12,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: controller.statusNebeng
+                                                              .value ==
+                                                          1
+                                                      ? AppColor.errorColor
+                                                      : AppColor.disableText,
+                                                ),
+                                                onPressed: () {
+                                                  controller.statusNebeng
+                                                              .value ==
+                                                          1
+                                                      ? controller.dialogBatal()
+                                                      : null;
+                                                },
                                               ),
-                                            ],
-                                          ),
-                                          Divider(
-                                            thickness: 2,
-                                            color: AppColor.divider.shade200,
-                                          ),
-                                          Text(
-                                            'Harga',
-                                            style: TextStyles.inter.copyWith(
-                                              fontSize: FontSizes.s12,
-                                              color: AppColor.disableText,
-                                              fontWeight: FontWeight.w500,
                                             ),
-                                          ),
-                                          verticalSpace(5.h),
-                                          Text(
-                                            CurrencyFormat.convertToIdr(
-                                                controller
-                                                        .controllerPostingan
-                                                        .postingan
-                                                        .value
-                                                        .nebengPosting
-                                                        ?.price ??
-                                                    0,
-                                                0),
-                                            style: TextStyles.inter.copyWith(
-                                              fontSize: FontSizes.s16,
-                                              fontWeight: FontWeight.w500,
-                                              color: AppColor.neutral,
-                                            ),
-                                          ),
-                                          Divider(
-                                            thickness: 2,
-                                            color: AppColor.divider.shade200,
-                                          ),
-                                          verticalSpace(5.h),
-                                          Text(
-                                            'Catatan Perjalanan',
-                                            style: TextStyles.inter.copyWith(
-                                              fontSize: FontSizes.s12,
-                                              color: AppColor.disableText,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          verticalSpace(5.h),
-                                          Text(
-                                            controller
-                                                    .controllerPostingan
-                                                    .postingan
-                                                    .value
-                                                    .nebengPosting
-                                                    ?.desc
-                                                    .toString() ??
-                                                '',
-                                            style: TextStyles.inter.copyWith(
-                                              fontSize: FontSizes.s14,
-                                              color: AppColor.neutral,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                            textAlign: TextAlign.justify,
                                           ),
                                         ],
+                                      ),
+                                    ),
+                                    verticalSpace(7.h),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 13.w),
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              'Penumpang',
+                                              style: TextStyles.inter.copyWith(
+                                                  fontSize: FontSizes.s12,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: AppColor.greyColor),
+                                            ),
+                                            horizontalSpace(3.w),
+                                            Text(
+                                              '(${controller.controllerPostingan.postingan.value.nebengOrder!.length.toString()})',
+                                              style: TextStyles.inter.copyWith(
+                                                  fontSize: FontSizes.s12,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: AppColor.greyColor),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     verticalSpace(5.h),
                                     //list user//
                                     Container(
-                                      height: Get.height * 0.25.h,
+                                      height: 150.h,
                                       width: Get.width,
                                       margin: EdgeInsets.symmetric(
                                           horizontal: Insets.sm),
                                       child: controller.obx(
                                         (state) => ListView.builder(
+                                          scrollDirection: Axis.horizontal,
                                           shrinkWrap: true,
                                           itemBuilder: (context, index) =>
                                               UserNebeng(
@@ -398,66 +599,8 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                         ),
                                       ),
                                     ),
-
-                                    //tombol//
-                                    // verticalSpace(10.h),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        ButtonPrimary(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10.w),
-                                          onPressed: () {
-                                            controller.dialogBatal();
-                                          },
-                                          enable:
-                                              (controller.statusNebeng.value ==
-                                                      1)
-                                                  ? true
-                                                  : false,
-                                          label: 'Batalkan Perjalanan',
-                                          color: AppColor.redButton,
-                                          labelStyle: TextStyles.inter.copyWith(
-                                            color: AppColor.whiteColor,
-                                            fontSize: FontSizes.s14,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          height: Get.height * 0.06.h,
-                                          cornerRadius: 8,
-                                          borderColor: AppColor.errorColor,
-                                        ),
-                                        verticalSpace(8.h),
-                                        ButtonPrimary(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10.w),
-                                          onPressed: () {
-                                            controller.dialogUbah();
-                                          },
-                                          label: 'Ubah Waktu Perjalanan',
-                                          // enable: controller.checkAvailableButton(),
-                                          enable:
-                                              (controller.statusNebeng.value ==
-                                                      1)
-                                                  ? true
-                                                  : false,
-                                          color: AppColor.whiteColor,
-                                          labelStyle: TextStyles.inter.copyWith(
-                                            color: (controller
-                                                        .statusNebeng.value ==
-                                                    1)
-                                                ? AppColor.primaryColor
-                                                : AppColor.whiteColor,
-                                            fontSize: FontSizes.s14,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          height: Get.height * 0.06.h,
-                                          cornerRadius: 8,
-                                          borderColor: AppColor.primaryColor,
-                                        ),
-                                      ],
-                                    ),
-                                    verticalSpace(10.h),
+                                    // verticalSpace(30.h),
+                                    const Spacer(),
                                     //tombolbawah//
                                     Row(
                                       children: [
@@ -477,9 +620,10 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                 onPressed: controller
                                                         .listUserNebeng
                                                         .isNotEmpty
-                                                    ? () {
-                                                        controller
+                                                    ? () async {
+                                                        await controller
                                                             .ubahStatus(2);
+                                                        controller.onRefresh();
                                                       }
                                                     : () {
                                                         showPopUpError(
@@ -533,6 +677,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                   showPopUpChoice(
                                                       imageUri:
                                                           PopUpIcons.success,
+                                                      imageSize: IconSizes.xl,
                                                       title:
                                                           'Menyelesaikan Perjalanan',
                                                       description:
@@ -567,7 +712,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                         ),
                                       ],
                                     ),
-                                    verticalSpace(5.h),
+                                    verticalSpace(10.h),
                                   ],
                                 ),
                               ),
@@ -618,184 +763,208 @@ class UserNebeng extends GetView<ControllerNebengPostingDetail> {
   @override
   Widget build(BuildContext context) {
     return CardRounded(
-      width: Get.width,
-      margin: EdgeInsets.symmetric(horizontal: 1.w, vertical: 3.h),
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 3.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
+      color: AppColor.cardDetailBody,
+      width: Get.width * 0.65.w,
+      margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
+      padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 0.h),
+      child: Column(
+        children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              InkWell(
-                onTap: () {
-                  log("gambar image : " + nebengOrder.users!.image.toString());
-                  if (nebengOrder.users!.image != null) {
-                    showPopUpImage(
-                      imageUri: imageUrlPath(
-                        '${nebengOrder.users?.image}',
-                      ),
-                    );
-                  } else {
-                    showPopUpImage(
-                        imageUri:
-                            'https://antaranter.sgp1.digitaloceanspaces.com/PROD/avatar_dummy.png');
-                  }
-                },
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(90),
-                  child: SizedBox(
-                    height: IconSizes.listuser,
-                    width: IconSizes.listuser,
-                    child: CachedNetworkImage(
-                      fit: BoxFit.cover,
-                      imageUrl: imageUrlPath(
-                        '${nebengOrder.users?.image}',
-                      ),
-                      progressIndicatorBuilder:
-                          (context, url, downloadProgress) => Shimmer(
-                        child: Container(color: AppColor.whiteColor),
-                        gradient: AppColor.shimmerGradient,
-                      ),
-                      errorWidget: (context, url, error) => DottedBorder(
-                        dashPattern: const [12, 4],
-                        strokeWidth: 1,
-                        strokeCap: StrokeCap.round,
-                        color: AppColor.greyColorLight,
-                        borderType: BorderType.Circle,
-                        radius: const Radius.circular(12),
-                        child: Padding(
-                          padding: const EdgeInsets.all(5),
-                          child: SvgPicture.asset(
-                            AppIcons.dummyAvatar,
-                            color: '${nebengOrder.users?.gender}' == 'male'
-                                ? AppColor.genderMale
-                                : AppColor.genderFemale,
+            children: [
+              CardRoundedTop(
+                borderRadius: 8,
+                margin: EdgeInsets.zero,
+                width: Get.width * 0.65.w,
+                color: AppColor.primaryColor,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: () {
+                        log("gambar image : " +
+                            nebengOrder.users!.image.toString());
+                        if (nebengOrder.users!.image != null) {
+                          showPopUpImage(
+                            imageUri: imageUrlPath(
+                              '${nebengOrder.users?.image}',
+                            ),
+                          );
+                        } else {
+                          showPopUpImage(
+                              imageUri:
+                                  'https://antaranter.sgp1.digitaloceanspaces.com/PROD/avatar_dummy.png');
+                        }
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(90),
+                        child: SizedBox(
+                          height: IconSizes.listuser,
+                          width: IconSizes.listuser,
+                          child: CachedNetworkImage(
                             fit: BoxFit.cover,
+                            imageUrl: imageUrlPath(
+                              '${nebengOrder.users?.image}',
+                            ),
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) => Shimmer(
+                              child: Container(color: AppColor.whiteColor),
+                              gradient: AppColor.shimmerGradient,
+                            ),
+                            errorWidget: (context, url, error) => DottedBorder(
+                              dashPattern: const [12, 4],
+                              strokeWidth: 1,
+                              strokeCap: StrokeCap.round,
+                              color: AppColor.greyColorLight,
+                              borderType: BorderType.Circle,
+                              radius: const Radius.circular(12),
+                              child: Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: SvgPicture.asset(
+                                  AppIcons.dummyAvatar,
+                                  color:
+                                      '${nebengOrder.users?.gender}' == 'male'
+                                          ? AppColor.genderMale
+                                          : AppColor.genderFemale,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-              ),
-              horizontalSpace(5.w),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  verticalSpace(2),
-                  CardRounded(
-                    shadow: Shadows.none,
-                    padding: EdgeInsets.zero,
-                    child: Text(
-                      '${nebengOrder.users?.username}',
-                      style: TextStyles.inter.copyWith(
-                        fontSize: FontSizes.s14,
-                        fontWeight: FontWeight.w500,
-                        color: AppColor.neutral,
-                      ),
-                    ),
-                  ),
-                  verticalSpace(2),
-                  Row(
-                    children: [
-                      CardRounded(
-                          shadow: Shadows.none,
-                          padding: EdgeInsets.zero,
-                          child: '${nebengOrder.users?.gender}' == 'male'
-                              ? AppIcons.iconApp(AppIcons.genderMale,
-                                  AppColor.genderMale, IconSizes.xs)
-                              : AppIcons.iconApp(AppIcons.genderFemale,
-                                  AppColor.genderFemale, IconSizes.xs)),
-                      CardRounded(
-                        shadow: Shadows.none,
-                        padding: EdgeInsets.zero,
-                        child: Row(
-                          children: [
-                            Text(
-                              "+62",
-                              style: TextStyles.inter.copyWith(
-                                fontSize: FontSizes.s12,
-                                fontWeight: FontWeight.w400,
-                                color: AppColor.disableText,
-                              ),
+                    horizontalSpace(10.w),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        verticalSpace(2),
+                        SizedBox(
+                          width: Get.width * 0.40.w,
+                          child: Text(
+                            '${nebengOrder.users?.username}',
+                            style: TextStyles.inter.copyWith(
+                              fontSize: FontSizes.s14,
+                              fontWeight: FontWeight.w500,
+                              color: AppColor.whiteColor,
                             ),
-                            Text(
-                              '${nebengOrder.users?.phone}',
-                              style: TextStyles.inter.copyWith(
-                                fontSize: FontSizes.s12,
-                                fontWeight: FontWeight.w400,
-                                color: AppColor.disableText,
+                          ),
+                        ),
+                        verticalSpace(2),
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: Get.width * 0.40.w,
+                              child: Text(
+                                '${nebengOrder.users?.gender}' == 'male'
+                                    ? 'Laki-Laki'
+                                    : 'Perempuan',
+                                style: TextStyles.inter.copyWith(
+                                  fontSize: FontSizes.s12,
+                                  color: AppColor.whiteColor,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                  verticalSpace(2),
-                  CardRounded(
-                    shadow: Shadows.none,
-                    padding: EdgeInsets.zero,
-                    child: Text(
-                      nebengOrder.status == 1
-                          ? 'Menunggu Waktu Perjalanan'
-                          : nebengOrder.status == 2
-                              ? 'Sedang Dalam Perjalanan'
-                              : nebengOrder.status == 3
-                                  ? 'Perjalanan Selesai'
-                                  : 'Menunggu Persetujuan Pelanggan',
-                      style: TextStyles.inter.copyWith(
-                          fontSize: FontSizes.s12,
-                          fontWeight: FontWeight.w400,
-                          color: nebengOrder.status == 1
-                              ? AppColor.orangeColor
-                              : nebengOrder.status == 2
-                                  ? AppColor.primary
-                                  : nebengOrder.status == 3
-                                      ? AppColor.doneTextColor
-                                      : AppColor.errorColor),
-                    ),
-                  ),
-                ],
-              )
+                      ],
+                    )
+                  ],
+                ),
+              ),
             ],
           ),
-          // IconButton(
-          //   onPressed: () {
-          //     controller.ourWa(nebengOrder.users?.phone);
-          //   },
-          //   icon: SvgPicture.asset(
-          //     AppIcons.contWhatsapp,
-          //     color: AppColor.successColor,
-          //   ),
-          //   iconSize: IconSizes.sm,
-          // )
-          InkWell(
+          verticalSpace(5.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 0.h),
             child: Row(
-              children: [
-                Text(
-                  'Hubungi',
-                  style: TextStyles.inter.copyWith(
-                    fontSize: FontSizes.s10,
-                    fontWeight: FontWeight.w400,
-                    color: AppColor.neutral,
-                  ),
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: Get.width * 0.58.w,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "+62",
+                                style: TextStyles.inter.copyWith(
+                                  fontSize: FontSizes.s13,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColor.neutral,
+                                ),
+                              ),
+                              Text(
+                                '${nebengOrder.users?.phone}',
+                                style: TextStyles.inter.copyWith(
+                                  fontSize: FontSizes.s13,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColor.neutral,
+                                ),
+                              ),
+                            ],
+                          ),
+                          InkWell(
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Hubungi',
+                                  style: TextStyles.inter.copyWith(
+                                    fontSize: FontSizes.s11,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColor.neutral,
+                                  ),
+                                ),
+                                horizontalSpace(3.w),
+                                Icon(
+                                  CupertinoIcons.phone_fill,
+                                  size: 12.w,
+                                )
+                              ],
+                            ),
+                            onTap: () {
+                              controller.ourWa(nebengOrder.users?.phone);
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                    verticalSpace(5.h),
+                    CardRounded(
+                      shadow: Shadows.none,
+                      padding: EdgeInsets.zero,
+                      margin: EdgeInsets.zero,
+                      child: Text(
+                        nebengOrder.status == 1
+                            ? 'Menunggu Waktu Perjalanan'
+                            : nebengOrder.status == 2
+                                ? 'Sedang Dalam Perjalanan'
+                                : nebengOrder.status == 3
+                                    ? 'Perjalanan Selesai'
+                                    : 'Menunggu Persetujuan Pelanggan',
+                        style: TextStyles.inter.copyWith(
+                            fontSize: FontSizes.s12,
+                            fontWeight: FontWeight.w400,
+                            color: nebengOrder.status == 1
+                                ? AppColor.orangeColor
+                                : nebengOrder.status == 2
+                                    ? AppColor.primary
+                                    : nebengOrder.status == 3
+                                        ? AppColor.doneTextColor
+                                        : AppColor.errorColor),
+                      ),
+                    ),
+                  ],
                 ),
-                horizontalSpace(3.w),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  size: 12.w,
-                )
               ],
             ),
-            onTap: () {
-              controller.ourWa(nebengOrder.users?.phone);
-            },
-          )
+          ),
         ],
       ),
     );

@@ -75,6 +75,73 @@ showPopUp({
       ),
       barrierDismissible: dismissible ?? true);
 }
+showPopUpPng({
+  String? title,
+  String? description,
+  String? labelButton,
+  String? imageUri,
+  double? imageSize,
+  bool? dismissible,
+  Widget? widget,
+  Function()? onPress,
+  Color? outlineButtonColor,
+  Color? labelButtonColor,
+}) {
+  Get.dialog(
+      Dialog(
+        backgroundColor: Colors.transparent,
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: Corners.medBorder, color: Colors.white),
+          child: Padding(
+            padding: EdgeInsets.all(Insets.xl),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  title ?? "",
+                  style: TextStyles.subtitle1,
+                  textAlign: TextAlign.center,
+                ),
+                verticalSpace(Insets.xxl),
+                imageUri != null
+                    ? Image.asset(
+                        imageUri,
+                        height: imageSize ?? IconSizes.xxl,
+                        width: imageSize ?? IconSizes.xxl,
+                      )
+                    : Container(),
+                verticalSpace(Insets.xl),
+                widget ?? Container(),
+                Text(
+                  description ?? "",
+                  style: TextStyles.body2.copyWith(color: Colors.black54),
+                  textAlign: TextAlign.center,
+                ),
+                verticalSpace(Insets.xl),
+                SizedBox(
+                  child: labelButton != null
+                      ? ButtonPrimaryOutline(
+                          onPressed: onPress ?? () => Get.back(),
+                          label: labelButton,
+                          color: AppColor.whiteColor,
+                          outlineColor:
+                              outlineButtonColor ?? AppColor.primaryColor,
+                          labelStyle: TextStyles.inter.copyWith(
+                            fontSize: FontSizes.s12,
+                            fontWeight: FontWeight.w500,
+                            color: labelButtonColor ?? AppColor.primaryColor,
+                          ),
+                        )
+                      : const SizedBox(),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      barrierDismissible: dismissible ?? true);
+}
 
 showPopUpError({
   Function()? onError,

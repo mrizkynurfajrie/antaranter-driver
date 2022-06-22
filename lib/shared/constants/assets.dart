@@ -79,6 +79,7 @@ class AppLogos {
   // static const nameOnly = 'assets/logo/antaranter-text-only.png';
   static const logoHorizontal = 'assets/logo/logo-horizontal.png';
   static const logoVertical = 'assets/logo/logo-vertical.png';
+  static const logoOnlySvg = 'assets/logo/logo-only-svg.svg';
 
   static Widget logoApp(String asset) {
     return Image.asset(
