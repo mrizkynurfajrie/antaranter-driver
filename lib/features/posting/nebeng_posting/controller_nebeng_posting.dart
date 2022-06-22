@@ -4,9 +4,7 @@ import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_balance.dart';
-import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
-import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary_outline.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_text.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
@@ -22,7 +20,6 @@ import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dar
 import 'package:antaranter_driverapp/shared/controller/controller_vehicle_info.dart';
 import 'package:antaranter_driverapp/shared/widgets/bottomsheet/bottomsheet_selection.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_item.dart';
-import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class ControllerNebengPosting extends GetxController {
@@ -390,21 +387,26 @@ class ControllerNebengPosting extends GetxController {
         fontWeight: FontWeight.w500,
       ),
       titlePadding:
-          EdgeInsets.only(top: 25.h, bottom: 5.h, left: 10.w, right: 10.w),
+          EdgeInsets.only(top: 15.h, bottom: 10.h, left: 10.w, right: 10.w),
       contentPadding: EdgeInsets.only(bottom: 25.h, left: 10.w, right: 10.w),
       content: CardRounded(
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        margin: EdgeInsets.zero,
         width: Get.width,
-        shadow: Shadows.none,
+        shadow: Shadows.universal,
         color: AppColor.whiteColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('Apakah anda ingin memberikan catatan pada perjalanan anda?',
-                style: TextStyles.inter.copyWith(
-                    fontSize: FontSizes.s12,
-                    fontWeight: FontWeight.w400,
-                    color: AppColor.neutral)),
+            Text(
+              'Apakah anda ingin memberikan catatan pada perjalanan anda?',
+              style: TextStyles.inter.copyWith(
+                  fontSize: FontSizes.s12,
+                  fontWeight: FontWeight.w400,
+                  color: AppColor.neutral),
+              textAlign: TextAlign.justify,
+            ),
             verticalSpace(10.h),
             InputPrimary(
               hintText: 'Tuliskan catatan perjalanan',
@@ -413,40 +415,24 @@ class ControllerNebengPosting extends GetxController {
               onTap: () {},
               maxLenght: 100,
               maxLines: 3,
-              boxWidth: Get.width * 0.65.w,
+              // boxWidth: Get.width * 0.65.w,
             ),
           ],
         ),
       ),
       confirm: ButtonPrimary(
         cornerRadius: 8,
-        height: 45.h,
-        size: Get.width * 0.65.w,
+        height: Get.height * 0.06.h,
+        size: Get.width,
         onPressed: () async {
           await checkDesc();
           createNebengPosting();
         },
-        label: 'Ya, Bagikan',
+        label: 'Bagikan',
         color: AppColor.primaryColor,
         labelStyle: TextStyles.inter.copyWith(
           fontSize: FontSizes.s14,
           color: AppColor.whiteColor,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-      cancel: ButtonText(
-        onPressed: () async {
-          await checkDesc();
-          // var formatPrice =
-          //     txtPrice.text.replaceAll(RegExp('[^A-Za-z0-9]'), '');
-          // var calc =
-          createNebengPosting();
-        },
-        label: 'Tidak, Bagikan Tanpa Catatan',
-        color: AppColor.whiteColor,
-        textStyle: TextStyles.inter.copyWith(
-          fontSize: FontSizes.s14,
-          color: AppColor.primaryColor,
           fontWeight: FontWeight.w500,
         ),
       ),

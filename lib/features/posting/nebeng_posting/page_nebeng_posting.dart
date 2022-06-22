@@ -123,7 +123,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                           Container(
                             padding: EdgeInsets.symmetric(
                               horizontal: 10.w,
-                              vertical: 5.h,
+                              vertical: 10.h,
                             ),
                             width: Get.width,
                             decoration: BoxDecoration(
@@ -152,7 +152,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                 child: Container(
                                   width: Get.width,
                                   padding: EdgeInsets.symmetric(
-                                      horizontal: 10.w, vertical: 5.h),
+                                      horizontal: 10.w, vertical: 10.h),
                                   decoration: BoxDecoration(
                                     color: AppColor.disbaleBox,
                                     border: Border.all(
@@ -176,7 +176,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                 child: Container(
                                   width: Get.width,
                                   padding: EdgeInsets.symmetric(
-                                      horizontal: 10.w, vertical: 5.h),
+                                      horizontal: 10.w, vertical: 10.h),
                                   decoration: BoxDecoration(
                                     color: AppColor.disbaleBox,
                                     border: Border.all(

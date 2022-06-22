@@ -209,43 +209,45 @@ class ControllerNebengPostingDetail extends GetxController
     txtNote.clear();
     return Get.defaultDialog(
       title: 'Batalkan Perjalanan',
-      titleStyle: TextStyles.inter
-          .copyWith(color: AppColor.primaryColor, fontWeight: FontWeight.w500),
-      titlePadding: EdgeInsets.only(bottom: 15.h, top: 20.h),
+      titleStyle: TextStyles.inter.copyWith(
+          color: AppColor.primaryColor,
+          fontWeight: FontWeight.w500,
+          fontSize: FontSizes.s16),
+      // titlePadding: EdgeInsets.only(bottom: 10.h, top: 10.h),
       backgroundColor: AppColor.whiteColor,
       radius: 10,
-      content: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: CardRounded(
-          width: Get.width,
-          color: AppColor.bgPageColor,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "Apakah anda yakin ingin membatalkan perjalanan? jika ya, mohon sertakan alasan nya pada kolom dibawah.",
-                style: TextStyles.inter.copyWith(
-                  fontSize: FontSizes.s12,
-                  fontWeight: FontWeight.normal,
-                  color: AppColor.neutral,
-                ),
-                textAlign: TextAlign.justify,
+      content: CardRounded(
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        width: Get.width,
+        color: AppColor.whiteColor,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              "Mohon sertakan alasan pembatalan perjalanan nebeng anda",
+              style: TextStyles.inter.copyWith(
+                fontSize: FontSizes.s12,
+                fontWeight: FontWeight.normal,
+                color: AppColor.neutral,
               ),
-              verticalSpace(10.h),
-              InputPrimary(
-                hintText: 'Alasan Pembatalan',
-                controller: txtNote,
-                onTap: () {},
-                maxLenght: 100,
-                maxLines: 4,
-                // boxWidth: Get.width * 0.65.w,
-              ),
-            ],
-          ),
+              textAlign: TextAlign.justify,
+            ),
+            verticalSpace(10.h),
+            InputPrimary(
+              hintText: 'Alasan pembatalan',
+              hintFontStyle: FontStyle.italic,
+              controller: txtNote,
+              onTap: () {},
+              maxLenght: 100,
+              maxLines: 3,
+              // boxWidth: Get.width * 0.65.w,
+            ),
+          ],
         ),
       ),
       confirm: ButtonPrimary(
+        margin: EdgeInsets.symmetric(vertical: 7.h),
         onPressed: () async {
           var hasil = await hapusPosting();
           if (hasil == true) {
@@ -263,7 +265,7 @@ class ControllerNebengPostingDetail extends GetxController
         },
         label: 'Batalkan Perjalanan',
         cornerRadius: 8,
-        height: Get.height * 0.06.h,
+        height: Get.height * 0.07.h,
         labelStyle: TextStyles.inter.copyWith(
           color: AppColor.whiteColor,
           fontSize: FontSizes.s14,

@@ -31,11 +31,12 @@ class ButtonText extends StatelessWidget {
         primary: color ?? AppColor.secondColor.shade500,
         minimumSize: const Size(50, 30),
         padding: EdgeInsets.symmetric(vertical: 2.h),
-        alignment: Alignment.topCenter,
+        alignment: Alignment.center,
       ),
       child: Text(
         label,
         style: textStyle ?? TextStyles.button,
+        textAlign: TextAlign.center,
       ),
     );
   }
