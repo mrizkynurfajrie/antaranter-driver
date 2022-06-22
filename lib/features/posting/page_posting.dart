@@ -18,6 +18,7 @@ class PagePosting extends StatelessWidget {
   Widget build(BuildContext context) {
     return PageDecorationTop(
       title: '',
+      resizeAvoidBottom: false,
       padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 15.h),
       toolbarColor: AppColor.whiteColor,
       backgroundColor: AppColor.bgPageColor,
