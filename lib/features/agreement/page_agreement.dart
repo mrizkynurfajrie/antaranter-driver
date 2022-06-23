@@ -23,6 +23,7 @@ class PageAgreement extends GetView<ControllerAgreement> {
       title: '',
       toolbarColor: AppColor.whiteColor,
       toolbarElevation: 0,
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
       backgroundColor: AppColor.bgPageColor,
       center: AppLogosMed.logoApp(AppLogos.logoHorizontal),
       enableBack: false,
@@ -59,59 +60,61 @@ class PageAgreement extends GetView<ControllerAgreement> {
                     ),
                   ),
                   verticalSpace(10.h),
-                  RichText(
-                    textAlign: TextAlign.justify,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text:
-                              'Silakan membaca surat perjanjian berikut dengan baik dan seksama :',
-                          style: TextStyles.inter.copyWith(
-                            fontSize: FontSizes.s14,
-                            fontWeight: FontWeight.w400,
-                            color: AppColor.neutral,
+                  SizedBox(
+                    width: Get.width,
+                    child: RichText(
+                      textAlign: TextAlign.justify,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text:
+                                'Silakan membaca surat perjanjian berikut dengan baik dan seksama :',
+                            style: TextStyles.inter.copyWith(
+                              fontSize: FontSizes.s14,
+                              fontWeight: FontWeight.w400,
+                              color: AppColor.neutral,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   verticalSpace(15.h),
-                  CardRoundedBorder(
-                    width: Get.width,
-                    height: Get.height * 0.5.h,
-                    borderWidth: 2,
-                    borderColor: AppColor.greyColorLight,
-                    borderRadius: 4,
-                    color: AppColor.whiteColor,
-                    child: Obx(() => controller.loading.isFalse
-                        ? Scrollbar(
-                            child: ListView(
-                              children: [
-                                Html(
-                                  data: controller.agreementData.value.skDesc!,
-                                ),
-                              ],
-                            ),
-                          )
-                        : loadingIndicatorBottom(context)),
+                  Expanded(
+                    child: CardRoundedBorder(
+                      borderWidth: 2,
+                      borderColor: AppColor.greyColorLight,
+                      borderRadius: 4,
+                      color: AppColor.whiteColor,
+                      child: Obx(() => controller.loading.isFalse
+                          ? Scrollbar(
+                              child: ListView(
+                                children: [
+                                  Html(
+                                    data:
+                                        controller.agreementData.value.skDesc!,
+                                  ),
+                                ],
+                              ),
+                            )
+                          : loadingIndicatorBottom(context)),
+                    ),
                   ),
-                  Spacer(),
+                  verticalSpace(5.h),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 5.h),
+                    padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 5.w),
                     child: CheckboxLabel(
                       onChange: (value) {
                         controller.statusAgreement.value = value;
                         controller.status.value = 1;
                       },
                       label:
-                          'Saya telah membaca dan menyetujui Surat Perjanjian Kerjasama sebagai Mitra Driver Aplikasi AntarAnter diatas',
-                      colorBorder: AppColor.greyColorLight,
-                      labelStyle: TextStyles.textcheckbox,
-                      width: Get.width * 0.75.w,
+                          'Saya telah membaca dan menyetujui Surat Perjanjian Kerjasama tersebut diatas',
+                      colorBorder: AppColor.greyColorLight,                     
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 15.h),
+                    padding: EdgeInsets.symmetric(vertical: 5.h),
                     child: Obx(
                       () => ButtonPrimary(
                         enable: controller.statusAgreement.value,

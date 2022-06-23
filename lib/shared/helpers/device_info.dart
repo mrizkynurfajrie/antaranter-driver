@@ -1,6 +1,7 @@
 import 'dart:io';
-import 'package:package_info/package_info.dart';
-import 'package:device_info/device_info.dart';
+
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class DeviceInfo {
   static deviceInfo() async {
@@ -15,7 +16,7 @@ class DeviceInfo {
     }
   }
 
-  static info() async {
+  static appInfo() async {
     String? board;
     String? brand;
     String? device;
@@ -27,7 +28,7 @@ class DeviceInfo {
     String? deviceId;
     String? osVer;
     String? os;
-    String? appVer;
+    String? appVersion;
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
@@ -45,7 +46,7 @@ class DeviceInfo {
       deviceId = androidInfo.androidId;
       osVer = androidInfo.version.release;
       os = androidInfo.version.baseOS;
-      appVer = packageInfo.version;
+      appVersion = packageInfo.version;
 
       var dataInfo = {
         'board': board,
@@ -59,7 +60,7 @@ class DeviceInfo {
         'deviceId': deviceId,
         'os_ver': osVer == '' ? 'Andorid' : osVer,
         'os': os,
-        'app_ver': appVer
+        'app_ver': appVersion
       };
 
       return dataInfo;
@@ -69,27 +70,3 @@ class DeviceInfo {
     }
   }
 }
-
-// class DeviceInfoModel {
-// String? board;
-// String? brand;
-// String? device;
-// String? hardware;
-// String? host;
-// String? id;
-// String? manufacturer;
-// String? model;
-// String? deviceId;
-
-//   DeviceInfoModel({
-//     this.board,
-//     this.brand,
-//     this.device,
-//     this.hardware,
-//     this.host,
-//     this.id,
-//     this.manufacturer,
-//     this.model,
-//     this.deviceId,
-//   });
-// }

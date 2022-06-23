@@ -452,7 +452,6 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                       controller: controller.txtAddress,
                       onTap: () {},
                       hintText: 'Alamat',
-                      prefixIcon: const Icon(CupertinoIcons.map),
                       maxLenght: 150,
                       maxLines: 3,
                       boxWidth: Get.width * 0.88.w,

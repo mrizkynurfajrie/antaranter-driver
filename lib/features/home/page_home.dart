@@ -322,7 +322,7 @@ class PageHome extends GetView<ControllerHome> {
                                         ? OutlinedButton(
                                             onPressed: () {
                                               Get.offAllNamed(Routes.main,
-                                                  arguments: 2);
+                                                  arguments: 3);
                                             },
                                             child: const Icon(
                                                 Icons.arrow_forward_ios),

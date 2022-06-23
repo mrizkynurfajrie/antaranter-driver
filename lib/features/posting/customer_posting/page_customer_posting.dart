@@ -10,7 +10,6 @@ import 'package:antaranter_driverapp/shared/constants/styles.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/loading_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -30,23 +29,21 @@ class PageCustomerPosting extends GetView<ControllerCustomerPosting> {
         child: RefreshIndicator(
           onRefresh: () async => controller.onRefresh(),
           child: CustomScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            slivers: [
-            SliverFillRemaining(
-              child: CardRounded(
-                width: Get.width,
-                color: AppColor.bgPageColor,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CardRounded(
-                        color: AppColor.bgPageColor,
-                        shadow: Shadows.none,
-                        margin: EdgeInsets.zero,
-                        child: Column(
-                          children: [
-                            Row(
+              physics: const AlwaysScrollableScrollPhysics(),
+              slivers: [
+                SliverFillRemaining(
+                  child: CardRounded(
+                    width: Get.width,
+                    color: AppColor.bgPageColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CardRounded(
+                            color: AppColor.bgPageColor,
+                            shadow: Shadows.none,
+                            margin: EdgeInsets.zero,
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
@@ -88,48 +85,49 @@ class PageCustomerPosting extends GetView<ControllerCustomerPosting> {
                                   ),
                                 )
                               ],
-                            ),
-                          ],
-                        )),
-                    controller.loadingList.isFalse
-                        ? controller.listCustomerNebeng.isNotEmpty
-                            ? ListView.builder(
+                            )),
+                        controller.loadingList.isFalse
+                            ? controller.listCustomerNebeng.isNotEmpty
+                                ? Expanded(
+                                    child: ListView.builder(
+                                      shrinkWrap: true,
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: Insets.sm,
+                                          horizontal: Insets.sm),
+                                      itemCount:
+                                          controller.listCustomerNebeng.length,
+                                      itemBuilder: (context, index) =>
+                                          NebengPostingItem(
+                                              nebengPost: controller
+                                                  .listCustomerNebeng[index]),
+                                    ),
+                                  )
+                                : Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Lottie.asset(AppLotties.emptyList,
+                                          height: 230.w),
+                                      Text(
+                                        "Belum ada nebeng yang tersedia",
+                                        style: TextStyles.textSm,
+                                      ),
+                                      verticalSpace(Insets.lg),
+                                    ],
+                                  )
+                            : ListView.builder(
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
                                 padding: EdgeInsets.symmetric(
                                     vertical: Insets.sm, horizontal: Insets.sm),
-                                itemCount: controller.listCustomerNebeng.length,
+                                itemCount: 2,
                                 itemBuilder: (context, index) =>
-                                    NebengPostingItem(
-                                        nebengPost: controller
-                                            .listCustomerNebeng[index]),
-                              )
-                            : Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Lottie.asset(AppLotties.emptyList,
-                                      height: 230.w),
-                                  Text(
-                                    "Belum ada nebeng yang tersedia",
-                                    style: TextStyles.textSm,
-                                  ),
-                                  verticalSpace(Insets.lg),
-                                ],
-                              )
-                        : ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            padding: EdgeInsets.symmetric(
-                                vertical: Insets.sm, horizontal: Insets.sm),
-                            itemCount: 2,
-                            itemBuilder: (context, index) =>
-                                const NebengPostingShimmer(),
-                          ),
-                  ],
-                ),
-              ),
-            )
-          ]),
+                                    const NebengPostingShimmer(),
+                              ),
+                      ],
+                    ),
+                  ),
+                )
+              ]),
         ),
       ),
     );

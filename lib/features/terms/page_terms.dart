@@ -69,25 +69,27 @@ class PageTermsProfile extends GetView<ControllerTermsProfile> {
                 ],
               ),
               verticalSpace(15.h),
-              CardRoundedBorder(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10.w,
-                  vertical: 10.h,
-                ),
-                margin: EdgeInsets.symmetric(horizontal: 10.w),
-                height: Get.height * 0.60.h,
-                borderColor: AppColor.greyColorLight,
-                child: Obx(
-                  () => controller.loading.isFalse 
-                ?  Scrollbar(
-                    child: ListView(
-                      children: [
-                        Html(
-                          data: controller.terms.value.skDesc!,
-                        ),
-                      ],
-                    ),
-                  ) : loadingIndicatorBottom(context),
+              Expanded(
+                child: CardRoundedBorder(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10.w,
+                    vertical: 10.h,
+                  ),
+                  margin: EdgeInsets.symmetric(horizontal: 10.w),
+                  borderColor: AppColor.greyColorLight,
+                  child: Obx(
+                    () => controller.loading.isFalse
+                        ? Scrollbar(
+                            child: ListView(
+                              children: [
+                                Html(
+                                  data: controller.terms.value.skDesc!,
+                                ),
+                              ],
+                            ),
+                          )
+                        : loadingIndicatorBottom(context),
+                  ),
                 ),
               ),
               verticalSpace(10.h),

@@ -73,6 +73,7 @@ class _CheckboxLabelState extends State<CheckboxLabel> {
                     TextStyles.small1.copyWith(fontWeight: FontWeight.w700),
                 maxLines: 2,
                 overflow: TextOverflow.clip,
+                textAlign: TextAlign.justify,
               ))
         ],
       ),

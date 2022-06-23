@@ -1,9 +1,11 @@
+import 'package:antaranter_driverapp/features/splash/controller_splash.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends GetView<ControllerSplash> {
   const SplashScreen({Key? key}) : super(key: key);
 
 //   @override
@@ -38,25 +40,26 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return BackgroundSplash(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(
-            height: Get.height * 0.5,
+            height: IconSizes.xxxl,
             child: Image.asset(
               "assets/logo/logo-only.png",
-              width: size.width * 0.40,
+              width: IconSizes.xxxl,
             ),
           ),
+          verticalSpace(25.h),
           Text(
             "AntarAnter Driver App",
             style: TextStyle(
               fontFamily: 'Poppins',
               fontSize: FontSizes.s20,
               color: AppColor.primaryColor,
+              fontWeight: FontWeight.bold,
             ),
           )
         ],

@@ -51,7 +51,7 @@ class PageTerms extends GetView<ControllerRegister> {
                     maxLines: 3,
                   ),
                 ),
-                verticalSpace(5.h),
+
                 // CardRoundedBorder(
                 //   padding: EdgeInsets.only(left: 3.w, right: 5.w),
                 //   borderColor: AppColor.greyColorLight,
@@ -73,6 +73,7 @@ class PageTerms extends GetView<ControllerRegister> {
                 Expanded(
                   flex: 10,
                   child: CardRounded(
+                    margin: EdgeInsets.only(top: 5.h, bottom: 10.h),
                     width: Get.width,
                     color: AppColor.whiteColor,
                     child: Obx(
@@ -90,18 +91,19 @@ class PageTerms extends GetView<ControllerRegister> {
                     ),
                   ),
                 ),
-                const Spacer(),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5.h),
-                  child: CheckboxLabel(
-                    onChange: (value) {
-                      controller.statusAgreementTerm.value = value;
-                    },
-                    label:
-                        'Saya mengerti dan memahami dengan syarat serta ketentuan yang berlaku',
-                    colorBorder: AppColor.greyColorLight,
-                    labelStyle: TextStyles.textcheckbox,
-                    width: Get.width * 0.75.w,
+
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5.h),
+                    child: CheckboxLabel(
+                      onChange: (value) {
+                        controller.statusAgreementTerm.value = value;
+                      },
+                      label:
+                          'Saya mengerti dan memahami dengan syarat serta ketentuan yang berlaku',
+                      colorBorder: AppColor.greyColorLight,
+                      labelStyle: TextStyles.textcheckbox,
+                    ),
                   ),
                 ),
                 Obx(

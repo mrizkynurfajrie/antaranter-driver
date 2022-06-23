@@ -3,6 +3,7 @@ import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary_outline.dart';
+import 'package:antaranter_driverapp/shared/widgets/buttons/button_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -609,3 +610,96 @@ showPopUpImage({
 //       ),
 //       barrierDismissible: dismissible);
 // }
+
+dialogUpdateApp({
+  String? title,
+  String? desc,
+  String labelUpdate = "Update",
+  String labelCancel = "Nanti Saja",
+  Function()? onConfirm,
+  Function()? onCancel,
+}) {
+  Get.dialog(
+    Dialog(
+      shape: RoundedRectangleBorder(borderRadius: Corners.lgBorder),
+      child: Container(
+        padding: EdgeInsets.only(
+          top: Insets.xl,
+          left: Insets.xl,
+          right: Insets.xl,
+          bottom: Insets.xl,
+        ),
+        width: double.infinity,
+        decoration: BoxDecoration(borderRadius: Corners.lgBorder),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: double.infinity,
+              child: Text(title ?? '',
+                  style: TextStyles.textLg.apply(
+                    color: AppColor.neutral,
+                  )),
+            ),
+            verticalSpace(Insets.sm),
+            desc != null
+                ? Text(desc, style: TextStyles.textSm)
+                : const SizedBox(),
+            verticalSpace(Insets.xl),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ButtonText(
+                  onPressed: onCancel != null
+                      ? () {
+                          onCancel();
+                        }
+                      : () => Get.back(),
+                  label: labelCancel,
+                  textStyle: TextStyles.textSm.copyWith(
+                    height: 1.71,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                horizontalSpace(Insets.lg),
+                ButtonText(
+                  color: AppColor.primaryColor,
+                  onPressed: onConfirm != null
+                      ? () {
+                          onConfirm();
+                        }
+                      : () => Get.back(),
+                  label: labelUpdate,
+                  textStyle: TextStyles.textSm.copyWith(
+                    height: 1.71,
+                    fontWeight: FontWeight.w500,
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
+    ),
+    barrierDismissible: false,
+  );
+}
+
+dialogError({var errorTitle, required var message}) {
+  Get.defaultDialog(
+      title: errorTitle ?? "Terjadi Kesalahan",
+      content: Column(
+        children: <Widget>[
+          Text(
+            message ?? "Informasi",
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 30),
+          ButtonPrimary(
+              onPressed: () => Get.back(),
+              size: Get.width * 0.5,
+              label: 'Kembali')
+        ],
+      ));
+}
