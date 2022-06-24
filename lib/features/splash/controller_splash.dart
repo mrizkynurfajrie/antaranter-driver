@@ -3,8 +3,9 @@ import 'dart:io';
 
 import 'package:antaranter_driverapp/features/splash/api_splash.dart';
 import 'package:antaranter_driverapp/framework/api2.dart';
+import 'package:antaranter_driverapp/response/app_version.dart';
 import 'package:antaranter_driverapp/routes/app_routes.dart';
-import 'package:antaranter_driverapp/shared/helpers/app_version.dart';
+
 import 'package:antaranter_driverapp/shared/helpers/device_info.dart';
 import 'package:antaranter_driverapp/shared/helpers/utils.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
@@ -39,9 +40,9 @@ class ControllerSplash extends GetxController {
 
       if (checkVersion) {
         dialogUpdateApp(
-            title: "Update Baru AntarAnter",
+            title: "Update Baru AntarAnter Driver",
             desc:
-                "silahkan update aplikasi AntarAnter anda untuk menikmati peforma yang lebih baik dengan beragam fitur.",
+                "silahkan update aplikasi AntarAnter Driver anda untuk menikmati peforma yang lebih baik dengan beragam fitur.",
             onConfirm: () async {
               String url = appVersion.url ?? '';
               log("can launch : " + canLaunch(url).toString());

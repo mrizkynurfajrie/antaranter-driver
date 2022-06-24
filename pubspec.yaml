@@ -1,7 +1,7 @@
 name: antaranter_driverapp
 description: A new Flutter project.
 
-version: 2.0.6+17
+version: 2.1.2+19
 
 environment:
   sdk: ">=2.16.0 <3.0.0"
