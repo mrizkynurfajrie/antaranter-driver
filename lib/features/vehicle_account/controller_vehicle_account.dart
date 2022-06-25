@@ -311,7 +311,7 @@ class ControllerVehicleAccount extends GetxController {
         if (controllerRiderInfo.rider.value.status != 2) {
           dialogAgreement();
         } else {
-          Get.offAllNamed(Routes.main, arguments: 2);
+          Get.offAllNamed(Routes.main, arguments: 3);
         }
       } else {
         throw "Gagal memperbarui akun";
