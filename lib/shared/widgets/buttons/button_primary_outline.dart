@@ -71,7 +71,7 @@ class ButtonPrimaryOutline extends StatelessWidget {
                     )
                   : horizontalSpace(0),
               Text(
-                label.toUpperCase(),
+                label,
                 style: labelStyle ??
                     TextStyles.button.copyWith(
                         color: enable

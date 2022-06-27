@@ -356,8 +356,8 @@ class ControllerNebengPostingDetail extends GetxController
 
           showPopUp(
             title: 'Perjalanan Selesai',
-            imageUri: AppLogos.logoOnlySvg,
-            imageSize: IconSizes.med,
+            imageUri: 'assets/images/orderdone.svg',
+            imageSize: IconSizes.xxxl,
             description:
                 'Terima kasih anda telah menyelesaikan perjalanan sampai tujuan dengan nyaman dan aman',
           );

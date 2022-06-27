@@ -168,6 +168,7 @@ showPopUpChoice({
   String? imageUri,
   double? imageSize,
   bool? dismissible,
+  TextStyle? titleStyle,
   Function()? onConfirm,
   Function()? onCancel,
 }) {
@@ -184,7 +185,7 @@ showPopUpChoice({
               children: [
                 Text(
                   title ?? "",
-                  style: TextStyles.subtitle1,
+                  style: titleStyle ?? TextStyles.subtitle1,
                   textAlign: TextAlign.center,
                 ),
                 verticalSpace(Insets.xl),

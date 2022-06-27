@@ -428,10 +428,15 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                 hintText: 'Rp 0',
                                 onTap: () {},
                                 onChange: (value) async {
+                                  var percentage =
+                                      controller.isUrgent.value == 0
+                                          ? 13.45
+                                          : 20;
                                   var priceformatted = controller.txtPrice.text
                                       .replaceAll(RegExp('[^A-Za-z0-9]'), '');
-                                  var perc =
-                                      int.parse(priceformatted) * 13.45 / 100;
+                                  var perc = int.parse(priceformatted) *
+                                      percentage /
+                                      100;
                                   var calc = controller.currentBalance /
                                       double.tryParse(perc.toString())!;
                                   controller.countSeat.value =
@@ -625,11 +630,22 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                     ],
                   ),
                 ),
+                verticalSpace(15.h),
+                controller.isUrgent.value == 1
+                    ? SizedBox(
+                        child: Text(
+                          'Status Perjalanan : Mendesak',
+                          style: TextStyles.inter.copyWith(
+                            fontSize: FontSizes.s14,
+                            color: AppColor.doneTextColor,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
                 CardRounded(
                   color: AppColor.bgPageColor,
                   shadow: Shadows.none,
-                  // padding: EdgeInsets.zero,
-                  // margin: EdgeInsets.zero,
                   child: ButtonPrimary(
                     enable: controller.isValidForm.value,
                     onPressed: () {

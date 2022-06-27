@@ -189,15 +189,16 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        InputPrimary(
-                          hintText: 'Nama',
-                          onTap: () {},
-                          prefixIcon: const Icon(Icons.person),
-                          maxLines: 1,
-                          boxWidth: Get.width * 0.58.w,
-                          padding: EdgeInsets.only(bottom: 3.h, top: 2.h),
-                          controller: controller.txtName,
-                          label: 'Nama',
+                        Expanded(
+                          child: InputPrimary(
+                            hintText: 'Nama',
+                            onTap: () {},
+                            prefixIcon: const Icon(Icons.person),
+                            maxLines: 1,
+                            padding: EdgeInsets.only(bottom: 3.h, top: 2.h),
+                            controller: controller.txtName,
+                            label: 'Nama',
+                          ),
                         ),
                         horizontalSpace(4.w),
                         InputDate(
@@ -213,8 +214,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                       ],
                     ),
                     Obx(
-                      () => Container(
-                        width: Get.width * 0.88.w,
+                      () => SizedBox(
+                        width: Get.width,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -232,7 +233,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                 controller.buildGender();
                               },
                               child: CardRounded(
-                                width: Get.width * 0.88.w,
+                                width: Get.width,
                                 margin: EdgeInsets.only(
                                     top: 2.h,
                                     bottom: 4.h,
@@ -282,7 +283,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                       email: (value) {},
                       hintText: 'E-mail',
                       prefixIcon: const Icon(Icons.mail),
-                      boxWidth: Get.width * 0.88.w,
+                      boxWidth: Get.width,
                       label: 'E-mail',
                     ),
                     InputPrimary(
@@ -290,7 +291,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                       onTap: () {},
                       prefixIcon: const Icon(CupertinoIcons.number),
                       maxLines: 1,
-                      boxWidth: Get.width * 0.88.w,
+                      boxWidth: Get.width,
                       padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
                       controller: controller.txtNik,
                       label: 'NIK',
@@ -320,7 +321,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.file(
                                       File(controller.ktpPreview.value),
-                                      width: Get.width * 0.88.w,
+                                      width: Get.width,
                                       height: Get.height * 0.25.h,
                                       fit: BoxFit.cover,
                                     ),
@@ -330,7 +331,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                                   alignment: Alignment.topCenter,
                                   margin: EdgeInsets.only(top: 5.h),
                                   height: Get.height * 0.25.h,
-                                  width: Get.width * 0.88.w,
+                                  width: Get.width,
                                   decoration: const BoxDecoration(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
@@ -396,9 +397,8 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                         verticalSpace(5.h)
                       ],
                     ),
-                    Container(
-                      width: Get.width * 0.88.w,
-                      margin: EdgeInsets.symmetric(horizontal: 6.w),
+                    SizedBox(
+                      width: Get.width,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -419,7 +419,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                               controller.cities.clear();
                             },
                             padding: EdgeInsets.all(Insets.sm),
-                            width: Get.width * 0.88.w,
+                            width: Get.width,
                             margin: EdgeInsets.only(
                               bottom: 5.h,
                             ),
@@ -442,7 +442,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                             },
                             padding: EdgeInsets.all(Insets.sm),
                             margin: EdgeInsets.only(bottom: 5.h),
-                            width: Get.width * 0.88.w,
+                            width: Get.width,
                             isRequired: false,
                           ),
                         ],
@@ -454,8 +454,9 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                       hintText: 'Alamat',
                       maxLenght: 150,
                       maxLines: 3,
-                      boxWidth: Get.width * 0.88.w,
-                      padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
+                      boxWidth: Get.width,
+                      padding: EdgeInsets.only(
+                          top: 2.h, bottom: 3.h),
                       label: 'Alamat',
                     ),
                     verticalSpace(5.h),

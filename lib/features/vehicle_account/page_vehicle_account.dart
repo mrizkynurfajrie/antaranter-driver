@@ -46,7 +46,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                       hintText: 'No SIM',
                       onTap: () {},
                       prefixIcon: const Icon(CupertinoIcons.creditcard),
-                      boxWidth: Get.width * 0.88.w,
+                      boxWidth: Get.width,
                       controller: controller.txtSimNum,
                       inputFormatters: [LengthLimitingTextInputFormatter(16)],
                       label: 'No. SIM',
@@ -56,7 +56,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                       controller: controller.txtSimExp,
                       selectedDate: (value) {},
                       isValid: (value) {},
-                      boxWidth: Get.width * 0.88.w,
+                      boxWidth: Get.width,
                       prefixIcon: const Icon(Icons.date_range),
                       hintText: 'Masa Berlaku SIM',
                       padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
@@ -81,7 +81,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.file(
                                       File(controller.simPreview.toString()),
-                                      width: Get.width * 0.88.w,
+                                      width: Get.width,
                                       height: Get.height * 0.25.h,
                                       fit: BoxFit.cover,
                                     ),
@@ -91,19 +91,20 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                                   alignment: Alignment.topCenter,
                                   margin: EdgeInsets.only(top: 5.h),
                                   height: Get.height * 0.25.h,
-                                  width: Get.width * 0.88.w,
+                                  width: Get.width,
                                   decoration: const BoxDecoration(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
                                       color: AppColor.whiteColor),
-                                  child: (controller.controllerVehicleInfo.vehicle
-                                                  .value.simPict !=
+                                  child: (controller.controllerVehicleInfo
+                                                  .vehicle.value.simPict !=
                                               '' &&
-                                          controller.controllerVehicleInfo.vehicle
-                                                  .value.simPict !=
+                                          controller.controllerVehicleInfo
+                                                  .vehicle.value.simPict !=
                                               null)
                                       ? ClipRRect(
-                                          borderRadius: BorderRadius.circular(12),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                           child: SizedBox(
                                             width: Get.width.w,
                                             height: Get.height.h,
@@ -161,7 +162,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                       label: 'Nomor Plat Kendaraan',
                       onTap: () {},
                       prefixIcon: const Icon(CupertinoIcons.number_square),
-                      boxWidth: Get.width * 0.88.w,
+                      boxWidth: Get.width,
                       padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
                       controller: controller.txtPlatNum,
                       inputFormatters: [
@@ -174,7 +175,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                       hintText: 'Merek Kendaraan',
                       onTap: () {},
                       prefixIcon: const Icon(CupertinoIcons.car),
-                      boxWidth: Get.width * 0.88.w,
+                      boxWidth: Get.width,
                       padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
                       controller: controller.txtVehicleVar,
                       label: 'Merek Kendaraan',
@@ -184,7 +185,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                       hintText: 'Warna Kendaraan',
                       onTap: () {},
                       prefixIcon: const Icon(CupertinoIcons.color_filter),
-                      boxWidth: Get.width * 0.88.w,
+                      boxWidth: Get.width,
                       padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
                       controller: controller.txtVehicleCol,
                       label: 'Warna Kendaraan',
@@ -209,7 +210,7 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.file(
                                       File(controller.stnkPreview.toString()),
-                                      width: Get.width * 0.88.w,
+                                      width: Get.width,
                                       height: Get.height * 0.25.h,
                                       fit: BoxFit.cover,
                                     ),
@@ -219,19 +220,20 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                                   alignment: Alignment.topCenter,
                                   margin: EdgeInsets.only(top: 5.h),
                                   height: Get.height * 0.25.h,
-                                  width: Get.width * 0.88.w,
+                                  width: Get.width,
                                   decoration: const BoxDecoration(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
                                       color: AppColor.whiteColor),
-                                  child: (controller.controllerVehicleInfo.vehicle
-                                                  .value.stnkPict !=
+                                  child: (controller.controllerVehicleInfo
+                                                  .vehicle.value.stnkPict !=
                                               '' &&
-                                          controller.controllerVehicleInfo.vehicle
-                                                  .value.stnkPict !=
+                                          controller.controllerVehicleInfo
+                                                  .vehicle.value.stnkPict !=
                                               null)
                                       ? ClipRRect(
-                                          borderRadius: BorderRadius.circular(12),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                           child: SizedBox(
                                             width: Get.width.w,
                                             height: Get.height.h,
@@ -284,15 +286,16 @@ class PageVehicleAccount extends GetView<ControllerVehicleAccount> {
                       ],
                     ),
                     verticalSpace(10.h),
-                    controller.loading.isFalse?
-                    ButtonPrimary(
-                      // size: 320.w,
-                      cornerRadius: 9,
-                      onPressed: () async {
-                        await controller.updateVehicleAccount();
-                      },
-                      label: 'Simpan',
-                    ):loadingIndicator(context),
+                    controller.loading.isFalse
+                        ? ButtonPrimary(
+                            // size: 320.w,
+                            cornerRadius: 9,
+                            onPressed: () async {
+                              await controller.updateVehicleAccount();
+                            },
+                            label: 'Simpan',
+                          )
+                        : loadingIndicator(context),
                   ],
                 ),
               ),

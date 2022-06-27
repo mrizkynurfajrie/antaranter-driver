@@ -37,6 +37,8 @@ class AppIcons {
   static const map = 'assets/icons/map.svg';
   static const note = 'assets/icons/note.svg';
   static const saldoframe = 'assets/images/saldo_frame.svg';
+  static const pencil = 'assets/icons/pencil.svg';
+  static const trash = 'assets/icons/trash.svg';
 
   static Widget iconApp(String asset, Color color, double height) {
     return SvgPicture.asset(

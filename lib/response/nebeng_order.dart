@@ -9,14 +9,15 @@ String nebengOrderToJson(NebengOrder data) => json.encode(data.toJson());
 
 class NebengOrder {
   NebengOrder({
-   required this.id,
-   required this.usersId,
-   required this.nebengPostingId,
-   required this.rating,
-   required this.status,
-   required this.updatedAt,
-   required this.createdAt,
-   required this.isDeleted,
+    required this.id,
+    required this.usersId,
+    required this.nebengPostingId,
+    required this.rating,
+    required this.status,
+    required this.paymentType,
+    required this.updatedAt,
+    required this.createdAt,
+    required this.isDeleted,
     this.users,
   });
 
@@ -25,6 +26,7 @@ class NebengOrder {
   int? nebengPostingId;
   int? rating;
   int? status;
+  int? paymentType;
   DateTime? updatedAt;
   DateTime? createdAt;
   dynamic isDeleted;
@@ -36,6 +38,7 @@ class NebengOrder {
       nebengPostingId: json["nebeng_posting_id"],
       rating: json["rating"],
       status: json["status"],
+      paymentType: json["payment_type"],
       updatedAt:
           json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
       createdAt:
@@ -49,6 +52,7 @@ class NebengOrder {
         "nebeng_posting_id": nebengPostingId,
         "rating": rating,
         "status": status,
+        "payment_type": paymentType,
         "updatedAt": updatedAt?.toIso8601String(),
         "createdAt": createdAt?.toIso8601String(),
         "isDeleted": isDeleted,
@@ -61,6 +65,7 @@ class NebengOrder {
         nebengPostingId: json["nebeng_posting_id"],
         rating: json["rating"],
         status: json["status"],
+        paymentType: json["payment_type"],
         updatedAt: json["updatedAt"],
         createdAt: json["createdAt"],
         isDeleted: json["isDeleted"],
