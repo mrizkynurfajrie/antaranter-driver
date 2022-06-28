@@ -17,13 +17,13 @@ class ControllerBind extends Bindings {
   void dependencies() {
     // Get.put(ControllerUtility());
     // Get.put(ControllerVehicleInfo());
-    Get.put(ControllerSplash(api: ApiSplash()));
     Get.put(ControllerPostingan());
     Get.put(ControllerUsers());
     Get.put(ControllerNotification());
     Get.put(ControllerVehicleInfo());
     Get.put(ControllerRiderInfo());
     Get.put(ControllerLogin(api: ApiLogin()));
+    Get.put(ControllerSplash(api: ApiSplash()));
     Get.put(ControllerAgreementInfo());
     Get.put(ControllerBalanceInfo());
     // Get.put(ControllerHelp(apiHelp: ApiHelp()));

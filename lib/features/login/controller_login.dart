@@ -32,7 +32,7 @@ class ControllerLogin extends GetxController {
   @override
   onInit() {
     super.onInit();
-    checkLogin();
+    // checkLogin();
     formValidationListener();
   }
 
