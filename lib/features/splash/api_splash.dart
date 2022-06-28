@@ -1,4 +1,4 @@
-
+import 'dart:developer';
 
 import 'package:antaranter_driverapp/framework/api1.dart';
 
@@ -7,8 +7,8 @@ class ApiSplash {
     final regisBody = {"type": type};
 
     var resAppVersion =
-        await Api1().apiJSONPost('appversion/findlastbytype', regisBody);
-    // log('cek data : ' + resAppVersion);
+        await Api1().apiJSONPost('appversionrider/findlastbytype', regisBody);
+    log('cek data : ' + resAppVersion.toString());
 
     return resAppVersion;
   }

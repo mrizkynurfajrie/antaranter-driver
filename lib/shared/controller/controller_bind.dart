@@ -1,3 +1,5 @@
+import 'package:antaranter_driverapp/features/splash/api_splash.dart';
+import 'package:antaranter_driverapp/features/splash/controller_splash.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_agreement.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_balance.dart';
 import 'package:get/get.dart';
@@ -15,6 +17,7 @@ class ControllerBind extends Bindings {
   void dependencies() {
     // Get.put(ControllerUtility());
     // Get.put(ControllerVehicleInfo());
+    Get.put(ControllerSplash(api: ApiSplash()));
     Get.put(ControllerPostingan());
     Get.put(ControllerUsers());
     Get.put(ControllerNotification());
