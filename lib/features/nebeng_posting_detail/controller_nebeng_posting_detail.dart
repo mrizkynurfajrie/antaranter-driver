@@ -168,17 +168,24 @@ class ControllerNebengPostingDetail extends GetxController
             var hasil = await ubahWaktu();
             if (hasil == true) {
               Get.back();
-              Get.snackbar(
-                "Ubah Waktu",
-                "Berhasil ubah waktu",
-                snackPosition: SnackPosition.TOP,
+              onRefresh();
+              showPopUp(
+                title: 'Ubah Waktu',
+                description: 'Waktu perjalanan telah berhasil diubah',
+                imageUri: PopUpIcons.success,
+                dismissible: false,
               );
+              await Future.delayed(const Duration(seconds: 2));
+              Get.back();
             } else {
-              Get.snackbar(
-                "Gagal",
-                "Anda gagal mengubah waktu",
-                snackPosition: SnackPosition.TOP,
+              showPopUp(
+                title: 'Gagal',
+                description: 'Anda gagal mengubah waktu, mohon periksa kembali',
+                imageUri: PopUpIcons.error,
+                dismissible: false,
               );
+              await Future.delayed(const Duration(seconds: 2));
+              Get.back();
             }
           },
           label: 'Ubah',
