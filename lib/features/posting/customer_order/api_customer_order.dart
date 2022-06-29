@@ -12,7 +12,7 @@ class ApiCustomerOrder {
       "customer_nebeng_posting_id": customerNebengPostId,
     };
 
-    log("body data customer : " + inputBody.toString());
+    log("body data customer : $inputBody");
     var response = await Api1()
         .apiJSONPostWithToken("nebengorders/createbycustomerpost", inputBody);
 

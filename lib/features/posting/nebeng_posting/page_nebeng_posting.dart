@@ -64,13 +64,11 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                       if (value == 0) {
                                         var togglefalse =
                                             controller.isUrgent.value == 1;
-                                        log('togglefalse : ' +
-                                            togglefalse.toString());
+                                        log('togglefalse : $togglefalse');
                                       } else {
                                         var toggletrue =
                                             controller.isUrgent.value == 0;
-                                        log('toggletrue : ' +
-                                            toggletrue.toString());
+                                        log('toggletrue : $toggletrue');
                                         showPopUpChoice(
                                             dismissible: false,
                                             title: 'Perjalanan Mendesak',
@@ -86,9 +84,7 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                             },
                                             onConfirm: () {
                                               controller.isUrgent.value = 1;
-                                              log('isurgent : ' +
-                                                  controller.isUrgent.value
-                                                      .toString());
+                                              log('isurgent : ${controller.isUrgent.value}');
                                               Get.back();
                                             });
                                       }
@@ -244,20 +240,6 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                 hintText: 'select_cities'.tr,
                                 onTap: () async {
                                   controller.buildCities(context);
-                                  // if (controller
-                                  //     .idProvince.value == null) {
-                                  //   controller.buildCities(context);
-                                  // } else {
-                                  //   showPopUp(
-                                  //     title: 'Perhatian',
-                                  //     description:
-                                  //         'Pilih provinsi terlebih dahulu untuk dapat memilih kota',
-                                  //     imageUri: PopUpIcons.information,
-                                  //   );
-                                  //   await Future.delayed(
-                                  //       const Duration(seconds: 2));
-                                  //   Navigator.pop(context);
-                                  // }
                                 },
                                 padding: EdgeInsets.all(Insets.sm),
                                 margin: EdgeInsets.only(bottom: 5.h),
@@ -444,16 +426,14 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
 
                                   controller.listSeat.clear();
 
-                                  log('count seat : ' +
-                                      controller.countSeat.toString());
+                                  log('count seat : ${controller.countSeat}');
 
                                   if (controller.countSeat.value <= 5) {
                                     for (var i = 1;
                                         i <= controller.countSeat.value;
                                         i++) {
                                       controller.listSeat.add(i);
-                                      log('list seat : ' +
-                                          controller.listSeat.toString());
+                                      log('list seat : ${controller.listSeat}');
                                     }
                                   } else {
                                     if (controller.countSeat.value == 0) {
@@ -545,10 +525,10 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                                             for (var data
                                                 in controller.listSeat)
                                               DropdownMenuItem(
+                                                value: data.toString(),
                                                 child: Text(
                                                   data.toString(),
                                                 ),
-                                                value: data.toString(),
                                               )
                                           ],
                                           isExpanded: true,
@@ -568,63 +548,6 @@ class PageNebengPosting extends GetView<ControllerNebengPosting> {
                               ),
                             ],
                           ),
-                          // Obx(
-                          //   () => SizedBox(
-                          //     width: Get.width * 0.88.w,
-                          //     child: Column(
-                          //       mainAxisAlignment: MainAxisAlignment.start,
-                          //       crossAxisAlignment: CrossAxisAlignment.start,
-                          //       children: [
-                          //         Text(
-                          //           'Ketersediaan Tempat Duduk',
-                          //           style: TextStyles.inter.copyWith(
-                          //             fontSize: FontSizes.s12,
-                          //             color: AppColor.neutral,
-                          //             fontWeight: FontWeight.w400,
-                          //           ),
-                          //         ),
-                          //         GestureDetector(
-                          //           onTap: () {
-                          //             controller.buildavailSeat();
-                          //           },
-                          //           child: CardRounded(
-                          //             width: Get.width * 0.88.w,
-                          //             margin: EdgeInsets.only(
-                          //               top: 2.h,
-                          //               bottom: 4.h,
-                          //               left: 2.w,
-                          //               right: 2.w,
-                          //             ),
-                          //             borderRadius: 6,
-                          //             shadow: Shadows.universal,
-                          //             child: Row(
-                          //               crossAxisAlignment:
-                          //                   CrossAxisAlignment.center,
-                          //               mainAxisAlignment:
-                          //                   MainAxisAlignment.spaceBetween,
-                          //               children: [
-                          //                 Text(
-                          //                   (controller.availSeat.value == '')
-                          //                       ? "-Pilih"
-                          //                       : controller.availSeat.value,
-                          //                   style: TextStyles.inter.copyWith(
-                          //                     fontSize: FontSizes.s12,
-                          //                     fontWeight: FontWeight.w400,
-                          //                   ),
-                          //                 ),
-                          //                 Icon(
-                          //                   Icons.keyboard_arrow_down,
-                          //                   size: IconSizes.sm,
-                          //                   color: AppColor.bodyColor.shade600,
-                          //                 )
-                          //               ],
-                          //             ),
-                          //           ),
-                          //         ),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
                         ],
                       ),
                     ],
@@ -705,7 +628,6 @@ class InputSelectionNebeng extends GetView<ControllerNebengPosting> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // padding: EdgeInsets.symmetric(vertical: Insets.med),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

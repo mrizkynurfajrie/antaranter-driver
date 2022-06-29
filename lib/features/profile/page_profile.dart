@@ -13,7 +13,6 @@ import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.da
 import 'package:shimmer/shimmer.dart';
 import '../../framework/api1.dart';
 import '../../shared/constants/styles.dart';
-import '../../shared/widgets/cards/card_rounded_border.dart';
 
 class PageProfile extends GetView<ControllerProfile> {
   const PageProfile({Key? key}) : super(key: key);

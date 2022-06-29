@@ -1,4 +1,3 @@
-import 'package:antaranter_driverapp/response/agreement.dart';
 import 'package:antaranter_driverapp/response/balance.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/framework/api2.dart';

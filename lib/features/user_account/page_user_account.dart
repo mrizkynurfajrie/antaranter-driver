@@ -300,6 +300,7 @@ class PageUserAccount extends GetView<ControllerUserAccount> {
                         if (!isValidIdNumber(idNumber: value.toString())) {
                           return '- Tolong isi NIK dengan baik dan benar (16 Digit)';
                         }
+                        return null;
                       },
                     ),
                     Column(

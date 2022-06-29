@@ -23,7 +23,6 @@ class _OverlayLogButtonState extends State<OverlayLogButton> {
                     height: Sizes.xl,
                     width: Sizes.xl,
                     child: Draggable(
-                      child: LogButton(color: Colors.red.shade800),
                       feedback: const LogButton(color: Colors.green),
                       childWhenDragging: Container(),
                       onDragEnd: (dragDetails) {
@@ -31,6 +30,7 @@ class _OverlayLogButtonState extends State<OverlayLogButton> {
                           _y = dragDetails.offset.dy - 20;
                         });
                       },
+                      child: LogButton(color: Colors.red.shade800),
                     ),
                   ),
                 ))

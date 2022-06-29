@@ -1,4 +1,3 @@
-import 'package:antaranter_driverapp/features/posting/controller_posting.dart';
 import 'package:antaranter_driverapp/features/posting/customer_posting/page_customer_posting.dart';
 import 'package:antaranter_driverapp/features/posting/nebeng_posting/page_nebeng_posting.dart';
 import 'package:antaranter_driverapp/routes/app_routes.dart';

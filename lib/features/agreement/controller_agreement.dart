@@ -36,7 +36,9 @@ class ControllerAgreement extends GetxController {
         agreementData.value = TermCondition.fromJson(response['data']);
         loading.value = false;
       }
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   getAgreementStatus() async {
@@ -58,6 +60,9 @@ class ControllerAgreement extends GetxController {
           idRider: controllerRiderInfo.rider.value.id,
           status: status.value,
           idAgreement: idAgreement.value);
-    } catch (e) {}
+          log(updateResult.toString());
+    } catch (e) {
+      log(e.toString());
+    }
   }
 }

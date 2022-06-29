@@ -159,8 +159,7 @@ class ControllerUserAccount extends GetxController {
 //KTP//
   Future<File> compressImage(XFile image) async {
     final dir = await path_provider.getTemporaryDirectory();
-    var targetPath = dir.absolute.path +
-        "/temp-${DateTime.now().millisecondsSinceEpoch}.png";
+    var targetPath = "${dir.absolute.path}/temp-${DateTime.now().millisecondsSinceEpoch}.png";
     var compressFile = await FlutterImageCompress.compressAndGetFile(
       image.path,
       targetPath,

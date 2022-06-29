@@ -18,7 +18,7 @@ class CurrencyPtBrFormatter extends TextInputFormatter {
     }
     double value = double.parse(newValue.text);
     final formatter = NumberFormat("#,###");
-    String newText = "Rp. " + formatter.format(value);
+    String newText = "Rp. ${formatter.format(value)}";
     _uMaskValue = value / 100;
     return newValue.copyWith(
       text: newText,

@@ -180,7 +180,7 @@ class FormatDateTime {
       dateTimeConvert = inputFormat.parse(dateTimeString);
     } else {
       String inputStringTime =
-          dateTimeString.substring(0, 8) + 'T' + dateTimeString.substring(8);
+          '${dateTimeString.substring(0, 8)}T${dateTimeString.substring(8)}';
       dateTimeConvert = DateTime.parse(inputStringTime);
     }
     return dateTimeConvert;

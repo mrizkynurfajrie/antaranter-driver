@@ -75,7 +75,9 @@ class ControllerRegister extends GetxController {
         termCondition.value = TermCondition.fromJson(res['data']);
         loading.value = false;
       }
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   formValidationListener() {
@@ -139,7 +141,7 @@ class ControllerRegister extends GetxController {
             idRider: riderId,
             status: status.value,
           );
-          log("regis agreement : " + resAgreement.toString());
+          log("regis agreement : $resAgreement");
           Get.toNamed(Routes.main);
         }
       } else {

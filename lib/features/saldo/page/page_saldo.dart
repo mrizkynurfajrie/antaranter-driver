@@ -1,6 +1,5 @@
 import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -84,14 +83,6 @@ class PageSaldo extends GetView<ControllerSaldo> {
                       onPressed: () {
                         Get.toNamed(Routes.topup);
                       },
-                      child: Text(
-                        'Isi Saldo',
-                        style: TextStyles.inter.copyWith(
-                          fontSize: FontSizes.s14,
-                          fontWeight: FontWeight.w400,
-                          color: AppColor.whiteColor,
-                        ),
-                      ),
                       style: ElevatedButton.styleFrom(
                           elevation: 0,
                           primary: AppColor.transparentColor,
@@ -102,6 +93,14 @@ class PageSaldo extends GetView<ControllerSaldo> {
                                 width: 1,
                                 color: AppColor.whiteColor,
                               ))),
+                      child: Text(
+                        'Isi Saldo',
+                        style: TextStyles.inter.copyWith(
+                          fontSize: FontSizes.s14,
+                          fontWeight: FontWeight.w400,
+                          color: AppColor.whiteColor,
+                        ),
+                      ),
                     ),
                   ),
                   Expanded(

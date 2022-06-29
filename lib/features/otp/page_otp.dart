@@ -7,7 +7,6 @@ import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart'
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_text.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/countdown_timer.dart';
 import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -62,6 +61,8 @@ class PageOtp extends GetView<ControllerOtp> {
                       obscureText: false,
                       animationType: AnimationType.fade,
                       validator: (_) {
+                        return null;
+                      
                         // print("disini "+v!);
                         // if (GetUtils.isNum(v!) == false) {
                         //   return "Only number";

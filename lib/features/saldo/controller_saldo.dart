@@ -69,7 +69,7 @@ class ControllerSaldo extends GetxController
         id: controllerRiderInfo.rider.value.id ?? 0,
       );
       // print(res);
-      log("data res : " + res.toString());
+      log("data res : $res");
       if (res['success'] == true) {
         var data = res['data'];
         var resultTransaction =

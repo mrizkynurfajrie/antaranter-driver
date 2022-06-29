@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:antaranter_driverapp/features/terms/api_terms.dart';
 import 'package:antaranter_driverapp/response/term_condition.dart';
 import 'package:get/get.dart';
@@ -22,6 +24,8 @@ class ControllerTermsProfile extends GetxController {
         terms.value = TermCondition.fromJson(response['data']);
         loading.value = false;
       }
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 }

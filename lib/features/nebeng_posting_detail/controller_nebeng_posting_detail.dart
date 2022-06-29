@@ -63,7 +63,7 @@ class ControllerNebengPostingDetail extends GetxController
   void onInit() async {
     await getDataPosting();
     checkAvailableButton();
-    log('available check : ' + checkAvailableButton().toString());
+    log('available check : ${checkAvailableButton()}');
     super.onInit();
   }
 
@@ -98,13 +98,13 @@ class ControllerNebengPostingDetail extends GetxController
       loading.value = true;
       var r = await api.detailNebengPosting(
           riderId: controllerRiderInfo.rider.value.id);
-      log('data nebeng' + r.toString());
+      log('data nebeng$r');
       if (r["success"] == true) {
         try {
           idNebengRider.value = r["data"]["nebeng_rider"]["id"];
           var nebengPostingRes = NebengPostingResponse.fromJson(r["data"]);
           statusNebeng.value = nebengPostingRes.nebengPosting!.status!;
-          log("status nebeng value : " + statusNebeng.toString());
+          log("status nebeng value : $statusNebeng");
           controllerRiderInfo.hasActivePost.value = true;
           controllerPostingan.postingan.value = nebengPostingRes;
           listUserNebeng.clear();
@@ -285,10 +285,10 @@ class ControllerNebengPostingDetail extends GetxController
           postingId: controllerPostingan.postingan.value.nebengPosting?.id,
           timeDep: txtTimeDept.text,
           timeArrv: txtTimeArrv.text);
-      log("update waktu : " + updateResult.toString());
+      log("update waktu : $updateResult");
       if (updateResult["success"] == true) {
         var result = updateResult["data"]["nebeng_post"];
-        log("result : " + result.toString());
+        log("result : $result");
         controllerPostingan.postingan.value.nebengPosting =
             NebengPosting.fromJson(result);
         controllerRiderInfo.setRiderHasActivePost(true);
@@ -309,10 +309,10 @@ class ControllerNebengPostingDetail extends GetxController
         nebengPostingId: controllerPostingan.postingan.value.nebengPosting?.id,
         note: txtNote.text,
       );
-      log('hapus posting :' + updateResult.toString());
+      log('hapus posting :$updateResult');
       if (updateResult['success'] == true) {
         var result = updateResult["data"];
-        log("result : " + result.toString());
+        log("result : $result");
         controllerPostingan.postingan.value.nebengPosting?.status = 4;
         controllerPostingan.postingan.value = NebengPostingResponse();
         controllerRiderInfo.setRiderHasActivePost(false);
@@ -335,10 +335,10 @@ class ControllerNebengPostingDetail extends GetxController
         nebengPostId: controllerPostingan.postingan.value.nebengPosting!.id,
         dateTimeStart: dateTimeStart.toString(),
       );
-      log("data update status : " + updateResult.toString());
+      log("data update status : $updateResult");
       if (updateResult["success"] == true) {
         var result = updateResult["data"]["nebeng_post"];
-        log("result : " + result.toString());
+        log("result : $result");
         controllerPostingan.postingan.value.nebengPosting =
             NebengPosting.fromJson(result);
         statusNebeng.value =
@@ -387,13 +387,9 @@ class ControllerNebengPostingDetail extends GetxController
 
     var fromDate = DateTime(
         dateDep.year, dateDep.month, dateDep.day, int.parse(splitFromTime[0]));
-    log("datedep : " +
-        dateDep.toString() +
-        timeDep.toString() +
-        fromDate.toString());
-    log("datenow : " + timeNow.toString());
-    log("detik : " +
-        (timeNow.difference(fromDate).inSeconds / 60).round().toString());
+    log("datedep : $dateDep$timeDep$fromDate");
+    log("datenow : $timeNow");
+    log("detik : ${(timeNow.difference(fromDate).inSeconds / 60).round()}");
     return (timeNow.difference(fromDate).inSeconds / 60).round() > 0;
   }
 
@@ -409,11 +405,13 @@ class ControllerNebengPostingDetail extends GetxController
         nebengPostId: controllerPostingan.postingan.value.nebengPosting?.id,
         datetimeFinish: dateTimeFinish.toString(),
       );
-      log("nebeng post id : " + r.toString());
+      log("nebeng post id : $r");
       if (r["success"] == true) {
         var updateBalance = r["data"]["currBalance"]["curr_balance"];
         balance.value = updateBalance;
       }
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 }

@@ -8,7 +8,7 @@ class ApiSplash {
 
     var resAppVersion =
         await Api1().apiJSONPost('appversionrider/findlastbytype', regisBody);
-    log('cek data : ' + resAppVersion.toString());
+    log('cek data : $resAppVersion');
 
     return resAppVersion;
   }

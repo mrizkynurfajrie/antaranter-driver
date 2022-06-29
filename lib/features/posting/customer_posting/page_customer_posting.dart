@@ -58,8 +58,7 @@ class PageCustomerPosting extends GetView<ControllerCustomerPosting> {
                                   onTap: () async {
                                     var isFilterData = await Get.to(
                                         () => const FilterNebengPostingPage());
-                                    log("data back :" +
-                                        isFilterData.toString());
+                                    log("data back :$isFilterData");
                                     // controller.searchData();
                                     if (isFilterData != null &&
                                         isFilterData == true) {

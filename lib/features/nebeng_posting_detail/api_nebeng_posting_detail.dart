@@ -35,7 +35,7 @@ class ApiNebengPostingDetail {
     var responHapus =
         await Api1().apiJSONPostWithToken('nebengposts/cancelpost', bodyHapus);
 
-        log('delete post : ' + responHapus.toString());
+        log('delete post : $responHapus');
 
     return responHapus;
   }
@@ -50,7 +50,7 @@ class ApiNebengPostingDetail {
       "nebeng_post_id": nebengPostId,
       "datetimeStart": dateTimeStart,
     };
-    log("log body update status : " + body.toString());
+    log("log body update status : $body");
     var responHapus =
         await Api1().apiJSONPostWithToken('nebengposts/updatestatus', body);
 

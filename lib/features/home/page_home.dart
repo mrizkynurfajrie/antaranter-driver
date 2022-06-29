@@ -324,12 +324,12 @@ class PageHome extends GetView<ControllerHome> {
                                               Get.offAllNamed(Routes.main,
                                                   arguments: 3);
                                             },
-                                            child: const Icon(
-                                                Icons.arrow_forward_ios),
                                             style: OutlinedButton.styleFrom(
                                               shape: const CircleBorder(),
                                               primary: AppColor.primaryColor,
                                             ),
+                                            child: const Icon(
+                                                Icons.arrow_forward_ios),
                                           )
                                         : const SizedBox(),
                                   ],

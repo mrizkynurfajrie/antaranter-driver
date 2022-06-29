@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:antaranter_driverapp/response/balance.dart';
-import 'package:antaranter_driverapp/response/region.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_postingan.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:get/get.dart';

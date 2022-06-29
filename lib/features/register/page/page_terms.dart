@@ -8,7 +8,6 @@ import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
-import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_border.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/checkbox_label.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';

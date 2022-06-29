@@ -1,7 +1,5 @@
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
-import 'package:antaranter_driverapp/shared/widgets/cards/card_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -293,8 +291,8 @@ class _InputPhoneState extends State<InputPhone> {
             Text(list[index]['flag'].toString()),
             horizontalSpace(Insets.xs),
             SizedBox(
-              child: Text(list[index]['dial_code'].toString()),
               width: Insets.xl * 3,
+              child: Text(list[index]['dial_code'].toString()),
             ),
             horizontalSpace(Insets.sm),
             Expanded(

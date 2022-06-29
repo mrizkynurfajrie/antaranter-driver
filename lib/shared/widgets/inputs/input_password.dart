@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_adjacent_string_concatenation
 
 import 'package:antaranter_driverapp/shared/helpers/regex.dart';
-import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
@@ -95,6 +94,7 @@ class _InputPasswordState extends State<InputPassword> {
                   padding:
                       EdgeInsets.only(right: Insets.lg, left: Insets.lg),
                   child: InkWell(
+                    onTap: onTap,
                     child: _obsecureText
                         ? Icon(
                             Icons.visibility_off,
@@ -104,7 +104,6 @@ class _InputPasswordState extends State<InputPassword> {
                             Icons.visibility,
                             size: IconSizes.med,
                           ),
-                    onTap: onTap,
                   ),
                 ),
               ),

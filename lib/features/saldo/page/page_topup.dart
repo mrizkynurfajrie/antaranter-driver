@@ -453,6 +453,7 @@ class NominalWidget extends StatelessWidget {
           borderColor:
               isSelected ? AppColor.primaryColor : AppColor.bodyColor.shade300,
           padding: EdgeInsets.zero,
+          height: 50.h,
           child: Center(
             child: RichText(
               text: TextSpan(
@@ -469,7 +470,6 @@ class NominalWidget extends StatelessWidget {
               ),
             ),
           ),
-          height: 50.h,
         ),
       ),
     );

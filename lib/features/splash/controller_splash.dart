@@ -45,7 +45,7 @@ class ControllerSplash extends GetxController {
                 "silahkan update aplikasi AntarAnter Driver anda untuk menikmati peforma yang lebih baik dengan beragam fitur.",
             onConfirm: () async {
               String url = appVersion.url ?? '';
-              log("can launch : " + canLaunch(url).toString());
+              log("can launch : ${canLaunch(url)}");
               if (await canLaunch(url)) {
                 await launch(url);
               }

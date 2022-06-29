@@ -25,7 +25,7 @@ class ApiHome {
     };
 
     var r = await Api1().apiJSONPostWithToken("balance/findbyrider", payload);
-    log('balance : ' + r.toString());
+    log('balance : $r');
     return r;
   }
 }

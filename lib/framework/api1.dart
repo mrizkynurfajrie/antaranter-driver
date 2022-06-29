@@ -6,8 +6,8 @@ import 'package:http_parser/http_parser.dart';
 import 'api2.dart';
 
 class Api1 {
-  // String baseUrl = 'https://api-dev.intakekurir.com/';
-  String baseUrl = 'https://api-prod.intakekurir.com/';
+  String baseUrl = 'https://api-dev.intakekurir.com/';
+  // String baseUrl = 'https://api-prod.intakekurir.com/';
    String webUrl = 'https://antaranter.indoteknokarya.com/';
    String imgStorUrl = 'https://antaranter.sgp1.digitaloceanspaces.com/';
 
@@ -17,12 +17,12 @@ class Api1 {
     Map<String, String> headers = {
       'content-Type': 'application/json',
     };
-    log('headers = ' + headers.toString());
-    log('url = $baseUrl' + url);
+    log('headers = $headers');
+    log('url = $baseUrl$url');
 
     http.Response r =
         await http.get(Uri.parse(baseUrl + url), headers: headers);
-    log("status codenya " + r.statusCode.toString());
+    log("status codenya ${r.statusCode}");
 
     // log(r.body);
     var data = json.decode(r.body);
@@ -39,12 +39,12 @@ class Api1 {
       'content-Type': 'application/json',
       'Authorization': 'Bearer $token',
     };
-    log('headers = ' + headers.toString());
-    log('url = $baseUrl' + url);
+    log('headers = $headers');
+    log('url = $baseUrl$url');
 
     http.Response r =
         await http.get(Uri.parse(baseUrl + url), headers: headers);
-    log("status codenya " + r.statusCode.toString());
+    log("status codenya ${r.statusCode}");
 
     log(r.body);
     var data = json.decode(r.body);
@@ -57,15 +57,15 @@ class Api1 {
     Map<String, String> headers = {
       'content-Type': 'application/json',
     };
-    log('headers = ' + headers.toString());
-    log('url = $baseUrl' + url);
+    log('headers = $headers');
+    log('url = $baseUrl$url');
 
     var r = await http.post(Uri.parse(baseUrl + url),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(params),
         encoding: Encoding.getByName("utf-8"));
     var data = jsonDecode(r.body);
-    log("status codenya " + r.statusCode.toString());
+    log("status codenya ${r.statusCode}");
 
     // log(data.toString());
     logApi(url: url, res: r, method: "POST", payload: params);
@@ -80,14 +80,14 @@ class Api1 {
       'content-Type': 'application/json',
       'Authorization': 'Bearer $token',
     };
-    log('headers = ' + headers.toString());
-    log('url = $baseUrl' + url);
+    log('headers = $headers');
+    log('url = $baseUrl$url');
 
     var r = await http.post(Uri.parse(baseUrl + url),
         headers: headers,
         body: jsonEncode(params),
         encoding: Encoding.getByName("utf-8"));
-    log("status codenya " + r.statusCode.toString());
+    log("status codenya ${r.statusCode}");
     var data = jsonDecode(r.body);
 
     // log(data);

@@ -5,7 +5,6 @@ import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_balance.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
-import 'package:antaranter_driverapp/shared/widgets/buttons/button_text.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
 import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
@@ -81,7 +80,7 @@ class ControllerNebengPosting extends GetxController {
     await getCities();
     // await getProvinces();
     isUrgent.value = 0;
-    log('isurgent : ' + isUrgent.toString());
+    log('isurgent : $isUrgent');
     super.onInit();
   }
 
@@ -106,12 +105,14 @@ class ControllerNebengPosting extends GetxController {
     try {
       var response =
           await api.getBalance(riderId: controllerRiderInfo.rider.value.id);
-      log('response balance : ' + response.toString());
+      log('response balance : $response');
       if (response['success'] == true) {
         currentBalance.value = response['data']['curr_balance'];
-        log('curr balance : ' + currentBalance.toString());
+        log('curr balance : $currentBalance');
       }
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   // buildSeat () async {
@@ -470,7 +471,7 @@ class ControllerNebengPosting extends GetxController {
         isUrgent: isUrgent.value,
       );
 
-      log('hasil data : ' + updateResult.toString());
+      log('hasil data : $updateResult');
       if (updateResult['success'] == true) {
         controllerRiderInfo.setRiderHasActivePost(true);
         var result = updateResult["data"];

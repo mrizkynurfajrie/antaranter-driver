@@ -39,14 +39,14 @@ class ControllerCustomerOrder extends GetxController {
         NebengCustomerResponse customerNebengPost =
             NebengCustomerResponse.fromJson(responseCreate['data']);
         Get.offAndToNamed(Routes.main, arguments: 1);
-        log("data customer nebeng : " + customerNebengPost.toString());
+        log("data customer nebeng : $customerNebengPost");
       } else {
         String? error = responseCreate['errors'][0]['message']['message'];
         throw error ?? "Gagal mengambil penawaran";
       }
       loading.value = false;
     } catch (e) {
-      log("error : " + e.toString());
+      log("error : $e");
       // showPopUpError(
       //     errorTitle: 'Terjadi Kesalahan', errorMessage: e.toString());
     }

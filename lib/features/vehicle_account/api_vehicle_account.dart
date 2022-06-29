@@ -25,7 +25,7 @@ class ApiVehicleAccount {
       "stnkPict": stnkPict,
     };
 
-    log('inputbody : ' + inputBody.toString());
+    log('inputbody : $inputBody');
 
     var apiVehicleAccountResponse = await Api1()
         .apiJSONPostWithToken('nebengriders/update/$idRiderNebeng', inputBody);

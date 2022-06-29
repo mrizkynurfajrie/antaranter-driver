@@ -29,9 +29,9 @@ class CardBottomsheet extends StatelessWidget {
                 child: CardRoundedBorder(
                   color: AppColor.bodyColor.shade200,
                   borderColor: AppColor.bodyColor.shade200,
-                  child: Container(),
                   padding: EdgeInsets.all(Insets.xs),
                   shadow: Shadows.none,
+                  child: Container(),
                 ),
               ),
             ),

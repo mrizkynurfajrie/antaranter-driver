@@ -8,7 +8,7 @@ class ApiCustomerPosting {
     var response = await Api1().apiJSONPostWithToken(
         "nebengpostscustomer/listopenbyriderregion", data);
 
-    log("list status open : " + response.toString());
+    log("list status open : $response");
     return response;
   }
 
@@ -18,7 +18,7 @@ class ApiCustomerPosting {
     };
     var response =
         await Api1().apiJSONPostWithToken("cities/listbyregion", data);
-    log('return data city = ' + response.toString());
+    log('return data city = $response');
 
     return response;
   }

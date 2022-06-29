@@ -62,7 +62,7 @@ class ControllerVehicleAccount extends GetxController {
   @override
   void onInit() async {
     var rider = await Api2().getRider();
-    log('data rider : ' + rider.toString());
+    log('data rider : $rider');
     idRider.value = rider["id"] ?? 0;
 
     await getVehicleData();
@@ -106,8 +106,7 @@ class ControllerVehicleAccount extends GetxController {
 // sim //
   Future<File> compressImage(XFile image) async {
     final dir = await path_provider.getTemporaryDirectory();
-    var targetPath = dir.absolute.path +
-        "/temp-${DateTime.now().millisecondsSinceEpoch}.png";
+    var targetPath = "${dir.absolute.path}/temp-${DateTime.now().millisecondsSinceEpoch}.png";
     var compressFile = await FlutterImageCompress.compressAndGetFile(
       image.path,
       targetPath,

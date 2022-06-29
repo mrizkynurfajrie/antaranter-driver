@@ -31,7 +31,7 @@ class ApiNebengPosting {
     };
     var responsePosting =
         await Api1().apiJSONPostWithToken('nebengposts/create', bodyPosting);
-    log('nebeng posting : ' + responsePosting.toString());
+    log('nebeng posting : $responsePosting');
     return responsePosting;
   }
 

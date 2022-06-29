@@ -2,13 +2,11 @@ import 'dart:developer';
 
 import 'package:antaranter_driverapp/shared/helpers/utils.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary_outline.dart';
-import 'package:antaranter_driverapp/shared/widgets/buttons/button_text.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_border.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded_top.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -755,7 +753,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                       ),
                                                       cornerRadius: 8,
                                                       height: 40.h,
-                                                      size: 120.w,
+                                                      size: Get.width,
                                                       color: AppColor
                                                           .doneTextColor,
                                                       onPressed: () async {
@@ -778,7 +776,7 @@ class PageNebengPostingDetail extends GetView<ControllerNebengPostingDetail> {
                                                       ),
                                                       borderRadius: 8,
                                                       height: 40.h,
-                                                      width: 120.w,
+                                                      width: Get.width,
                                                       elevation: 0,
                                                       color: AppColor
                                                           .transparentColor,
@@ -905,8 +903,7 @@ class UserNebeng extends GetView<ControllerNebengPostingDetail> {
                 children: <Widget>[
                   InkWell(
                     onTap: () {
-                      log("gambar image : " +
-                          nebengOrder.users!.image.toString());
+                      log("gambar image : ${nebengOrder.users!.image}");
                       if (nebengOrder.users!.image != null) {
                         showPopUpImage(
                           imageUri: imageUrlPath(
@@ -931,8 +928,8 @@ class UserNebeng extends GetView<ControllerNebengPostingDetail> {
                           ),
                           progressIndicatorBuilder:
                               (context, url, downloadProgress) => Shimmer(
-                            child: Container(color: AppColor.whiteColor),
                             gradient: AppColor.shimmerGradient,
+                            child: Container(color: AppColor.whiteColor),
                           ),
                           errorWidget: (context, url, error) => DottedBorder(
                             dashPattern: const [12, 4],
