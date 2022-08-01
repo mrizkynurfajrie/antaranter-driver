@@ -120,8 +120,8 @@ class ControllerVehicleAccount extends GetxController {
     final XFile? camImage =
         await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
     if (camImage != null) {
-      var result = await compressImage(camImage);
-      simPreview.value = result.path;
+      // var result = await compressImage(camImage);
+      simPreview.value = camImage.path;
     }
   }
 
@@ -129,8 +129,8 @@ class ControllerVehicleAccount extends GetxController {
     final XFile? fileImage =
         await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     if (fileImage != null) {
-      var result = await compressImage(fileImage);
-      simPreview.value = result.path;
+      // var result = await compressImage(fileImage);
+      simPreview.value = fileImage.path;
     }
   }
 
@@ -168,8 +168,8 @@ class ControllerVehicleAccount extends GetxController {
     final XFile? camImage =
         await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
     if (camImage != null) {
-      var result = await compressImage(camImage);
-      stnkPreview.value = result.path;
+      // var result = await compressImage(camImage);
+      stnkPreview.value = camImage.path;
     }
   }
 
@@ -177,8 +177,8 @@ class ControllerVehicleAccount extends GetxController {
     final XFile? fileImage =
         await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     if (fileImage != null) {
-      var result = await compressImage(fileImage);
-      stnkPreview.value = result.path;
+      // var result = await compressImage(fileImage);
+      stnkPreview.value = fileImage.path;
     }
   }
 

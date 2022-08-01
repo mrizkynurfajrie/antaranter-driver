@@ -173,8 +173,8 @@ class ControllerUserAccount extends GetxController {
     final XFile? camImage =
         await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
     if (camImage != null) {
-      var result = await compressImage(camImage);
-      ktpPreview.value = result.path;
+      // var result = await compressImage(camImage);
+      ktpPreview.value = camImage.path;
     }
   }
 
@@ -182,8 +182,8 @@ class ControllerUserAccount extends GetxController {
     final XFile? fileImage =
         await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     if (fileImage != null) {
-      var result = await compressImage(fileImage);
-      ktpPreview.value = result.path;
+      // var result = await compressImage(fileImage);
+      ktpPreview.value = fileImage.path;
     }
   }
 
@@ -221,8 +221,8 @@ class ControllerUserAccount extends GetxController {
     final XFile? camImage =
         await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
     if (camImage != null) {
-      var result = await compressImage(camImage);
-      imgPreview.value = result.path;
+      // var result = await compressImage(camImage);
+      imgPreview.value = camImage.path;
     }
   }
 
@@ -230,8 +230,8 @@ class ControllerUserAccount extends GetxController {
     final XFile? fileImage =
         await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     if (fileImage != null) {
-      var result = await compressImage(fileImage);
-      imgPreview.value = result.path;
+      // var result = await compressImage(fileImage);
+      imgPreview.value = fileImage.path;
     }
   }
 
