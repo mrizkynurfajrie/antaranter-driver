@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:antaranter_driverapp/shared/helpers/regex.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -10,6 +11,7 @@ import 'package:antaranter_driverapp/response/main_rider.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
 import 'package:antaranter_driverapp/shared/helpers/utils.dart';
 import 'package:antaranter_driverapp/routes/app_routes.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ControllerLogin extends GetxController {
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
@@ -45,7 +47,8 @@ class ControllerLogin extends GetxController {
 
   formValidationListener() {
     cPhoneNumber.addListener(() {
-      validPhoneNumber.value = isValidPhoneNumber(phoneNumber: cPhoneNumber.text);
+      validPhoneNumber.value =
+          isValidPhoneNumber(phoneNumber: cPhoneNumber.text);
       validateForm();
     });
     cPassword.addListener(() {
@@ -56,6 +59,31 @@ class ControllerLogin extends GetxController {
 
   validateForm() {
     isValidForm.value = validPhoneNumber.value && validPassword.value;
+  }
+
+  ourWa() async {
+    // var editedPhone = phoneNum!.replaceFirst(RegExp(r'^0+'), "");
+    var whatsapp = "+6281256529355";
+    var whatsappURlAndroid =
+        "https://wa.me/$whatsapp?text=${Uri.parse("halo admin AntarAnter, mohon bantuannya saya ingin mengatur ulang password akun saya")}";
+    var whatappURLIos = "https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
+
+    if (Platform.isIOS) {
+      // for iOS phone only
+      if (await canLaunch(whatappURLIos)) {
+        await launch(whatappURLIos, forceSafariVC: false);
+      } else {
+        Get.snackbar('Attention', "whatsapp no installed");
+      }
+    } else {
+      // android , web
+
+      if (await canLaunch(whatsappURlAndroid)) {
+        await launch(whatsappURlAndroid);
+      } else {
+        Get.snackbar('Attention', "whatsapp no installed android");
+      }
+    }
   }
 
   login() async {

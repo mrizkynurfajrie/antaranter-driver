@@ -67,15 +67,7 @@ class PageLogin extends GetView<ControllerLogin> {
                             fontSize: FontSizes.s12,
                             fontWeight: FontWeight.w500),
                         onPressed: () async {
-                          showPopUp(
-                            title: 'Lupa Kata Sandi',
-                            description: 'Silakan hubungi admin AntarAnter untuk mengatur kembali kata sandi anda',
-                            imageUri: PopUpIcons.information,
-                            dismissible: false,
-                          );
-                          await Future.delayed(const Duration(seconds: 4));
-                          Navigator.pop(context);
-                          // Get.toNamed(Routes.otp);
+                          controller.ourWa();
                         },
                         color: AppColor.forgotPass,
                       ),
