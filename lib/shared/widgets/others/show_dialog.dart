@@ -5,6 +5,7 @@ import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart'
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary_outline.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -76,6 +77,7 @@ showPopUp({
       ),
       barrierDismissible: dismissible ?? true);
 }
+
 showPopUpPng({
   String? title,
   String? description,
@@ -212,6 +214,9 @@ showPopUpChoice({
                           color: AppColor.whiteColor,
                           fontWeight: FontWeight.bold,
                         ),
+                        cornerRadius: Corners.lg,
+                        size: 120.w,
+                        height: 45.h,
                       ),
                     ),
                     horizontalSpace(Insets.xl),
@@ -226,6 +231,9 @@ showPopUpChoice({
                           color: AppColor.primaryColor,
                           fontWeight: FontWeight.bold,
                         ),
+                        cornerRadius: Corners.lg,
+                        size: 120.w,
+                        height: 45.h,
                       ),
                     ),
                   ],
@@ -237,6 +245,7 @@ showPopUpChoice({
       ),
       barrierDismissible: dismissible ?? true);
 }
+
 showPopUpChoicePng({
   String? title,
   String? description,

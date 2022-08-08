@@ -32,7 +32,10 @@ class BorderStyles {
 }
 
 InputDecoration inputDecoration(
-    {required String hintText, Widget? prefixIcon, Widget? suffixIcon, FontStyle? fontStyle}) {
+    {required String hintText,
+    Widget? prefixIcon,
+    Widget? suffixIcon,
+    FontStyle? fontStyle}) {
   return InputDecoration(
     isDense: true,
     filled: true,
@@ -99,6 +102,8 @@ class IconSizes {
   static double get xl => 48.w;
   static double get xxl => 60.w;
   static double get xxxl => 90.w;
+  static double get profPictSet => 75.w;
+  static double get profPict => 40.w;
 }
 
 class Insets {
@@ -188,7 +193,7 @@ class FontSizes {
   static double get s16 => 16.w;
   static double get s18 => 18.w;
   static double get s20 => 20.w;
-  static double get s24 => 24.w;  
+  static double get s24 => 24.w;
   static double get s28 => 28.w;
   static double get s26 => 26.w;
   static double get s32 => 32.w;
@@ -226,6 +231,13 @@ class TextStyles {
   static TextStyle get textcheckbox => inter.copyWith(
         fontSize: 12,
         fontWeight: FontWeight.w600,
+      );
+
+  static TextStyle get bottomButton => inter.copyWith(
+        fontSize: FontSizes.s16,
+        color: AppColor.primaryColor,
+        fontWeight: FontWeight.w500,
+        letterSpacing: -0.9,
       );
 
   static TextStyle get textStdBold => inter.copyWith(
@@ -269,6 +281,12 @@ class TextStyles {
         color: AppColor.primaryColor,
         fontWeight: FontWeight.w500,
       );
+
+  static TextStyle get body3 => inter.copyWith(
+      fontSize: FontSizes.s12,
+      fontWeight: FontWeight.w400,
+      height: 1.5,
+      letterSpacing: .2);
 
   static TextStyle get h1 => inter.copyWith(
       fontWeight: FontWeight.w700,

@@ -128,24 +128,24 @@ class PageProfile extends GetView<ControllerProfile> {
                 ontap: () {
                   Get.toNamed(Routes.userAccount);
                 },
-                icon: AppIcons.iconApp(
-                    AppIcons.profUser, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(AppIcons.profUser,
+                    color: AppColor.primaryColor, height: IconSizes.sm),
                 title: 'Profil Pengguna',
               ),
               ButtonProfil(
                 ontap: () {
                   Get.toNamed(Routes.vehicleAccount);
                 },
-                icon: AppIcons.iconApp(
-                    AppIcons.profCar, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(AppIcons.profCar,
+                    color: AppColor.primaryColor, height: IconSizes.sm),
                 title: 'Profil Kendaraan',
               ),
               ButtonProfil(
                 ontap: () {
                   Get.toNamed(Routes.contact);
                 },
-                icon: AppIcons.iconApp(
-                    AppIcons.profCallus, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(AppIcons.profCallus,
+                    color: AppColor.primaryColor, height: IconSizes.sm),
                 title: 'Hubungi Kami',
               ),
               verticalSpace(15.h),
@@ -166,8 +166,8 @@ class PageProfile extends GetView<ControllerProfile> {
                 ontap: () {
                   Get.toNamed(Routes.termsProfile);
                 },
-                icon: AppIcons.iconApp(
-                    AppIcons.profTnc, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(AppIcons.profTnc,
+                    color: AppColor.primaryColor, height: IconSizes.sm),
                 title: 'Syarat & Ketentuan',
               ),
               ButtonProfil(
@@ -180,8 +180,8 @@ class PageProfile extends GetView<ControllerProfile> {
                   await Future.delayed(const Duration(seconds: 2));
                   Get.back();
                 },
-                icon: AppIcons.iconApp(
-                    AppIcons.profPrivacy, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(AppIcons.profPrivacy,
+                    color: AppColor.primaryColor, height: IconSizes.sm),
                 title: 'Kebijakan Privasi',
               ),
               ButtonProfil(
@@ -194,16 +194,16 @@ class PageProfile extends GetView<ControllerProfile> {
                   await Future.delayed(const Duration(seconds: 2));
                   Get.back();
                 },
-                icon: AppIcons.iconApp(
-                    AppIcons.profRating, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(AppIcons.profRating,
+                    color: AppColor.primaryColor, height: IconSizes.sm),
                 title: 'Beri Penilaian Aplikasi',
               ),
               ButtonProfil(
                 ontap: () {
                   controller.logout();
                 },
-                icon: AppIcons.iconApp(
-                    AppIcons.profLogout, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(AppIcons.profLogout,
+                    color: AppColor.primaryColor, height: IconSizes.sm),
                 title: 'Keluar',
               ),
               verticalSpace(15.h)

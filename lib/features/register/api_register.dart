@@ -1,4 +1,3 @@
-
 import 'package:antaranter_driverapp/framework/api1.dart';
 
 class ApiRegister {
@@ -16,6 +15,80 @@ class ApiRegister {
 
     var r = await Api1().apiJSONPost("register-rider", payload);
     return r;
+  }
+
+  Future<dynamic> updateUserAccount({
+    required var name,
+    required var email,
+    required var gender,
+    required var nik,
+    required var ktp,
+    required var img,
+    required var birth,
+    required var address,
+    required var phone,
+    required var city,
+    required var idRider,
+    required var status,
+  }) async {
+    final inputBody = {
+      "name": name,
+      "email": email,
+      "gender": gender,
+      "nik": nik,
+      "ktp_pict": ktp,
+      "image": img,
+      "birth": birth,
+      "address": address,
+      "phone": phone,
+      "cityLocation": city,
+      "status": status,
+    };
+
+    var apiUserAccountRespons = await Api1()
+        .apiJSONPostWithToken('riders/update-profile/$idRider', inputBody);
+
+    return apiUserAccountRespons;
+  }
+
+  Future<dynamic> updateVehicleAccount({
+    required var simNum,
+    required var simExp,
+    required var simPict,
+    required var platNum,
+    required var vehicleVar,
+    required var vehicleCol,
+    required var stnkPict,
+    required var idRider,
+    required var idRiderNebeng,
+  }) async {
+    final inputBody = {
+      "rider_id": idRider,
+      "sim": simNum,
+      "simExp": simExp,
+      "simPict": simPict,
+      "plat_number": platNum,
+      "vehicle_variant": vehicleVar,
+      "vehicle_color": vehicleCol,
+      "stnkPict": stnkPict,
+    };
+
+    var apiVehicleAccountResponse = await Api1()
+        .apiJSONPostWithToken('nebengriders/update/$idRiderNebeng', inputBody);
+
+    return apiVehicleAccountResponse;
+  }
+
+  Future<dynamic> updateNebengRider({
+    required var riderId,
+  }) async {
+    final inputBody = {
+      "rider_id": riderId,
+    };
+
+    var apiNebengRider = await Api1()
+        .apiJSONPostWithToken('nebengriders/findbyrider', inputBody);
+    return apiNebengRider;
   }
 
   Future<dynamic> createAgreement({
@@ -62,5 +135,69 @@ class ApiRegister {
 
     var apiLoginResponse = await Api1().apiJSONPost("login-rider", loginBody);
     return apiLoginResponse;
+  }
+
+  Future<dynamic> getProvince() async {
+    var responseProvince = await Api1().apiJSONGetWitToken("provincies/list");
+
+    return responseProvince;
+  }
+
+  Future<dynamic> getCity({required int idProvince}) async {
+    final bodyProvince = {"province_id": idProvince};
+    var responseCity = await Api1()
+        .apiJSONPostWithToken("cities/findbyprovince", bodyProvince);
+
+    return responseCity;
+  }
+
+  Future<dynamic> uploadProfileImg({required String profileImg}) async {
+    var upload = Api1().apiJSONMultipartWithToken(profileImg, 'upload');
+
+    return upload;
+  }
+
+  Future<dynamic> uploadKtpImg({required String ktpImg}) async {
+    var upload = Api1().apiJSONMultipartWithToken(ktpImg, 'upload');
+
+    return upload;
+  }
+
+  Future<dynamic> uploadSimImg({required String simImg}) async {
+    var upload = Api1().apiJSONMultipartWithToken(simImg, 'upload');
+
+    return upload;
+  }
+
+  Future<dynamic> uploadStnkImg({required String stnkImg}) async {
+    var upload = Api1().apiJSONMultipartWithToken(stnkImg, 'upload');
+
+    return upload;
+  }
+
+  Future<dynamic> agreement() async {
+    var response = await Api1().apiJSONGetWitToken('terms/3');
+    return response;
+  }
+
+  Future<dynamic> getAgreement({required var idRider}) async {
+    final payload = {"rider_id": idRider};
+    var response =
+        await Api1().apiJSONPostWithToken("agreements/findbyrider", payload);
+    return response;
+  }
+
+  Future<dynamic> updateAgreement({
+    required var idRider,
+    required var status,
+    required var idAgreement,
+  }) async {
+    final payload = {
+      "rider_id": idRider,
+      "status": status,
+    };
+    var response = await Api1()
+        .apiJSONPostWithToken('agreements/update/$idAgreement', payload);
+    return response;
   }
 }

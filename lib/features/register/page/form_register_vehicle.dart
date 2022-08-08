@@ -1,0 +1,338 @@
+import 'dart:io';
+import 'package:antaranter_driverapp/features/register/controller_register.dart';
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
+import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:antaranter_driverapp/framework/api1.dart';
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
+import 'package:antaranter_driverapp/shared/constants/styles.dart';
+import 'package:antaranter_driverapp/shared/widgets/inputs/input_date.dart';
+import 'package:antaranter_driverapp/shared/widgets/inputs/input_primary.dart';
+
+class FormRegisterVehicle extends GetView<ControllerRegister> {
+  const FormRegisterVehicle({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Stack(
+        children: <Widget>[
+          SvgPicture.asset(
+            AppIcons.circlebg,
+            width: Get.width,
+            color: AppColor.primaryColor,
+            fit: BoxFit.fitWidth,
+          ),
+          SingleChildScrollView(
+            padding: EdgeInsets.symmetric(
+              vertical: 10.h,
+              horizontal: 10.w,
+            ),
+            child: Obx(
+              () => Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    InputPrimary(
+                      hintText: 'No SIM',
+                      onTap: () {},
+                      prefixIcon: const Icon(CupertinoIcons.creditcard),
+                      boxWidth: Get.width,
+                      controller: controller.txtSimNum,
+                      inputFormatters: [LengthLimitingTextInputFormatter(16)],
+                      label: 'No. SIM',
+                      padding: EdgeInsets.only(bottom: 3.h),
+                    ),
+                    InputDate(
+                      controller: controller.txtSimExp,
+                      selectedDate: (value) {},
+                      isValid: (value) {},
+                      boxWidth: Get.width,
+                      prefixIcon: const Icon(Icons.date_range),
+                      hintText: 'Masa Berlaku SIM',
+                      padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
+                      label: 'Masa Berlaku SIM',
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Unggah Foto SIM',
+                          style: TextStyles.inter.copyWith(
+                              fontSize: FontSizes.s12,
+                              color: AppColor.neutral,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        GestureDetector(
+                          onTap: () => controller.simSourceSelector(context),
+                          child: (controller.simPreview.value != "")
+                              ? Container(
+                                  margin: EdgeInsets.only(top: 5.h),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.file(
+                                      File(controller.simPreview.toString()),
+                                      width: Get.width,
+                                      height: 170.h,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                )
+                              : Container(
+                                  alignment: Alignment.topCenter,
+                                  margin: EdgeInsets.only(top: 5.h),
+                                  height: 170.h,
+                                  width: Get.width,
+                                  decoration: const BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(8)),
+                                      color: AppColor.whiteColor),
+                                  child: (controller.controllerVehicleInfo
+                                                  .vehicle.value.simPict !=
+                                              '' &&
+                                          controller.controllerVehicleInfo
+                                                  .vehicle.value.simPict !=
+                                              null)
+                                      ? ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          child: SizedBox(
+                                            width: Get.width,
+                                            height: 170.h,
+                                            child: Image.network(
+                                              "${Api1().imgStorUrl}${controller.controllerVehicleInfo.vehicle.value.simPict}",
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        )
+                                      : Center(
+                                          child: DottedBorder(
+                                            dashPattern: const [12, 4],
+                                            strokeWidth: 1,
+                                            strokeCap: StrokeCap.round,
+                                            color: AppColor.greyColorLight,
+                                            borderType: BorderType.RRect,
+                                            radius: const Radius.circular(12),
+                                            child: SizedBox(
+                                              width: Get.width,
+                                              height: 170.h,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  AppIcons.iconApp(
+                                                    AppIcons.addPhoto,
+                                                    height: 56.h,
+                                                    color: AppColor
+                                                        .neutral.shade500,
+                                                  ),
+                                                  verticalSpace(5.h),
+                                                  Column(
+                                                    children: [
+                                                      Text(
+                                                        'Unggah Gambar SIM',
+                                                        style: TextStyles.inter
+                                                            .copyWith(
+                                                          fontSize:
+                                                              FontSizes.s10,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          color: AppColor
+                                                              .neutral.shade500,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        'Format : JPG atau PNG',
+                                                        style: TextStyles.inter
+                                                            .copyWith(
+                                                          fontSize:
+                                                              FontSizes.s10,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          color: AppColor
+                                                              .neutral.shade500,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                ),
+                        ),
+                        verticalSpace(5.h)
+                      ],
+                    ),
+                    InputPrimary(
+                      hintText: 'contoh: KT 1234 AAA',
+                      label: 'Nomor Plat Kendaraan',
+                      onTap: () {},
+                      prefixIcon: const Icon(CupertinoIcons.number_square),
+                      boxWidth: Get.width,
+                      padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
+                      controller: controller.txtPlatNum,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(11),
+                        // controller.maskFormatter,
+                      ],
+                      textCapitalization: TextCapitalization.characters,
+                    ),
+                    InputPrimary(
+                      hintText: 'Merek Kendaraan',
+                      onTap: () {},
+                      prefixIcon: const Icon(CupertinoIcons.car),
+                      boxWidth: Get.width,
+                      padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
+                      controller: controller.txtVehicleVar,
+                      label: 'Merek Kendaraan',
+                      textCapitalization: TextCapitalization.characters,
+                    ),
+                    InputPrimary(
+                      hintText: 'Warna Kendaraan',
+                      onTap: () {},
+                      prefixIcon: const Icon(CupertinoIcons.color_filter),
+                      boxWidth: Get.width,
+                      padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
+                      controller: controller.txtVehicleCol,
+                      label: 'Warna Kendaraan',
+                      textCapitalization: TextCapitalization.characters,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Unggah Foto STNK',
+                          style: TextStyles.inter.copyWith(
+                              fontSize: FontSizes.s12,
+                              color: AppColor.neutral,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        GestureDetector(
+                          onTap: () => controller.stnkSourceSelector(context),
+                          child: (controller.stnkPreview.value != "")
+                              ? Container(
+                                  margin: EdgeInsets.only(top: 5.h),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.file(
+                                      File(controller.stnkPreview.toString()),
+                                      width: Get.width,
+                                      height: 170.h,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                )
+                              : Container(
+                                  alignment: Alignment.topCenter,
+                                  margin: EdgeInsets.only(top: 5.h),
+                                  height: 170.h,
+                                  width: Get.width,
+                                  decoration: const BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(8)),
+                                      color: AppColor.whiteColor),
+                                  child: (controller.controllerVehicleInfo
+                                                  .vehicle.value.stnkPict !=
+                                              '' &&
+                                          controller.controllerVehicleInfo
+                                                  .vehicle.value.stnkPict !=
+                                              null)
+                                      ? ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          child: SizedBox(
+                                            width: Get.width,
+                                            height: 170.h,
+                                            child: Image.network(
+                                              "${Api1().imgStorUrl}${controller.controllerVehicleInfo.vehicle.value.stnkPict}",
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        )
+                                      : Center(
+                                          child: DottedBorder(
+                                            dashPattern: const [12, 4],
+                                            strokeWidth: 1,
+                                            strokeCap: StrokeCap.round,
+                                            color: AppColor.greyColorLight,
+                                            borderType: BorderType.RRect,
+                                            radius: const Radius.circular(12),
+                                            child: SizedBox(
+                                              width: Get.width,
+                                              height: 170.h,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  AppIcons.iconApp(
+                                                    AppIcons.addPhoto,
+                                                    height: 56.h,
+                                                    color: AppColor
+                                                        .neutral.shade500,
+                                                  ),
+                                                  verticalSpace(5.h),
+                                                  Column(
+                                                    children: [
+                                                      Text(
+                                                        'Unggah Gambar STNK',
+                                                        style: TextStyles.inter
+                                                            .copyWith(
+                                                          fontSize:
+                                                              FontSizes.s10,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          color: AppColor
+                                                              .neutral.shade500,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        'Format : JPG atau PNG',
+                                                        style: TextStyles.inter
+                                                            .copyWith(
+                                                          fontSize:
+                                                              FontSizes.s10,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          color: AppColor
+                                                              .neutral.shade500,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// class UpperCaseTextFormatter extends TextInputFormatter {
+//   @override
+//   TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+//     return TextEditingValue(
+//       text: newValue.text.toUpperCase(),
+//       selection: newValue.selection,
+//     );
+//   }
+// }

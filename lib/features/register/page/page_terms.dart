@@ -8,7 +8,6 @@ import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/constants/styles.dart';
 import 'package:antaranter_driverapp/shared/widgets/buttons/button_primary.dart';
-import 'package:antaranter_driverapp/shared/widgets/others/checkbox_label.dart';
 import 'package:get/get.dart';
 import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
 
@@ -45,8 +44,8 @@ class PageTerms extends GetView<ControllerRegister> {
                   child: Text(
                     "Mohon perhatikan dan pahami ketentuan berikut untuk dapat menjadi mitra AntarAnter Driver",
                     style: TextStyles.inter.copyWith(
-                        fontSize: FontSizes.s14, fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.center,
+                        fontSize: FontSizes.s12, fontWeight: FontWeight.w400),
+                    textAlign: TextAlign.justify,
                     maxLines: 3,
                   ),
                 ),
@@ -90,33 +89,17 @@ class PageTerms extends GetView<ControllerRegister> {
                     ),
                   ),
                 ),
-
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 5.h),
-                    child: CheckboxLabel(
-                      onChange: (value) {
-                        controller.statusAgreementTerm.value = value;
-                      },
-                      label:
-                          'Saya mengerti dan memahami dengan syarat serta ketentuan yang berlaku',
-                      colorBorder: AppColor.greyColorLight,
-                      labelStyle: TextStyles.textcheckbox,
-                    ),
-                  ),
-                ),
-                Obx(
-                  () => Padding(
-                    padding: EdgeInsets.symmetric(vertical: 15.h),
-                    child: ButtonPrimary(
-                      enable: controller.statusAgreementTerm.value,
-                      label: 'Konfirmasi',
-                      color: AppColor.primaryColor,
-                      cornerRadius: 9,
-                      onPressed: () {
-                        Get.toNamed('/register_page');
-                      },
-                    ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10.h),
+                  child: ButtonPrimary(
+                    label: 'Kembali',
+                    color: AppColor.primaryColor,
+                    cornerRadius: 8,
+                    size: 345.w,
+                    height: 40.h,
+                    onPressed: () {
+                      Get.back();
+                    },
                   ),
                 ),
               ],

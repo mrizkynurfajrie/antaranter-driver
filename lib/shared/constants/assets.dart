@@ -41,8 +41,9 @@ class AppIcons {
   static const circlebg = 'assets/icons/regis_background.svg';
   static const loginbg = 'assets/images/regis_img.png';
   static const socmarket = 'assets/images/socialmedia-marketing.svg';
+  static const addPhoto = 'assets/icons/add_photo.svg';
 
-  static Widget iconApp(String asset, Color color, double height) {
+  static Widget iconApp(String asset, {Color? color, double? height}) {
     return SvgPicture.asset(
       asset,
       height: height,

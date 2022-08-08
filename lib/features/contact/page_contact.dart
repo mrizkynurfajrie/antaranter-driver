@@ -50,27 +50,27 @@ class PageContact extends GetView<ControllerContact> {
               ButtonContact(
                 ontap: () => controller.ourIg(),
                 icon: AppIcons.iconApp(AppIcons.contInstagram,
-                    AppColor.primaryColor, IconSizes.sm),
+                    color: AppColor.primaryColor, height: IconSizes.sm),
                 title: 'Instagram',
                 buttonHeight: Get.height * 0.09.h,
                 buttonWidth: Get.width * 0.88.w,
               ),
               ButtonContact(
                 ontap: () => controller.ourFb(),
-                icon: AppIcons.iconApp(
-                    AppIcons.contFacebook, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(AppIcons.contFacebook,
+                    color: AppColor.primaryColor, height: IconSizes.sm),
                 title: 'Facebook',
               ),
               ButtonContact(
                 ontap: () => controller.ourEmail(),
-                icon: AppIcons.iconApp(
-                    AppIcons.contEmail, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(AppIcons.contEmail,
+                    color: AppColor.primaryColor, height: IconSizes.sm),
                 title: 'Email',
               ),
               ButtonContact(
                 ontap: () => controller.ourWeb(),
-                icon: AppIcons.iconApp(
-                    AppIcons.contWebsite, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(AppIcons.contWebsite,
+                    color: AppColor.primaryColor, height: IconSizes.sm),
                 title: 'Website',
               ),
               ButtonContact(
@@ -83,8 +83,8 @@ class PageContact extends GetView<ControllerContact> {
                   await Future.delayed(const Duration(seconds: 2));
                   Get.back();
                 },
-                icon: AppIcons.iconApp(
-                    AppIcons.contWhatsapp, AppColor.primaryColor, IconSizes.sm),
+                icon: AppIcons.iconApp(AppIcons.contWhatsapp,
+                    color: AppColor.primaryColor, height: IconSizes.sm),
                 title: 'Whatsapp',
               ),
             ],
