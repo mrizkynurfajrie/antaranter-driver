@@ -30,12 +30,12 @@ class InputPhone extends StatefulWidget {
 
   const InputPhone({
     Key? key,
-    this.hintText = 'Masukkan nomor telepon',
+    this.hintText = 'Masukkan nomor ponsel',
     this.validate,
     this.onChange,
     this.prefixIcon,
     this.suffixIcon,
-    this.label = 'Nomor Telepon',
+    this.label = 'Nomor Ponsel',
     required this.controller,
     required this.phoneNumber,
     this.onSave,
@@ -77,16 +77,11 @@ class _InputPhoneState extends State<InputPhone> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           widget.label != ''
-              ? Container(
-                  margin: EdgeInsets.only(
-                    bottom: Insets.xs,
-                  ),
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 4.w),
-                    child: Text(
-                      widget.label,
-                      style: TextStyles.small1,
-                    ),
+              ? SizedBox(
+                  child: Text(
+                    widget.label,
+                    style: TextStyles.inter.copyWith(
+                        fontSize: FontSizes.s10, fontWeight: FontWeight.w400),
                   ),
                 )
               : verticalSpace(0),
@@ -125,47 +120,65 @@ class _InputPhoneState extends State<InputPhone> {
           //     ),
           //   ),
           // ),
-          CardRounded(
+          Container(
             width: Get.width,
             margin: EdgeInsets.zero,
             padding: EdgeInsets.zero,
-            color: AppColor.bgPageColor,
-            shadow: Shadows.none,
+            color: AppColor.transparentColor,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 widget.setContryCode
-                    ? SizedBox(
-                        width: Get.width * 0.25.w,
-                        child: TextFormField(
-                          decoration: inputDecoration(
-                            prefixIcon: InkWell(
-                              onTap: _showListCountry,
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: Insets.med),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    // Text(_flag),
-                                    // horizontalSpace(Insets.xs),
-                                    Text(
-                                      _countryCode,
-                                      style: TextStyles.body2,
-                                    ),
-                                    const Icon(
-                                      Icons.keyboard_arrow_down,
-                                      size: 30,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            hintText: '',
+                    // ? SizedBox(
+                    //     width: 85.w,
+                    //     child: TextFormField(
+                    //       decoration: inputDecoration(
+                    //         prefixIcon: InkWell(
+                    //           onTap: _showListCountry,
+                    //           child: Padding(
+                    //             padding: EdgeInsets.symmetric(
+                    //                 horizontal: Insets.med),
+                    //             child: Row(
+                    //               mainAxisAlignment:
+                    //                   MainAxisAlignment.spaceBetween,
+                    //               children: [
+                    //                 // Text(_flag),
+                    //                 // horizontalSpace(Insets.xs),
+                    //                 Text(
+                    //                   _countryCode,
+                    //                   style: TextStyles.body2,
+                    //                 ),
+                    //                 const Icon(
+                    //                   Icons.keyboard_arrow_down,
+                    //                   size: 30,
+                    //                 )
+                    //               ],
+                    //             ),
+                    //           ),
+                    //         ),
+                    //         hintText: '',
+                    //       ),
+                    //     ))
+                    ? Container(
+                        decoration: BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(
+                                    color: AppColor.neutral.shade200,
+                                    width: 1))),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10.w, vertical: 7.h),
+                        margin: EdgeInsets.only(right: 10.w),
+                        width: 60.w,
+                        child: Text(
+                          '+62',
+                          style: TextStyles.inter.copyWith(
+                            fontSize: FontSizes.s18,
+                            fontWeight: FontWeight.w400,
                           ),
-                        ))
+                          textAlign: TextAlign.center,
+                        ),
+                      )
                     : Container(),
                 widget.setContryCode ? horizontalSpace(7) : Container(),
                 Expanded(
@@ -183,21 +196,30 @@ class _InputPhoneState extends State<InputPhone> {
                     keyboardType: TextInputType.phone,
                     controller: widget.controller,
                     validator: (value) {
-                      if (!GetUtils.isPhoneNumber(
-                          _countryCode + value.toString())) {
-                        return 'Masukkan nomor Telepon dengan benar';
+                      if (!GetUtils.isPhoneNumber(value.toString())) {
+                        return 'Masukkan nomor ponsel dengan benar';
                       }
                       return null;
                     },
-                    style: TextStyles.body2,
+                    style: TextStyles.inter.copyWith(
+                        fontSize: FontSizes.s18, fontWeight: FontWeight.w400),
                     inputFormatters: [
-                      LengthLimitingTextInputFormatter(13),
+                      LengthLimitingTextInputFormatter(14),
                       FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                       FilteringTextInputFormatter.deny(RegExp(r'^0+'))
                     ],
-                    decoration: inputDecoration(
+                    decoration: InputDecoration(
                       suffixIcon: widget.suffixIcon,
-                      hintText: 'Contoh : 852 xxxx xxxx',
+                      isDense: true,
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 5.w, vertical: 7.h),
+                      hintText: '812 345 6789',
+                      hintStyle: TextStyles.inter.copyWith(
+                          fontSize: FontSizes.s14, fontStyle: FontStyle.italic),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: AppColor.neutral.shade200, width: 1),
+                      ),
                     ),
                   ),
                 ),

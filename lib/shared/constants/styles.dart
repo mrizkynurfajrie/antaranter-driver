@@ -188,7 +188,8 @@ class FontSizes {
   static double get s16 => 16.w;
   static double get s18 => 18.w;
   static double get s20 => 20.w;
-  static double get s24 => 24.w;
+  static double get s24 => 24.w;  
+  static double get s28 => 28.w;
   static double get s26 => 26.w;
   static double get s32 => 32.w;
   static double get s36 => 36.w;

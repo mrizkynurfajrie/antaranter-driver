@@ -61,31 +61,6 @@ class ControllerLogin extends GetxController {
     isValidForm.value = validPhoneNumber.value && validPassword.value;
   }
 
-  ourWa() async {
-    // var editedPhone = phoneNum!.replaceFirst(RegExp(r'^0+'), "");
-    var whatsapp = "+6281256529355";
-    var whatsappURlAndroid =
-        "https://wa.me/$whatsapp?text=${Uri.parse("halo admin AntarAnter, mohon bantuannya saya ingin mengatur ulang password akun saya")}";
-    var whatappURLIos = "https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
-
-    if (Platform.isIOS) {
-      // for iOS phone only
-      if (await canLaunch(whatappURLIos)) {
-        await launch(whatappURLIos, forceSafariVC: false);
-      } else {
-        Get.snackbar('Attention', "whatsapp no installed");
-      }
-    } else {
-      // android , web
-
-      if (await canLaunch(whatsappURlAndroid)) {
-        await launch(whatsappURlAndroid);
-      } else {
-        Get.snackbar('Attention', "whatsapp no installed android");
-      }
-    }
-  }
-
   login() async {
     dismisKeyboard();
     loading.value = true;
@@ -112,7 +87,7 @@ class ControllerLogin extends GetxController {
           Get.offNamed(Routes.main);
         } else {
           var firstError = loginResult['errors'][0];
-          throw firstError['message'];
+          throw 'Akun anda tidak ditemukan';
         }
       }
       loading.value = false;
@@ -120,9 +95,34 @@ class ControllerLogin extends GetxController {
       log(e.toString());
       showPopUpError(
         errorTitle: 'Kesalahan',
-        errorMessage: e.toString(),
+        errorMessage: 'Password anda salah'
       );
       loading.value = false;
+    }
+  }
+
+  ourWa() async {
+    // var editedPhone = phoneNum!.replaceFirst(RegExp(r'^0+'), "");
+    var whatsapp = "+6281256529355";
+    var whatsappURlAndroid =
+        "https://wa.me/$whatsapp?text=${Uri.parse("halo admin AntarAnter, mohon bantuannya saya ingin mengatur ulang password akun saya")}";
+    var whatappURLIos = "https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
+
+    if (Platform.isIOS) {
+      // for iOS phone only
+      if (await canLaunch(whatappURLIos)) {
+        await launch(whatappURLIos, forceSafariVC: false);
+      } else {
+        Get.snackbar('Attention', "whatsapp no installed");
+      }
+    } else {
+      // android , web
+
+      if (await canLaunch(whatsappURlAndroid)) {
+        await launch(whatsappURlAndroid);
+      } else {
+        Get.snackbar('Attention', "whatsapp no installed android");
+      }
     }
   }
 
@@ -137,3 +137,4 @@ class ControllerLogin extends GetxController {
     }
   }
 }
+

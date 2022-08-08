@@ -1,5 +1,4 @@
-// ignore_for_file: prefer_adjacent_string_concatenation
-
+import 'package:antaranter_driverapp/shared/constants/colors.dart';
 import 'package:antaranter_driverapp/shared/helpers/regex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -82,29 +81,38 @@ class _InputPasswordState extends State<InputPassword> {
                     if (!isValidPassword(password: value.toString())) {
                       return '- Kata Sandi minimal 6 karakter\n' +
                           // '- Diawali huruf kapital\n' +
-                          '- Terdiri dari huruf kecil dan angka';
+                          '- Terdiri dari kombinasi huruf & angka';
                       // dan symbol (!@#\$%^&*(),.?":{}|<>])';
                     }
                   },
-              style: TextStyles.textBase,
-              decoration: inputDecoration(
+              style: TextStyles.inter.copyWith(
+                  fontSize: FontSizes.s18, fontWeight: FontWeight.w400),
+              decoration: InputDecoration(
+                isDense: true,
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide:
+                      BorderSide(color: AppColor.neutral.shade200, width: 1),
+                ),
                 hintText: widget.hintText,
+                hintStyle: TextStyles.inter.copyWith(
+                    fontSize: FontSizes.s14, fontStyle: FontStyle.italic),
                 prefixIcon: widget.prefixIcon,
-                suffixIcon: Padding(
-                  padding:
-                      EdgeInsets.only(right: Insets.lg, left: Insets.lg),
-                  child: InkWell(
-                    onTap: onTap,
-                    child: _obsecureText
-                        ? Icon(
-                            Icons.visibility_off,
-                            size: IconSizes.med,
-                          )
-                        : Icon(
-                            Icons.visibility,
-                            size: IconSizes.med,
-                          ),
-                  ),
+                suffixIconConstraints:
+                    BoxConstraints(maxHeight: 15.h, maxWidth: 15.w),
+                suffixIcon: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: onTap,
+                  child: _obsecureText
+                      ? Icon(
+                          Icons.visibility_off,
+                          size: IconSizes.sm,
+                        )
+                      : Icon(
+                          Icons.visibility,
+                          size: IconSizes.sm,
+                        ),
                 ),
               ),
             ),

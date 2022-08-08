@@ -38,6 +38,9 @@ class AppIcons {
   static const saldoframe = 'assets/images/saldo_frame.svg';
   static const pencil = 'assets/icons/pencil.svg';
   static const trash = 'assets/icons/trash.svg';
+  static const circlebg = 'assets/icons/regis_background.svg';
+  static const loginbg = 'assets/images/regis_img.png';
+  static const socmarket = 'assets/images/socialmedia-marketing.svg';
 
   static Widget iconApp(String asset, Color color, double height) {
     return SvgPicture.asset(
