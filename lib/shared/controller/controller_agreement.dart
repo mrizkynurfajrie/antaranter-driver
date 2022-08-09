@@ -12,7 +12,7 @@ class ControllerAgreementInfo extends GetxController {
   }
 
   setAgreementData() async {
-    var data = await Api2().getVehicle();
+    var data = await Api2().getAgreement();
     if (data != null) {
       agreement.value = Agreement.fromJson(data);
     }

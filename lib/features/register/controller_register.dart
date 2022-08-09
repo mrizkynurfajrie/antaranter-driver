@@ -104,6 +104,7 @@ class ControllerRegister extends GetxController {
   }
 
   //Form Register User Controller//
+
   var cPhoneNumber = TextEditingController();
   var cPassword = TextEditingController();
   final checkboxForm = GlobalKey<FormState>();
@@ -166,8 +167,6 @@ class ControllerRegister extends GetxController {
           token.value = tokenUser;
           await Api2().setToken(token: token.value);
           registered.value = true;
-          loginStatus = true;
-          await Api2().setIsLogin(isLogin: loginStatus);
           // Get.offAllNamed(Routes.regsuccess);
           // await Future.delayed(const Duration(seconds: 5));
           var riderId = res['data']['newRider']['id'];
@@ -178,6 +177,11 @@ class ControllerRegister extends GetxController {
             idRider: riderId,
             status: status.value,
           );
+          if (resAgreement['success'] == true) {
+            var detailAgreement = resAgreement['data']['agreement'];
+            controllerAgreement.agreement.value =
+                Agreement.fromJson(detailAgreement);
+          }
           isRegistered.value = true;
           // Get.toNamed(Routes.main);
         }
@@ -945,6 +949,8 @@ class ControllerRegister extends GetxController {
       );
       resultStatus.value = updateResult['data']['status'];
       agreementstatus.value = true;
+      loginStatus = true;
+      await Api2().setIsLogin(isLogin: loginStatus);
       log(updateResult.toString());
     } catch (e) {
       log(e.toString());

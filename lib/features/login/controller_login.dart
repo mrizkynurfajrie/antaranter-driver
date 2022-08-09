@@ -1,5 +1,8 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:antaranter_driverapp/response/agreement.dart';
+import 'package:antaranter_driverapp/shared/constants/assets.dart';
+import 'package:antaranter_driverapp/shared/controller/controller_agreement.dart';
 import 'package:antaranter_driverapp/shared/helpers/regex.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -15,9 +18,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ControllerLogin extends GetxController {
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
+  var controllerAgreement = Get.find<ControllerAgreementInfo>();
 
   final ApiLogin api;
   ControllerLogin({required this.api});
+
+  var currentPage = 0.obs;
+  late PageController pageController;
 
   var cPhoneNumber = TextEditingController();
   var cPassword = TextEditingController();
@@ -61,6 +68,12 @@ class ControllerLogin extends GetxController {
     isValidForm.value = validPhoneNumber.value && validPassword.value;
   }
 
+  goToRegisterPage() {
+    Get.toNamed(Routes.register, arguments: 3);
+    // currentPage.value = page;
+    // pageController = PageController(initialPage: currentPage.value);
+  }
+
   login() async {
     dismisKeyboard();
     loading.value = true;
@@ -82,9 +95,29 @@ class ControllerLogin extends GetxController {
           var tokenUser = loginResult["data"]["token"];
           token.value = tokenUser;
           await Api2().setToken(token: token.value);
-          loginStatus = true;
-          await Api2().setIsLogin(isLogin: loginStatus);
-          Get.offNamed(Routes.main);
+          var agreementResult = await api.agreementByRiderId(
+              riderId: controllerRiderInfo.rider.value.id ?? 0);
+          if (agreementResult['success'] == true) {
+            var detailAgreement = agreementResult['data']['agreement'];
+            await Api2().setAgreement(agreement: detailAgreement);
+            controllerAgreement.agreement.value =
+                Agreement.fromJson(detailAgreement);
+            if (controllerAgreement.agreement.value.status == 0) {
+              showPopUp(
+                  title: 'Perjanjian Kerjasama',
+                  description:
+                      'Anda belum menyetujui Perjanjian Kerjasama sebagai Driver AntarAnter',
+                  imageUri: PopUpIcons.error,
+                  labelButton: 'Perjanjian Kerjasama',
+                  onPress: () {
+                    goToRegisterPage();
+                  });
+            } else {
+              loginStatus = true;
+              await Api2().setIsLogin(isLogin: loginStatus);
+              Get.offNamed(Routes.main);
+            }
+          }
         } else {
           var firstError = loginResult['errors'][0];
           throw 'Akun anda tidak ditemukan';
@@ -94,9 +127,7 @@ class ControllerLogin extends GetxController {
     } catch (e) {
       log(e.toString());
       showPopUpError(
-        errorTitle: 'Kesalahan',
-        errorMessage: 'Password anda salah'
-      );
+          errorTitle: 'Kesalahan', errorMessage: 'Password anda salah');
       loading.value = false;
     }
   }
@@ -137,4 +168,3 @@ class ControllerLogin extends GetxController {
     }
   }
 }
-

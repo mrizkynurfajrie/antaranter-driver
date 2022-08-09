@@ -15,4 +15,12 @@ class ApiLogin {
     var apiLoginResponse = await Api1().apiJSONPost("login-rider", loginBody);
     return apiLoginResponse;
   }
+
+  Future<dynamic> agreementByRiderId({required int riderId}) async {
+    final body = {
+      'rider_id': riderId,
+    };
+    var r = await Api1().apiJSONPostWithToken('agreements/findbyrider', body);
+    return r;
+  }
 }

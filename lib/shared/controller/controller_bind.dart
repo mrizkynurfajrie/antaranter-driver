@@ -22,9 +22,9 @@ class ControllerBind extends Bindings {
     Get.put(ControllerNotification());
     Get.put(ControllerVehicleInfo());
     Get.put(ControllerRiderInfo());
+    Get.put(ControllerAgreementInfo());
     Get.put(ControllerLogin(api: ApiLogin()));
     Get.put(ControllerSplash(api: ApiSplash()));
-    Get.put(ControllerAgreementInfo());
     Get.put(ControllerBalanceInfo());
     // Get.put(ControllerHelp(apiHelp: ApiHelp()));
     // Get.put(ControllerLastTrx(api: ApiLastTrx()));
