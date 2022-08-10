@@ -200,4 +200,14 @@ class ApiRegister {
         .apiJSONPostWithToken('agreements/update/$idAgreement', payload);
     return response;
   }
+
+    Future<dynamic> agreementByRiderId({required int riderId}) async {
+    final body = {
+      'rider_id': riderId,
+    };
+    var r = await Api1().apiJSONPostWithToken('agreements/findbyrider', body);
+    return r;
+  }
+
+  
 }

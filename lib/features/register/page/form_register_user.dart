@@ -112,7 +112,7 @@ class FormRegisterUser extends GetView<ControllerRegister> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      padding: EdgeInsets.only(top: 10.h),
+                                      padding: EdgeInsets.only(top: 0.h),
                                       width: 14.w,
                                       height: 14.h,
                                       child: Checkbox(

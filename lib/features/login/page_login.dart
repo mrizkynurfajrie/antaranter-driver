@@ -1,3 +1,4 @@
+import 'package:antaranter_driverapp/framework/api2.dart';
 import 'package:antaranter_driverapp/routes/app_routes.dart';
 import 'package:antaranter_driverapp/shared/constants/assets.dart';
 import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
@@ -144,7 +145,10 @@ class PageLogin extends GetView<ControllerLogin> {
                           fontWeight: FontWeight.bold,
                         ),
                         recognizer: TapGestureRecognizer()
-                          ..onTap = () => Get.toNamed(Routes.register),
+                          ..onTap = () async {
+                            await Api2().removeRider();
+                            controller.goToRegisterPage(0);
+                          }
                       ),
                     ],
                   ),

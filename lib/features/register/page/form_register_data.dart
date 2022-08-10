@@ -132,7 +132,11 @@ class FormRegisterData extends GetView<ControllerRegister> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "+62${controller.cPhoneNumber.text}",
+                              controller.controllerRiderInfo.rider.value
+                                          .phone !=
+                                      null
+                                  ? '+62${controller.controllerRiderInfo.rider.value.phone}'
+                                  : '+62${controller.cPhoneNumber.text}',
                               style: TextStyles.inter.copyWith(
                                 fontSize: FontSizes.s14,
                                 color: AppColor.neutral.shade500,
@@ -446,7 +450,6 @@ class FormRegisterData extends GetView<ControllerRegister> {
                       padding: EdgeInsets.only(top: 2.h, bottom: 3.h),
                       label: 'Alamat',
                     ),
-                    verticalSpace(5.h),
                     // controller.loading.isFalse
                     //     ? ButtonPrimary(
                     //         onPressed: () async {

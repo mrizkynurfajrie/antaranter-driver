@@ -80,7 +80,7 @@ class FormAgreement extends GetView<ControllerRegister> {
                               child: ListView(
                                 children: [
                                   Html(
-                                    data: controller.agreementData.value.skDesc!,
+                                    data: controller.agreementData.value.skDesc,
                                   ),
                                 ],
                               ),

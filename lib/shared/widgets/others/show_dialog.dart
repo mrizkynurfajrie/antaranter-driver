@@ -57,6 +57,8 @@ showPopUp({
                 SizedBox(
                   child: labelButton != null
                       ? ButtonPrimaryOutline(
+                          height: 45.h,
+                          borderRadius: Corners.lg,
                           onPressed: onPress ?? () => Get.back(),
                           label: labelButton,
                           color: AppColor.whiteColor,
@@ -235,6 +237,92 @@ showPopUpChoice({
                         size: 120.w,
                         height: 45.h,
                       ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      barrierDismissible: dismissible ?? true);
+}
+
+showPopUpChoiceRegister({
+  String? title,
+  String? description,
+  String? labelNegatif,
+  String? labelPositif,
+  String? imageUri,
+  double? imageSize,
+  bool? dismissible,
+  TextStyle? titleStyle,
+  Widget? confirm,
+  Function()? onConfirm,
+  Function()? onCancel,
+}) {
+  Get.dialog(
+      Dialog(
+        backgroundColor: Colors.transparent,
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: Corners.lgBorder, color: Colors.white),
+          child: Padding(
+            padding: EdgeInsets.all(Insets.xl),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  title ?? "",
+                  style: titleStyle ?? TextStyles.subtitle1,
+                  textAlign: TextAlign.center,
+                ),
+                verticalSpace(Insets.xl),
+                if (imageUri != null)
+                  SvgPicture.asset(
+                    imageUri,
+                    height: imageSize ?? IconSizes.xxl,
+                    width: imageSize ?? IconSizes.xxl,
+                  ),
+                Text(
+                  description ?? "",
+                  style: TextStyles.body2.copyWith(color: AppColor.greyColor),
+                  textAlign: TextAlign.center,
+                ),
+                verticalSpace(Insets.xl),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ButtonPrimary(
+                        onPressed: onCancel ?? () => Get.back(),
+                        label: labelNegatif ?? "Batal",
+                        labelStyle: TextStyles.inter.copyWith(
+                          fontSize: FontSizes.s14,
+                          color: AppColor.whiteColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        cornerRadius: Corners.lg,
+                        size: 120.w,
+                        height: 45.h,
+                      ),
+                    ),
+                    horizontalSpace(Insets.xl),
+                    Expanded(
+                      child: confirm ??
+                          ButtonPrimary(
+                            onPressed: onConfirm ?? () => Get.back(),
+                            label: labelPositif ?? "Ya",
+                            color: AppColor.whiteColor,
+                            borderColor: AppColor.primaryColor,
+                            labelStyle: TextStyles.inter.copyWith(
+                              fontSize: FontSizes.s14,
+                              color: AppColor.primaryColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            cornerRadius: Corners.lg,
+                            size: 120.w,
+                            height: 45.h,
+                          ),
                     ),
                   ],
                 ),

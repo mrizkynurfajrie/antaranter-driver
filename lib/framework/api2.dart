@@ -108,6 +108,10 @@ class Api2 {
     await box.remove(STATUS_ACTIVE_POST);
   }
 
+  Future removeRider() async {
+    await box.remove(CACHE_RIDER);
+  }
+
   Future removePosting() async {
     await box.remove(CACHE_POSTING);
   }

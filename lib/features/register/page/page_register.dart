@@ -10,6 +10,7 @@ import 'package:antaranter_driverapp/shared/widgets/others/show_dialog.dart';
 import 'package:antaranter_driverapp/shared/widgets/pages/page_decoration_top.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class PageRegister extends GetView<ControllerRegister> {
@@ -99,163 +100,144 @@ class PageRegister extends GetView<ControllerRegister> {
               return false;
             }
           },
-          child: Column(
-            children: [
-              Obx(
-                () => Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 100.w),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 10,
-                        height: 10,
-                        decoration: BoxDecoration(
+          child: Stack(children: <Widget>[
+            SvgPicture.asset(
+              AppIcons.circlebg,
+              width: Get.width,
+              color: AppColor.primaryColor,
+              fit: BoxFit.fitWidth,
+            ),
+            Column(
+              children: [
+                Obx(
+                  () => Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 100.w),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 10,
+                          height: 10,
+                          decoration: BoxDecoration(
+                              color: controller.currentPage.value >= 1
+                                  ? AppColor.primaryColor
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(20.h),
+                              border: Border.all(
+                                color: AppColor.primaryColor,
+                              )),
+                        ),
+                        Expanded(
+                          child: Divider(
                             color: controller.currentPage.value >= 1
+                                ? AppColor.primaryColor
+                                : AppColor.neutral.shade400,
+                            thickness: 1,
+                          ),
+                        ),
+                        Container(
+                          width: 10,
+                          height: 10,
+                          decoration: BoxDecoration(
+                            color: controller.currentPage.value >= 2
                                 ? AppColor.primaryColor
                                 : Colors.transparent,
                             borderRadius: BorderRadius.circular(20.h),
                             border: Border.all(
-                              color: AppColor.primaryColor,
-                            )),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          color: controller.currentPage.value >= 1
-                              ? AppColor.primaryColor
-                              : AppColor.neutral.shade400,
-                          thickness: 1,
-                        ),
-                      ),
-                      Container(
-                        width: 10,
-                        height: 10,
-                        decoration: BoxDecoration(
-                          color: controller.currentPage.value >= 2
-                              ? AppColor.primaryColor
-                              : Colors.transparent,
-                          borderRadius: BorderRadius.circular(20.h),
-                          border: Border.all(
-                            color: controller.currentPage.value < 1
-                                ? AppColor.neutral.shade400
-                                : AppColor.primaryColor,
+                              color: controller.currentPage.value < 1
+                                  ? AppColor.neutral.shade400
+                                  : AppColor.primaryColor,
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          color: controller.currentPage.value >= 2
-                              ? AppColor.primaryColor
-                              : AppColor.neutral.shade400,
-                          thickness: controller.currentPage.value <= 2 ? 0 : 1,
-                        ),
-                      ),
-                      Container(
-                        width: 10,
-                        height: 10,
-                        decoration: BoxDecoration(
-                          color: controller.currentPage.value >= 3
-                              ? AppColor.primaryColor
-                              : Colors.transparent,
-                          borderRadius: BorderRadius.circular(20.h),
-                          border: Border.all(
-                            color: controller.currentPage.value < 2
-                                ? AppColor.neutral.shade400
-                                : AppColor.primaryColor,
+                        Expanded(
+                          child: Divider(
+                            color: controller.currentPage.value >= 2
+                                ? AppColor.primaryColor
+                                : AppColor.neutral.shade400,
+                            thickness:
+                                controller.currentPage.value <= 2 ? 0 : 1,
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          color: controller.currentPage.value >= 3
-                              ? AppColor.primaryColor
-                              : AppColor.neutral.shade400,
-                          thickness: controller.currentPage.value <= 3 ? 0 : 1,
-                        ),
-                      ),
-                      Container(
-                        width: 10,
-                        height: 10,
-                        decoration: BoxDecoration(
-                          color: controller.currentPage.value >= 4
-                              ? AppColor.primaryColor
-                              : Colors.transparent,
-                          borderRadius: BorderRadius.circular(20.h),
-                          border: Border.all(
-                            color: controller.currentPage.value < 3
-                                ? AppColor.neutral.shade400
-                                : AppColor.primaryColor,
+                        Container(
+                          width: 10,
+                          height: 10,
+                          decoration: BoxDecoration(
+                            color: controller.currentPage.value >= 3
+                                ? AppColor.primaryColor
+                                : Colors.transparent,
+                            borderRadius: BorderRadius.circular(20.h),
+                            border: Border.all(
+                              color: controller.currentPage.value < 2
+                                  ? AppColor.neutral.shade400
+                                  : AppColor.primaryColor,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                        Expanded(
+                          child: Divider(
+                            color: controller.currentPage.value >= 3
+                                ? AppColor.primaryColor
+                                : AppColor.neutral.shade400,
+                            thickness:
+                                controller.currentPage.value <= 3 ? 0 : 1,
+                          ),
+                        ),
+                        Container(
+                          width: 10,
+                          height: 10,
+                          decoration: BoxDecoration(
+                            color: controller.currentPage.value >= 4
+                                ? AppColor.primaryColor
+                                : Colors.transparent,
+                            borderRadius: BorderRadius.circular(20.h),
+                            border: Border.all(
+                              color: controller.currentPage.value < 3
+                                  ? AppColor.neutral.shade400
+                                  : AppColor.primaryColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              verticalSpace(Insets.sm),
-              Expanded(
-                child: PageView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: controller.pageController,
-                  onPageChanged: (pageIndex) {
-                    controller.changePage(pageIndex);
-                  },
-                  children: controller.pages,
+                verticalSpace(Insets.sm),
+                Expanded(
+                  child: PageView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: controller.pageController,
+                    onPageChanged: (pageIndex) {
+                      controller.changePage(pageIndex);
+                    },
+                    children: controller.pages,
+                  ),
                 ),
-              ),
-              Obx(
-                () => Column(
-                  children: [
-                    verticalSpace(8.h),
-                    ButtonPrimary(
-                      size: 345.w,
-                      height: 40.h,
-                      enable: controller.currentPage.value == 0
-                          ? controller.isValidFormUser.value &&
-                              controller.isCheck.value == true
-                          : controller.currentPage.value == 1 &&
-                                  controller.currentPage.value != 0
-                              ? controller.isValidFormData.value
-                              : controller.currentPage.value == 2 &&
-                                      controller.currentPage.value != 1
-                                  ? controller.isValidFormVehicle.value
-                                  : controller.currentPage.value == 3 &&
-                                          controller.currentPage.value != 2
-                                      ? controller.statusCheck.value
-                                      : true,
-                      onPressed: () async {
-                        var nextForm = controller.currentPage.value + 1;
-                        if (nextForm < 3) {
-                          if (controller.currentPage.value == 0) {
-                            showPopUpChoice(
-                              title: 'Daftar',
-                              description:
-                                  'Pastikan data telah terisi dengan benar.',
-                              imageUri: AppIcons.socmarket,
-                              imageSize: IconSizes.xxxl,
-                              labelPositif: 'Ya',
-                              labelNegatif: 'Tidak',
-                              onConfirm: () async {
-                                await controller.register();
-                                if (controller.registered.value == true) {
-                                  controller.getProvinces();
-                                  Get.back();
-                                  controller.changePage(nextForm);
-                                  controller.pageController.animateToPage(
-                                    nextForm,
-                                    duration: Times.medium,
-                                    curve: Curves.easeInOut,
-                                  );
-                                } else {
-                                  Get.back();
-                                }
-                              },
-                              onCancel: () => Get.back(),
-                            );
-                          } else {
-                            if (controller.currentPage.value == 1 &&
-                                controller.isValidFormData.value == true) {
+                Obx(
+                  () => Column(
+                    children: [
+                      verticalSpace(5.h),
+                      ButtonPrimary(
+                        size: 345.w,
+                        height: 45.h,
+                        enable: controller.currentPage.value == 0
+                            ? controller.isValidFormUser.value &&
+                                controller.isCheck.value == true
+                            : controller.currentPage.value == 1 &&
+                                    controller.currentPage.value != 0
+                                ? controller.isValidFormData.value
+                                : controller.currentPage.value == 2 &&
+                                        controller.currentPage.value != 1
+                                    ? controller.isValidFormVehicle.value
+                                    : controller.currentPage.value == 3 &&
+                                            controller.currentPage.value != 2
+                                        ? controller.statusCheck.value
+                                        : true,
+                        onPressed: () async {
+                          var nextForm = controller.currentPage.value + 1;
+                          if (nextForm < 3) {
+                            if (controller.currentPage.value == 0) {
                               showPopUpChoice(
-                                title: 'Perbarui Akun',
+                                title: 'Daftar',
                                 description:
                                     'Pastikan data telah terisi dengan benar.',
                                 imageUri: AppIcons.socmarket,
@@ -263,9 +245,9 @@ class PageRegister extends GetView<ControllerRegister> {
                                 labelPositif: 'Ya',
                                 labelNegatif: 'Tidak',
                                 onConfirm: () async {
-                                  await controller.updateUserAccount();
-                                  if (controller.updateddata.value == true) {
-                                    controller.getVehicleData();
+                                  await controller.register();
+                                  if (controller.isRegistered.value == true) {
+                                    controller.getProvinces();
                                     Get.back();
                                     controller.changePage(nextForm);
                                     controller.pageController.animateToPage(
@@ -281,63 +263,95 @@ class PageRegister extends GetView<ControllerRegister> {
                                 },
                                 onCancel: () => Get.back(),
                               );
+                            } else {
+                              if (controller.currentPage.value == 1 &&
+                                  controller.isValidFormData.value == true) {
+                                showPopUpChoice(
+                                  title: 'Perbarui Akun',
+                                  description:
+                                      'Pastikan data telah terisi dengan benar.',
+                                  imageUri: AppIcons.socmarket,
+                                  imageSize: IconSizes.xxxl,
+                                  labelPositif: 'Ya',
+                                  labelNegatif: 'Tidak',
+                                  onConfirm: () async {
+                                    await controller.updateUserAccount();
+                                    if (controller.updateddata.value == true) {
+                                      controller.getVehicleData();
+                                      Get.back();
+                                      controller.changePage(nextForm);
+                                      controller.pageController.animateToPage(
+                                        nextForm,
+                                        duration: Times.medium,
+                                        curve: Curves.easeInOut,
+                                      );
+                                      log('current page : ' +
+                                          controller.currentPage.toString());
+                                    } else {
+                                      Get.back();
+                                    }
+                                  },
+                                  onCancel: () => Get.back(),
+                                );
+                              }
                             }
-                          }
-                        } else {
-                          if (controller.currentPage.value == 2 &&
-                              controller.isValidFormVehicle.value == true) {
-                            showPopUpChoice(
-                              title: 'Perbarui Akun',
-                              description:
-                                  'Pastikan data telah terisi dengan benar.',
-                              imageUri: AppIcons.socmarket,
-                              imageSize: IconSizes.xxxl,
-                              labelPositif: 'Ya',
-                              labelNegatif: 'Tidak',
-                              onConfirm: () async {
-                                await controller.updateVehicleAccount();
-                                if (controller.updatedvehicle.value == true) {
-                                  controller.getDataAgreement();
-                                  controller.getAgreementStatus();
-                                  Get.back();
-                                  controller.changePage(nextForm);
-                                  controller.pageController.animateToPage(
-                                    nextForm,
-                                    duration: Times.medium,
-                                    curve: Curves.easeInOut,
-                                  );
-                                  log('current page : ' +
-                                      controller.currentPage.toString());
-                                } else {
-                                  return null;
-                                }
-                              },
-                              onCancel: () => Get.back(),
-                            );
                           } else {
-                            if (controller.currentPage.value == 3 &&
-                                controller.statusCheck.value == true) {
-                              await controller.updateAgreement();
-                              Get.offAndToNamed(Routes.regsuccess);
-                              await Future.delayed(const Duration(seconds: 5));
-                              Get.offAllNamed(Routes.main, arguments: 0);
+                            if (controller.currentPage.value == 2 &&
+                                controller.isValidFormVehicle.value == true) {
+                              showPopUpChoice(
+                                title: 'Perbarui Akun',
+                                description:
+                                    'Pastikan data telah terisi dengan benar.',
+                                imageUri: AppIcons.socmarket,
+                                imageSize: IconSizes.xxxl,
+                                labelPositif: 'Ya',
+                                labelNegatif: 'Tidak',
+                                onConfirm: () async {
+                                  await controller.updateVehicleAccount();
+                                  if (controller.updatedvehicle.value == true) {
+                                    controller.getDataAgreement();
+                                    controller.getAgreementStatus();
+                                    Get.back();
+                                    controller.changePage(nextForm);
+                                    controller.pageController.animateToPage(
+                                      nextForm,
+                                      duration: Times.medium,
+                                      curve: Curves.easeInOut,
+                                    );
+                                    log('current page : ' +
+                                        controller.currentPage.toString());
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onCancel: () => Get.back(),
+                              );
+                            } else {
+                              if (controller.currentPage.value == 3 &&
+                                  controller.statusCheck.value == true) {
+                                await controller.updateAgreement();
+                                Get.offAndToNamed(Routes.regsuccess);
+                                await Future.delayed(
+                                    const Duration(seconds: 5));
+                                Get.offAllNamed(Routes.main, arguments: 0);
+                              }
                             }
                           }
-                        }
-                      },
-                      label: controller.currentPage.value < 3
-                          ? 'Selanjutnya'
-                          : 'Daftar',
-                      labelStyle: TextStyles.bottomButton
-                          .copyWith(color: AppColor.whiteColor),
-                      cornerRadius: Corners.lg,
-                    ),
-                    verticalSpace(10.h)
-                  ],
+                        },
+                        label: controller.currentPage.value < 3
+                            ? 'Selanjutnya'
+                            : 'Daftar',
+                        labelStyle: TextStyles.bottomButton
+                            .copyWith(color: AppColor.whiteColor),
+                        cornerRadius: Corners.lg,
+                      ),
+                      verticalSpace(5.h)
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          ]),
         ),
       ),
     );

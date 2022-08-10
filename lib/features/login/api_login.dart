@@ -23,4 +23,17 @@ class ApiLogin {
     var r = await Api1().apiJSONPostWithToken('agreements/findbyrider', body);
     return r;
   }
+
+  Future<dynamic> vehicleByRiderId({required int riderId}) async {
+    final body = {
+      'rider_id': riderId,
+    };
+    var r = await Api1().apiJSONPostWithToken('nebengriders/findbyrider', body);
+    return r;
+  }
+
+  Future<dynamic> riderById({required int id}) async {
+    var r = await Api1().apiJSONGetWitToken('riders/$id');
+    return r;
+  }
 }

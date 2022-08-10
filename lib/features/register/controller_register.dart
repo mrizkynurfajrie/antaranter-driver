@@ -15,6 +15,7 @@ import 'package:antaranter_driverapp/shared/constants/styles.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_agreement.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dart';
 import 'package:antaranter_driverapp/shared/controller/controller_vehicle_info.dart';
+import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
 import 'package:antaranter_driverapp/shared/helpers/regex.dart';
 import 'package:antaranter_driverapp/shared/widgets/bottomsheet/bottomsheet_selection.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_item_register.dart';
@@ -37,13 +38,105 @@ class ControllerRegister extends GetxController {
 
   @override
   void onInit() async {
+    riderStat.value = controllerRiderInfo.rider.value.id != null ? true : false;
+    log('rider stat : ' + riderStat.toString());
+    log('id rider : ' + controllerRiderInfo.rider.value.id.toString());
+    vehicleStat.value =
+        controllerVehicleInfo.vehicle.value.id != null ? true : false;
+    agreementStat.value =
+        controllerAgreement.agreement.value.id != null ? true : false;
+
+    currentPage.value =
+        controllerRiderInfo.rider.value.nik == null && riderStat.value == true
+            ? 1
+            : controllerVehicleInfo.vehicle.value.sim == null &&
+                    vehicleStat.value == true
+                ? 2
+                : controllerAgreement.agreement.value.status == 0 &&
+                        agreementStat.value == true
+                    ? 3
+                    : 0;
+    log('current page : ' + currentPage.toString());
     pageController = PageController(initialPage: currentPage.value);
+
     await getProvinces();
     getDataTerm();
     formUserValidationListener();
     formDataValidationListener();
     formVehicleValidationListener();
     getDataAgreement();
+    getAgreementStatus();
+    getVehicleData();
+
+    // if (controllerVehicleInfo.vehicle.value.sim == null &&
+    //     vehicleStat.value == true) {
+    //   getVehicleData();
+    // } else {
+    //   return null;
+    // }
+
+    if (controllerRiderInfo.rider.value.image != null) {
+      txtPic.text = 'ada foto';
+    } else {
+      txtPic.text = '';
+    }
+    txtName.text = controllerRiderInfo.rider.value.name ?? '';
+    txtEmail.text = controllerRiderInfo.rider.value.email ?? '';
+    selectedGender.value = controllerRiderInfo.rider.value.gender ?? '';
+    if (selectedGender.value != '') {
+      txtGender.text = 'ada gender';
+    } else {
+      txtGender.text = '';
+    }
+    txtNik.text = controllerRiderInfo.rider.value.nik ?? '';
+    if (controllerRiderInfo.rider.value.ktpPict != null) {
+      txtKtp.text = 'ada foto';
+    } else {
+      txtKtp.text = '';
+    }
+    txtDate.text = controllerRiderInfo.rider.value.birth == null
+        ? ''
+        : FormatDateTime.formatDateWithoutHouryyyy(
+            value: controllerRiderInfo.rider.value.birth!);
+    txtAddress.text = controllerRiderInfo.rider.value.address ?? '';
+    txtPhone.text = controllerRiderInfo.rider.value.phone ?? '';
+    itemCities.value =
+        controllerRiderInfo.rider.value.cityLocation ?? itemCities.value;
+    txtCity.text =
+        controllerRiderInfo.rider.value.cityLocation ?? itemCities.value;
+    // controllerRiderInfo.rider.value.status = 1;
+    statusUpdate.value = controllerRiderInfo.rider.value.status!;
+
+    if (controllerRiderInfo.rider.value.gender == 'male') {
+      gender.value = 'Laki-Laki';
+    } else {
+      if (controllerRiderInfo.rider.value.gender == 'female') {
+        gender.value = 'Perempuan';
+      } else {
+        gender.value = 'Pilih Jenis Kelamin';
+      }
+    }
+
+    if (controllerVehicleInfo.vehicle.value.simPict != null) {
+      txtSimPict.text = 'ada sim';
+    } else {
+      txtSimPict.text = '';
+    }
+    txtSimNum.text = controllerVehicleInfo.vehicle.value.sim ?? '';
+    txtSimExp.text = controllerVehicleInfo.vehicle.value.simExp == null
+        ? ''
+        : FormatDateTime.formatDateWithoutHouryyyy(
+            value: controllerVehicleInfo.vehicle.value.simExp!);
+    txtPlatNum.text = controllerVehicleInfo.vehicle.value.platNumber ?? '';
+    txtVehicleCol.text = controllerVehicleInfo.vehicle.value.vehicleColor ?? '';
+    txtVehicleVar.text =
+        controllerVehicleInfo.vehicle.value.vehicleVariant ?? '';
+
+    if (controllerVehicleInfo.vehicle.value.stnkPict != null) {
+      txtStnkPict.text = 'ada stnk';
+    } else {
+      txtStnkPict.text = '';
+    }
     super.onInit();
   }
 
@@ -71,6 +164,14 @@ class ControllerRegister extends GetxController {
   var token = ''.obs;
   var loading = true.obs;
   var isRegistered = false.obs;
+  var idVehicle = 0.obs;
+  var riderStat = false.obs;
+  var vehicleStat = false.obs;
+  var agreementStat = false.obs;
+  var loadingUser = false.obs;
+  var loadingData = true.obs;
+  var loadingVehicle = true.obs;
+  var loadingAgreement = true.obs;
 
   //Auto Login Controller//
   var loginStatus = false;
@@ -142,14 +243,13 @@ class ControllerRegister extends GetxController {
   register() async {
     dismisKeyboard();
     loading.value = true;
+    loadingUser.value = true;
     try {
-      await Future.delayed(const Duration(seconds: 2));
       var res = await api.userRegister(
         name: txtName.text,
         password: cPassword.text,
         phone: cPhoneNumber.text,
       );
-
       if (res['success'] == true) {
         String? fcmToken = await messaging.getToken();
         var autoSignin = await api.autoLogin(
@@ -167,30 +267,32 @@ class ControllerRegister extends GetxController {
           token.value = tokenUser;
           await Api2().setToken(token: token.value);
           registered.value = true;
-          // Get.offAllNamed(Routes.regsuccess);
-          // await Future.delayed(const Duration(seconds: 5));
-          var riderId = res['data']['newRider']['id'];
-          var resNebengRider = await api.createNebengRider(
-            idRider: riderId,
-          );
-          var resAgreement = await api.createAgreement(
-            idRider: riderId,
-            status: status.value,
-          );
-          if (resAgreement['success'] == true) {
-            var detailAgreement = resAgreement['data']['agreement'];
-            controllerAgreement.agreement.value =
-                Agreement.fromJson(detailAgreement);
-          }
-          isRegistered.value = true;
-          // Get.toNamed(Routes.main);
         }
+        //////////////////////////////////////////////////////////////////////
+        isRegistered.value = true;
+        var riderId = res['data']['newRider']['id'];
+        idRider.value = riderId;
+        var resNebengRider = await api.createNebengRider(
+          idRider: riderId,
+        );
+        var resAgreement = await api.createAgreement(
+          idRider: riderId,
+          status: status.value,
+        );
+        if (resAgreement['success'] == true) {
+          var detailAgreement = resAgreement['data'];
+          controllerAgreement.agreement.value =
+              Agreement.fromJson(detailAgreement);
+        }
+        await Api2().removeRider();
+        loadingUser.value = false;
       } else {
         var firstError = res['errors'][0];
-        throw firstError['message'];
+        throw 'Akun anda tidak ditemukan';
       }
     } catch (e) {
       loading.value = false;
+      loadingUser.value = false;
       showPopUp(
           title: 'Terjadi Kesalahan',
           description:
@@ -611,9 +713,9 @@ class ControllerRegister extends GetxController {
         img: uploadImg,
         birth: txtDate.text,
         address: txtAddress.text,
-        phone: controllerRiderInfo.rider.value.phone,
+        phone: controllerRiderInfo.rider.value.phone ?? cPhoneNumber.text,
         city: itemCities.value,
-        idRider: controllerRiderInfo.rider.value.id,
+        idRider: controllerRiderInfo.rider.value.id ?? idRider.value,
         // status: statusUpdate.value,
         status: hasilstatus,
       );
@@ -635,6 +737,7 @@ class ControllerRegister extends GetxController {
         title: 'Terjadi Kesalahan',
         description: 'Pastikan data sudah benar',
         imageUri: PopUpIcons.error,
+        dismissible: false,
       );
       await Future.delayed(const Duration(seconds: 3));
       Get.back();
@@ -879,7 +982,7 @@ class ControllerRegister extends GetxController {
         vehicleCol: txtVehicleCol.text,
         stnkPict: uploadStnk,
         idRiderNebeng: idNebengRider.value,
-        idRider: controllerRiderInfo.rider.value.id,
+        idRider: controllerRiderInfo.rider.value.id ?? idRider.value,
       );
       if (updateResult['success'] == true) {
         var result = updateResult["data"];
@@ -947,8 +1050,12 @@ class ControllerRegister extends GetxController {
         status: statusAgreement.value,
         idAgreement: idAgreement.value,
       );
+      log('rider id : ' + controllerRiderInfo.rider.value.id.toString());
       resultStatus.value = updateResult['data']['status'];
       agreementstatus.value = true;
+
+      // Get.offAllNamed(Routes.regsuccess);
+      // await Future.delayed(const Duration(seconds: 5));
       loginStatus = true;
       await Api2().setIsLogin(isLogin: loginStatus);
       log(updateResult.toString());
