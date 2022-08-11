@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class PageRegister extends GetView<ControllerRegister> {
   const PageRegister({Key? key}) : super(key: key);
@@ -245,10 +246,28 @@ class PageRegister extends GetView<ControllerRegister> {
                                 labelPositif: 'Ya',
                                 labelNegatif: 'Tidak',
                                 onConfirm: () async {
+                                  Get.back();
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (_) {
+                                      return Center(
+                                        child: ConstrainedBox(
+                                          constraints: BoxConstraints(
+                                            maxHeight: 75.h,
+                                            maxWidth: 75.w,
+                                          ),
+                                          child:
+                                              const CircularProgressIndicator(
+                                            color: AppColor.primaryColor,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
                                   await controller.register();
                                   if (controller.isRegistered.value == true) {
                                     controller.getProvinces();
-                                    Get.back();
                                     controller.changePage(nextForm);
                                     controller.pageController.animateToPage(
                                       nextForm,
@@ -257,6 +276,7 @@ class PageRegister extends GetView<ControllerRegister> {
                                     );
                                     log('current page : ' +
                                         controller.currentPage.toString());
+                                    Get.back();
                                   } else {
                                     Get.back();
                                   }
@@ -275,10 +295,28 @@ class PageRegister extends GetView<ControllerRegister> {
                                   labelPositif: 'Ya',
                                   labelNegatif: 'Tidak',
                                   onConfirm: () async {
+                                    Get.back();
+                                    showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (_) {
+                                        return Center(
+                                          child: ConstrainedBox(
+                                            constraints: BoxConstraints(
+                                              maxHeight: 75.h,
+                                              maxWidth: 75.w,
+                                            ),
+                                            child:
+                                                const CircularProgressIndicator(
+                                              color: AppColor.primaryColor,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
                                     await controller.updateUserAccount();
                                     if (controller.updateddata.value == true) {
                                       controller.getVehicleData();
-                                      Get.back();
                                       controller.changePage(nextForm);
                                       controller.pageController.animateToPage(
                                         nextForm,
@@ -287,6 +325,7 @@ class PageRegister extends GetView<ControllerRegister> {
                                       );
                                       log('current page : ' +
                                           controller.currentPage.toString());
+                                      Get.back();
                                     } else {
                                       Get.back();
                                     }
@@ -307,11 +346,29 @@ class PageRegister extends GetView<ControllerRegister> {
                                 labelPositif: 'Ya',
                                 labelNegatif: 'Tidak',
                                 onConfirm: () async {
+                                  Get.back();
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (_) {
+                                      return Center(
+                                        child: ConstrainedBox(
+                                          constraints: BoxConstraints(
+                                            maxHeight: 75.h,
+                                            maxWidth: 75.w,
+                                          ),
+                                          child:
+                                              const CircularProgressIndicator(
+                                            color: AppColor.primaryColor,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
                                   await controller.updateVehicleAccount();
                                   if (controller.updatedvehicle.value == true) {
                                     controller.getDataAgreement();
                                     controller.getAgreementStatus();
-                                    Get.back();
                                     controller.changePage(nextForm);
                                     controller.pageController.animateToPage(
                                       nextForm,
@@ -320,6 +377,7 @@ class PageRegister extends GetView<ControllerRegister> {
                                     );
                                     log('current page : ' +
                                         controller.currentPage.toString());
+                                    Get.back();
                                   } else {
                                     return null;
                                   }

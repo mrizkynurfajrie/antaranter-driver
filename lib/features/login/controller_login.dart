@@ -106,10 +106,10 @@ class ControllerLogin extends GetxController {
           // var riderResult =
           //     await api.riderById(id: controllerRiderInfo.rider.value.id ?? 0);
           if (controllerRiderInfo.rider.value.nik == null) {
-            await showPopUp(
+            await showPopUpLogin(
                 title: 'Profil Pengguna',
                 description: 'Anda belum melengkapi data profil pengguna',
-                imageUri: PopUpIcons.error,
+                imageUri: PopUpIcons.information,
                 labelButton: 'Profil Pengguna',
                 onPress: () {
                   goToRegisterPage(1);
@@ -122,10 +122,10 @@ class ControllerLogin extends GetxController {
               controllerVehicle.vehicle.value =
                   NebengRider.fromJson(detailVehicle);
               if (controllerVehicle.vehicle.value.sim == null) {
-                await showPopUp(
+                await showPopUpLogin(
                     title: 'Profil Kendaraan',
                     description: 'Anda belum melengkapi data profil kendaraan',
-                    imageUri: PopUpIcons.error,
+                    imageUri: PopUpIcons.information,
                     labelButton: 'Profil Kendaraan',
                     onPress: () {
                       goToRegisterPage(2);
@@ -138,11 +138,11 @@ class ControllerLogin extends GetxController {
                   controllerAgreement.agreement.value =
                       Agreement.fromJson(detailAgreement);
                   if (controllerAgreement.agreement.value.status == 0) {
-                    await showPopUp(
+                    await showPopUpLogin(
                         title: 'Perjanjian Kerjasama',
                         description:
                             'Anda belum menyetujui Perjanjian Kerjasama sebagai Driver AntarAnter',
-                        imageUri: PopUpIcons.error,
+                        imageUri: PopUpIcons.information,
                         labelButton: 'Perjanjian Kerjasama',
                         onPress: () {
                           goToRegisterPage(3);

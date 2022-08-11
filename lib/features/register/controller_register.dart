@@ -30,6 +30,7 @@ import 'package:antaranter_driverapp/features/register/api_register.dart';
 import 'package:antaranter_driverapp/framework/api2.dart';
 import 'package:antaranter_driverapp/shared/helpers/utils.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
 class ControllerRegister extends GetxController {
