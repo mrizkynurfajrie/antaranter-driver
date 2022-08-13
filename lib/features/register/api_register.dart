@@ -2,6 +2,13 @@ import 'package:antaranter_driverapp/framework/api1.dart';
 
 class ApiRegister {
   //contoh
+  Future<dynamic> uploadImg({required String imageItem}) async {
+    var response = Api1().apiUploadImageWithToken(imageItem, 'upload');
+    // log('cek imgKTP : ' + upload.toString());
+
+    return response;
+  }
+
   Future<dynamic> userRegister({
     required String name,
     required String password,
@@ -149,30 +156,6 @@ class ApiRegister {
         .apiJSONPostWithToken("cities/findbyprovince", bodyProvince);
 
     return responseCity;
-  }
-
-  Future<dynamic> uploadProfileImg({required String profileImg}) async {
-    var upload = Api1().apiJSONMultipartWithToken(profileImg, 'upload');
-
-    return upload;
-  }
-
-  Future<dynamic> uploadKtpImg({required String ktpImg}) async {
-    var upload = Api1().apiJSONMultipartWithToken(ktpImg, 'upload');
-
-    return upload;
-  }
-
-  Future<dynamic> uploadSimImg({required String simImg}) async {
-    var upload = Api1().apiJSONMultipartWithToken(simImg, 'upload');
-
-    return upload;
-  }
-
-  Future<dynamic> uploadStnkImg({required String stnkImg}) async {
-    var upload = Api1().apiJSONMultipartWithToken(stnkImg, 'upload');
-
-    return upload;
   }
 
   Future<dynamic> agreement() async {

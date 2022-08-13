@@ -17,6 +17,7 @@ import 'package:antaranter_driverapp/shared/controller/controller_rider_info.dar
 import 'package:antaranter_driverapp/shared/controller/controller_vehicle_info.dart';
 import 'package:antaranter_driverapp/shared/helpers/format_date_time.dart';
 import 'package:antaranter_driverapp/shared/helpers/regex.dart';
+import 'package:antaranter_driverapp/shared/helpers/ui_state.dart';
 import 'package:antaranter_driverapp/shared/widgets/bottomsheet/bottomsheet_selection.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_item_register.dart';
 import 'package:antaranter_driverapp/shared/widgets/cards/card_rounded.dart';
@@ -158,6 +159,7 @@ class ControllerRegister extends GetxController {
   }
 
   //Global Controller//
+  var uploadState = UploadPictState.empty.obs;
   var controllerRiderInfo = Get.find<ControllerRiderInfo>();
   var controllerVehicleInfo = Get.find<ControllerVehicleInfo>();
   var controllerAgreement = Get.find<ControllerAgreementInfo>();
@@ -390,19 +392,6 @@ class ControllerRegister extends GetxController {
         validAddress.value;
   }
 
-  Future<File> compressImage(XFile image) async {
-    final dir = await path_provider.getTemporaryDirectory();
-    var targetPath =
-        "${dir.absolute.path}/temp-${DateTime.now().millisecondsSinceEpoch}.png";
-    var compressFile = await FlutterImageCompress.compressAndGetFile(
-      image.path,
-      targetPath,
-      quality: 70,
-      format: CompressFormat.png,
-    );
-    return compressFile!;
-  }
-
   getImgFromCamera() async {
     final XFile? camImage =
         await picker.pickImage(source: ImageSource.camera, imageQuality: 50);
@@ -460,6 +449,7 @@ class ControllerRegister extends GetxController {
     if (camImage != null) {
       var result = await compressImage(camImage);
       ktpPreview.value = result.path;
+      uploadState.value = UploadPictState.fromLocal;
       txtKtp.text = 'ktp';
     }
   }
@@ -469,6 +459,7 @@ class ControllerRegister extends GetxController {
         await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     if (fileImage != null) {
       var result = await compressImage(fileImage);
+      uploadState.value = UploadPictState.fromLocal;
       ktpPreview.value = result.path;
       txtKtp.text = 'ktp';
     }
@@ -507,30 +498,54 @@ class ControllerRegister extends GetxController {
     );
   }
 
-  uploadImgRider() async {
-    try {
-      var uploadSelImg =
-          await api.uploadProfileImg(profileImg: imgPreview.value);
-      if (uploadSelImg != null) {
-        var selfImgValue = uploadSelImg["data"]["key"];
-        uploadImg = selfImgValue;
+  // uploadImgRider() async {
+  //   try {
+  //     var uploadSelImg =
+  //         await api.uploadProfileImg(profileImg: imgPreview.value);
+  //     if (uploadSelImg != null) {
+  //       var selfImgValue = uploadSelImg["data"]["key"];
+  //       uploadImg = selfImgValue;
+  //     }
+  //   } catch (e) {
+  //     log(e.toString());
+  //   }
+  // }
+
+  Future<dynamic> uploadImgRider() async {
+    if (imgPreview.isNotEmpty) {
+      var res = await api.uploadImg(imageItem: imgPreview.value);
+      log(res.toString());
+      if (res['success'] == true) {
+        return res["data"]["key"];
+      } else {
+        throw "Error Upload Image";
       }
-    } catch (e) {
-      log(e.toString());
     }
   }
 
-  uploadKtpRider() async {
-    try {
-      var uploadSelKtp = await api.uploadKtpImg(ktpImg: ktpPreview.value);
-      if (uploadSelKtp != null) {
-        var selfKtpValue = uploadSelKtp["data"]["key"];
-        uploadKtp = selfKtpValue;
+  Future<dynamic> uploadImgKtp() async {
+    if (ktpPreview.isNotEmpty) {
+      var res = await api.uploadImg(imageItem: ktpPreview.value);
+      log(res.toString());
+      if (res['success'] == true) {
+        return res["data"]["key"];
+      } else {
+        throw "Error Upload Image";
       }
-    } catch (e) {
-      log(e.toString());
     }
   }
+
+  // uploadKtpRider() async {
+  //   try {
+  //     var uploadSelKtp = await api.uploadKtpImg(ktpImg: ktpPreview.value);
+  //     if (uploadSelKtp != null) {
+  //       var selfKtpValue = uploadSelKtp["data"]["key"];
+  //       uploadKtp = selfKtpValue;
+  //     }
+  //   } catch (e) {
+  //     log(e.toString());
+  //   }
+  // }
 
   buildGender() {
     return Get.defaultDialog(
@@ -688,8 +703,12 @@ class ControllerRegister extends GetxController {
         ? controllerRiderInfo.rider.value.status = 1
         : controllerRiderInfo.rider.value.status = 1;
     try {
-      await uploadImgRider();
-      await uploadKtpRider();
+      if (uploadImg.isEmpty && uploadKtp.isEmpty) {
+        uploadImg = await uploadImgRider();
+        uploadKtp = await uploadImgKtp();
+      } else {
+        throw 'gagal menyimpan gambar';
+      }
       if (uploadImg == '') {
         if (controllerRiderInfo.rider.value.image != null) {
           uploadImg = controllerRiderInfo.rider.value.image!;
@@ -705,32 +724,35 @@ class ControllerRegister extends GetxController {
       } else {
         selectedGender.value = 'female';
       }
-      var updateResult = await api.updateUserAccount(
-        name: txtName.text,
-        email: txtEmail.text,
-        gender: selectedGender.value,
-        nik: txtNik.text,
-        ktp: uploadKtp,
-        img: uploadImg,
-        birth: txtDate.text,
-        address: txtAddress.text,
-        phone: controllerRiderInfo.rider.value.phone ?? cPhoneNumber.text,
-        city: itemCities.value,
-        idRider: controllerRiderInfo.rider.value.id ?? idRider.value,
-        // status: statusUpdate.value,
-        status: hasilstatus,
-      );
-      log(updateResult.toString());
-      if (updateResult['success'] == true) {
-        var result = updateResult["data"];
-        await Api2().setRider(rider: result);
-        var rider = MainRider.fromJson(result);
-        Get.find<ControllerRiderInfo>().rider.value = rider;
-        updateddata.value = true;
-      } else {
-        throw "Gagal memperbarui akun";
+      await Future.delayed(const Duration(seconds: 5));
+      if (uploadImg.isNotEmpty && uploadKtp.isNotEmpty) {
+        var updateResult = await api.updateUserAccount(
+          name: txtName.text,
+          email: txtEmail.text,
+          gender: selectedGender.value,
+          nik: txtNik.text,
+          ktp: uploadKtp,
+          img: uploadImg,
+          birth: txtDate.text,
+          address: txtAddress.text,
+          phone: controllerRiderInfo.rider.value.phone,
+          city: itemCities.value,
+          idRider: controllerRiderInfo.rider.value.id,
+          // status: statusUpdate.value,
+          status: hasilstatus,
+        );
+        log(updateResult.toString());
+        if (updateResult['success'] == true) {
+          var result = updateResult["data"];
+          await Api2().setRider(rider: result);
+          var rider = MainRider.fromJson(result);
+          Get.find<ControllerRiderInfo>().rider.value = rider;
+          updateddata.value = true;
+        } else {
+          throw "Gagal memperbarui akun";
+        }
+        loadingForm.value = false;
       }
-      loadingForm.value = false;
     } catch (e) {
       loadingForm.value = false;
       log(e.toString());
@@ -738,7 +760,6 @@ class ControllerRegister extends GetxController {
         title: 'Terjadi Kesalahan',
         description: 'Pastikan data sudah benar',
         imageUri: PopUpIcons.error,
-        dismissible: false,
       );
       await Future.delayed(const Duration(seconds: 3));
       Get.back();
@@ -934,35 +955,62 @@ class ControllerRegister extends GetxController {
         });
   }
 
-  uploadSimPict() async {
-    try {
-      var uploadSelSim = await api.uploadSimImg(simImg: simPreview.value);
-      if (uploadSelSim != null) {
-        var selfSimValue = uploadSelSim["data"]["key"];
-        uploadSim = selfSimValue;
+  Future<dynamic> uploadImgSim() async {
+    if (simPreview.isNotEmpty) {
+      var res = await api.uploadImg(imageItem: simPreview.value);
+      log(res.toString());
+      if (res['success'] == true) {
+        return res["data"]["key"];
+      } else {
+        throw "Error Upload Image";
       }
-    } catch (e) {
-      log(e.toString());
     }
   }
 
-  uploadStnkPict() async {
-    try {
-      var uploadSelStnk = await api.uploadStnkImg(stnkImg: stnkPreview.value);
-      if (uploadSelStnk != null) {
-        var selfStnkValue = uploadSelStnk["data"]["key"];
-        uploadStnk = selfStnkValue;
+  Future<dynamic> uploadImgStnk() async {
+    if (stnkPreview.isNotEmpty) {
+      var res = await api.uploadImg(imageItem: stnkPreview.value);
+      log(res.toString());
+      if (res['success'] == true) {
+        return res["data"]["key"];
+      } else {
+        throw "Error Upload Image";
       }
-    } catch (e) {
-      log(e.toString());
     }
   }
+
+  // uploadSimPict() async {
+  //   try {
+  //     var uploadSelSim = await api.uploadSimImg(simImg: simPreview.value);
+  //     if (uploadSelSim != null) {
+  //       var selfSimValue = uploadSelSim["data"]["key"];
+  //       uploadSim = selfSimValue;
+  //     }
+  //   } catch (e) {
+  //     log(e.toString());
+  //   }
+  // }
+
+  // uploadStnkPict() async {
+  //   try {
+  //     var uploadSelStnk = await api.uploadStnkImg(stnkImg: stnkPreview.value);
+  //     if (uploadSelStnk != null) {
+  //       var selfStnkValue = uploadSelStnk["data"]["key"];
+  //       uploadStnk = selfStnkValue;
+  //     }
+  //   } catch (e) {
+  //     log(e.toString());
+  //   }
+  // }
 
   updateVehicleAccount() async {
     try {
       loading.value = true;
-      await uploadSimPict();
-      await uploadStnkPict();
+
+      if (uploadSim.isEmpty && uploadStnk.isEmpty) {
+        uploadSim = await uploadImgSim();
+        uploadStnk = await uploadImgStnk();
+      }
       if (uploadSim == '') {
         if (controllerVehicleInfo.vehicle.value.simPict != null) {
           uploadSim = controllerVehicleInfo.vehicle.value.simPict!;
@@ -973,31 +1021,33 @@ class ControllerRegister extends GetxController {
           uploadStnk = controllerVehicleInfo.vehicle.value.stnkPict!;
         }
       }
-
-      var updateResult = await api.updateVehicleAccount(
-        simNum: txtSimNum.text,
-        simExp: txtSimExp.text,
-        simPict: uploadSim,
-        platNum: txtPlatNum.text,
-        vehicleVar: txtVehicleVar.text,
-        vehicleCol: txtVehicleCol.text,
-        stnkPict: uploadStnk,
-        idRiderNebeng: idNebengRider.value,
-        idRider: controllerRiderInfo.rider.value.id ?? idRider.value,
-      );
-      if (updateResult['success'] == true) {
-        var result = updateResult["data"];
-        await Api2().setVehicle(vehicle: result);
-        var vehicle = NebengRider.fromJson(result);
-        Get.find<ControllerVehicleInfo>().vehicle.value = vehicle;
-        updatedvehicle.value = true;
-      } else {
-        showPopUpError(
-          errorTitle: 'Gagal',
-          errorMessage: 'Gagal memperbarui data',
+      await Future.delayed(const Duration(seconds: 5));
+      if (uploadSim.isNotEmpty && uploadStnk.isNotEmpty) {
+        var updateResult = await api.updateVehicleAccount(
+          simNum: txtSimNum.text,
+          simExp: txtSimExp.text,
+          simPict: uploadSim,
+          platNum: txtPlatNum.text,
+          vehicleVar: txtVehicleVar.text,
+          vehicleCol: txtVehicleCol.text,
+          stnkPict: uploadStnk,
+          idRiderNebeng: idNebengRider.value,
+          idRider: controllerRiderInfo.rider.value.id ?? idRider.value,
         );
+        if (updateResult['success'] == true) {
+          var result = updateResult["data"];
+          await Api2().setVehicle(vehicle: result);
+          var vehicle = NebengRider.fromJson(result);
+          Get.find<ControllerVehicleInfo>().vehicle.value = vehicle;
+          updatedvehicle.value = true;
+        } else {
+          showPopUpError(
+            errorTitle: 'Gagal',
+            errorMessage: 'Gagal memperbarui data',
+          );
+        }
+        loading.value = false;
       }
-      loading.value = false;
     } catch (e) {
       loading.value = false;
       log(e.toString());
