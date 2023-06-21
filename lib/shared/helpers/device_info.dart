@@ -9,7 +9,7 @@ class DeviceInfo {
 
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      return androidInfo.androidId;
+      // return androidInfo.androidId;
     } else {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       return iosInfo.identifierForVendor;
@@ -43,7 +43,7 @@ class DeviceInfo {
       id = androidInfo.id;
       manufacturer = androidInfo.manufacturer;
       model = androidInfo.model;
-      deviceId = androidInfo.androidId;
+      // deviceId = androidInfo.androidId;
       osVer = androidInfo.version.release;
       os = androidInfo.version.baseOS;
       appVersion = packageInfo.version;
